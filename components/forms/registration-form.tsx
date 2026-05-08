@@ -233,6 +233,34 @@ export function RegistrationForm() {
 
             <div className="grid md:grid-cols-2 gap-6">
               <div>
+                <label className={LabelClass}>Pays *</label>
+                <input
+                  {...register('country')}
+                  type="text"
+                  className={InputClass}
+                  placeholder="Votre pays de résidence"
+                />
+                {errors.country && <p className="text-red-500 text-sm mt-1">{errors.country.message}</p>}
+              </div>
+
+              <div>
+                <label className={LabelClass}>Format souhaité *</label>
+                <div className="flex gap-4 h-[50px]">
+                  <label className={`flex-1 flex items-center justify-center border-2 rounded-xl cursor-pointer transition-all ${watch('format') === 'presentiel' ? 'border-brand-green bg-brand-green/5 font-bold' : 'border-gray-200'}`}>
+                    <input type="radio" value="presentiel" {...register('format')} className="hidden" />
+                    Présentiel
+                  </label>
+                  <label className={`flex-1 flex items-center justify-center border-2 rounded-xl cursor-pointer transition-all ${watch('format') === 'online' ? 'border-brand-green bg-brand-green/5 font-bold' : 'border-gray-200'}`}>
+                    <input type="radio" value="online" {...register('format')} className="hidden" />
+                    Online
+                  </label>
+                </div>
+                {errors.format && <p className="text-red-500 text-sm mt-1">{errors.format.message}</p>}
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
                 <label className={LabelClass}>Entreprise</label>
                 <input
                   {...register('company')}

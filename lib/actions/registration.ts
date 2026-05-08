@@ -57,7 +57,7 @@ export async function createRegistration(data: RegistrationFormData) {
         position: data.position,
         profile_type: data.profileType,
         source: data.source,
-        message: data.message,
+        message: `[PAYS: ${data.country}] [FORMAT: ${data.format}] ${data.message || ''}`,
         status: 'lead',
       })
       .select()

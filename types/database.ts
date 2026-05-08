@@ -210,6 +210,8 @@ export interface RegistrationFormData {
   profileType: 'cadre' | 'etudiant' | 'freelance' | 'autre';
   source: 'direct' | 'linkedin' | 'facebook' | 'instagram' | 'referral' | 'colleague' | 'autre';
   groupId: string;
+  country: string;
+  format: 'online' | 'presentiel';
   message?: string;
   agreedToTerms: boolean;
   agreedToPrivacy: boolean;

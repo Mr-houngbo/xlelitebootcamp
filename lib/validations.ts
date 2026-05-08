@@ -43,6 +43,13 @@ export const registrationSchema = z.object({
   groupId: z.string()
     .min(1, 'Veuillez sélectionner un groupe'),
   
+  country: z.string()
+    .min(2, 'Le pays est requis'),
+
+  format: z.enum(['online', 'presentiel'], {
+    errorMap: () => ({ message: 'Veuillez sélectionner un format' })
+  }),
+  
   message: z.string()
     .max(500, 'Le message ne peut pas dépasser 500 caractères')
     .optional(),

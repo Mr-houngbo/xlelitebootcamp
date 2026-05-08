@@ -22,11 +22,8 @@ export function Navbar() {
 
   const navigation = [
     { name: 'Accueil', href: '/' },
-    { name: 'Programme', href: '/programme' },
-    { name: 'Avantages', href: '/avantages-certification' },
-    { name: 'Témoignages', href: '/temoignages' },
-    { name: 'Formateur', href: '/formateur' },
-    { name: 'FAQ', href: '/faq' },
+    { name: 'Pourquoi nous ?', href: '/preuve' },
+    { name: "S'inscrire", href: '/inscription' },
   ];
 
   if (!isMounted) return null;

@@ -1,17 +1,11 @@
-import { HeroSection } from '@/components/sections/hero-section';
-import { StatsSection } from '@/components/sections/stats-section';
-import { TestimonialsSection } from '@/components/sections/testimonials-section';
-import { BenefitsSection } from '@/components/sections/benefits-section';
-import { CTASection } from '@/components/sections/cta-section';
+import { HeroFunnel, ProblemSection, TransformationSection } from '@/components/funnel/home-sections';
 
 export default function HomePage() {
   return (
-    <>
-      <HeroSection />
-      <StatsSection />
-      <BenefitsSection />
-      <TestimonialsSection />
-      <CTASection />
-    </>
+    <main className="min-h-screen">
+      <HeroFunnel />
+      <ProblemSection />
+      <TransformationSection />
+    </main>
   );
 }

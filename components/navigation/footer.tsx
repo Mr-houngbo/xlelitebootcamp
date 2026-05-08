@@ -41,33 +41,21 @@ export function Footer() {
             <h3 className="font-bold text-gray-900 text-lg tracking-wide uppercase text-sm">Navigation</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/programme" className="text-gray-500 hover:text-brand-green transition-colors flex items-center gap-2 group font-medium">
+                <Link href="/" className="text-gray-500 hover:text-brand-green transition-colors flex items-center gap-2 group font-medium">
                   <span className="w-1.5 h-1.5 rounded-full bg-brand-green/0 group-hover:bg-brand-green transition-colors"></span>
-                  Programme
+                  Accueil
                 </Link>
               </li>
               <li>
-                <Link href="/avantages-certification" className="text-gray-500 hover:text-brand-green transition-colors flex items-center gap-2 group font-medium">
+                <Link href="/preuve" className="text-gray-500 hover:text-brand-green transition-colors flex items-center gap-2 group font-medium">
                   <span className="w-1.5 h-1.5 rounded-full bg-brand-green/0 group-hover:bg-brand-green transition-colors"></span>
-                  Avantages
+                  Pourquoi XL Elite ?
                 </Link>
               </li>
               <li>
-                <Link href="/temoignages" className="text-gray-500 hover:text-brand-green transition-colors flex items-center gap-2 group font-medium">
+                <Link href="/inscription" className="text-gray-500 hover:text-brand-green transition-colors flex items-center gap-2 group font-medium">
                   <span className="w-1.5 h-1.5 rounded-full bg-brand-green/0 group-hover:bg-brand-green transition-colors"></span>
-                  Témoignages
-                </Link>
-              </li>
-              <li>
-                <Link href="/formateur" className="text-gray-500 hover:text-brand-green transition-colors flex items-center gap-2 group font-medium">
-                  <span className="w-1.5 h-1.5 rounded-full bg-brand-green/0 group-hover:bg-brand-green transition-colors"></span>
-                  Formateur
-                </Link>
-              </li>
-              <li>
-                <Link href="/faq" className="text-gray-500 hover:text-brand-green transition-colors flex items-center gap-2 group font-medium">
-                  <span className="w-1.5 h-1.5 rounded-full bg-brand-green/0 group-hover:bg-brand-green transition-colors"></span>
-                  FAQ
+                  S'inscrire
                 </Link>
               </li>
             </ul>
