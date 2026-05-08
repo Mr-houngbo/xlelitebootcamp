@@ -53,11 +53,9 @@ export async function createRegistration(data: RegistrationFormData) {
         last_name: data.lastName,
         email: data.email,
         phone: data.phone,
-        company: data.company,
-        position: data.position,
         profile_type: data.profileType,
         source: data.source,
-        message: `[PAYS: ${data.country}] [FORMAT: ${data.format}] ${data.message || ''}`,
+        message: `[PAYS: ${data.country}] [FORMAT: ${data.format}]`,
         status: 'lead',
       })
       .select()
@@ -75,7 +73,8 @@ export async function createRegistration(data: RegistrationFormData) {
         participant_id: participant.id,
         group_id: data.groupId,
         registration_fee_amount: 25000,
-        training_fee_amount: 150000,
+        training_fee_amount: 125000,
+        total_amount: 150000,
         payment_status: 'pending',
         registration_fee_paid: false,
         training_fee_paid: false,

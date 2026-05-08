@@ -205,14 +205,11 @@ export interface RegistrationFormData {
   lastName: string;
   email: string;
   phone: string;
-  company?: string;
-  position?: string;
   profileType: 'cadre' | 'etudiant' | 'freelance' | 'autre';
   source: 'direct' | 'linkedin' | 'facebook' | 'instagram' | 'referral' | 'colleague' | 'autre';
   groupId: string;
   country: string;
   format: 'online' | 'presentiel';
-  message?: string;
   agreedToTerms: boolean;
   agreedToPrivacy: boolean;
 }
@@ -300,4 +297,20 @@ export interface EmailTemplate {
   subject: string;
   html: string;
   variables: string[];
+}
+
+export interface Testimonial {
+  id: string;
+  participant_name: string;
+  participant_photo?: string;
+  company?: string;
+  position?: string;
+  testimonial: string;
+  rating: number;
+  video_url?: string;
+  type: 'text' | 'video';
+  linkedin_url?: string;
+  is_featured: boolean;
+  is_active: boolean;
+  created_at?: string;
 }

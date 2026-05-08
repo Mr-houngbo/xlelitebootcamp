@@ -36,30 +36,6 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Navigation */}
-          <div className="space-y-6 lg:pl-8">
-            <h3 className="font-bold text-gray-900 text-lg tracking-wide uppercase text-sm">Navigation</h3>
-            <ul className="space-y-3">
-              <li>
-                <Link href="/" className="text-gray-500 hover:text-brand-green transition-colors flex items-center gap-2 group font-medium">
-                  <span className="w-1.5 h-1.5 rounded-full bg-brand-green/0 group-hover:bg-brand-green transition-colors"></span>
-                  Accueil
-                </Link>
-              </li>
-              <li>
-                <Link href="/preuve" className="text-gray-500 hover:text-brand-green transition-colors flex items-center gap-2 group font-medium">
-                  <span className="w-1.5 h-1.5 rounded-full bg-brand-green/0 group-hover:bg-brand-green transition-colors"></span>
-                  Pourquoi XL Elite ?
-                </Link>
-              </li>
-              <li>
-                <Link href="/inscription" className="text-gray-500 hover:text-brand-green transition-colors flex items-center gap-2 group font-medium">
-                  <span className="w-1.5 h-1.5 rounded-full bg-brand-green/0 group-hover:bg-brand-green transition-colors"></span>
-                  S'inscrire
-                </Link>
-              </li>
-            </ul>
-          </div>
 
           {/* Formation */}
           <div className="space-y-6">

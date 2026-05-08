@@ -50,10 +50,6 @@ export const registrationSchema = z.object({
     errorMap: () => ({ message: 'Veuillez sélectionner un format' })
   }),
   
-  message: z.string()
-    .max(500, 'Le message ne peut pas dépasser 500 caractères')
-    .optional(),
-  
   agreedToTerms: z.boolean()
     .refine((val) => val === true, 'Vous devez accepter les conditions générales'),
   

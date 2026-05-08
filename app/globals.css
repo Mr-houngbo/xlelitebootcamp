@@ -77,4 +77,10 @@
   @apply absolute rounded-full blur-[100px] opacity-[0.15] pointer-events-none mix-blend-multiply;
 }
 
-
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

@@ -39,15 +39,19 @@ export const RegistrationSummary = () => {
 
       <div className="mt-12 pt-8 border-t border-slate-100 dark:border-slate-800">
         <div className="flex justify-between items-center mb-2">
-          <span className="text-slate-500">Investissement</span>
-          <span className="text-3xl font-black text-emerald-600">1.500 €</span>
+          <span className="text-slate-500 font-medium">Investissement Total</span>
+          <span className="text-3xl font-black text-emerald-600">150 000 F</span>
         </div>
-        <p className="text-xs text-slate-400 text-center italic">Zéro frais cachés. Paiement après validation du dossier.</p>
+        <p className="text-xs text-slate-400 text-center italic mt-4">
+          (125 000 formation + 25 000 inscription). <br />
+          Paiement après validation du dossier.
+        </p>
       </div>
 
       <div className="mt-8 p-4 bg-orange-50 dark:bg-orange-900/20 border border-orange-100 dark:border-orange-900/30 rounded-2xl">
-         <p className="text-sm text-orange-700 dark:text-orange-400 font-medium">
-            ⚠️ Attention : Plus que 3 places disponibles pour la session de Juin.
+         <p className="text-sm text-orange-700 dark:text-orange-400 font-medium text-center">
+            ⚠️ Deadline : 02 Juin <br />
+            Plus que 3 places disponibles.
          </p>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
-import { LayoutDashboard, Users, Briefcase, LogOut, Hexagon } from 'lucide-react';
+import { LayoutDashboard, Users, Briefcase, LogOut, Hexagon, MessageSquare } from 'lucide-react';
 
 export default async function AdminLayout({
   children,
@@ -77,6 +77,16 @@ export default async function AdminLayout({
             <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-brand-orange rounded-r-full scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-left"></div>
             <Briefcase className="w-5 h-5 text-gray-400 group-hover:text-brand-orange transition-colors" />
             <span className="relative z-10">Business</span>
+          </a>
+
+          <a
+            href="/admin/testimonials"
+            className="group flex items-center gap-4 px-4 py-3.5 rounded-2xl text-sm font-semibold text-gray-600 hover:text-gray-900 transition-all duration-300 relative overflow-hidden"
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-brand-orange/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-brand-orange rounded-r-full scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-left"></div>
+            <MessageSquare className="w-5 h-5 text-gray-400 group-hover:text-brand-orange transition-colors" />
+            <span className="relative z-10">Témoignages</span>
           </a>
         </nav>
 
