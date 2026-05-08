@@ -86,41 +86,41 @@ const VideoTestimonialCard = ({ testimonial }: { testimonial: any }) => {
   };
 
   return (
-    <div className="relative min-w-[300px] md:min-w-[400px] aspect-[9/16] rounded-[2.5rem] overflow-hidden bg-slate-900 group shadow-2xl">
+    <div className="relative min-w-[220px] md:min-w-[260px] aspect-[9/16] rounded-3xl overflow-hidden bg-slate-900 group shadow-lg border border-slate-200/10">
       <video
         ref={videoRef}
         src={testimonial.video_url}
         loop
         muted={isMuted}
         playsInline
-        className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+        className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity"
       />
       
-      {/* Overlay info */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-8">
-        <div className="mb-4">
-          <h4 className="text-white font-black text-xl">{testimonial.participant_name}</h4>
-          <p className="text-emerald-400 text-sm font-bold">{testimonial.position} @ {testimonial.company}</p>
+      {/* Overlay info - Plus discret */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent flex flex-col justify-end p-5">
+        <div className="mb-2">
+          <h4 className="text-white font-bold text-base leading-tight">{testimonial.participant_name}</h4>
+          <p className="text-emerald-400 text-[10px] font-bold uppercase tracking-wider">{testimonial.position}</p>
         </div>
-        <p className="text-white/90 text-sm line-clamp-2 italic">"{testimonial.testimonial}"</p>
+        <p className="text-white/80 text-[11px] line-clamp-2 italic leading-tight">"{testimonial.testimonial}"</p>
       </div>
 
       {/* Controls */}
-      <div className="absolute top-6 right-6 flex flex-col gap-3">
+      <div className="absolute top-4 right-4">
         <button 
           onClick={() => setIsMuted(!isMuted)}
-          className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all"
+          className="w-8 h-8 rounded-full bg-black/20 backdrop-blur-md border border-white/10 flex items-center justify-center text-white hover:bg-black/40 transition-all"
         >
-          {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
+          {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
         </button>
       </div>
 
       <button 
         onClick={togglePlay}
-        className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity"
+        className="absolute inset-0 flex items-center justify-center bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity"
       >
-        <div className="w-16 h-16 rounded-full bg-emerald-600 text-white flex items-center justify-center shadow-xl transform group-hover:scale-110 transition-transform">
-          {isPlaying ? <Pause className="w-8 h-8 fill-current" /> : <Play className="w-8 h-8 fill-current ml-1" />}
+        <div className="w-12 h-12 rounded-full bg-emerald-600/90 text-white flex items-center justify-center shadow-lg transform group-hover:scale-105 transition-transform">
+          {isPlaying ? <Pause className="w-5 h-5 fill-current" /> : <Play className="w-5 h-5 fill-current ml-0.5" />}
         </div>
       </button>
     </div>
@@ -131,49 +131,76 @@ export const ConcreteTestimonials = () => {
   const [testimonials, setTestimonials] = useState<any[]>([]);
 
   useEffect(() => {
-    // Dans un environnement réel, on appellerait getTestimonials()
-    // Ici on simule avec les données de fallback pour la démo
     setTestimonials([
       {
-        id: '1',
+        id: 'v1',
         participant_name: 'Idrissa Zongo',
         position: 'Contrôleur de Gestion',
         company: 'SONABEL',
         testimonial: 'Mon reporting mensuel me prenait 2 jours. Grâce à Power Query appris au bootcamp, tout est automatisé en 1 clic.',
-        linkedin_url: 'https://linkedin.com',
+        linkedin_url: '#',
         participant_photo: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Idrissa',
         type: 'video',
         video_url: 'https://cdn.pixabay.com/vimeo/327310190/office-22872.mp4?width=1280&hash=856e7e597c5980048e9f2913b869408d6d6e7f1a',
       },
       {
+        id: '1',
+        participant_name: 'Boling Faraba Dembele',
+        position: 'Auditeur Interne',
+        company: 'IBI Groupe',
+        testimonial: "Vraiment j'ai été transformé par ce Cabinet Smart Otobos Consulting, la pédagogie de M LEONCE (coach) et le niveau de la formation étaient au summum de nos attentes . Alors vivement la prochaine formation .",
+        linkedin_url: '#',
+        participant_photo: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Boling',
+        type: 'text',
+      },
+      {
         id: '2',
-        participant_name: 'Fatou K.',
-        position: 'Chef de Projet',
-        company: 'Telecel',
-        testimonial: 'La maîtrise d\'Excel a changé ma productivité. Les dashboards dynamiques sont devenus mon meilleur allié.',
-        linkedin_url: 'https://linkedin.com',
-        participant_photo: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Fatou',
-        type: 'video',
-        video_url: 'https://cdn.pixabay.com/vimeo/327310190/office-22872.mp4?width=1280&hash=856e7e597c5980048e9f2913b869408d6d6e7f1a',
+        participant_name: 'Abou Ouattara',
+        position: 'Gestionnaire RH',
+        company: 'Ouagadougou',
+        testimonial: "Un grand merci au Cabinet Otobos Consulting et particulièrement à notre formateur, Léonce TOUNDE SODJINOU, pour la perfection avec laquelle la formation a été administrée, avec en plus, un coaching participatif et motivateur.",
+        linkedin_url: '#',
+        participant_photo: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Abou',
+        type: 'text',
       },
       {
         id: '3',
-        participant_name: 'Aminata Ouédraogo',
-        position: 'Analyste RH',
-        company: 'Orange Burkina',
-        testimonial: 'La certification Microsoft Expert a été le déclencheur. Mon expertise est désormais reconnue.',
-        linkedin_url: 'https://linkedin.com',
-        participant_photo: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Aminata',
+        participant_name: 'Ib Zahara',
+        position: 'Créateur Digital',
+        company: 'Cote d\'ivoire',
+        testimonial: "Bonjour Coach, nous avons été très satisfait de la qualité et temps accorder aux participants. Franchement ça me fait un bout de temps sur les formations en ligne, la votre a été du jamais vu de ma part. Encore merci !",
+        linkedin_url: '#',
+        participant_photo: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Zahara',
         type: 'text',
       },
       {
         id: '4',
-        participant_name: 'Samuel T.',
-        position: 'Auditeur',
-        company: 'KPMG',
-        testimonial: 'L\'automatisation via les macros m\'a permis de diviser mon temps de travail par 3 sur les audits récurrents.',
-        linkedin_url: 'https://linkedin.com',
-        participant_photo: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Samuel',
+        participant_name: 'Harris Djounga',
+        position: 'Professionnel',
+        company: 'Accra',
+        testimonial: "Merci pour tout, formateur excellent, technique de formation de bonne qualité, contenu riche et varié. De toute les formations en ligne que j'ai déjà faite, la votre est de loin la meilleur et sans comparaison.",
+        linkedin_url: '#',
+        participant_photo: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Harris',
+        type: 'text',
+      },
+      {
+        id: '5',
+        participant_name: 'Abdoulaye Wolomo',
+        position: 'Professionnel',
+        company: 'Bamako, Mali',
+        testimonial: "Bonjour tout je remercie le formateur et Son équipe pour la qualité de la formation reçu. Toutes mes attentes ont été satisfait à 100%. Je recommande fortement la formation.",
+        linkedin_url: '#',
+        participant_photo: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Abdoulaye',
+        type: 'text',
+      },
+      {
+        id: '6',
+        participant_name: 'Yacouba Bengaly',
+        position: 'Professionnel',
+        company: 'Bamako, Mali',
+        testimonial: "Excellente formation avec un formateur très actif et soucieux du détail. Merci a vous et bonne continuation.",
+        linkedin_url: '#',
+        participant_photo: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Yacouba',
         type: 'text',
       }
     ]);
@@ -183,71 +210,76 @@ export const ConcreteTestimonials = () => {
   const textTestimonials = testimonials.filter(t => t.type === 'text');
 
   return (
-    <section className="py-24 bg-white dark:bg-slate-900 overflow-hidden">
+    <section className="py-16 bg-slate-50/50 dark:bg-slate-900/50 overflow-hidden border-y border-slate-100 dark:border-slate-800">
       <div className="container px-4 mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-black mb-4">Ils ont déjà transformé leur manière de travailler avec Excel</h2>
-          <p className="text-xl text-slate-500 font-bold italic">Des résultats concrets, vérifiables</p>
+        <div className="text-center mb-12">
+          <h2 className="text-2xl md:text-4xl font-black mb-3">Ils ont transformé leur quotidien</h2>
+          <p className="text-base text-slate-500 font-medium">Des résultats concrets, vérifiables sur le terrain</p>
         </div>
 
         {/* --- VIDEO CAROUSEL --- */}
-        <div className="relative mb-24">
-          <div className="flex gap-8 overflow-x-auto pb-12 scrollbar-hide snap-x px-4 -mx-4">
+        <div className="relative mb-16">
+          <div className="flex gap-5 overflow-x-auto pb-8 scrollbar-hide snap-x px-4 -mx-4 justify-center md:justify-center">
             {videoTestimonials.map((t) => (
               <div key={t.id} className="snap-center">
                 <VideoTestimonialCard testimonial={t} />
               </div>
             ))}
           </div>
-          {/* Mobile tip */}
-          <p className="text-center text-slate-400 text-sm mt-4 md:hidden">← Glissez pour voir plus de vidéos →</p>
         </div>
 
-        {/* --- WRITTEN GRID --- */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-6xl mx-auto mb-20">
-          {textTestimonials.map((t) => (
-            <motion.div 
-              key={t.id}
-              whileHover={{ y: -5 }}
-              className="p-8 rounded-[2rem] bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-slate-800 shadow-xl"
-            >
-              <div className="flex items-center gap-4 mb-6">
-                <img src={t.participant_photo} alt={t.participant_name} className="w-16 h-16 rounded-2xl object-cover bg-emerald-100" />
+        {/* --- WRITTEN INFINITE MARQUEE --- */}
+        <div className="relative mb-12 overflow-hidden py-4">
+          {/* Gradient Overlays for smooth edges */}
+          <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-slate-50/50 to-transparent z-10 pointer-events-none dark:from-slate-900/50" />
+          <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-slate-50/50 to-transparent z-10 pointer-events-none dark:from-slate-900/50" />
+          
+          <motion.div 
+            className="flex gap-6 whitespace-nowrap"
+            animate={{ x: [0, -1920] }}
+            transition={{ 
+              duration: 40, 
+              repeat: Infinity, 
+              ease: "linear" 
+            }}
+            whileHover={{ animationPlayState: 'paused' }}
+          >
+            {/* Double the list to create infinite loop effect */}
+            {[...textTestimonials, ...textTestimonials].map((t, idx) => (
+              <div 
+                key={`${t.id}-${idx}`}
+                className="w-[300px] md:w-[380px] p-6 rounded-2xl bg-white dark:bg-slate-950 border border-slate-100 dark:border-slate-800 shadow-sm flex flex-col justify-between whitespace-normal shrink-0"
+              >
                 <div>
-                  <h4 className="font-black text-lg">{t.participant_name}</h4>
-                  <p className="text-slate-500 text-sm font-bold">{t.position} @ {t.company}</p>
+                  <div className="flex items-center gap-3 mb-4">
+                    <img src={t.participant_photo} alt={t.participant_name} className="w-10 h-10 rounded-full object-cover bg-emerald-50" />
+                    <div className="flex-1 min-w-0">
+                      <h4 className="font-bold text-sm truncate">{t.participant_name}</h4>
+                      <p className="text-slate-400 text-[10px] font-bold uppercase tracking-tight">{t.position} @ {t.company}</p>
+                    </div>
+                  </div>
+                  <p className="text-[13px] leading-relaxed text-slate-600 dark:text-slate-300 italic line-clamp-3">"{t.testimonial}"</p>
                 </div>
-                <a 
-                  href={t.linkedin_url} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="ml-auto w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-900/30 text-blue-600 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all shadow-sm"
-                  title="Voir le profil LinkedIn"
-                >
-                  <Linkedin className="w-5 h-5" />
-                </a>
               </div>
-              <p className="text-lg italic leading-relaxed text-slate-700 dark:text-slate-300">"{t.testimonial}"</p>
-            </motion.div>
-          ))}
+            ))}
+          </motion.div>
         </div>
 
-        {/* --- CTA SECTION --- */}
         <div className="text-center">
           <Link href="/inscription">
-            <Button size="lg" className="bg-orange-500 hover:bg-orange-600 text-white px-12 py-8 text-2xl font-black rounded-2xl shadow-2xl shadow-orange-500/30 transform hover:scale-105 transition-all">
+            <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-6 text-lg font-bold rounded-xl shadow-xl shadow-emerald-600/20 transition-all hover:scale-105">
               Je réserve ma place maintenant
             </Button>
           </Link>
-          <p className="mt-6 text-slate-400 font-bold text-sm uppercase tracking-widest flex items-center justify-center gap-2">
-            <ShieldCheck className="w-5 h-5 text-emerald-500" />
-            Satisfait ou remboursé
+          <p className="mt-4 text-xs font-bold text-slate-400 uppercase tracking-widest flex items-center justify-center gap-2">
+            <ShieldCheck className="w-4 h-4 text-emerald-500" /> Satisfait ou remboursé
           </p>
         </div>
       </div>
     </section>
   );
 };
+
 
 export const RealActions = () => {
   const actions = [
