@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { createClient } from '@/lib/supabase/client';
+import { supabase } from '@/lib/supabase/client';
 import { motion } from 'framer-motion';
 import { Hexagon, Lock, Mail, ArrowRight, Zap } from 'lucide-react';
 
@@ -19,7 +19,6 @@ export default function AdminLogin() {
     setLoading(true);
 
     try {
-      const supabase = createClient();
       
       const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL;
       if (email !== adminEmail) {

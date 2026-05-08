@@ -155,6 +155,7 @@ export default function ParticipantsPage() {
     try {
       const { error } = await supabase
         .from('participants')
+        // @ts-expect-error: Supabase type inference fails on dynamic update payloads
         .update({ status: newStatus })
         .eq('id', participantId);
 

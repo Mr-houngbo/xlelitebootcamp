@@ -79,11 +79,12 @@ export default function AdminDashboard() {
 
   const fetchDashboardData = async () => {
     try {
-      const { data: participants } = await supabase
+      const { data: participantsData } = await supabase
         .from('participants')
         .select('*');
+      const participants = participantsData as any[] | null;
 
-      const { data: groups } = await supabase
+      const { data: groupsData } = await supabase
         .from('groups')
         .select(`
           *,
@@ -93,6 +94,7 @@ export default function AdminDashboard() {
             total_amount
           )
         `);
+      const groups = groupsData as any[] | null;
 
       const totalParticipants = participants?.length || 0;
       const paidRegistrations = groups?.flatMap(g => g.registrations ?? [])

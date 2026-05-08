@@ -178,7 +178,7 @@ export function RegistrationForm() {
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-8">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
         {/* Informations Personnelles */}
         <div className="glass-card p-8 sm:p-10 border border-gray-100/50 shadow-xl">
           <h2 className="text-2xl font-bold text-gray-900 mb-8 pb-4 border-b border-gray-100">

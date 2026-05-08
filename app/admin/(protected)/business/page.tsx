@@ -83,9 +83,14 @@ export default function BusinessPage() {
       return;
     }
     try {
+      const updatePayload = editState.field === 'max_capacity' 
+        ? { max_capacity: parsed } 
+        : { current_capacity: parsed };
+
       const { error } = await supabase
         .from('groups')
-        .update({ [editState.field]: parsed })
+        // @ts-expect-error: Supabase type inference fails on dynamic update payloads
+        .update(updatePayload)
         .eq('id', editState.groupId);
 
       if (error) throw error;

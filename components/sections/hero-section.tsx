@@ -16,7 +16,7 @@ export function HeroSection() {
       
       {/* Floating Orbs (Light Mode) */}
       <motion.div style={{ y: y1 }} className="absolute top-1/4 left-1/4 w-[30rem] h-[30rem] bg-brand-green/20 rounded-full mix-blend-multiply filter blur-[100px] opacity-70 animate-float pointer-events-none"></motion.div>
-      <motion.div style={{ y: y1 }} className="absolute bottom-1/4 right-1/4 w-[25rem] h-[25rem] bg-brand-orange/20 rounded-full mix-blend-multiply filter blur-[100px] opacity-70 animate-float pointer-events-none" style={{ animationDelay: '2s' }}></motion.div>
+      <motion.div style={{ y: y1, animationDelay: '2s' }} className="absolute bottom-1/4 right-1/4 w-[25rem] h-[25rem] bg-brand-orange/20 rounded-full mix-blend-multiply filter blur-[100px] opacity-70 animate-float pointer-events-none"></motion.div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-4xl mx-auto">
