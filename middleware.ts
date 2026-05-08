@@ -61,15 +61,6 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(loginUrl);
   }
 
-  // Vérification que c'est bien l'admin
-  const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL;
-  if (adminEmail && user.email !== adminEmail) {
-    // Authentifié mais pas admin → rediriger vers /admin/login avec erreur
-    const loginUrl = new URL('/admin/login', request.url);
-    loginUrl.searchParams.set('error', 'unauthorized');
-    return NextResponse.redirect(loginUrl);
-  }
-
   return response;
 }
 

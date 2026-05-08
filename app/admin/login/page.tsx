@@ -19,12 +19,6 @@ export default function AdminLogin() {
     setLoading(true);
 
     try {
-      
-      const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL;
-      if (email !== adminEmail) {
-        throw new Error("Accès non autorisé.");
-      }
-
       const { error: authError } = await supabase.auth.signInWithPassword({
         email,
         password,

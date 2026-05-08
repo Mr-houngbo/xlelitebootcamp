@@ -15,11 +15,6 @@ export default async function AdminLayout({
     redirect('/admin/login');
   }
 
-  if (user.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
-    await supabase.auth.signOut();
-    redirect('/admin/login');
-  }
-
   return (
     <div className="min-h-screen bg-[#FDFDFD] text-gray-900 selection:bg-brand-orange/20 selection:text-brand-orange font-sans">
       {/* Futuristic Background Mesh */}
