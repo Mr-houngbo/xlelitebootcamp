@@ -80,13 +80,13 @@ export default function AdminTestimonialsPage() {
       if (editingItem.id) {
         const { error: err } = await supabase
           .from('testimonials')
-          .update(payload)
+          .update(payload as any)
           .eq('id', editingItem.id);
         error = err;
       } else {
         const { error: err } = await supabase
           .from('testimonials')
-          .insert([payload]);
+          .insert([payload] as any);
         error = err;
       }
 
