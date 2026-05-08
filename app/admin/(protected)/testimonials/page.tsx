@@ -49,8 +49,7 @@ export default function AdminTestimonialsPage() {
 
   const fetchTestimonials = async () => {
     try {
-      const { data, error } = await supabase
-        .from('testimonials')
+      const { data, error } = await (supabase.from('testimonials') as any)
         .select('*')
         .order('created_at', { ascending: false });
 
@@ -78,15 +77,13 @@ export default function AdminTestimonialsPage() {
 
       let error;
       if (editingItem.id) {
-        const { error: err } = await supabase
-          .from('testimonials')
-          .update(payload as any)
+        const { error: err } = await (supabase.from('testimonials') as any)
+          .update(payload)
           .eq('id', editingItem.id);
         error = err;
       } else {
-        const { error: err } = await supabase
-          .from('testimonials')
-          .insert([payload] as any);
+        const { error: err } = await (supabase.from('testimonials') as any)
+          .insert([payload]);
         error = err;
       }
 
@@ -104,8 +101,7 @@ export default function AdminTestimonialsPage() {
   const deleteTestimonial = async (id: string) => {
     if (!confirm('Supprimer ce témoignage ?')) return;
     try {
-      const { error } = await supabase
-        .from('testimonials')
+      const { error } = await (supabase.from('testimonials') as any)
         .delete()
         .eq('id', id);
       if (error) throw error;

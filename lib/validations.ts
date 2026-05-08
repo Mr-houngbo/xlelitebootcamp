@@ -135,12 +135,11 @@ export const createRegistrationSchema = registrationSchema.pick({
   lastName: true,
   email: true,
   phone: true,
-  company: true,
-  position: true,
   profileType: true,
   source: true,
   groupId: true,
-  message: true,
+  country: true,
+  format: true,
 });
 
 export const updateParticipantStatusSchema = z.object({
