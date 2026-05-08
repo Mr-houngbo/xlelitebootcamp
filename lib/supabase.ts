@@ -3,8 +3,8 @@ import { Database } from '@/types/database';
 
 // Supabase client for server-side
 export const supabase = createClient<Database>(
-  process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder-url.supabase.co',
-  process.env.SUPABASE_SERVICE_ROLE_KEY || 'placeholder-key',
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY!,
   {
     auth: {
       autoRefreshToken: false,
