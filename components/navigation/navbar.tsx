@@ -23,7 +23,6 @@ export function Navbar() {
   const navigation = [
     { name: 'Accueil', href: '/' },
     { name: 'Pourquoi nous ?', href: '/preuve' },
-    { name: "S'inscrire", href: '/inscription' },
   ];
 
   if (!isMounted) return null;

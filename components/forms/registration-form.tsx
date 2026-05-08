@@ -388,7 +388,7 @@ export function RegistrationForm() {
               />
               <label className="text-sm text-gray-600 font-medium leading-tight pt-1">
                 J'ai lu et j'accepte les{" "}
-                <a href="/cgv" className="text-brand-green hover:underline font-bold">
+                <a href="/conditions-generales-de-vente" className="text-brand-green hover:underline font-bold">
                   conditions générales de vente
                 </a>
               </label>

@@ -127,8 +127,8 @@ export function Footer() {
               <Link href="/politique-confidentialite" className="text-gray-400 hover:text-gray-800 text-sm transition-colors font-medium">
                 Confidentialité
               </Link>
-              <Link href="/cgv" className="text-gray-400 hover:text-gray-800 text-sm transition-colors font-medium">
-                CGV
+              <Link href="/conditions-generales-de-vente" className="text-gray-400 hover:text-gray-800 text-sm transition-colors font-medium">
+                Conditions Générales de Vente
               </Link>
               {/* Admin button - presque invisible */}
               <Link 
