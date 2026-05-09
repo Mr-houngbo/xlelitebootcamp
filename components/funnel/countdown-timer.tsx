@@ -39,14 +39,14 @@ export const CountdownTimer = ({ targetDate }: { targetDate: string }) => {
   if (!timeLeft) return null;
 
   return (
-    <div className="flex gap-2 md:gap-4 items-center justify-center font-mono">
-      <TimeUnit value={timeLeft.days} label="J" />
-      <span className="text-xl md:text-2xl font-bold text-orange-500">:</span>
-      <TimeUnit value={timeLeft.hours} label="H" />
-      <span className="text-xl md:text-2xl font-bold text-orange-500">:</span>
-      <TimeUnit value={timeLeft.minutes} label="M" />
-      <span className="text-xl md:text-2xl font-bold text-orange-500">:</span>
-      <TimeUnit value={timeLeft.seconds} label="S" />
+    <div className="flex gap-2 md:gap-4 items-center justify-center font-mono text-white">
+      <TimeUnit value={timeLeft.days} label="Jours" />
+      <span className="text-lg md:text-2xl font-bold text-orange-500 animate-pulse">:</span>
+      <TimeUnit value={timeLeft.hours} label="Hrs" />
+      <span className="text-lg md:text-2xl font-bold text-orange-500 animate-pulse">:</span>
+      <TimeUnit value={timeLeft.minutes} label="Min" />
+      <span className="text-lg md:text-2xl font-bold text-orange-500 animate-pulse">:</span>
+      <TimeUnit value={timeLeft.seconds} label="Sec" />
     </div>
   );
 };
@@ -57,8 +57,8 @@ const TimeUnit = ({ value, label }: { value: number; label: string }) => (
     animate={{ scale: 1, opacity: 1 }}
     className="flex flex-col items-center"
   >
-    <div className="bg-slate-900/80 backdrop-blur-sm border border-slate-700/50 rounded-lg p-2 md:p-3 min-w-[42px] md:min-w-[60px] text-center shadow-lg">
-      <span className="text-lg md:text-3xl font-black text-emerald-400">
+    <div className="bg-slate-900/80 backdrop-blur-sm border border-slate-700 rounded-lg p-1.5 md:p-3 min-w-[40px] md:min-w-[60px] text-center shadow-lg">
+      <span className="text-lg md:text-3xl font-bold text-emerald-400 leading-none">
         {value.toString().padStart(2, '0')}
       </span>
     </div>

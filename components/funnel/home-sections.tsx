@@ -146,10 +146,14 @@ export const TransformationSection = () => {
           </div>
           
           <div className="w-full lg:w-1/2 relative order-1 lg:order-2">
-             <div className="bg-slate-900 rounded-3xl md:rounded-[2.5rem] p-3 md:p-4 shadow-2xl border border-slate-800 transform lg:rotate-2">
-                <div className="aspect-video bg-slate-800 rounded-2xl md:rounded-3xl flex items-center justify-center text-slate-500 italic text-sm md:text-base p-4 text-center">
-                   [AVANT / APRÈS : -90% DE TEMPS PERDU]
-                </div>
+             <div className="bg-slate-900 rounded-3xl md:rounded-[2.5rem] p-2 md:p-3 shadow-2xl border border-slate-800 transform lg:rotate-2 overflow-hidden">
+                <video 
+                  src="https://i.imgur.com/IqKaTmA.mp4"
+                  loop 
+                  playsInline 
+                  controls
+                  className="w-full aspect-video rounded-2xl md:rounded-[1.8rem] object-cover shadow-2xl"
+                />
              </div>
              <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-emerald-600/10 blur-[80px] md:blur-[100px] rounded-full" />
           </div>
