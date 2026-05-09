@@ -12,27 +12,27 @@ import Link from 'next/link';
 
 export const HeroProof = () => {
   return (
-    <section className="relative pt-32 pb-20 overflow-hidden bg-slate-50 dark:bg-slate-950">
+    <section className="relative pt-20 pb-12 md:pt-32 md:pb-20 overflow-hidden bg-slate-50 dark:bg-slate-950">
       <div className="container px-4 mx-auto text-center relative z-10">
         <motion.div 
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="flex items-center justify-center gap-3 mb-6"
+          className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-3 mb-6"
         >
           <div className="flex text-orange-500">
-            {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-current" />)}
+            {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 md:w-5 md:h-5 fill-current" />)}
           </div>
-          <span className="font-bold text-slate-600 dark:text-slate-400">4.9/5 satisfaction (500+ pros formés)</span>
+          <span className="font-bold text-slate-600 dark:text-slate-400 text-xs md:text-sm uppercase tracking-wide">4.9/5 satisfaction (500+ pros)</span>
         </motion.div>
 
         <motion.h1 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="text-4xl md:text-6xl font-black tracking-tight mb-8"
+          className="text-3xl md:text-6xl font-black tracking-tight mb-6 md:mb-8 leading-[1.1]"
         >
-          Ils sont passés de débutants à <br />
-          <span className="text-emerald-600 font-black italic">certifiés Microsoft Excel Expert</span>
+          De débutants à <br />
+          <span className="text-emerald-600 italic">Experts Microsoft</span>
         </motion.h1>
 
         <motion.div
@@ -41,8 +41,8 @@ export const HeroProof = () => {
           transition={{ delay: 0.2 }}
         >
           <Link href="/inscription">
-            <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-8 text-xl font-black rounded-2xl shadow-2xl shadow-emerald-600/30">
-              Réserver ma place maintenant
+            <Button size="lg" className="premium-button w-full sm:w-auto px-8 py-6 text-lg font-bold rounded-xl shadow-xl">
+              Réserver ma place
             </Button>
           </Link>
         </motion.div>
@@ -210,11 +210,11 @@ export const ConcreteTestimonials = () => {
   const textTestimonials = testimonials.filter(t => t.type === 'text');
 
   return (
-    <section className="py-16 bg-slate-50/50 dark:bg-slate-900/50 overflow-hidden border-y border-slate-100 dark:border-slate-800">
+    <section className="py-12 md:py-16 bg-slate-50/50 dark:bg-slate-900/50 overflow-hidden border-y border-slate-100 dark:border-slate-800">
       <div className="container px-4 mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-2xl md:text-4xl font-black mb-3">Ils ont transformé leur quotidien</h2>
-          <p className="text-base text-slate-500 font-medium">Des résultats concrets, vérifiables sur le terrain</p>
+        <div className="text-center mb-10 md:mb-12">
+          <h2 className="text-xl md:text-4xl font-black mb-2 md:mb-3 leading-tight">Ils ont transformé leur quotidien</h2>
+          <p className="text-xs md:text-base text-slate-500 font-medium">Des résultats vérifiables sur le terrain</p>
         </div>
 
         {/* --- VIDEO CAROUSEL --- */}
@@ -290,16 +290,16 @@ export const RealActions = () => {
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-slate-50 dark:bg-slate-900/50">
+    <section className="py-12 md:py-24 bg-slate-50 dark:bg-slate-900/50">
       <div className="container px-4 mx-auto max-w-4xl">
-        <h2 className="text-2xl md:text-4xl font-black mb-10 md:mb-16 text-center leading-tight">Ce que vous allez <br className="md:hidden" /><span className="text-emerald-600">réellement faire</span></h2>
-        <div className="space-y-4 md:space-y-6">
+        <h2 className="text-xl md:text-4xl font-black mb-8 md:mb-16 text-center leading-tight">Ce que vous allez <br className="md:hidden" /><span className="text-emerald-600">réellement faire</span></h2>
+        <div className="space-y-3 md:space-y-6">
           {actions.map((a, i) => (
-            <div key={i} className="flex gap-4 md:gap-6 p-5 md:p-6 rounded-2xl md:rounded-3xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-sm">
-              <CheckCircle2 className="w-6 h-6 md:w-8 md:h-8 text-emerald-600 shrink-0" />
+            <div key={i} className="flex gap-4 p-4 md:p-6 rounded-xl md:rounded-3xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-sm">
+              <CheckCircle2 className="w-5 h-5 md:w-8 md:h-8 text-emerald-600 shrink-0 mt-1" />
               <div>
-                <h3 className="text-lg md:text-xl font-bold mb-1 md:mb-2">{a.title}</h3>
-                <p className="text-sm md:text-base text-slate-600 dark:text-slate-400 leading-relaxed">{a.desc}</p>
+                <h3 className="text-base md:text-xl font-bold mb-1">{a.title}</h3>
+                <p className="text-[12px] md:text-base text-slate-600 dark:text-slate-400 leading-relaxed">{a.desc}</p>
               </div>
             </div>
           ))}
@@ -311,35 +311,34 @@ export const RealActions = () => {
 
 export const OrganizationSection = () => {
   return (
-    <section className="py-16 md:py-24 bg-white dark:bg-slate-900">
+    <section className="py-12 md:py-24 bg-white dark:bg-slate-900">
       <div className="container px-4 mx-auto max-w-5xl">
-        <h2 className="text-2xl md:text-4xl font-black mb-10 md:mb-16 text-center leading-tight">Une organisation <br className="md:hidden" />flexible pour les pros</h2>
+        <h2 className="text-xl md:text-4xl font-black mb-8 md:mb-16 text-center leading-tight">Organisation <br className="md:hidden" />flexible</h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-          <div className="p-6 md:p-8 rounded-2xl md:rounded-3xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-100 dark:border-emerald-900/20">
-            <Calendar className="w-8 h-8 md:w-10 md:h-10 text-emerald-600 mb-4 md:mb-6" />
-            <h3 className="text-lg md:text-xl font-bold mb-2">4 Jours Intensifs</h3>
-            <p className="text-sm md:text-base text-slate-600 dark:text-slate-400">Du 09 au 13 juin 2026. Une immersion totale pour des résultats immédiats.</p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
+          <div className="p-5 md:p-8 rounded-xl md:rounded-3xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-100 dark:border-emerald-900/20">
+            <Calendar className="w-6 h-6 md:w-10 md:h-10 text-emerald-600 mb-4" />
+            <h3 className="text-base md:text-xl font-bold mb-1">4 Jours Intensifs</h3>
+            <p className="text-xs md:text-base text-slate-600 dark:text-slate-400 leading-relaxed">Du 09 au 13 juin 2026. Immersion totale pour des résultats immédiats.</p>
           </div>
 
-          <div className="p-6 md:p-8 rounded-2xl md:rounded-3xl bg-orange-50 dark:bg-orange-950/30 border border-orange-100 dark:border-orange-900/20">
-            <Clock className="w-8 h-8 md:w-10 md:h-10 text-orange-600 mb-4 md:mb-6" />
-            <h3 className="text-lg md:text-xl font-bold mb-2">3 Groupes au choix</h3>
-            <ul className="text-[12px] md:text-sm space-y-2 text-slate-700 dark:text-slate-300 font-bold mt-3">
-              <li>• G1 : 09h – 12h</li>
-              <li>• G2 : 14h – 17h</li>
-              <li>• G3 : 18h – 21h</li>
-            </ul>
-            <p className="text-[10px] text-slate-500 mt-4 italic">Choisissez le créneau qui vous convient.</p>
-          </div>
-
-          <div className="p-6 md:p-8 rounded-2xl md:rounded-3xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700">
-            <div className="flex gap-2 mb-4 md:mb-6">
-              <MapPin className="w-8 h-8 md:w-10 md:h-10 text-slate-600" />
-              <Laptop className="w-8 h-8 md:w-10 md:h-10 text-slate-600" />
+          <div className="p-5 md:p-8 rounded-xl md:rounded-3xl bg-orange-50 dark:bg-orange-950/30 border border-orange-100 dark:border-orange-900/20">
+            <Clock className="w-6 h-6 md:w-10 md:h-10 text-orange-600 mb-4" />
+            <h3 className="text-base md:text-xl font-bold mb-1">3 Groupes au choix</h3>
+            <div className="flex flex-wrap gap-2 mt-2">
+              <span className="px-2 py-1 bg-white text-[10px] font-bold rounded-md">09h-12h</span>
+              <span className="px-2 py-1 bg-white text-[10px] font-bold rounded-md">14h-17h</span>
+              <span className="px-2 py-1 bg-white text-[10px] font-bold rounded-md">18h-21h</span>
             </div>
-            <h3 className="text-lg md:text-xl font-bold mb-2">Format Hybride</h3>
-            <p className="text-sm md:text-base text-slate-600 dark:text-slate-400">En présentiel à Ouaga 2000 ou en ligne (Live) avec interaction directe.</p>
+          </div>
+
+          <div className="p-5 md:p-8 rounded-xl md:rounded-3xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700">
+            <div className="flex gap-2 mb-4">
+              <MapPin className="w-6 h-6 text-slate-600" />
+              <Laptop className="w-6 h-6 text-slate-600" />
+            </div>
+            <h3 className="text-base md:text-xl font-bold mb-1">Format Hybride</h3>
+            <p className="text-xs md:text-base text-slate-600 dark:text-slate-400 leading-relaxed">Présentiel à Ouaga 2000 ou en ligne (Live interaction).</p>
           </div>
         </div>
       </div>
@@ -349,19 +348,19 @@ export const OrganizationSection = () => {
 
 export const InclusionsSection = () => {
   return (
-    <section className="py-16 md:py-24 bg-emerald-900 text-white overflow-hidden relative">
+    <section className="py-12 md:py-24 bg-emerald-900 text-white overflow-hidden relative">
       <div className="container px-4 mx-auto max-w-4xl text-center relative z-10">
-        <h2 className="text-2xl md:text-4xl font-bold mb-10 md:mb-12 leading-tight">Tout est inclus <br className="md:hidden" />pour votre réussite</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 text-left">
+        <h2 className="text-xl md:text-4xl font-bold mb-8 md:mb-12 leading-tight">Tout est inclus</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6 text-left">
           {[
-            { icon: <Award className="w-6 h-6 text-orange-400 shrink-0" />, text: "2 Vouchers pour la Certification Microsoft Excel Expert." },
-            { icon: <ShieldCheck className="w-6 h-6 text-orange-400 shrink-0" />, text: "Licence Office 365 offerte pour pratiquer." },
-            { icon: <Users className="w-6 h-6 text-orange-400 shrink-0" />, text: "Support post-formation & accès communauté." },
-            { icon: <CheckCircle2 className="w-6 h-6 text-orange-400 shrink-0" />, text: "Matériel complet et fichiers réels." },
+            { icon: <Award className="w-5 h-5 text-orange-400 shrink-0" />, text: "2 Vouchers Certification Microsoft." },
+            { icon: <ShieldCheck className="w-5 h-5 text-orange-400 shrink-0" />, text: "Licence Office 365 offerte." },
+            { icon: <Users className="w-5 h-5 text-orange-400 shrink-0" />, text: "Support post-formation & VIP." },
+            { icon: <CheckCircle2 className="w-5 h-5 text-orange-400 shrink-0" />, text: "Matériel complet et fichiers réels." },
           ].map((item, i) => (
-            <div key={i} className="flex gap-4 p-5 bg-white/10 rounded-xl border border-white/10 items-center">
+            <div key={i} className="flex gap-3 p-4 bg-white/10 rounded-xl border border-white/10 items-center">
               {item.icon}
-              <p className="font-bold text-sm md:text-base">{item.text}</p>
+              <p className="font-bold text-xs md:text-base leading-tight">{item.text}</p>
             </div>
           ))}
         </div>
@@ -372,35 +371,34 @@ export const InclusionsSection = () => {
 
 export const FinancialOffer = () => {
   return (
-    <section className="py-16 md:py-24 bg-white dark:bg-slate-950 px-4">
+    <section className="py-12 md:py-24 bg-white dark:bg-slate-950 px-2 md:px-4">
       <div className="container px-0 mx-auto max-w-4xl">
-        <div className="p-6 md:p-12 rounded-3xl md:rounded-[2.5rem] border-2 md:border-4 border-emerald-600 shadow-2xl relative overflow-hidden">
-          <div className="absolute top-0 right-0 bg-emerald-600 text-white px-4 md:px-8 py-2 rounded-bl-2xl font-black text-[10px] md:text-sm uppercase tracking-widest">
+        <div className="p-5 md:p-12 rounded-2xl md:rounded-[2.5rem] border-2 md:border-4 border-emerald-600 shadow-xl relative overflow-hidden">
+          <div className="absolute top-0 right-0 bg-emerald-600 text-white px-4 py-1.5 rounded-bl-xl font-black text-[9px] md:text-sm uppercase tracking-widest">
             Offre Limitée
           </div>
           
-          <div className="text-center">
-            <h2 className="text-2xl md:text-3xl font-black mb-8 md:mb-10 mt-4">Investissement pour votre carrière</h2>
+          <div className="text-center pt-4 md:pt-0">
+            <h2 className="text-xl md:text-3xl font-black mb-6 md:mb-10 leading-tight">Investissement Carrière</h2>
             
-            <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-12 mb-8 md:mb-10">
+            <div className="flex flex-col md:flex-row justify-center items-center gap-6 md:gap-12 mb-8">
               <div className="text-center">
-                <p className="text-slate-500 uppercase tracking-widest text-[10px] font-bold mb-1">Prix Total</p>
-                <div className="text-3xl md:text-5xl font-black text-slate-900 dark:text-white">150 000 F</div>
-                <p className="text-[10px] text-slate-400 mt-1">(125k formation + 25k inscription)</p>
+                <p className="text-slate-400 uppercase tracking-widest text-[9px] font-bold mb-1">Total</p>
+                <div className="text-2xl md:text-5xl font-black text-slate-900 dark:text-white">150 000 F</div>
               </div>
-              <div className="h-[1px] w-20 bg-slate-200 md:h-12 md:w-[1px]" />
-              <div className="text-center">
-                <p className="text-orange-600 uppercase tracking-widest text-[10px] font-bold mb-1 font-black">Frais d'inscription</p>
+              <div className="hidden md:block h-12 w-[1px] bg-slate-200" />
+              <div className="text-center p-3 bg-orange-50 rounded-xl md:bg-transparent">
+                <p className="text-orange-600 uppercase tracking-widest text-[9px] font-black mb-1">Frais d'inscription</p>
                 <div className="text-3xl md:text-5xl font-black text-orange-600">25 000 F</div>
               </div>
             </div>
 
-            <p className="text-sm md:text-lg text-slate-700 dark:text-slate-300 font-bold mb-8 md:mb-10 px-4">
-              ⚠️ Inscription validée après paiement des frais <span className="text-red-600">avant le 02 juin</span>.
+            <p className="text-[11px] md:text-lg text-slate-500 font-bold mb-8 px-2 leading-relaxed">
+              ⚠️ Inscription validée après paiement des frais <span className="text-red-600 underline">avant le 02 juin</span>.
             </p>
 
-            <Link href="/inscription" className="w-full inline-block">
-              <Button size="lg" className="w-full md:w-auto bg-emerald-600 hover:bg-emerald-700 text-white px-10 md:px-16 py-6 md:py-8 text-lg md:text-2xl font-black rounded-xl md:rounded-2xl shadow-xl transition-all hover:scale-105">
+            <Link href="/inscription" className="w-full">
+              <Button size="lg" className="premium-button w-full sm:w-auto px-12 py-7 text-lg font-black rounded-xl">
                 Réserver ma place
               </Button>
             </Link>

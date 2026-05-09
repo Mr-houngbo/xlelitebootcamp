@@ -11,6 +11,21 @@ import type { RegistrationFormData } from '@/types/database';
 import { createRegistration, getGroups, checkGroupAvailability } from '@/lib/actions/registration';
 import { motion } from 'framer-motion';
 
+const COUNTRIES = [
+  "Burkina Faso", "Mali", "Côte d'Ivoire", "Niger", "Sénégal", "Togo", "Bénin", "Guinée", "Cameroun", "Gabon", "Congo-Brazzaville", "Congo-Kinshasa", "Tchad", "Centrafrique", "Mauritanie", "France", "Belgique", "Canada", "États-Unis", "Autre",
+  "Afghanistan", "Afrique du Sud", "Albanie", "Algérie", "Allemagne", "Andorre", "Angola", "Anguilla", "Antarctique", "Antigua-et-Barbuda", "Arabie Saoudite", "Argentine", "Arménie", "Aruba", "Australie", "Autriche", "Azerbaïdjan",
+  "Bahamas", "Bahreïn", "Bangladesh", "Barbade", "Belize", "Bermudes", "Bhoutan", "Biélorussie", "Bolivie", "Bosnie-Herzégovine", "Botswana", "Brésil", "Brunei", "Bulgarie", "Burundi", "Cambodge", "Cap-Vert", "Chili", "Chine", "Chypre", "Colombie", "Comores", "Corée du Nord", "Corée du Sud", "Costa Rica", "Croatie", "Cuba", "Curaçao",
+  "Danemark", "Djibouti", "Dominique", "Égypte", "Émirats arabes unis", "Équateur", "Érythrée", "Espagne", "Estonie", "Eswatini", "Éthiopie", "Fidji", "Finlande", "Gambie", "Géorgie", "Ghana", "Gibraltar", "Grèce", "Grenade", "Groenland", "Guadeloupe", "Guam", "Guatemala", "Guernesey", "Guinée équatoriale", "Guinée-Bissau", "Guyana", "Guyane française",
+  "Haïti", "Honduras", "Hong Kong", "Hongrie", "Île de Man", "Îles Caïmans", "Îles Cook", "Îles Féroé", "Îles Malouines", "Îles Marshall", "Îles Salomon", "Îles Vierges britanniques", "Îles Vierges des États-Unis", "Inde", "Indonésie", "Irak", "Iran", "Irlande", "Islande", "Israël", "Italie",
+  "Jamaïque", "Japon", "Jersey", "Jordanie", "Kazakhstan", "Kenya", "Kirghizistan", "Kiribati", "Koweït", "Laos", "Lesotho", "Lettonie", "Liban", "Libéria", "Libye", "Liechtenstein", "Lituanie", "Luxembourg",
+  "Macao", "Macédoine du Nord", "Madagascar", "Malaisie", "Malawi", "Maldives", "Malte", "Maroc", "Martinique", "Maurice", "Mayotte", "Mexique", "Micronésie", "Moldavie", "Monaco", "Mongolie", "Monténégro", "Montserrat", "Mozambique", "Myanmar (Birmanie)",
+  "Namibie", "Nauru", "Népal", "Nicaragua", "Niue", "Norvège", "Nouvelle-Calédonie", "Nouvelle-Zélande", "Oman", "Ouganda", "Ouzbékistan",
+  "Pakistan", "Palaos", "Palestine", "Panama", "Papouasie-Nouvelle-Guinée", "Paraguay", "Pays-Bas", "Pérou", "Philippines", "Pologne", "Polynésie française", "Porto Rico", "Portugal",
+  "Qatar", "République dominicaine", "République tchèque", "Réunion", "Roumanie", "Royaume-Uni", "Russie", "Rwanda",
+  "Sahara occidental", "Saint-Barthélemy", "Saint-Christophe-et-Niévès", "Saint-Marin", "Saint-Martin", "Saint-Pierre-et-Miquelon", "Saint-Vincent-et-les-Grenadines", "Sainte-Hélène", "Sainte-Lucie", "Salvador", "Samoa", "Samoa américaines", "Sao Tomé-et-Principe", "Serbie", "Seychelles", "Sierra Leone", "Singapour", "Slovaquie", "Slovénie", "Somalie", "Soudan", "Soudan du Sud", "Sri Lanka", "Suède", "Suisse", "Suriname", "Syrie",
+  "Tadjikistan", "Taïwan", "Tanzanie", "Thaïlande", "Timor oriental", "Tokelau", "Tonga", "Trinité-et-Tobago", "Tunisie", "Turkménistan", "Turquie", "Tuvalu", "Ukraine", "Uruguay", "Vanuatu", "Vatican", "Venezuela", "Viêt Nam", "Wallis-et-Futuna", "Yémen", "Zambie", "Zimbabwe"
+];
+
 export function RegistrationForm() {
   const [selectedGroup, setSelectedGroup] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -206,15 +221,9 @@ export function RegistrationForm() {
                 <label className={LabelClass}>Pays *</label>
                 <select {...register('country')} className={InputClass}>
                   <option value="">Sélectionnez votre pays</option>
-                  <option value="Burkina Faso">Burkina Faso</option>
-                  <option value="Mali">Mali</option>
-                  <option value="Côte d’Ivoire">Côte d’Ivoire</option>
-                  <option value="Niger">Niger</option>
-                  <option value="Sénégal">Sénégal</option>
-                  <option value="Togo">Togo</option>
-                  <option value="Bénin">Bénin</option>
-                  <option value="France">France</option>
-                  <option value="Autre">Autre...</option>
+                  {COUNTRIES.map(country => (
+                    <option key={country} value={country}>{country}</option>
+                  ))}
                 </select>
                 {errors.country && <p className="text-red-500 text-[10px] mt-1">{errors.country.message}</p>}
               </div>
