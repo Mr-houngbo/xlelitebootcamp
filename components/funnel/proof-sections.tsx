@@ -283,23 +283,23 @@ export const ConcreteTestimonials = () => {
 
 export const RealActions = () => {
   const actions = [
-    { title: "Nettoyer et structurer vos données", desc: "Dites adieu au copier-coller. Utilisez Power Query pour traiter des milliers de lignes en un clic." },
-    { title: "Automatiser vos tâches répétitives", desc: "Créez des macros intelligentes qui font le travail à votre place pendant que vous vous concentrez sur l'analyse." },
-    { title: "Créer des Dashboards professionnels", desc: "Concevez des tableaux de bord dynamiques et visuels qui impressionnent votre direction." },
-    { title: "Valider votre Certification Microsoft", desc: "Préparez-vous intensivement et passez l'examen officiel Microsoft Excel Expert le dernier jour." }
+    { title: "Nettoyer vos données", desc: "Dites adieu au copier-coller. Utilisez Power Query pour traiter des milliers de lignes en un clic." },
+    { title: "Automatiser vos tâches", desc: "Créez des macros intelligentes qui font le travail à votre place." },
+    { title: "Créer des Dashboards", desc: "Concevez des tableaux de bord dynamiques qui impressionnent votre direction." },
+    { title: "Valider votre Certification", desc: "Passez l'examen officiel Microsoft Excel Expert le dernier jour." }
   ];
 
   return (
-    <section className="py-24 bg-slate-50 dark:bg-slate-900/50">
+    <section className="py-16 md:py-24 bg-slate-50 dark:bg-slate-900/50">
       <div className="container px-4 mx-auto max-w-4xl">
-        <h2 className="text-4xl font-black mb-16 text-center">Ce que vous allez <span className="text-emerald-600">réellement faire</span></h2>
-        <div className="space-y-6">
+        <h2 className="text-2xl md:text-4xl font-black mb-10 md:mb-16 text-center leading-tight">Ce que vous allez <br className="md:hidden" /><span className="text-emerald-600">réellement faire</span></h2>
+        <div className="space-y-4 md:space-y-6">
           {actions.map((a, i) => (
-            <div key={i} className="flex gap-6 p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800">
-              <CheckCircle2 className="w-8 h-8 text-emerald-600 shrink-0" />
+            <div key={i} className="flex gap-4 md:gap-6 p-5 md:p-6 rounded-2xl md:rounded-3xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-sm">
+              <CheckCircle2 className="w-6 h-6 md:w-8 md:h-8 text-emerald-600 shrink-0" />
               <div>
-                <h3 className="text-xl font-bold mb-2">{a.title}</h3>
-                <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{a.desc}</p>
+                <h3 className="text-lg md:text-xl font-bold mb-1 md:mb-2">{a.title}</h3>
+                <p className="text-sm md:text-base text-slate-600 dark:text-slate-400 leading-relaxed">{a.desc}</p>
               </div>
             </div>
           ))}
@@ -311,35 +311,35 @@ export const RealActions = () => {
 
 export const OrganizationSection = () => {
   return (
-    <section className="py-24 bg-white dark:bg-slate-900">
+    <section className="py-16 md:py-24 bg-white dark:bg-slate-900">
       <div className="container px-4 mx-auto max-w-5xl">
-        <h2 className="text-4xl font-black mb-16 text-center">Une organisation flexible pour les pros</h2>
+        <h2 className="text-2xl md:text-4xl font-black mb-10 md:mb-16 text-center leading-tight">Une organisation <br className="md:hidden" />flexible pour les pros</h2>
         
-        <div className="grid md:grid-cols-3 gap-8">
-          <div className="p-8 rounded-3xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-100 dark:border-emerald-900/20">
-            <Calendar className="w-10 h-10 text-emerald-600 mb-6" />
-            <h3 className="text-xl font-bold mb-2">4 Jours Intensifs</h3>
-            <p className="text-slate-600 dark:text-slate-400">Du 09 au 13 juin 2026. Une immersion totale pour des résultats immédiats.</p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          <div className="p-6 md:p-8 rounded-2xl md:rounded-3xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-100 dark:border-emerald-900/20">
+            <Calendar className="w-8 h-8 md:w-10 md:h-10 text-emerald-600 mb-4 md:mb-6" />
+            <h3 className="text-lg md:text-xl font-bold mb-2">4 Jours Intensifs</h3>
+            <p className="text-sm md:text-base text-slate-600 dark:text-slate-400">Du 09 au 13 juin 2026. Une immersion totale pour des résultats immédiats.</p>
           </div>
 
-          <div className="p-8 rounded-3xl bg-orange-50 dark:bg-orange-950/30 border border-orange-100 dark:border-orange-900/20">
-            <Clock className="w-10 h-10 text-orange-600 mb-6" />
-            <h3 className="text-xl font-bold mb-2">3 Groupes au choix</h3>
-            <ul className="text-sm space-y-2 text-slate-700 dark:text-slate-300 font-bold mt-4">
+          <div className="p-6 md:p-8 rounded-2xl md:rounded-3xl bg-orange-50 dark:bg-orange-950/30 border border-orange-100 dark:border-orange-900/20">
+            <Clock className="w-8 h-8 md:w-10 md:h-10 text-orange-600 mb-4 md:mb-6" />
+            <h3 className="text-lg md:text-xl font-bold mb-2">3 Groupes au choix</h3>
+            <ul className="text-[12px] md:text-sm space-y-2 text-slate-700 dark:text-slate-300 font-bold mt-3">
               <li>• G1 : 09h – 12h</li>
               <li>• G2 : 14h – 17h</li>
               <li>• G3 : 18h – 21h</li>
             </ul>
-            <p className="text-xs text-slate-500 mt-4 italic">Choisissez le créneau qui correspond à votre emploi du temps.</p>
+            <p className="text-[10px] text-slate-500 mt-4 italic">Choisissez le créneau qui vous convient.</p>
           </div>
 
-          <div className="p-8 rounded-3xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700">
-            <div className="flex gap-2 mb-6">
-              <MapPin className="w-10 h-10 text-slate-600" />
-              <Laptop className="w-10 h-10 text-slate-600" />
+          <div className="p-6 md:p-8 rounded-2xl md:rounded-3xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700">
+            <div className="flex gap-2 mb-4 md:mb-6">
+              <MapPin className="w-8 h-8 md:w-10 md:h-10 text-slate-600" />
+              <Laptop className="w-8 h-8 md:w-10 md:h-10 text-slate-600" />
             </div>
-            <h3 className="text-xl font-bold mb-2">Format Hybride</h3>
-            <p className="text-slate-600 dark:text-slate-400">En présentiel à Ouaga 2000 ou en ligne (Live) avec interaction directe.</p>
+            <h3 className="text-lg md:text-xl font-bold mb-2">Format Hybride</h3>
+            <p className="text-sm md:text-base text-slate-600 dark:text-slate-400">En présentiel à Ouaga 2000 ou en ligne (Live) avec interaction directe.</p>
           </div>
         </div>
       </div>
@@ -349,26 +349,21 @@ export const OrganizationSection = () => {
 
 export const InclusionsSection = () => {
   return (
-    <section className="py-24 bg-emerald-900 text-white overflow-hidden relative">
+    <section className="py-16 md:py-24 bg-emerald-900 text-white overflow-hidden relative">
       <div className="container px-4 mx-auto max-w-4xl text-center relative z-10">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12">Tout est inclus pour votre réussite</h2>
-        <div className="grid md:grid-cols-2 gap-6 text-left">
-          <div className="flex gap-4 p-6 bg-white/10 rounded-2xl border border-white/10">
-            <Award className="w-8 h-8 text-orange-400 shrink-0" />
-            <p className="font-bold">2 Vouchers (tentatives) pour la Certification Microsoft Excel Expert.</p>
-          </div>
-          <div className="flex gap-4 p-6 bg-white/10 rounded-2xl border border-white/10">
-            <ShieldCheck className="w-8 h-8 text-orange-400 shrink-0" />
-            <p className="font-bold">Licence Office 365 offerte pour pratiquer sur les derniers outils.</p>
-          </div>
-          <div className="flex gap-4 p-6 bg-white/10 rounded-2xl border border-white/10">
-            <Users className="w-8 h-8 text-orange-400 shrink-0" />
-            <p className="font-bold">Support post-formation & accès à la communauté des experts.</p>
-          </div>
-          <div className="flex gap-4 p-6 bg-white/10 rounded-2xl border border-white/10">
-            <CheckCircle2 className="w-8 h-8 text-orange-400 shrink-0" />
-            <p className="font-bold">Matériel pédagogique complet et fichiers d'exercices réels.</p>
-          </div>
+        <h2 className="text-2xl md:text-4xl font-bold mb-10 md:mb-12 leading-tight">Tout est inclus <br className="md:hidden" />pour votre réussite</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 text-left">
+          {[
+            { icon: <Award className="w-6 h-6 text-orange-400 shrink-0" />, text: "2 Vouchers pour la Certification Microsoft Excel Expert." },
+            { icon: <ShieldCheck className="w-6 h-6 text-orange-400 shrink-0" />, text: "Licence Office 365 offerte pour pratiquer." },
+            { icon: <Users className="w-6 h-6 text-orange-400 shrink-0" />, text: "Support post-formation & accès communauté." },
+            { icon: <CheckCircle2 className="w-6 h-6 text-orange-400 shrink-0" />, text: "Matériel complet et fichiers réels." },
+          ].map((item, i) => (
+            <div key={i} className="flex gap-4 p-5 bg-white/10 rounded-xl border border-white/10 items-center">
+              {item.icon}
+              <p className="font-bold text-sm md:text-base">{item.text}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -377,40 +372,38 @@ export const InclusionsSection = () => {
 
 export const FinancialOffer = () => {
   return (
-    <section className="py-24 bg-white dark:bg-slate-950">
-      <div className="container px-4 mx-auto max-w-4xl">
-        <div className="p-12 rounded-[2.5rem] border-4 border-emerald-600 shadow-2xl relative overflow-hidden">
-          <div className="absolute top-0 right-0 bg-emerald-600 text-white px-8 py-2 rounded-bl-3xl font-black text-sm uppercase tracking-widest">
+    <section className="py-16 md:py-24 bg-white dark:bg-slate-950 px-4">
+      <div className="container px-0 mx-auto max-w-4xl">
+        <div className="p-6 md:p-12 rounded-3xl md:rounded-[2.5rem] border-2 md:border-4 border-emerald-600 shadow-2xl relative overflow-hidden">
+          <div className="absolute top-0 right-0 bg-emerald-600 text-white px-4 md:px-8 py-2 rounded-bl-2xl font-black text-[10px] md:text-sm uppercase tracking-widest">
             Offre Limitée
           </div>
           
           <div className="text-center">
-            <h2 className="text-3xl font-black mb-10">Investissement pour votre carrière</h2>
+            <h2 className="text-2xl md:text-3xl font-black mb-8 md:mb-10 mt-4">Investissement pour votre carrière</h2>
             
-            <div className="flex flex-col md:flex-row justify-center items-center gap-12 mb-12">
+            <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-12 mb-8 md:mb-10">
               <div className="text-center">
-                <p className="text-slate-500 uppercase tracking-widest text-xs font-bold mb-2">Prix Total</p>
-                <div className="text-5xl font-black text-slate-900 dark:text-white">150 000 F CFA</div>
-                <p className="text-xs text-slate-400 mt-1">(125 000 formation + 25 000 inscription)</p>
+                <p className="text-slate-500 uppercase tracking-widest text-[10px] font-bold mb-1">Prix Total</p>
+                <div className="text-3xl md:text-5xl font-black text-slate-900 dark:text-white">150 000 F</div>
+                <p className="text-[10px] text-slate-400 mt-1">(125k formation + 25k inscription)</p>
               </div>
-              <div className="h-12 w-[1px] bg-slate-200 hidden md:block" />
+              <div className="h-[1px] w-20 bg-slate-200 md:h-12 md:w-[1px]" />
               <div className="text-center">
-                <p className="text-orange-600 uppercase tracking-widest text-xs font-bold mb-2 font-black">Frais d'inscription</p>
-                <div className="text-5xl font-black text-orange-600">25 000 F CFA</div>
+                <p className="text-orange-600 uppercase tracking-widest text-[10px] font-bold mb-1 font-black">Frais d'inscription</p>
+                <div className="text-3xl md:text-5xl font-black text-orange-600">25 000 F</div>
               </div>
             </div>
 
-            <p className="text-lg text-slate-700 dark:text-slate-300 font-bold mb-10">
-              ⚠️ Inscription validée uniquement après paiement des frais <span className="text-red-600">avant le 02 juin</span>.
+            <p className="text-sm md:text-lg text-slate-700 dark:text-slate-300 font-bold mb-8 md:mb-10 px-4">
+              ⚠️ Inscription validée après paiement des frais <span className="text-red-600">avant le 02 juin</span>.
             </p>
 
-            <Link href="/inscription">
-              <Button size="lg" className="w-full md:w-auto bg-emerald-600 hover:bg-emerald-700 text-white px-16 py-8 text-2xl font-black rounded-2xl shadow-xl transition-all hover:scale-105">
-                Je réserve ma place maintenant
+            <Link href="/inscription" className="w-full inline-block">
+              <Button size="lg" className="w-full md:w-auto bg-emerald-600 hover:bg-emerald-700 text-white px-10 md:px-16 py-6 md:py-8 text-lg md:text-2xl font-black rounded-xl md:rounded-2xl shadow-xl transition-all hover:scale-105">
+                Réserver ma place
               </Button>
             </Link>
-            
-            <p className="mt-8 text-sm text-slate-500 italic">Places limitées par groupe pour garantir un accompagnement de qualité.</p>
           </div>
         </div>
       </div>
@@ -421,114 +414,65 @@ export const FinancialOffer = () => {
 export const FAQProof = () => {
   const categories = [
     { id: 'formation', label: 'Formation', icon: <Zap className="w-4 h-4" /> },
-    { id: 'certif', label: 'Certification', icon: <Award className="w-4 h-4" /> },
-    { id: 'orga', label: 'Organisation', icon: <Clock className="w-4 h-4" /> },
+    { id: 'certif', label: 'Certif', icon: <Award className="w-4 h-4" /> },
+    { id: 'orga', label: 'Orga', icon: <Clock className="w-4 h-4" /> },
     { id: 'prix', label: 'Prix', icon: <Users className="w-4 h-4" /> },
-    { id: 'logistique', label: 'Logistique', icon: <MapPin className="w-4 h-4" /> },
     { id: 'carriere', label: 'Carrière', icon: <TrendingUp className="w-4 h-4" /> },
   ];
 
   const faqs = [
-    { cat: 'formation', q: "Est-ce que ce bootcamp est fait pour moi ?", a: "Oui si vous utilisez Excel dans votre travail et que vous voulez gagner du temps, être plus efficace et valoriser votre profil. Un niveau intermédiaire est recommandé." },
-    { cat: 'formation', q: "Je suis débutant, est-ce que je peux suivre ?", a: "Le bootcamp est intensif. Si vous maîtrisez déjà les bases (formules simples, tableaux), vous pourrez suivre. Sinon, une mise à niveau est conseillée avant." },
-    { cat: 'formation', q: "Qu’est-ce que je vais concrètement savoir faire après ?", a: "Automatiser vos tâches, nettoyer des données, créer des dashboards professionnels et réussir la certification Microsoft Excel Expert." },
-    { cat: 'formation', q: "Est-ce vraiment possible de progresser en 4 jours ?", a: "Oui, car la formation est focalisée sur l’essentiel + pratique intensive. Vous travaillez sur des cas réels, pas de théorie inutile." },
-    { cat: 'formation', q: "Est-ce une formation théorique ou pratique ?", a: "90% pratique. Vous appliquez immédiatement chaque notion sur Excel." },
-    
-    // CERTIFICATION
+    { cat: 'formation', q: "Est-ce que ce bootcamp est fait pour moi ?", a: "Oui si vous utilisez Excel dans votre travail et que vous voulez gagner du temps, être plus efficace et valoriser votre profil." },
+    { cat: 'formation', q: "Je suis débutant, est-ce que je peux suivre ?", a: "Le bootcamp est intensif. Si vous maîtrisez déjà les bases (formules simples, tableaux), vous pourrez suivre." },
     { cat: 'certif', q: "La certification est-elle officielle ?", a: "Oui, il s’agit de la certification Microsoft Excel Expert reconnue à l’international." },
-    { cat: 'certif', q: "L’examen est inclus ?", a: "Oui, vous avez 2 vouchers (2 tentatives incluses)." },
-    { cat: 'certif', q: "Et si j’échoue à la certification ?", a: "Vous avez une deuxième tentative incluse. De plus, le bootcamp vous prépare spécifiquement à réussir." },
-    { cat: 'certif', q: "Est-ce que cette certification a de la valeur sur le marché ?", a: "Oui. Elle renforce votre crédibilité technique et est reconnue par les recruteurs et entreprises." },
-    
-    // ORGANISATION
-    { cat: 'orga', q: "Quels sont les horaires ?", a: "3 groupes au choix : 09h–12h, 14h–17h, 18h–21h." },
-    { cat: 'orga', q: "Puis-je changer de groupe après inscription ?", a: "Oui, sous réserve de disponibilité dans un autre groupe." },
-    { cat: 'orga', q: "Est-ce que je peux suivre en ligne ?", a: "Oui, le bootcamp est hybride : présentiel ou en ligne en direct." },
-    { cat: 'orga', q: "Est-ce que les sessions sont enregistrées ?", a: "Non, pour garantir l’engagement et la qualité de l’apprentissage." },
-    { cat: 'orga', q: "Combien de participants par groupe ?", a: "Les groupes sont limités pour garantir un accompagnement de qualité." },
-    
-    // PRIX
-    { cat: 'prix', q: "Combien coûte la formation ?", a: "125 000 F CFA." },
-    { cat: 'prix', q: "À quoi correspondent les 25 000 F d’inscription ?", a: "Ils permettent de réserver votre place et de sécuriser votre participation." },
     { cat: 'prix', q: "Puis-je payer en plusieurs fois ?", a: "Oui, des facilités peuvent être proposées selon votre situation." },
-    { cat: 'prix', q: "Y a-t-il un remboursement ?", a: "Les conditions sont précisées dans les CGV. L’objectif est de garantir votre engagement." },
-    { cat: 'prix', q: "Pourquoi les places sont-elles limitées ?", a: "Pour assurer un suivi personnalisé et une meilleure qualité d’apprentissage." },
-    
-    // LOGISTIQUE
-    { cat: 'logistique', q: "Où se déroule la formation en présentiel ?", a: "À Ouaga 2000." },
-    { cat: 'logistique', q: "Dois-je venir avec mon ordinateur ?", a: "Oui, un ordinateur portable est nécessaire pour pratiquer." },
-    { cat: 'logistique', q: "Quels logiciels sont nécessaires ?", a: "Excel (Office 365 recommandé). Une licence est offerte dans le cadre du bootcamp." },
-    
-    // CARRIERE + ACCOMPAGNEMENT + DECISION
-    { cat: 'carriere', q: "Est-ce que ça peut vraiment impacter ma carrière ?", a: "Oui. Excel est une compétence clé dans de nombreux métiers. La certification + la maîtrise avancée font la différence." },
-    { cat: 'carriere', q: "Est-ce utile si je ne suis pas dans la finance ?", a: "Oui. Excel est utilisé en RH, logistique, marketing, gestion, etc." },
-    { cat: 'carriere', q: "Vais-je vraiment gagner du temps après ?", a: "Oui. L’objectif est d’automatiser une grande partie de vos tâches répétitives." },
-    { cat: 'carriere', q: "Est-ce que je peux utiliser ça immédiatement au travail ?", a: "Oui, les cas étudiés sont directement applicables." },
-    { cat: 'carriere', q: "Y a-t-il un suivi après la formation ?", a: "Oui, vous bénéficiez d’un accompagnement et support après le bootcamp." },
-    { cat: 'carriere', q: "Puis-je poser des questions pendant la formation ?", a: "Bien sûr. L’accompagnement est interactif." },
-    { cat: 'carriere', q: "Y a-t-il une communauté ?", a: "Oui, vous rejoignez un réseau de participants et d’anciens." },
-    { cat: 'carriere', q: "Pourquoi devrais-je m’inscrire maintenant ?", a: "Parce que les places sont limitées et que les inscriptions ferment le 02 juin." },
-    { cat: 'carriere', q: "Que se passe-t-il si j’attends ?", a: "Vous risquez de ne plus avoir de place dans votre créneau préféré." },
-    { cat: 'carriere', q: "Comment m’inscrire ?", a: "Remplissez le formulaire et payez les frais d’inscription (25 000 F CFA." },
-    { cat: 'carriere', q: "Et si j’ai encore une question ?", a: "Vous pouvez nous contacter directement par email ou WhatsApp." },
-    { cat: 'carriere', q: "Est-ce que ça vaut vraiment le coup ?", a: "Si vous utilisez Excel régulièrement et que vous voulez passer un cap rapidement : oui, clairement." },
+    { cat: 'carriere', q: "Est-ce utile si je ne suis pas en finance ?", a: "Absolument. Excel est utilisé en RH, logistique, marketing, gestion, etc." },
   ];
 
   const [activeCat, setActiveCat] = useState('formation');
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="py-24 bg-white dark:bg-slate-950">
-      <div className="container px-4 mx-auto max-w-5xl">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-black tracking-tight mb-4">Des questions ?</h2>
-          <p className="text-slate-500 font-medium italic">Tout ce que vous devez savoir pour prendre votre décision.</p>
+    <section className="py-16 md:py-24 bg-white dark:bg-slate-950">
+      <div className="container px-4 mx-auto max-w-4xl">
+        <div className="text-center mb-10 md:mb-16">
+          <h2 className="text-2xl md:text-4xl font-black tracking-tight mb-3">Des questions ?</h2>
+          <p className="text-sm md:text-base text-slate-500 font-medium italic px-4">Tout ce que vous devez savoir pour décider.</p>
         </div>
 
-        {/* Category Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-12">
+        {/* Category Tabs - Scrollable on mobile */}
+        <div className="flex overflow-x-auto gap-2 mb-10 pb-2 scrollbar-hide -mx-4 px-4 justify-start md:justify-center">
           {categories.map((cat) => (
             <button
               key={cat.id}
               onClick={() => { setActiveCat(cat.id); setOpenIndex(null); }}
-              className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold transition-all ${
+              className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold transition-all whitespace-nowrap ${
                 activeCat === cat.id 
-                  ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-600/20' 
+                  ? 'bg-emerald-600 text-white shadow-lg' 
                   : 'bg-slate-100 dark:bg-slate-900 text-slate-600 hover:bg-slate-200'
               }`}
             >
-              {cat.icon}
-              {cat.label}
+              {cat.icon} {cat.label}
             </button>
           ))}
         </div>
 
         {/* FAQ Items */}
-        <div className="space-y-4 min-h-[400px]">
+        <div className="space-y-3 min-h-[300px]">
           {faqs.filter(f => f.cat === activeCat).map((f, i) => (
-            <motion.div 
-              key={i}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.05 }}
-              className="group"
-            >
+            <div key={i} className="group">
               <button 
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                className={`w-full text-left p-6 rounded-2xl border transition-all duration-300 ${
+                className={`w-full text-left p-5 rounded-xl border transition-all duration-300 ${
                   openIndex === i 
-                    ? 'bg-emerald-50/50 dark:bg-emerald-900/10 border-emerald-500 shadow-lg shadow-emerald-500/10' 
-                    : 'bg-white dark:bg-slate-900 border-emerald-100 dark:border-emerald-900/40 hover:border-emerald-400'
+                    ? 'bg-emerald-50/50 dark:bg-emerald-900/10 border-emerald-500 shadow-sm' 
+                    : 'bg-white dark:bg-slate-900 border-emerald-100 dark:border-emerald-900/40'
                 }`}
               >
                 <div className="flex justify-between items-center gap-4">
-                  <span className="font-bold text-lg text-slate-900 dark:text-white group-hover:text-emerald-600 transition-colors">
+                  <span className="font-bold text-sm md:text-lg text-slate-900 dark:text-white">
                     {f.q}
                   </span>
-                  <div className={`shrink-0 transition-transform duration-300 ${openIndex === i ? 'rotate-180' : ''}`}>
-                    <ChevronDown className={`w-5 h-5 ${openIndex === i ? 'text-emerald-600' : 'text-slate-300'}`} />
-                  </div>
+                  <ChevronDown className={`shrink-0 w-4 h-4 transition-transform duration-300 ${openIndex === i ? 'rotate-180' : ''}`} />
                 </div>
                 
                 <AnimatePresence>
@@ -539,14 +483,14 @@ export const FAQProof = () => {
                       exit={{ height: 0, opacity: 0 }}
                       className="overflow-hidden"
                     >
-                      <div className="pt-4 text-slate-600 dark:text-slate-400 leading-relaxed border-t border-emerald-100 dark:border-emerald-900/50 mt-4">
+                      <div className="pt-3 text-[13px] md:text-base text-slate-600 dark:text-slate-400 leading-relaxed border-t border-emerald-100 dark:border-emerald-900/50 mt-3">
                         {f.a}
                       </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
               </button>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
