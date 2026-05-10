@@ -1,4 +1,4 @@
-import { HeroFunnel, ProblemSection, TransformationSection } from '@/components/funnel/home-sections';
+import { HeroFunnel, ProblemSection, TransformationSection, ProgrammeSection } from '@/components/funnel/home-sections';
 
 export default function HomePage() {
   return (
@@ -6,6 +6,7 @@ export default function HomePage() {
       <HeroFunnel />
       <ProblemSection />
       <TransformationSection />
+      <ProgrammeSection />
     </main>
   );
 }

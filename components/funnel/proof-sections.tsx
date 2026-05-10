@@ -55,7 +55,7 @@ export const HeroProof = () => {
 const VideoTestimonialCard = ({ testimonial }: { testimonial: any }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(false); // On enlève le mute par défaut si c'est manuel
+  const [isMuted, setIsMuted] = useState(false);
 
   const togglePlay = () => {
     if (videoRef.current?.paused) {
@@ -68,34 +68,41 @@ const VideoTestimonialCard = ({ testimonial }: { testimonial: any }) => {
   };
 
   return (
-    <div className="relative min-w-[220px] md:min-w-[260px] aspect-[9/16] rounded-3xl overflow-hidden bg-slate-900 group shadow-lg border border-slate-200/10">
+    <div className="relative min-w-[150px] md:min-w-[180px] h-[260px] md:h-[320px] rounded-2xl md:rounded-[2rem] overflow-hidden bg-slate-900 group shadow-2xl border border-white/10 ring-4 ring-black/5">
       <video
         ref={videoRef}
         src={testimonial.video_url}
         loop
         muted={isMuted}
         playsInline
-        className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity"
+        className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-500 group-hover:scale-105"
       />
       
-      {/* Mouvement UI Controls Only */}
+      {/* Overlay gradient for text readability */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
+
+      {/* Participant info */}
+      <div className="absolute bottom-4 left-4 right-4 text-white z-10 pointer-events-none">
+        <p className="font-bold text-[11px] md:text-sm leading-tight mb-0.5 shadow-black drop-shadow-md">{testimonial.participant_name}</p>
+        <p className="text-[9px] md:text-[10px] text-white/80 font-medium truncate">{testimonial.position}</p>
+      </div>
 
       {/* Controls */}
-      <div className="absolute top-4 right-4">
+      <div className="absolute top-3 right-3 z-20">
         <button 
-          onClick={() => setIsMuted(!isMuted)}
-          className="w-8 h-8 rounded-full bg-black/20 backdrop-blur-md border border-white/10 flex items-center justify-center text-white hover:bg-black/40 transition-all"
+          onClick={(e) => { e.stopPropagation(); setIsMuted(!isMuted); }}
+          className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-black/40 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-black/60 transition-all"
         >
-          {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+          {isMuted ? <VolumeX className="w-3 h-3 md:w-4 md:h-4" /> : <Volume2 className="w-3 h-3 md:w-4 md:h-4" />}
         </button>
       </div>
 
       <button 
         onClick={togglePlay}
-        className="absolute inset-0 flex items-center justify-center bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity"
+        className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-all duration-300 z-10"
       >
-        <div className="w-12 h-12 rounded-full bg-emerald-600/90 text-white flex items-center justify-center shadow-lg transform group-hover:scale-105 transition-transform">
-          {isPlaying ? <Pause className="w-5 h-5 fill-current" /> : <Play className="w-5 h-5 fill-current ml-0.5" />}
+        <div className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-emerald-500/90 backdrop-blur-sm text-white flex items-center justify-center shadow-[0_0_30px_rgba(16,185,129,0.5)] transform group-hover:scale-110 transition-transform">
+          {isPlaying ? <Pause className="w-4 h-4 md:w-6 md:h-6 fill-current" /> : <Play className="w-4 h-4 md:w-6 md:h-6 fill-current ml-1" />}
         </div>
       </button>
     </div>
@@ -217,57 +224,90 @@ export const ConcreteTestimonials = () => {
 
   const videoTestimonials = testimonials.filter(t => t.type === 'video');
   const textTestimonials = testimonials.filter(t => t.type === 'text');
+  
+  // Split for two marquee rows
+  const half = Math.ceil(textTestimonials.length / 2);
+  const row1 = textTestimonials.slice(0, half);
+  const row2 = textTestimonials.slice(half);
 
   return (
-    <section className="py-10 md:py-16 bg-slate-50/50 dark:bg-slate-900/50 overflow-hidden border-y border-slate-100 dark:border-slate-800">
-      <div className="container px-4 mx-auto">
-        <div className="text-center mb-8 md:mb-12">
-          <h2 className="text-xl md:text-4xl font-black mb-2 md:mb-3 px-2 leading-tight">Ils ont transformé leur quotidien</h2>
-          <p className="text-xs md:text-base text-slate-500 font-medium">Des résultats concrets, vérifiables sur le terrain</p>
+    <section className="py-20 md:py-32 bg-slate-950 text-white overflow-hidden relative border-y border-slate-800">
+      {/* Decorative glows */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[400px] bg-emerald-600/10 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-full max-w-xl h-[300px] bg-orange-500/10 blur-[100px] rounded-full pointer-events-none" />
+
+      <div className="container px-4 mx-auto relative z-10">
+        <div className="text-center mb-16 md:mb-20">
+          <span className="text-emerald-400 font-bold tracking-wider uppercase text-sm mb-3 block">Témoignages</span>
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-black mb-6 tracking-tight">Ils ont transformé <br className="hidden md:block"/> leur quotidien</h2>
+          <p className="text-lg md:text-xl text-slate-400 font-medium max-w-2xl mx-auto">
+            Plus de 500 professionnels à travers l'Afrique ont déjà fait confiance à ce bootcamp. Voici ce qu'ils en disent.
+          </p>
         </div>
 
         {/* --- VIDEO CAROUSEL --- */}
-        <div className="relative mb-16">
-          <div className="flex gap-5 overflow-x-auto pb-8 scrollbar-hide snap-x px-4 -mx-4 justify-center md:justify-center">
+        <div className="relative mb-24 max-w-6xl mx-auto">
+          <div className="flex gap-4 md:gap-6 overflow-x-auto pb-8 scrollbar-hide snap-x px-4 -mx-4 md:mx-0 md:px-0 justify-start md:justify-center items-center">
             {videoTestimonials.map((t) => (
-              <div key={t.id} className="snap-center">
+              <div key={t.id} className="snap-center shrink-0">
                 <VideoTestimonialCard testimonial={t} />
               </div>
             ))}
           </div>
         </div>
 
-        {/* --- WRITTEN INFINITE MARQUEE --- */}
-        <div className="relative mb-12 overflow-hidden py-4">
-          {/* Gradient Overlays for smooth edges */}
-          <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-slate-50/50 to-transparent z-10 pointer-events-none dark:from-slate-900/50" />
-          <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-slate-50/50 to-transparent z-10 pointer-events-none dark:from-slate-900/50" />
+        {/* --- WRITTEN MARQUEE ROW 1 --- */}
+        <div className="relative mb-6 overflow-hidden">
+          <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-slate-950 to-transparent z-10 pointer-events-none" />
+          <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-slate-950 to-transparent z-10 pointer-events-none" />
           
           <motion.div 
             className="flex gap-6 whitespace-nowrap"
-            animate={{ x: [0, -1920] }}
-            transition={{ 
-              duration: 40, 
-              repeat: Infinity, 
-              ease: "linear" 
-            }}
+            animate={{ x: [0, -1500] }}
+            transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
             whileHover={{ animationPlayState: 'paused' }}
           >
-            {/* Double the list to create infinite loop effect */}
-            {[...textTestimonials, ...textTestimonials].map((t, idx) => (
-              <div 
-                key={`${t.id}-${idx}`}
-                className="w-[300px] md:w-[380px] p-6 rounded-2xl bg-white dark:bg-slate-950 border border-slate-100 dark:border-slate-800 shadow-sm flex flex-col justify-between whitespace-normal shrink-0"
-              >
-                <div>
-                  <div className="flex items-center gap-3 mb-4">
-                    <img src={t.participant_photo} alt={t.participant_name} className="w-10 h-10 rounded-full object-cover bg-emerald-50" />
-                    <div className="flex-1 min-w-0">
-                      <h4 className="font-bold text-sm truncate">{t.participant_name}</h4>
-                      <p className="text-slate-400 text-[10px] font-bold uppercase tracking-tight">{t.position} @ {t.company}</p>
-                    </div>
+            {[...row1, ...row1, ...row1].map((t, idx) => (
+              <div key={`r1-${t.id}-${idx}`} className="w-[300px] md:w-[400px] p-6 md:p-8 rounded-[2rem] bg-white/[0.03] border border-white/10 hover:bg-white/[0.05] transition-colors shrink-0 backdrop-blur-sm">
+                <div className="flex gap-1 mb-4 text-orange-400">
+                   {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
+                </div>
+                <p className="text-sm md:text-base leading-relaxed text-slate-300 mb-6 whitespace-normal line-clamp-4">"{t.testimonial}"</p>
+                <div className="flex items-center gap-4">
+                  <img src={t.participant_photo} alt={t.participant_name} className="w-12 h-12 rounded-full object-cover bg-slate-800" />
+                  <div>
+                    <h4 className="font-bold text-white text-sm">{t.participant_name}</h4>
+                    <p className="text-slate-500 text-[11px] font-bold uppercase tracking-wider">{t.position}</p>
                   </div>
-                  <p className="text-[13px] leading-relaxed text-slate-600 dark:text-slate-300 italic line-clamp-3">"{t.testimonial}"</p>
+                </div>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* --- WRITTEN MARQUEE ROW 2 --- */}
+        <div className="relative mb-20 overflow-hidden">
+          <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-slate-950 to-transparent z-10 pointer-events-none" />
+          <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-slate-950 to-transparent z-10 pointer-events-none" />
+          
+          <motion.div 
+            className="flex gap-6 whitespace-nowrap"
+            animate={{ x: [-1500, 0] }}
+            transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+            whileHover={{ animationPlayState: 'paused' }}
+          >
+            {[...row2, ...row2, ...row2].map((t, idx) => (
+              <div key={`r2-${t.id}-${idx}`} className="w-[300px] md:w-[400px] p-6 md:p-8 rounded-[2rem] bg-white/[0.03] border border-white/10 hover:bg-white/[0.05] transition-colors shrink-0 backdrop-blur-sm">
+                <div className="flex gap-1 mb-4 text-orange-400">
+                   {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
+                </div>
+                <p className="text-sm md:text-base leading-relaxed text-slate-300 mb-6 whitespace-normal line-clamp-4">"{t.testimonial}"</p>
+                <div className="flex items-center gap-4">
+                  <img src={t.participant_photo} alt={t.participant_name} className="w-12 h-12 rounded-full object-cover bg-slate-800" />
+                  <div>
+                    <h4 className="font-bold text-white text-sm">{t.participant_name}</h4>
+                    <p className="text-slate-500 text-[11px] font-bold uppercase tracking-wider">{t.position}</p>
+                  </div>
                 </div>
               </div>
             ))}
@@ -276,12 +316,12 @@ export const ConcreteTestimonials = () => {
 
         <div className="text-center">
           <Link href="/inscription">
-            <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-6 text-lg font-bold rounded-xl shadow-xl shadow-emerald-600/20 transition-all hover:scale-105">
-              Je réserve ma place maintenant
+            <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white px-10 py-7 text-lg md:text-xl font-black rounded-2xl shadow-[0_0_40px_rgba(16,185,129,0.3)] transition-all hover:scale-105 hover:shadow-[0_0_60px_rgba(16,185,129,0.5)]">
+              Rejoindre l'élite maintenant
             </Button>
           </Link>
-          <p className="mt-4 text-xs font-bold text-slate-400 uppercase tracking-widest flex items-center justify-center gap-2">
-            <ShieldCheck className="w-4 h-4 text-emerald-500" /> Satisfait ou remboursé
+          <p className="mt-5 text-xs font-bold text-slate-500 uppercase tracking-widest flex items-center justify-center gap-2">
+            <ShieldCheck className="w-4 h-4 text-emerald-500" /> Satisfaction garantie ou remboursé
           </p>
         </div>
       </div>
@@ -570,6 +610,70 @@ export const FAQProof = () => {
             </div>
           ))}
         </motion.div>
+      </div>
+    </section>
+  );
+};
+
+export const TrainerSection = () => {
+  return (
+    <section className="py-16 md:py-24 bg-slate-50 dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800">
+      <div className="container px-4 mx-auto max-w-5xl">
+        <div className="bg-white dark:bg-slate-950 rounded-[2.5rem] p-8 md:p-12 shadow-xl border border-slate-100 dark:border-slate-800 overflow-hidden relative">
+          {/* Decorative background element */}
+          <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-600/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
+          
+          <div className="flex flex-col md:flex-row gap-10 md:gap-16 items-center relative z-10">
+            {/* Trainer Image */}
+            <div className="w-full md:w-2/5 shrink-0">
+              <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-4 border-white dark:border-slate-800">
+                <img 
+                  src="https://images.unsplash.com/photo-1531384441138-2736e62e0919?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                  alt="Léonce TOUNDE SODJINOU - Formateur Excel" 
+                  className="w-full h-full object-cover object-center"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+                  <div className="text-white">
+                    <p className="font-bold text-xl leading-tight">Léonce TOUNDE SODJINOU</p>
+                    <p className="text-white/80 text-sm font-medium">Expert Formateur Microsoft</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Profile Description */}
+            <div className="w-full md:w-3/5">
+              <div className="mb-6">
+                <span className="text-orange-500 font-black tracking-wider uppercase text-xs mb-2 block">Votre Formateur</span>
+                <h2 className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white leading-tight mb-6">
+                  Apprenez avec un expert du terrain
+                </h2>
+                <div className="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed text-base md:text-lg">
+                  <p>
+                    <strong className="text-slate-900 dark:text-white font-bold">Léonce TOUNDE SODJINOU</strong> est le fondateur du Cabinet Smart Otobos Consulting et formateur certifié Microsoft Excel.
+                  </p>
+                  <p>
+                    Avec une solide expérience en entreprise, il maîtrise parfaitement les enjeux auxquels vous êtes confrontés au quotidien : données massives, délais serrés et besoin d'automatisation. Il a déjà formé et accompagné <strong className="text-emerald-600">plus de 500 professionnels</strong> à travers l'Afrique (Burkina Faso, Côte d'Ivoire, Bénin, Mali, etc.).
+                  </p>
+                  <p>
+                    Sa pédagogie est claire, orientée résultats et 100% pratique. Son objectif n'est pas de vous donner un cours théorique, mais de vous équiper des compétences exactes qui feront la différence dès le lundi matin au bureau.
+                  </p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4 mt-8">
+                <div className="bg-slate-50 dark:bg-slate-900 p-4 rounded-2xl border border-slate-100 dark:border-slate-800">
+                  <div className="text-3xl font-black text-emerald-600 mb-1">+500</div>
+                  <div className="text-xs font-bold text-slate-500 uppercase tracking-wider">Professionnels Formés</div>
+                </div>
+                <div className="bg-slate-50 dark:bg-slate-900 p-4 rounded-2xl border border-slate-100 dark:border-slate-800">
+                  <div className="text-3xl font-black text-orange-500 mb-1">100%</div>
+                  <div className="text-xs font-bold text-slate-500 uppercase tracking-wider">Taux de Satisfaction</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

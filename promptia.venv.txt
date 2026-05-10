@@ -1,0 +1,59 @@
+A AMELIORER SUR XLELITEBOOTCAMP
+
+
+######################  ACCUEIL  ############################
+
+
+########################## PREUVE ############################
+
+- Il faut améliorer completement la section des témoignages, rendre petits les videos de témoignages et améliorer le design complet 
+
+
+
+
+######################################SOLVED########################
+
+
+
+- Faudra revoir La section "Si Excel vous ralentit, c'est un problème." , revoir la taille et la contenance des cards et utiliser judicieusement l'espace disponible.
+
+
+- Les espaces sont tres mal utilises dans le footer . Le refaire completement, espaces a utiliser au millimètre, Aussi voici les vrais contacts : <<<<smart.otobos@gmail.com 2250799133365
+
+Nous sommes présents dans plusieurs pays
+
+Côte d'ivoire
+
++225 07 99 13 33 65 
+Bénin
+
++229 61 57 40 94 
+Sénégal
+
++221 77 432 93 45 
+
+LinkedIn : "https://www.linkedin.com/company/cabinet-smart-otobos-consulting/"
+
+Youtube : "https://www.youtube.com/@smartotobosconsulting"
+
+Facebook : "https://www.facebook.com/cabinetsoc"
+
+Faut ajouter ma signature : "made by enverse"
+>>>>
+
+
+
+- Le bouton "En savoir plus" de la page d'accueil ne men nulle part
+
+- Faudra revoir la navbar (Il faut qu'elle sorte de l'ordinaire, aussi rapprocher le bouton "s'inscrire" qui est écarté)
+
+- Le bouton "en savoir plus" doit renvoyer sur le programmem du bootcamp (section simple a ajouter sur en bas de page avec cta)
+
+- Faudra revoir La section "Si Excel vous ralentit, c'est un problème." , revoir la taille et la contenance des cards et utiliser judicieusement l'espace disponible.
+
+
+- Créer une section a-propos du formateur juste avant de la faq, et y Ajouter des images du formateur et une vraie description de son profil
+
+
+
+

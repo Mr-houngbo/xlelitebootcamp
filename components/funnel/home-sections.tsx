@@ -1,17 +1,17 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { CheckCircle2, XCircle, ArrowRight, TrendingUp, ShieldCheck, Zap, Award } from 'lucide-react';
+import { CheckCircle2, XCircle, ArrowRight, TrendingUp, ShieldCheck, Zap, Award, AlertTriangle, TrendingDown, Clock } from 'lucide-react';
 import Link from 'next/link';
 import { CountdownTimer } from './countdown-timer';
-import { UrgencyBadge } from './urgency-badge';
+
 import { Button } from '@/components/ui/button';
 
 export const HeroFunnel = () => {
   return (
     <section className="relative pt-24 pb-16 md:pt-32 md:pb-32 overflow-hidden">
       <div className="container px-4 mx-auto text-center relative z-10">
-        <UrgencyBadge />
+
         
         <motion.h1 
           initial={{ y: 20, opacity: 0 }}
@@ -59,9 +59,11 @@ export const HeroFunnel = () => {
                 Réserver ma place <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </Link>
-            <Button variant="outline" size="lg" className="w-full sm:w-auto border-slate-200 dark:border-slate-800 px-6 md:px-10 py-6 md:py-8 text-lg md:text-xl font-bold rounded-2xl bg-white/50 backdrop-blur-sm">
-              En savoir plus
-            </Button>
+            <Link href="#programme" className="w-full sm:w-auto">
+              <Button variant="outline" size="lg" className="w-full sm:w-auto border-slate-200 dark:border-slate-800 px-6 md:px-10 py-6 md:py-8 text-lg md:text-xl font-bold rounded-2xl bg-white/50 backdrop-blur-sm hover:border-brand-green/30 transition-all">
+                En savoir plus
+              </Button>
+            </Link>
           </div>
           
           <div className="pt-6">
@@ -81,27 +83,52 @@ export const HeroFunnel = () => {
 
 export const ProblemSection = () => {
   const problems = [
-    { text: "Vous perdez des heures sur des tâches répétitives ?", icon: <Zap className="w-5 h-5 text-orange-500" /> },
-    { text: "Vos fichiers sont instables et remplis d'erreurs ?", icon: <XCircle className="w-5 h-5 text-red-500" /> },
-    { text: "Votre niveau Excel limite votre évolution professionnelle ?", icon: <ShieldCheck className="w-5 h-5 text-slate-400" /> },
+    { 
+      title: "Des heures perdues sur des tâches répétitives", 
+      desc: "Vous copiez-collez manuellement des données chaque semaine. Une tâche fastidieuse qui pourrait être automatisée à 100% avec Power Query.", 
+      icon: <Clock className="w-6 h-6 text-orange-500" /> 
+    },
+    { 
+      title: "Des fichiers lourds, instables et pleins d'erreurs", 
+      desc: "Vos tableaux de bord plantent, les formules RECHERCHEV se cassent, et vous passez plus de temps à réparer vos fichiers qu'à analyser les données.", 
+      icon: <AlertTriangle className="w-6 h-6 text-red-500" /> 
+    },
+    { 
+      title: "Un frein pour votre évolution de carrière", 
+      desc: "Aujourd'hui, la maîtrise basique d'Excel ne suffit plus. Ne pas savoir exploiter la data vous empêche d'accéder à des postes stratégiques.", 
+      icon: <TrendingDown className="w-6 h-6 text-slate-500" /> 
+    },
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-slate-50 dark:bg-slate-900/50">
-      <div className="container px-4 mx-auto">
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-2xl sm:text-3xl md:text-5xl font-black tracking-tight leading-tight">Si Excel vous ralentit, <br className="md:hidden" /><span className="text-red-600">c'est un problème.</span></h2>
-          <p className="mt-4 text-base md:text-xl text-slate-600 dark:text-slate-400 font-medium px-4">Arrêtez d'utiliser Excel comme au siècle dernier.</p>
+    <section id="en-savoir-plus" className="py-20 md:py-32 bg-slate-50 dark:bg-slate-900/50">
+      <div className="container px-4 mx-auto max-w-7xl">
+        <div className="text-center mb-16 md:mb-24">
+          <span className="text-red-500 font-bold tracking-wider uppercase text-sm mb-3 block">Le constat est clair</span>
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
+            Si Excel vous ralentit, <br className="hidden md:block" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-orange-500">c'est un problème.</span>
+          </h2>
+          <p className="mt-6 text-lg md:text-2xl text-slate-600 dark:text-slate-400 font-medium max-w-3xl mx-auto">
+            Arrêtez d'utiliser Excel comme au siècle dernier et subissez moins votre outil de travail.
+          </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
           {problems.map((p, i) => (
             <motion.div 
               key={i}
-              whileHover={{ y: -5 }}
-              className="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-lg"
+              whileHover={{ y: -10 }}
+              className="bg-white dark:bg-slate-800 p-8 md:p-10 rounded-[2rem] border border-slate-100 dark:border-slate-700 shadow-xl shadow-slate-200/50 dark:shadow-none flex flex-col items-center md:items-start text-center md:text-left transition-all duration-300 hover:shadow-2xl"
             >
-              <div className="mb-4 md:mb-6 w-10 h-10 md:w-12 md:h-12 bg-slate-50 dark:bg-slate-700 rounded-xl flex items-center justify-center">{p.icon}</div>
-              <p className="text-lg md:text-xl font-bold leading-tight text-slate-900 dark:text-white">{p.text}</p>
+              <div className="mb-6 w-14 h-14 md:w-16 md:h-16 bg-slate-50 dark:bg-slate-700 rounded-2xl flex items-center justify-center border border-slate-100 dark:border-slate-600 shadow-inner">
+                {p.icon}
+              </div>
+              <h3 className="text-xl md:text-2xl font-black leading-tight text-slate-900 dark:text-white mb-4">
+                {p.title}
+              </h3>
+              <p className="text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
+                {p.desc}
+              </p>
             </motion.div>
           ))}
         </div>
@@ -137,7 +164,7 @@ export const TransformationSection = () => {
             </div>
 
             <div className="mt-12 text-center lg:text-left">
-              <Link href="/preuve" className="inline-block w-full sm:w-auto">
+              <Link href="#programme" className="inline-block w-full sm:w-auto">
                 <Button size="lg" className="w-full bg-orange-500 hover:bg-orange-600 text-white px-8 md:px-10 py-6 md:py-8 text-lg md:text-xl font-black rounded-2xl shadow-xl shadow-orange-500/20">
                   Voir le programme
                 </Button>
@@ -157,6 +184,52 @@ export const TransformationSection = () => {
              </div>
              <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-emerald-600/10 blur-[80px] md:blur-[100px] rounded-full" />
           </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export const ProgrammeSection = () => {
+  const programme = [
+    { day: "Jour 1", title: "Fondations & Productivité", desc: "Maîtrisez les raccourcis, la mise en forme conditionnelle et préparez vos données comme un pro." },
+    { day: "Jour 2", title: "Formules Avancées & Logique", desc: "Domptez RECHERCHEV/X, INDEX/EQUIV, et les formules logiques complexes sans erreur." },
+    { day: "Jour 3", title: "Analyse & Tableaux Croisés", desc: "Analysez des milliers de lignes en quelques clics. Créez des TCD dynamiques et percutants." },
+    { day: "Jour 4", title: "Power Query & Automatisation", desc: "Fini le copier-coller. Automatisez la récupération et le nettoyage de vos données à 100%." },
+  ];
+
+  return (
+    <section id="programme" className="py-20 md:py-32 bg-slate-50 dark:bg-slate-900 border-t border-gray-100 dark:border-gray-800">
+      <div className="container px-4 mx-auto max-w-5xl">
+        <div className="text-center mb-16">
+          <span className="text-brand-green font-bold tracking-wider uppercase text-sm mb-2 block">Ce qui vous attend</span>
+          <h2 className="text-3xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white">
+            Le Programme <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-green to-brand-orange">Intensif</span>
+          </h2>
+          <p className="mt-4 text-slate-600 dark:text-slate-400 text-lg md:text-xl font-medium max-w-2xl mx-auto">
+            4 jours pour passer de l'hésitation à la maîtrise absolue. Une pédagogie axée sur la pratique immédiate.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-16">
+          {programme.map((item, idx) => (
+            <div key={idx} className="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-xl hover:border-brand-green/30 transition-all group">
+              <div className="text-brand-orange font-black text-xl mb-2">{item.day}</div>
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-brand-green transition-colors">{item.title}</h3>
+              <p className="text-slate-600 dark:text-slate-400 leading-relaxed text-lg">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="text-center bg-white dark:bg-slate-800 p-8 md:p-12 rounded-[2.5rem] shadow-xl border border-gray-100 dark:border-gray-700 relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-brand-green to-brand-orange"></div>
+          <h3 className="text-2xl md:text-3xl font-black mb-4">Prêt à dominer Microsoft Excel ?</h3>
+          <p className="text-slate-600 dark:text-slate-400 mb-8 max-w-xl mx-auto">Les places sont extrêmement limitées pour garantir un suivi personnalisé de chaque participant.</p>
+          <Link href="/inscription">
+            <Button size="lg" className="w-full sm:w-auto bg-brand-green hover:bg-emerald-700 text-white px-10 py-8 text-xl font-black rounded-2xl shadow-xl shadow-brand-green/20 transition-all hover:scale-105">
+              Réserver ma place maintenant <ArrowRight className="ml-3 w-6 h-6" />
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

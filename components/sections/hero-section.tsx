@@ -67,7 +67,7 @@ export function HeroSection() {
                 <ArrowRight className="w-5 h-5" />
               </button>
             </Link>
-            <Link href="/programme" className="w-full sm:w-auto">
+            <Link href="#programme" className="w-full sm:w-auto">
               <button className="premium-button-outline w-full flex items-center justify-center gap-2 text-lg">
                 <Calendar className="w-5 h-5" />
                 Voir le Programme

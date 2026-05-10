@@ -1,10 +1,10 @@
 import { 
-  HeroProof, 
   ConcreteTestimonials, 
   RealActions, 
   OrganizationSection, 
   InclusionsSection,
   FinancialOffer, 
+  TrainerSection,
   FAQProof 
 } from '@/components/funnel/proof-sections';
 import { Metadata } from 'next';
@@ -19,12 +19,12 @@ export const metadata: Metadata = {
 export default function ProofPage() {
   return (
     <main className="min-h-screen">
-      <HeroProof />
       <ConcreteTestimonials />
       <RealActions />
       <OrganizationSection />
       <InclusionsSection />
       <FinancialOffer />
+      <TrainerSection />
       <FAQProof />
       
       <section className="py-20 bg-slate-50 dark:bg-slate-950 text-center">
