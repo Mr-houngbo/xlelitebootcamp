@@ -616,6 +616,13 @@ export const FAQProof = () => {
 };
 
 export const TrainerSection = () => {
+  const trainingPhotos = [
+    "https://images.unsplash.com/photo-1544531586-fde5298cdd40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1558403194-611308249627?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+  ];
+
   return (
     <section className="py-16 md:py-24 bg-slate-50 dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800">
       <div className="container px-4 mx-auto max-w-5xl">
@@ -623,14 +630,14 @@ export const TrainerSection = () => {
           {/* Decorative background element */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-600/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
           
-          <div className="flex flex-col md:flex-row gap-10 md:gap-16 items-center relative z-10">
+          <div className="flex flex-col md:flex-row gap-10 md:gap-16 items-center relative z-10 mb-16">
             {/* Trainer Image */}
             <div className="w-full md:w-2/5 shrink-0">
               <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-4 border-white dark:border-slate-800">
                 <img 
-                  src="https://images.unsplash.com/photo-1531384441138-2736e62e0919?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                  src="/Leonce_1.jpeg" 
                   alt="Léonce TOUNDE SODJINOU - Formateur Excel" 
-                  className="w-full h-full object-cover object-center"
+                  className="w-full h-full object-cover object-top"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
                   <div className="text-white">
@@ -672,6 +679,30 @@ export const TrainerSection = () => {
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* Training Gallery Carousel */}
+          <div className="relative z-10 border-t border-slate-100 dark:border-slate-800 pt-10">
+            <h3 className="text-center font-bold text-slate-400 uppercase tracking-widest text-xs mb-6">Sur le terrain, aux côtés des professionnels</h3>
+            
+            <div className="relative overflow-hidden">
+              <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-white dark:from-slate-950 to-transparent z-10 pointer-events-none" />
+              <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-white dark:from-slate-950 to-transparent z-10 pointer-events-none" />
+              
+              <motion.div 
+                className="flex gap-4"
+                animate={{ x: [0, -1000] }}
+                transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+                whileHover={{ animationPlayState: 'paused' }}
+              >
+                {[...trainingPhotos, ...trainingPhotos].map((photo, idx) => (
+                  <div key={idx} className="w-[200px] md:w-[250px] aspect-video rounded-xl overflow-hidden shadow-md border border-slate-100 dark:border-slate-800 shrink-0 group">
+                    <img src={photo} alt="Formation en cours" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                  </div>
+                ))}
+              </motion.div>
+            </div>
+            <p className="text-center text-[10px] text-slate-400 mt-4 italic">Photos d'illustration (à remplacer par vos vraies photos de formation)</p>
           </div>
         </div>
       </div>
