@@ -16,35 +16,25 @@ export function RegistrationForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
-  // Groups depuis Supabase avec vrais UUIDs
-  const [groups, setGroups] = useState<any[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  // Groups avec fallback par défaut pour éviter le chargement bloquant
+  const [groups, setGroups] = useState<any[]>([
+    { id: '00000000-0000-0000-0000-000000000001', name: 'G1', time_slot: '09h-12h', max_capacity: 20, current_capacity: 0 },
+    { id: '00000000-0000-0000-0000-000000000002', name: 'G2', time_slot: '14h-17h', max_capacity: 20, current_capacity: 0 },
+    { id: '00000000-0000-0000-0000-000000000003', name: 'G3', time_slot: '18h-21h', max_capacity: 20, current_capacity: 0 },
+  ]);
 
-  // Charger les groupes depuis Supabase
+  // Charger les groupes depuis Supabase en arrière-plan
   useEffect(() => {
     const loadGroups = async () => {
       try {
         const result = await getGroups();
         
-        if (result.success) {
+        if (result.success && result.data && result.data.length > 0) {
           setGroups(result.data);
-        } else {
-          // Fallback avec UUIDs simulés
-          setGroups([
-            { id: '00000000-0000-0000-0000-000000000001', name: 'G1', time_slot: '09h-12h', max_capacity: 20, current_capacity: 0 },
-            { id: '00000000-0000-0000-0000-000000000002', name: 'G2', time_slot: '14h-17h', max_capacity: 20, current_capacity: 0 },
-            { id: '00000000-0000-0000-0000-000000000003', name: 'G3', time_slot: '18h-21h', max_capacity: 20, current_capacity: 0 },
-          ]);
         }
       } catch (error) {
-        console.log('Erreur chargement groupes, fallback:', error);
-        setGroups([
-          { id: '00000000-0000-0000-0000-000000000001', name: 'G1', time_slot: '09h-12h', max_capacity: 20, current_capacity: 0 },
-          { id: '00000000-0000-0000-0000-000000000002', name: 'G2', time_slot: '14h-17h', max_capacity: 20, current_capacity: 0 },
-          { id: '00000000-0000-0000-0000-000000000003', name: 'G3', time_slot: '18h-21h', max_capacity: 20, current_capacity: 0 },
-        ]);
+        console.log('Erreur chargement groupes, fallback conservé:', error);
       }
-      setIsLoading(false);
     };
 
     loadGroups();
@@ -104,14 +94,7 @@ export function RegistrationForm() {
     trigger('groupId');
   };
 
-  if (isLoading) {
-    return (
-      <div className="max-w-2xl mx-auto glass-card p-12 text-center border-gray-100 shadow-xl">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-green mx-auto mb-4"></div>
-        <p className="text-gray-600 font-medium">Chargement des groupes disponibles...</p>
-      </div>
-    );
-  }
+
 
   if (submitSuccess) {
     return (

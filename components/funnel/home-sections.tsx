@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { CheckCircle2, XCircle, ArrowRight, TrendingUp, ShieldCheck, Zap, Award, AlertTriangle, TrendingDown, Clock } from 'lucide-react';
+import { CheckCircle2, XCircle, ArrowRight, TrendingUp, ShieldCheck, Zap, Award, AlertTriangle, TrendingDown, Clock, FileSpreadsheet } from 'lucide-react';
 import Link from 'next/link';
 import { CountdownTimer } from './countdown-timer';
 
@@ -10,7 +10,20 @@ import { Button } from '@/components/ui/button';
 export const HeroFunnel = () => {
   return (
     <section className="relative pt-24 pb-16 md:pt-32 md:pb-32 overflow-hidden">
+      {/* Excel Theme Grid Background */}
+      <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#10b98110_1px,transparent_1px),linear-gradient(to_bottom,#10b98110_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+      
       <div className="container px-4 mx-auto text-center relative z-10">
+
+        <motion.div
+           initial={{ opacity: 0, scale: 0.5 }}
+           animate={{ opacity: 1, scale: 1 }}
+           transition={{ type: "spring", stiffness: 200, damping: 15 }}
+           className="mx-auto w-20 h-20 md:w-24 md:h-24 bg-white dark:bg-slate-800 rounded-3xl flex items-center justify-center shadow-2xl border-4 border-emerald-50 dark:border-emerald-900 mb-8 relative"
+        >
+           <div className="absolute inset-0 bg-emerald-500 blur-xl opacity-20 rounded-full"></div>
+           <FileSpreadsheet className="w-10 h-10 md:w-12 md:h-12 text-emerald-600 relative z-10" />
+        </motion.div>
 
         
         <motion.h1 
@@ -84,49 +97,46 @@ export const HeroFunnel = () => {
 export const ProblemSection = () => {
   const problems = [
     { 
-      title: "Des heures perdues sur des tâches répétitives", 
-      desc: "Vous copiez-collez manuellement des données chaque semaine. Une tâche fastidieuse qui pourrait être automatisée à 100% avec Power Query.", 
-      icon: <Clock className="w-6 h-6 text-orange-500" /> 
+      title: "Tâches chronophages", 
+      desc: "Copier-coller manuel et répétitif. Automatisable à 100% via Power Query.", 
+      icon: <Clock className="w-5 h-5 text-orange-500" /> 
     },
     { 
-      title: "Des fichiers lourds, instables et pleins d'erreurs", 
-      desc: "Vos tableaux de bord plantent, les formules RECHERCHEV se cassent, et vous passez plus de temps à réparer vos fichiers qu'à analyser les données.", 
-      icon: <AlertTriangle className="w-6 h-6 text-red-500" /> 
+      title: "Fichiers instables", 
+      desc: "Plantages, erreurs de formules. Plus de temps à réparer qu'à analyser.", 
+      icon: <AlertTriangle className="w-5 h-5 text-red-500" /> 
     },
     { 
-      title: "Un frein pour votre évolution de carrière", 
-      desc: "Aujourd'hui, la maîtrise basique d'Excel ne suffit plus. Ne pas savoir exploiter la data vous empêche d'accéder à des postes stratégiques.", 
-      icon: <TrendingDown className="w-6 h-6 text-slate-500" /> 
+      title: "Plafond de verre", 
+      desc: "Une maîtrise basique d'Excel bloque votre accès aux postes stratégiques.", 
+      icon: <TrendingDown className="w-5 h-5 text-slate-500" /> 
     },
   ];
 
   return (
-    <section id="en-savoir-plus" className="py-20 md:py-32 bg-slate-50 dark:bg-slate-900/50">
-      <div className="container px-4 mx-auto max-w-7xl">
-        <div className="text-center mb-16 md:mb-24">
-          <span className="text-red-500 font-bold tracking-wider uppercase text-sm mb-3 block">Le constat est clair</span>
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
-            Si Excel vous ralentit, <br className="hidden md:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-orange-500">c'est un problème.</span>
+    <section id="en-savoir-plus" className="py-12 md:py-20 bg-slate-50 dark:bg-slate-900/50">
+      <div className="container px-4 mx-auto max-w-6xl">
+        <div className="text-center mb-10 md:mb-16">
+          <span className="text-red-500 font-bold tracking-wider uppercase text-xs mb-2 block">Le constat</span>
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight">
+            Excel vous ralentit ? <br className="hidden md:block" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-orange-500">Il faut que ça change.</span>
           </h2>
-          <p className="mt-6 text-lg md:text-2xl text-slate-600 dark:text-slate-400 font-medium max-w-3xl mx-auto">
-            Arrêtez d'utiliser Excel comme au siècle dernier et subissez moins votre outil de travail.
-          </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
           {problems.map((p, i) => (
             <motion.div 
               key={i}
-              whileHover={{ y: -10 }}
-              className="bg-white dark:bg-slate-800 p-8 md:p-10 rounded-[2rem] border border-slate-100 dark:border-slate-700 shadow-xl shadow-slate-200/50 dark:shadow-none flex flex-col items-center md:items-start text-center md:text-left transition-all duration-300 hover:shadow-2xl"
+              whileHover={{ y: -5 }}
+              className="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-lg flex flex-col items-center md:items-start text-center md:text-left transition-all duration-300"
             >
-              <div className="mb-6 w-14 h-14 md:w-16 md:h-16 bg-slate-50 dark:bg-slate-700 rounded-2xl flex items-center justify-center border border-slate-100 dark:border-slate-600 shadow-inner">
+              <div className="mb-4 w-12 h-12 bg-slate-50 dark:bg-slate-700 rounded-xl flex items-center justify-center border border-slate-100 dark:border-slate-600 shadow-inner shrink-0">
                 {p.icon}
               </div>
-              <h3 className="text-xl md:text-2xl font-black leading-tight text-slate-900 dark:text-white mb-4">
+              <h3 className="text-lg md:text-xl font-bold leading-tight text-slate-900 dark:text-white mb-2">
                 {p.title}
               </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
+              <p className="text-sm md:text-base text-slate-600 dark:text-slate-400 leading-snug">
                 {p.desc}
               </p>
             </motion.div>

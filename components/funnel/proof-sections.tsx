@@ -2,19 +2,20 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useRef, useEffect } from 'react';
-import { 
-  Star, Award, Users, Calendar, Clock, MapPin, CheckCircle2, 
+import {
+  Star, Award, Users, Calendar, Clock, MapPin, CheckCircle2,
   HelpCircle, ChevronDown, ShieldCheck, Laptop, Zap, TrendingUp,
-  Linkedin, Play, Pause, Volume2, VolumeX 
+  Linkedin, Play, Pause, Volume2, VolumeX, Lock
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import Link from 'next/link';
 
 export const HeroProof = () => {
   return (
     <section className="relative pt-24 pb-12 md:pt-32 md:pb-20 overflow-hidden bg-slate-50 dark:bg-slate-950">
       <div className="container px-4 mx-auto text-center relative z-10">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           className="flex items-center justify-center gap-2 mb-4 md:mb-6"
@@ -25,7 +26,7 @@ export const HeroProof = () => {
           <span className="font-bold text-slate-600 dark:text-slate-400 text-xs md:text-sm">4.9/5 satisfaction (500+ pros)</span>
         </motion.div>
 
-        <motion.h1 
+        <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
@@ -77,7 +78,7 @@ const VideoTestimonialCard = ({ testimonial }: { testimonial: any }) => {
         playsInline
         className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-500 group-hover:scale-105"
       />
-      
+
       {/* Overlay gradient for text readability */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
 
@@ -89,7 +90,7 @@ const VideoTestimonialCard = ({ testimonial }: { testimonial: any }) => {
 
       {/* Controls */}
       <div className="absolute top-3 right-3 z-20">
-        <button 
+        <button
           onClick={(e) => { e.stopPropagation(); setIsMuted(!isMuted); }}
           className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-black/40 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-black/60 transition-all"
         >
@@ -97,7 +98,7 @@ const VideoTestimonialCard = ({ testimonial }: { testimonial: any }) => {
         </button>
       </div>
 
-      <button 
+      <button
         onClick={togglePlay}
         className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-all duration-300 z-10"
       >
@@ -116,17 +117,17 @@ export const ConcreteTestimonials = () => {
     setTestimonials([
       {
         id: 'v1',
-        participant_name: 'Idrissa Zongo',
+        participant_name: 'N\'GUESSAN KOFFI',
         position: 'Contrôleur de Gestion',
-        company: 'SONABEL',
+        company: 'Burkina Faso',
         testimonial: 'Le bootcamp a révolutionné ma manière de traiter les données mensuelles.',
         type: 'video',
         video_url: 'https://i.imgur.com/vhgB6bF.mp4',
       },
       {
         id: 'v2',
-        participant_name: 'Aminata Ouédraogo',
-        position: 'Analyste RH',
+        participant_name: 'Professionel',
+        position: 'Professionel',
         company: 'Orange',
         testimonial: 'La certification Microsoft Expert est un vrai plus pour mon CV.',
         type: 'video',
@@ -134,8 +135,8 @@ export const ConcreteTestimonials = () => {
       },
       {
         id: 'v3',
-        participant_name: 'Samuel Traoré',
-        position: 'Auditeur Senior',
+        participant_name: 'Professionel',
+        position: 'Professionel',
         company: 'KPMG',
         testimonial: "L'automatisation Power Query me fait gagner des heures chaque semaine.",
         type: 'video',
@@ -143,8 +144,8 @@ export const ConcreteTestimonials = () => {
       },
       {
         id: 'v4',
-        participant_name: 'Fatou Keïta',
-        position: 'Chef de Projet',
+        participant_name: 'NIANG Coumba',
+        position: 'Manager',
         company: 'Telecel',
         testimonial: "Une formation intense mais tellement riche. Je recommande à 100%.",
         type: 'video',
@@ -152,9 +153,9 @@ export const ConcreteTestimonials = () => {
       },
       {
         id: 'v5',
-        participant_name: 'Moussa Diallo',
-        position: 'Directeur Financier',
-        company: 'BICIAB',
+        participant_name: 'Comlan Herman',
+        position: 'Coach Formateur Ms Word',
+        company: 'Benin',
         testimonial: "Enfin une formation pratique qui répond aux besoins réels du terrain.",
         type: 'video',
         video_url: 'https://i.imgur.com/95TsFVD.mp4',
@@ -162,8 +163,8 @@ export const ConcreteTestimonials = () => {
       {
         id: '1',
         participant_name: 'Boling Faraba Dembele',
-        position: 'Auditeur Interne',
-        company: 'IBI Groupe',
+        position: 'Professionel',
+        company: 'Mali',
         testimonial: "Vraiment j'ai été transformé par ce Cabinet Smart Otobos Consulting, la pédagogie de M LEONCE (coach) et le niveau de la formation étaient au summum de nos attentes . Alors vivement la prochaine formation .",
         linkedin_url: '#',
         participant_photo: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Boling',
@@ -224,11 +225,11 @@ export const ConcreteTestimonials = () => {
 
   const videoTestimonials = testimonials.filter(t => t.type === 'video');
   const textTestimonials = testimonials.filter(t => t.type === 'text');
-  
-  // Split for two marquee rows
-  const half = Math.ceil(textTestimonials.length / 2);
-  const row1 = textTestimonials.slice(0, half);
-  const row2 = textTestimonials.slice(half);
+
+  // Single marquee row
+  const row1 = textTestimonials;
+
+  const visibleVideos = videoTestimonials.filter(t => t.id !== 'v2' && t.id !== 'v3');
 
   return (
     <section className="py-20 md:py-32 bg-slate-950 text-white overflow-hidden relative border-y border-slate-800">
@@ -239,7 +240,7 @@ export const ConcreteTestimonials = () => {
       <div className="container px-4 mx-auto relative z-10">
         <div className="text-center mb-16 md:mb-20">
           <span className="text-emerald-400 font-bold tracking-wider uppercase text-sm mb-3 block">Témoignages</span>
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-black mb-6 tracking-tight">Ils ont transformé <br className="hidden md:block"/> leur quotidien</h2>
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-black mb-6 tracking-tight">Ils ont transformé <br className="hidden md:block" /> leur quotidien</h2>
           <p className="text-lg md:text-xl text-slate-400 font-medium max-w-2xl mx-auto">
             Plus de 500 professionnels à travers l'Afrique ont déjà fait confiance à ce bootcamp. Voici ce qu'ils en disent.
           </p>
@@ -248,58 +249,57 @@ export const ConcreteTestimonials = () => {
         {/* --- VIDEO CAROUSEL --- */}
         <div className="relative mb-24 max-w-6xl mx-auto">
           <div className="flex gap-4 md:gap-6 overflow-x-auto pb-8 scrollbar-hide snap-x px-4 -mx-4 md:mx-0 md:px-0 justify-start md:justify-center items-center">
-            {videoTestimonials.map((t) => (
+            {visibleVideos.map((t) => (
               <div key={t.id} className="snap-center shrink-0">
                 <VideoTestimonialCard testimonial={t} />
               </div>
             ))}
           </div>
+
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-4">
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button variant="outline" className="border-emerald-600/30 text-emerald-500 hover:bg-emerald-600/10 hover:text-emerald-400 font-bold rounded-full px-8">
+                  Voir plus
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="max-w-5xl bg-slate-950 border-slate-800 text-white p-6 max-h-[85vh] overflow-y-auto w-full rounded-3xl">
+                <DialogHeader className="mb-8">
+                  <DialogTitle className="text-2xl md:text-3xl font-black text-center text-white">
+                    Tous les témoignages vidéo
+                  </DialogTitle>
+                </DialogHeader>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 place-items-center">
+                  {videoTestimonials.map((t) => (
+                    <VideoTestimonialCard key={t.id} testimonial={t} />
+                  ))}
+                </div>
+              </DialogContent>
+            </Dialog>
+            
+            <Link href="/inscription">
+              <Button className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-full px-8 shadow-lg shadow-emerald-600/20">
+                S'inscrire
+              </Button>
+            </Link>
+          </div>
         </div>
 
-        {/* --- WRITTEN MARQUEE ROW 1 --- */}
-        <div className="relative mb-6 overflow-hidden">
+        {/* --- WRITTEN MARQUEE ROW --- */}
+        <div className="relative mb-20 overflow-hidden">
           <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-slate-950 to-transparent z-10 pointer-events-none" />
           <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-slate-950 to-transparent z-10 pointer-events-none" />
-          
-          <motion.div 
+
+          <motion.div
             className="flex gap-6 whitespace-nowrap"
-            animate={{ x: [0, -1500] }}
-            transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
+            animate={{ x: [0, -2000] }}
+            transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
             whileHover={{ animationPlayState: 'paused' }}
           >
             {[...row1, ...row1, ...row1].map((t, idx) => (
               <div key={`r1-${t.id}-${idx}`} className="w-[300px] md:w-[400px] p-6 md:p-8 rounded-[2rem] bg-white/[0.03] border border-white/10 hover:bg-white/[0.05] transition-colors shrink-0 backdrop-blur-sm">
                 <div className="flex gap-1 mb-4 text-orange-400">
-                   {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
-                </div>
-                <p className="text-sm md:text-base leading-relaxed text-slate-300 mb-6 whitespace-normal line-clamp-4">"{t.testimonial}"</p>
-                <div className="flex items-center gap-4">
-                  <img src={t.participant_photo} alt={t.participant_name} className="w-12 h-12 rounded-full object-cover bg-slate-800" />
-                  <div>
-                    <h4 className="font-bold text-white text-sm">{t.participant_name}</h4>
-                    <p className="text-slate-500 text-[11px] font-bold uppercase tracking-wider">{t.position}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </motion.div>
-        </div>
-
-        {/* --- WRITTEN MARQUEE ROW 2 --- */}
-        <div className="relative mb-20 overflow-hidden">
-          <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-slate-950 to-transparent z-10 pointer-events-none" />
-          <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-slate-950 to-transparent z-10 pointer-events-none" />
-          
-          <motion.div 
-            className="flex gap-6 whitespace-nowrap"
-            animate={{ x: [-1500, 0] }}
-            transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-            whileHover={{ animationPlayState: 'paused' }}
-          >
-            {[...row2, ...row2, ...row2].map((t, idx) => (
-              <div key={`r2-${t.id}-${idx}`} className="w-[300px] md:w-[400px] p-6 md:p-8 rounded-[2rem] bg-white/[0.03] border border-white/10 hover:bg-white/[0.05] transition-colors shrink-0 backdrop-blur-sm">
-                <div className="flex gap-1 mb-4 text-orange-400">
-                   {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
+                  {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
                 </div>
                 <p className="text-sm md:text-base leading-relaxed text-slate-300 mb-6 whitespace-normal line-clamp-4">"{t.testimonial}"</p>
                 <div className="flex items-center gap-4">
@@ -363,7 +363,7 @@ export const OrganizationSection = () => {
     <section className="py-12 md:py-24 bg-white dark:bg-slate-900">
       <div className="container px-4 mx-auto max-w-5xl">
         <h2 className="text-xl md:text-4xl font-black mb-8 md:mb-16 text-center leading-tight">Une organisation <br className="md:hidden" />flexible pour les pros</h2>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           <div className="p-6 md:p-8 rounded-2xl md:rounded-3xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-100 dark:border-emerald-900/20">
             <Calendar className="w-8 h-8 md:w-10 md:h-10 text-emerald-600 mb-4 md:mb-6" />
@@ -427,10 +427,10 @@ export const FinancialOffer = () => {
           <div className="absolute top-0 right-0 bg-emerald-600 text-white px-3 md:px-8 py-1.5 md:py-2 rounded-bl-xl font-black text-[9px] md:text-sm uppercase tracking-widest">
             Offre Limitée
           </div>
-          
+
           <div className="text-center">
             <h2 className="text-xl md:text-3xl font-black mb-6 md:mb-10 mt-2 md:mt-4">Investissement pour votre carrière</h2>
-            
+
             <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-12 mb-8 md:mb-10">
               <div className="text-center">
                 <p className="text-slate-500 uppercase tracking-widest text-[10px] font-bold mb-1">Prix Total</p>
@@ -445,12 +445,12 @@ export const FinancialOffer = () => {
             </div>
 
             <p className="text-sm md:text-lg text-slate-700 dark:text-slate-300 font-bold mb-8 md:mb-10 px-4">
-              ⚠️ Inscription validée après paiement des frais <span className="text-red-600">avant le 02 juin</span>.
+              ⚠️ Inscription validée après paiement des frais <span className="text-red-600 animate-pulse font-black">avant le 02 juin</span>.
             </p>
 
             <Link href="/inscription" className="w-full inline-block">
-              <Button size="lg" className="w-full md:w-auto bg-emerald-600 hover:bg-emerald-700 text-white px-10 md:px-16 py-6 md:py-8 text-lg md:text-2xl font-black rounded-xl md:rounded-2xl shadow-xl transition-all hover:scale-105">
-                Réserver ma place
+              <Button size="lg" className="w-full md:w-auto bg-emerald-600 hover:bg-emerald-700 text-white px-10 md:px-16 py-6 md:py-8 text-lg md:text-2xl font-black rounded-xl md:rounded-2xl shadow-xl transition-all hover:scale-105 group flex items-center justify-center mx-auto">
+                <Lock className="w-5 h-5 md:w-6 md:h-6 mr-3 group-hover:scale-110 transition-transform" /> Réserver ma place sécurisée
               </Button>
             </Link>
           </div>
@@ -479,43 +479,43 @@ export const FAQProof = () => {
     { cat: 'formation', q: "Qu’est-ce que je vais concrètement savoir faire après ?", a: "Automatiser vos tâches, nettoyer des données, créer des dashboards professionnels et réussir la certification Microsoft Excel Expert." },
     { cat: 'formation', q: "Est-ce vraiment possible de progresser en 4 jours ?", a: "Oui, car la formation est focalisée sur l’essentiel + pratique intensive. Vous travaillez sur des cas réels, pas de théorie inutile." },
     { cat: 'formation', q: "Est-ce une formation théorique ou pratique ?", a: "90% pratique. Vous appliquez immédiatement chaque notion sur Excel." },
-    
+
     // CERTIFICATION
     { cat: 'certif', q: "La certification est-elle officielle ?", a: "Oui, il s’agit de la certification Microsoft Excel Expert reconnue à l’international." },
     { cat: 'certif', q: "L’examen est inclus ?", a: "Oui, vous avez 2 vouchers (2 tentatives incluses)." },
     { cat: 'certif', q: "Et si j’échoue à la certification ?", a: "Vous avez une deuxième tentative incluse. De plus, le bootcamp vous prépare spécifiquement à réussir." },
     { cat: 'certif', q: "Est-ce que cette certification a de la valeur sur le marché ?", a: "Oui. Elle renforce votre crédibilité technique et est reconnue par les recruteurs et entreprises." },
-    
+
     // ORGANISATION
     { cat: 'orga', q: "Quels sont les horaires ?", a: "3 groupes au choix : G1 (09h–12h), G2 (14h–17h), G3 (18h–21h)." },
     { cat: 'orga', q: "Puis-je changer de groupe après inscription ?", a: "Oui, sous réserve de disponibilité dans un autre groupe." },
     { cat: 'orga', q: "Est-ce que je peux suivre en ligne ?", a: "Oui, le bootcamp est hybride : présentiel ou en ligne en direct." },
     { cat: 'orga', q: "Est-ce que les sessions sont enregistrées ?", a: "Non, pour garantir l’engagement et la qualité de l’apprentissage." },
     { cat: 'orga', q: "Combien de participants par groupe ?", a: "Les groupes sont limités pour garantir un accompagnement de qualité." },
-    
+
     // PRIX & INSCRIPTION
     { cat: 'prix', q: "Combien coûte la formation ?", a: "125 000 F CFA (+ 25 000 F d'inscription)." },
     { cat: 'prix', q: "À quoi correspondent les 25 000 F d’inscription ?", a: "Ils permettent de réserver votre place et de sécuriser votre participation." },
     { cat: 'prix', q: "Puis-je payer en plusieurs fois ?", a: "Oui, des facilités peuvent être proposées selon votre situation." },
     { cat: 'prix', q: "Y a-t-il un remboursement ?", a: "Les conditions sont précisées dans les CGV. L’objectif est de garantir votre engagement." },
     { cat: 'prix', q: "Pourquoi les places sont-elles limitées ?", a: "Pour assurer un suivi personnalisé et une meilleure qualité d’apprentissage." },
-    
+
     // LOGISTIQUE
     { cat: 'logistique', q: "Où se déroule la formation en présentiel ?", a: "À Ouaga 2000, Burkina Faso." },
     { cat: 'logistique', q: "Dois-je venir avec mon ordinateur ?", a: "Oui, un ordinateur portable est nécessaire pour pratiquer." },
     { cat: 'logistique', q: "Quels logiciels sont nécessaires ?", a: "Excel (Office 365 recommandé). Une licence est offerte dans le cadre du bootcamp." },
-    
+
     // IMPACT & CARRIÈRE
     { cat: 'carriere', q: "Est-ce que ça peut vraiment impacter ma carrière ?", a: "Oui. Excel est une compétence clé. La certification + la maîtrise avancée font la différence." },
     { cat: 'carriere', q: "Est-ce utile si je ne suis pas dans la finance ?", a: "Oui. Excel est utilisé en RH, logistique, marketing, gestion, etc." },
     { cat: 'carriere', q: "Vais-je vraiment gagner du temps après ?", a: "Oui. L’objectif est d’automatiser une grande partie de vos tâches répétitives." },
     { cat: 'carriere', q: "Est-ce que je peux utiliser ça immédiatement au travail ?", a: "Oui, les cas étudiés sont directement applicables." },
-    
+
     // ACCOMPAGNEMENT
     { cat: 'accompagnement', q: "Y a-t-il un suivi après la formation ?", a: "Oui, vous bénéficiez d’un accompagnement et support après le bootcamp." },
     { cat: 'accompagnement', q: "Puis-je poser des questions pendant la formation ?", a: "Bien sûr. L’accompagnement est interactif." },
     { cat: 'accompagnement', q: "Y a-t-il une communauté ?", a: "Oui, vous rejoignez un réseau de participants et d’anciens." },
-    
+
     // DÉCISION
     { cat: 'decision', q: "Pourquoi devrais-je m’inscrire maintenant ?", a: "Parce que les places sont limitées et que les inscriptions ferment le 02 juin." },
     { cat: 'decision', q: "Que se passe-t-il si j’attends ?", a: "Vous risquez de ne plus avoir de place dans votre créneau préféré." },
@@ -537,13 +537,13 @@ export const FAQProof = () => {
 
         {/* Category Marquee - Moving horizontally */}
         <div className="relative mb-12 overflow-hidden py-2 border-y border-slate-100 dark:border-slate-800">
-          <motion.div 
+          <motion.div
             className="flex gap-4 whitespace-nowrap"
             animate={{ x: [0, -1200] }}
-            transition={{ 
-              duration: 30, 
-              repeat: Infinity, 
-              ease: "linear" 
+            transition={{
+              duration: 30,
+              repeat: Infinity,
+              ease: "linear"
             }}
             whileHover={{ animationPlayState: 'paused' }}
           >
@@ -552,11 +552,10 @@ export const FAQProof = () => {
               <button
                 key={`${cat.id}-${idx}`}
                 onClick={() => { setActiveCat(cat.id); setOpenIndex(null); }}
-                className={`flex items-center gap-2 px-6 py-3 rounded-xl text-[11px] md:text-sm font-black transition-all shrink-0 ${
-                  activeCat === cat.id 
-                    ? 'bg-emerald-600 text-white shadow-lg scale-105' 
-                    : 'bg-slate-50 dark:bg-slate-900 text-slate-500 hover:bg-slate-100'
-                }`}
+                className={`flex items-center gap-2 px-6 py-3 rounded-xl text-[11px] md:text-sm font-black transition-all shrink-0 ${activeCat === cat.id
+                  ? 'bg-emerald-600 text-white shadow-lg scale-105'
+                  : 'bg-slate-50 dark:bg-slate-900 text-slate-500 hover:bg-slate-100'
+                  }`}
               >
                 {cat.icon} {cat.label}
               </button>
@@ -565,7 +564,7 @@ export const FAQProof = () => {
         </div>
 
         {/* FAQ Items with Animation */}
-        <motion.div 
+        <motion.div
           key={activeCat}
           initial={{ opacity: 0, x: 10 }}
           animate={{ opacity: 1, x: 0 }}
@@ -575,13 +574,12 @@ export const FAQProof = () => {
         >
           {faqs.filter(f => f.cat === activeCat).map((f, i) => (
             <div key={i} className="group">
-              <button 
+              <button
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                className={`w-full text-left p-5 rounded-2xl border transition-all duration-300 ${
-                  openIndex === i 
-                    ? 'bg-emerald-50/30 dark:bg-emerald-900/5 border-emerald-500/50 shadow-sm' 
-                    : 'bg-white dark:bg-slate-900 border-slate-100 dark:border-slate-800 hover:border-emerald-200'
-                }`}
+                className={`w-full text-left p-5 rounded-2xl border transition-all duration-300 ${openIndex === i
+                  ? 'bg-emerald-50/30 dark:bg-emerald-900/5 border-emerald-500/50 shadow-sm'
+                  : 'bg-white dark:bg-slate-900 border-slate-100 dark:border-slate-800 hover:border-emerald-200'
+                  }`}
               >
                 <div className="flex justify-between items-center gap-4">
                   <span className="font-bold text-sm md:text-lg text-slate-900 dark:text-white leading-snug">
@@ -591,7 +589,7 @@ export const FAQProof = () => {
                     <ChevronDown className="w-4 h-4" />
                   </div>
                 </div>
-                
+
                 <AnimatePresence>
                   {openIndex === i && (
                     <motion.div
@@ -617,10 +615,13 @@ export const FAQProof = () => {
 
 export const TrainerSection = () => {
   const trainingPhotos = [
-    "https://images.unsplash.com/photo-1544531586-fde5298cdd40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1558403194-611308249627?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    "/form_1.jpeg",
+    "/form_2.jpeg",
+    "/form_3.jpeg",
+    "/form_4.jpeg",
+    "/form_5.jpeg",
+    "/form_6.jpeg",
+    "/form_7.jpeg"
   ];
 
   return (
@@ -629,20 +630,20 @@ export const TrainerSection = () => {
         <div className="bg-white dark:bg-slate-950 rounded-[2.5rem] p-8 md:p-12 shadow-xl border border-slate-100 dark:border-slate-800 overflow-hidden relative">
           {/* Decorative background element */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-600/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
-          
+
           <div className="flex flex-col md:flex-row gap-10 md:gap-16 items-center relative z-10 mb-16">
             {/* Trainer Image */}
             <div className="w-full md:w-2/5 shrink-0">
               <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-4 border-white dark:border-slate-800">
-                <img 
-                  src="/Leonce_1.jpeg" 
-                  alt="Léonce TOUNDE SODJINOU - Formateur Excel" 
+                <img
+                  src="/Leonce_1.jpeg"
+                  alt="Léonce TOUNDE SODJINOU - Formateur Excel"
                   className="w-full h-full object-cover object-top"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
                   <div className="text-white">
                     <p className="font-bold text-xl leading-tight">Léonce TOUNDE SODJINOU</p>
-                    <p className="text-white/80 text-sm font-medium">Expert Formateur Microsoft</p>
+                    <p className="text-white/80 text-sm font-medium">Expert Excel & Coach-Formateur</p>
                   </div>
                 </div>
               </div>
@@ -653,17 +654,17 @@ export const TrainerSection = () => {
               <div className="mb-6">
                 <span className="text-orange-500 font-black tracking-wider uppercase text-xs mb-2 block">Votre Formateur</span>
                 <h2 className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white leading-tight mb-6">
-                  Apprenez avec un expert du terrain
+                  Expert Data & Finance Digitale
                 </h2>
-                <div className="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed text-base md:text-lg">
+                <div className="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed text-base md:text-lg text-justify">
                   <p>
-                    <strong className="text-slate-900 dark:text-white font-bold">Léonce TOUNDE SODJINOU</strong> est le fondateur du Cabinet Smart Otobos Consulting et formateur certifié Microsoft Excel.
+                    <strong className="text-slate-900 dark:text-white font-bold">Léonce TOUNDE SODJINOU</strong> est coach-formateur et consultant passionné par la gestion de projets et la transformation digitale. Il est <strong className="text-emerald-600">triple certifié Microsoft Excel</strong> (Expert 2019, Expert 365, Associate 365 for Accounting).
                   </p>
                   <p>
-                    Avec une solide expérience en entreprise, il maîtrise parfaitement les enjeux auxquels vous êtes confrontés au quotidien : données massives, délais serrés et besoin d'automatisation. Il a déjà formé et accompagné <strong className="text-emerald-600">plus de 500 professionnels</strong> à travers l'Afrique (Burkina Faso, Côte d'Ivoire, Bénin, Mali, etc.).
+                    Depuis plus de 5 ans, il accompagne les professionnels et les organisations à mieux décider et performer grâce à Excel, Power Query et Power BI. Il a déjà formé et certifié plusieurs centaines de talents et aidé des entreprises à automatiser leurs processus.
                   </p>
                   <p>
-                    Sa pédagogie est claire, orientée résultats et 100% pratique. Son objectif n'est pas de vous donner un cours théorique, mais de vous équiper des compétences exactes qui feront la différence dès le lundi matin au bureau.
+                    Alliant finance, data, technologie et pédagogie, sa mission est claire : démystifier Excel, rendre l'analyse de données accessible à tous et transformer vos compétences techniques en véritables opportunités de carrière.
                   </p>
                 </div>
               </div>
@@ -684,12 +685,12 @@ export const TrainerSection = () => {
           {/* Training Gallery Carousel */}
           <div className="relative z-10 border-t border-slate-100 dark:border-slate-800 pt-10">
             <h3 className="text-center font-bold text-slate-400 uppercase tracking-widest text-xs mb-6">Sur le terrain, aux côtés des professionnels</h3>
-            
+
             <div className="relative overflow-hidden">
               <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-white dark:from-slate-950 to-transparent z-10 pointer-events-none" />
               <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-white dark:from-slate-950 to-transparent z-10 pointer-events-none" />
-              
-              <motion.div 
+
+              <motion.div
                 className="flex gap-4"
                 animate={{ x: [0, -1000] }}
                 transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
@@ -702,7 +703,6 @@ export const TrainerSection = () => {
                 ))}
               </motion.div>
             </div>
-            <p className="text-center text-[10px] text-slate-400 mt-4 italic">Photos d'illustration (à remplacer par vos vraies photos de formation)</p>
           </div>
         </div>
       </div>
