@@ -92,6 +92,10 @@ export default function CallsPage() {
   const [saving, setSaving] = useState<Record<string, boolean>>({});
   const [saveError, setSaveError] = useState<Record<string, string>>({});
   const [saveSuccess, setSaveSuccess] = useState<Record<string, boolean>>({});
+  
+  const [cancelParticipant, setCancelParticipant] = useState<Participant | null>(null);
+  const [cancelConfirmText, setCancelConfirmText] = useState('');
+  const [isCancelling, setIsCancelling] = useState(false);
 
   const fetchAll = useCallback(async () => {
     setError(null);
@@ -157,10 +161,39 @@ export default function CallsPage() {
     }
   };
 
+  const handleCancelPayment = async () => {
+    if (!cancelParticipant || !cancelParticipant.registrations?.[0]) return;
+    const reg = cancelParticipant.registrations[0];
+    const expectedName = `${cancelParticipant.first_name} ${cancelParticipant.last_name}`;
+    
+    if (cancelConfirmText.trim().toLowerCase() !== expectedName.toLowerCase()) {
+      alert("Le nom saisi ne correspond pas.");
+      return;
+    }
+
+    setIsCancelling(true);
+    try {
+      await updateRegistration(reg.id, {
+        payment_status: 'pending',
+        registration_fee_paid: false,
+        training_fee_paid: false,
+        notes: `[Paiement annulé] ${reg.notes || ''}`
+      });
+
+      setCancelParticipant(null);
+      setCancelConfirmText('');
+      await fetchAll();
+    } catch (e: any) {
+      alert("Erreur lors de l'annulation : " + e.message);
+    } finally {
+      setIsCancelling(false);
+    }
+  };
+
   const getPayStatus = (reg?: Registration) => {
-    if (!reg) return { label: 'Non inscrit', color: 'text-slate-500', bg: 'bg-slate-700/30 border-slate-600/20', paid: false };
-    if (reg.payment_status === 'paid') return { label: 'Payé ✓', color: 'text-emerald-400', bg: 'bg-emerald-500/10 border-emerald-500/20', paid: true };
-    return { label: 'Non payé', color: 'text-slate-400', bg: 'bg-slate-700/20 border-slate-600/10', paid: false };
+    if (!reg) return { label: 'Non inscrit', color: 'text-slate-400', bg: 'bg-slate-50 border-slate-200', paid: false };
+    if (reg.payment_status === 'paid') return { label: 'Payé ✓', color: 'text-emerald-600', bg: 'bg-emerald-50 border-emerald-200', paid: true };
+    return { label: 'Non payé', color: 'text-orange-600', bg: 'bg-orange-50 border-orange-200', paid: false };
   };
 
   const filtered = participants.filter(p => {
@@ -191,15 +224,15 @@ export default function CallsPage() {
           </p>
         </div>
         <div className="flex items-center gap-3">
-          <div className="flex items-center gap-3 px-5 py-3 rounded-2xl bg-orange-600/10 border border-orange-500/20">
-            <PhoneCall className="w-4 h-4 text-orange-400" />
-            <span className="text-sm font-black text-orange-400">{pending} appels restants</span>
+          <div className="flex items-center gap-3 px-5 py-3 rounded-2xl bg-orange-50 border border-orange-100 shadow-sm">
+            <PhoneCall className="w-4 h-4 text-orange-500" />
+            <span className="text-sm font-black text-orange-600">{pending} appels restants</span>
           </div>
           <button
             onClick={fetchAll}
-            className="w-11 h-11 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 transition-all"
+            className="w-11 h-11 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-center justify-center hover:bg-slate-50 transition-all"
           >
-            <RefreshCw className="w-4 h-4 text-slate-400" />
+            <RefreshCw className="w-4 h-4 text-slate-500" />
           </button>
         </div>
       </div>
@@ -215,9 +248,9 @@ export default function CallsPage() {
       {/* KPI Row */}
       <div className="grid grid-cols-3 gap-4">
         {[
-          { label: 'Total inscrits', value: total, icon: <Phone className="w-4 h-4" />, color: 'text-slate-300', bg: 'bg-white/[0.03] border-white/10' },
-          { label: 'Payés', value: paid, icon: <CheckCircle className="w-4 h-4" />, color: 'text-emerald-400', bg: 'bg-emerald-500/5 border-emerald-500/15' },
-          { label: 'Non payés', value: pending, icon: <Clock className="w-4 h-4" />, color: 'text-slate-400', bg: 'bg-white/[0.03] border-white/10' },
+          { label: 'Total inscrits', value: total, icon: <Phone className="w-4 h-4" />, color: 'text-slate-900', bg: 'bg-white border-slate-100 shadow-sm' },
+          { label: 'Payés', value: paid, icon: <CheckCircle className="w-4 h-4" />, color: 'text-emerald-600', bg: 'bg-emerald-50 border-emerald-100 shadow-sm' },
+          { label: 'Non payés', value: pending, icon: <Clock className="w-4 h-4" />, color: 'text-orange-600', bg: 'bg-orange-50 border-orange-100 shadow-sm' },
         ].map((stat, i) => (
           <div key={i} className={`p-5 rounded-3xl border flex items-center gap-4 ${stat.bg}`}>
             <div className={stat.color}>{stat.icon}</div>
@@ -232,10 +265,10 @@ export default function CallsPage() {
       {/* Filters */}
       <div className="flex flex-col md:flex-row gap-4">
         <div className="flex-1 relative group">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 group-focus-within:text-orange-500 transition-colors" />
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 group-focus-within:text-orange-500 transition-colors" />
           <Input
             placeholder="Rechercher par nom, email, téléphone..."
-            className="pl-12 py-6 rounded-2xl bg-white/[0.03] border-white/10 focus:border-orange-500/50"
+            className="pl-12 py-6 rounded-2xl bg-white border-slate-200 shadow-sm focus:border-orange-500 font-bold text-slate-900"
             value={search}
             onChange={e => setSearch(e.target.value)}
           />
@@ -249,10 +282,10 @@ export default function CallsPage() {
             <button
               key={f.key}
               onClick={() => setFilterPay(f.key)}
-              className={`px-4 py-2 rounded-xl text-[11px] font-black uppercase tracking-widest transition-all border ${
+              className={`px-4 py-2 rounded-xl text-[11px] font-black uppercase tracking-widest transition-all border shadow-sm ${
                 filterPay === f.key
-                  ? 'bg-orange-600 text-white border-orange-500 shadow-lg shadow-orange-600/20'
-                  : 'bg-white/[0.03] text-slate-400 border-white/10 hover:bg-white/[0.06]'
+                  ? 'bg-orange-500 text-white border-orange-400 shadow-orange-500/20'
+                  : 'bg-white text-slate-500 border-slate-200 hover:bg-slate-50 hover:text-slate-900'
               }`}
             >
               {f.label}
@@ -265,7 +298,7 @@ export default function CallsPage() {
       {loading && (
         <div className="flex items-center justify-center h-48">
           <div className="relative w-14 h-14">
-            <div className="absolute inset-0 border-4 border-orange-500/20 rounded-full" />
+            <div className="absolute inset-0 border-4 border-orange-100 rounded-full" />
             <div className="absolute inset-0 border-4 border-orange-500 border-t-transparent rounded-full animate-spin" />
           </div>
         </div>
@@ -288,7 +321,7 @@ export default function CallsPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.02 }}
                 className={`rounded-[2rem] border transition-all overflow-hidden ${
-                  isExpanded ? 'border-orange-500/30 bg-white/[0.04]' : 'border-white/10 bg-white/[0.02] hover:bg-white/[0.03]'
+                  isExpanded ? 'border-orange-200 bg-white shadow-[0_8px_30px_rgb(249,115,22,0.06)]' : 'border-slate-100 bg-white hover:bg-slate-50 hover:shadow-sm'
                 }`}
               >
                 {/* Card Header */}
@@ -299,12 +332,12 @@ export default function CallsPage() {
                   {/* Avatar + Identity */}
                   <div className="flex items-center gap-4">
                     <div className={`w-12 h-12 rounded-2xl flex items-center justify-center text-white font-black text-sm shrink-0 ${
-                      payStatus.paid ? 'bg-emerald-600' : 'bg-slate-700'
+                      payStatus.paid ? 'bg-emerald-500' : 'bg-slate-300'
                     }`}>
                       {p.first_name[0]}{p.last_name[0]}
                     </div>
                     <div>
-                      <p className="font-bold text-slate-100 text-base">{p.first_name} {p.last_name}</p>
+                      <p className="font-bold text-slate-900 text-base">{p.first_name} {p.last_name}</p>
                       <p className="text-[11px] text-slate-500">
                         {p.phone || 'Tél. non renseigné'} · <span className="text-orange-500/70">{country}</span> · {format}
                       </p>
@@ -325,7 +358,7 @@ export default function CallsPage() {
                   <div className="flex items-center gap-2 shrink-0" onClick={e => e.stopPropagation()}>
                     {p.phone && (
                       <a href={`tel:${p.phone}`}
-                        className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-orange-600 hover:border-orange-500 transition-all group"
+                        className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center hover:bg-orange-500 hover:border-orange-500 transition-all group shadow-sm"
                         title="Appel Direct">
                         <Phone className="w-4 h-4 text-slate-400 group-hover:text-white" />
                       </a>
@@ -333,20 +366,20 @@ export default function CallsPage() {
                     {p.phone && (
                       <a href={`https://wa.me/${p.phone.replace(/\D/g, '')}`}
                         target="_blank" rel="noopener noreferrer"
-                        className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-green-600 hover:border-green-500 transition-all group"
+                        className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center hover:bg-green-500 hover:border-green-500 transition-all group shadow-sm"
                         title="WhatsApp">
                         <MessageCircle className="w-4 h-4 text-slate-400 group-hover:text-white" />
                       </a>
                     )}
                     <a href={`mailto:${p.email}`}
-                      className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-blue-600 hover:border-blue-500 transition-all group"
+                      className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center hover:bg-blue-500 hover:border-blue-500 transition-all group shadow-sm"
                       title="Email">
                       <Mail className="w-4 h-4 text-slate-400 group-hover:text-white" />
                     </a>
                     <div
-                      className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center cursor-pointer hover:bg-white/10 transition-all"
+                      className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center cursor-pointer hover:bg-slate-50 transition-all shadow-sm"
                       onClick={() => setExpandedId(isExpanded ? null : p.id)}>
-                      {isExpanded ? <ChevronUp className="w-4 h-4 text-slate-400" /> : <ChevronDown className="w-4 h-4 text-slate-400" />}
+                      {isExpanded ? <ChevronUp className="w-4 h-4 text-slate-500" /> : <ChevronDown className="w-4 h-4 text-slate-500" />}
                     </div>
                   </div>
                 </div>
@@ -361,7 +394,7 @@ export default function CallsPage() {
                       transition={{ duration: 0.2 }}
                       className="overflow-hidden"
                     >
-                      <div className="px-6 pb-8 border-t border-white/10 pt-6 space-y-6">
+                      <div className="px-6 pb-8 border-t border-slate-100 pt-6 space-y-6">
                         {/* Contact info */}
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                           {[
@@ -370,26 +403,26 @@ export default function CallsPage() {
                             { label: 'Profil', value: p.profile_type || 'N/A' },
                             { label: 'Source', value: p.source },
                           ].map((item, idx) => (
-                            <div key={idx} className="p-4 rounded-2xl bg-white/[0.03] border border-white/5">
-                              <p className="text-[10px] text-slate-500 uppercase tracking-widest font-black mb-1">{item.label}</p>
-                              <p className="font-bold text-slate-300 text-sm truncate">{item.value}</p>
+                            <div key={idx} className="p-4 rounded-2xl bg-slate-50 border border-slate-100">
+                              <p className="text-[10px] text-slate-400 uppercase tracking-widest font-black mb-1">{item.label}</p>
+                              <p className="font-bold text-slate-900 text-sm truncate">{item.value}</p>
                             </div>
                           ))}
                         </div>
 
                         {/* Current payment state */}
                         {reg ? (
-                          <div className="p-5 rounded-2xl bg-white/[0.02] border border-white/5 flex flex-wrap gap-6 items-center">
+                          <div className="p-5 rounded-2xl bg-slate-50 border border-slate-100 flex flex-wrap gap-6 items-center">
                             <div>
-                              <p className="text-[10px] text-slate-500 uppercase tracking-widest font-black mb-1">Inscription (25 000 F)</p>
-                              <div className={`flex items-center gap-2 text-sm font-bold ${reg.registration_fee_paid ? 'text-emerald-400' : 'text-slate-500'}`}>
+                              <p className="text-[10px] text-slate-400 uppercase tracking-widest font-black mb-1">Inscription (25 000 F)</p>
+                              <div className={`flex items-center gap-2 text-sm font-bold ${reg.registration_fee_paid ? 'text-emerald-600' : 'text-slate-500'}`}>
                                 {reg.registration_fee_paid ? <CheckCircle className="w-4 h-4" /> : <XCircle className="w-4 h-4" />}
                                 {reg.registration_fee_paid ? 'Payé' : 'Non payé'}
                               </div>
                             </div>
                             <div>
-                              <p className="text-[10px] text-slate-500 uppercase tracking-widest font-black mb-1">Formation (125 000 F)</p>
-                              <div className={`flex items-center gap-2 text-sm font-bold ${reg.training_fee_paid ? 'text-emerald-400' : 'text-slate-500'}`}>
+                              <p className="text-[10px] text-slate-400 uppercase tracking-widest font-black mb-1">Formation (125 000 F)</p>
+                              <div className={`flex items-center gap-2 text-sm font-bold ${reg.training_fee_paid ? 'text-emerald-600' : 'text-slate-500'}`}>
                                 {reg.training_fee_paid ? <CheckCircle className="w-4 h-4" /> : <XCircle className="w-4 h-4" />}
                                 {reg.training_fee_paid ? 'Payé' : 'Non payé'}
                               </div>
@@ -408,48 +441,61 @@ export default function CallsPage() {
                         {/* Payment Action Panel — only if registration exists */}
                         {reg && (
                           <div className="space-y-4">
-                            <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-500 flex items-center gap-2">
-                              <DollarSign className="w-3 h-3 text-orange-500" /> Valider le paiement
-                            </p>
+                            {reg.payment_status === 'paid' ? (
+                               <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-100 text-emerald-600 text-sm font-bold flex justify-between items-center shadow-sm">
+                                  <div className="flex items-center gap-2">
+                                     <CheckCircle className="w-5 h-5" />
+                                     <span>Paiement validé et enregistré.</span>
+                                  </div>
+                                  <button onClick={() => setCancelParticipant(p)} className="px-4 py-2 rounded-xl bg-white border border-red-100 text-red-500 text-xs hover:bg-red-50 hover:border-red-200 transition-colors shadow-sm">
+                                     Annuler le paiement
+                                  </button>
+                               </div>
+                            ) : (
+                               <>
+                                 <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-500 flex items-center gap-2">
+                                   <DollarSign className="w-3 h-3 text-orange-500" /> Valider le paiement
+                                 </p>
 
-                            {/* 2 buttons */}
-                            <div className="grid grid-cols-2 gap-3">
-                              <button
-                                onClick={() => setPaymentAction(s => ({ ...s, [p.id]: 'paid_full' }))}
-                                className={`py-4 px-4 rounded-2xl border text-[11px] font-black uppercase tracking-widest transition-all ${
-                                  action === 'paid_full'
-                                    ? 'bg-emerald-600 text-white border-emerald-500 shadow-lg shadow-emerald-600/20 scale-[1.02]'
-                                    : 'bg-white/5 text-slate-400 border-white/10 hover:border-emerald-500/40 hover:text-emerald-400'
-                                }`}
-                              >
-                                ✅ A payé
-                              </button>
-                              <button
-                                onClick={() => setPaymentAction(s => ({ ...s, [p.id]: 'pending' }))}
-                                className={`py-4 px-4 rounded-2xl border text-[11px] font-black uppercase tracking-widest transition-all ${
-                                  action === 'pending'
-                                    ? 'bg-red-700 text-white border-red-600 shadow-lg shadow-red-600/20 scale-[1.02]'
-                                    : 'bg-white/5 text-slate-400 border-white/10 hover:border-red-500/40 hover:text-red-400'
-                                }`}
-                              >
-                                ❌ N'a pas payé
-                              </button>
-                            </div>
+                                 {/* 2 buttons */}
+                                 <div className="grid grid-cols-2 gap-3">
+                                   <button
+                                     onClick={() => setPaymentAction(s => ({ ...s, [p.id]: 'paid_full' }))}
+                                     className={`py-4 px-4 rounded-2xl border text-[11px] font-black uppercase tracking-widest transition-all ${
+                                       action === 'paid_full'
+                                         ? 'bg-emerald-600 text-white border-emerald-500 shadow-lg shadow-emerald-600/20 scale-[1.02]'
+                                         : 'bg-white text-slate-500 border-slate-200 hover:border-emerald-200 hover:bg-emerald-50 hover:text-emerald-600 shadow-sm'
+                                     }`}
+                                   >
+                                     ✅ A payé
+                                   </button>
+                                   <button
+                                     onClick={() => setPaymentAction(s => ({ ...s, [p.id]: 'pending' }))}
+                                     className={`py-4 px-4 rounded-2xl border text-[11px] font-black uppercase tracking-widest transition-all ${
+                                       action === 'pending'
+                                         ? 'bg-red-600 text-white border-red-500 shadow-lg shadow-red-600/20 scale-[1.02]'
+                                         : 'bg-white text-slate-500 border-slate-200 hover:border-red-200 hover:bg-red-50 hover:text-red-600 shadow-sm'
+                                     }`}
+                                   >
+                                     ❌ N'a pas payé
+                                   </button>
+                                 </div>
 
-                            {/* Note */}
-                            <AnimatePresence>
-                              {action && (
-                                <motion.div initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }}>
-                                  <Input
-                                    placeholder="Note optionnelle (ex: Mobile Money ref. #123, reçu le...)"
-                                    className="py-5 rounded-2xl bg-white/5 border-white/10 focus:border-orange-500/50"
-                                    value={paymentNote[p.id] || ''}
-                                    onChange={e => setPaymentNote(s => ({ ...s, [p.id]: e.target.value }))}
-                                  />
-                                </motion.div>
-                              )}
-                            </AnimatePresence>
-
+                                 {/* Note */}
+                                 <AnimatePresence>
+                                   {action && (
+                                     <motion.div initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }}>
+                                       <Input
+                                         placeholder="Note optionnelle (ex: Mobile Money ref. #123, reçu le...)"
+                                         className="py-5 rounded-2xl bg-white border-slate-200 focus:border-orange-500/50 shadow-sm"
+                                         value={paymentNote[p.id] || ''}
+                                         onChange={e => setPaymentNote(s => ({ ...s, [p.id]: e.target.value }))}
+                                       />
+                                     </motion.div>
+                                   )}
+                                 </AnimatePresence>
+                               </>
+                            )}
                             {/* Error display */}
                             {saveError[p.id] && (
                               <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center gap-2">
@@ -500,6 +546,57 @@ export default function CallsPage() {
           )}
         </div>
       )}
+
+      {/* Cancel Payment Modal */}
+      <AnimatePresence>
+        {cancelParticipant && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 backdrop-blur-sm px-4">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="w-full max-w-md p-8 rounded-3xl bg-white border border-slate-100 shadow-2xl relative"
+            >
+              <div className="w-12 h-12 rounded-2xl bg-red-50 text-red-500 flex items-center justify-center mb-6">
+                <AlertCircle className="w-6 h-6" />
+              </div>
+              <h3 className="text-xl font-black text-slate-900 mb-2">Annuler le paiement ?</h3>
+              <p className="text-sm font-bold text-slate-500 mb-6 leading-relaxed">
+                Vous êtes sur le point de marquer <span className="text-slate-900 font-black">{cancelParticipant.first_name} {cancelParticipant.last_name}</span> comme "Non payé". 
+                Veuillez taper son nom complet ci-dessous pour confirmer cette action irréversible.
+              </p>
+              
+              <Input 
+                placeholder={`Tapez "${cancelParticipant.first_name} ${cancelParticipant.last_name}"`}
+                value={cancelConfirmText}
+                onChange={e => setCancelConfirmText(e.target.value)}
+                className="mb-6 h-12 bg-slate-50 border-slate-200 focus:border-red-500 focus:ring-red-500/20 font-bold text-slate-900"
+              />
+
+              <div className="flex gap-3">
+                <Button 
+                  variant="outline" 
+                  className="flex-1 h-12 rounded-xl text-slate-600 font-bold"
+                  onClick={() => {
+                    setCancelParticipant(null);
+                    setCancelConfirmText('');
+                  }}
+                  disabled={isCancelling}
+                >
+                  Fermer
+                </Button>
+                <Button 
+                  className="flex-1 h-12 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold"
+                  disabled={isCancelling || cancelConfirmText.trim().toLowerCase() !== `${cancelParticipant.first_name} ${cancelParticipant.last_name}`.toLowerCase()}
+                  onClick={handleCancelPayment}
+                >
+                  {isCancelling ? 'Annulation...' : 'Confirmer'}
+                </Button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

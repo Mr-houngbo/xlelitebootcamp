@@ -91,16 +91,17 @@ export default function ParticipantsPage() {
       setParticipants(data as any[] || []);
       
       // Update selected participant if open
-      if (selectedParticipant) {
-        const updated = (data as any[] || []).find(p => p.id === selectedParticipant.id);
-        if (updated) setSelectedParticipant(updated as Participant);
-      }
+      setSelectedParticipant(current => {
+        if (!current) return current;
+        const updated = (data as any[] || []).find(p => p.id === current.id);
+        return updated ? (updated as Participant) : current;
+      });
     } catch (error) {
       console.error('Error fetching participants:', error);
     } finally {
       setLoading(false);
     }
-  }, [selectedParticipant]);
+  }, []);
 
   useRealtimeRefresh(['participants', 'registrations'], fetchParticipants, 20_000);
 
@@ -159,13 +160,13 @@ export default function ParticipantsPage() {
 
   const getStatusBadge = (status: string) => {
     const colors: Record<string, string> = {
-      lead: 'bg-slate-500/10 text-slate-400 border-slate-500/20',
-      confirmed: 'bg-orange-500/10 text-orange-500 border-orange-500/20',
-      cancelled: 'bg-red-500/10 text-red-500 border-red-500/20',
-      completed: 'bg-emerald-500/10 text-emerald-500 border-emerald-500/20'
+      lead: 'bg-stone-100 text-stone-500 border-stone-200',
+      confirmed: 'bg-orange-50 text-orange-600 border-orange-100',
+      cancelled: 'bg-red-50 text-red-600 border-red-100',
+      completed: 'bg-emerald-50 text-emerald-600 border-emerald-100'
     };
     return (
-      <Badge variant="outline" className={`${colors[status] || 'bg-slate-500/10'} font-black uppercase text-[9px] tracking-widest`}>
+      <Badge variant="outline" className={`${colors[status] || 'bg-stone-50 text-stone-400'} font-black uppercase text-[9px] tracking-widest`}>
         {status}
       </Badge>
     );
@@ -199,39 +200,39 @@ export default function ParticipantsPage() {
   );
 
   return (
-    <div className="space-y-10 relative min-h-screen">
+    <div className="space-y-6 relative min-h-screen text-stone-900">
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <h1 className="text-4xl font-black tracking-tighter mb-2">Participants <span className="text-orange-500">.</span></h1>
-          <p className="text-slate-500 font-medium italic">Gérez votre audience avec précision chirurgicale.</p>
+          <h1 className="text-3xl font-extrabold tracking-tight mb-1">Participants <span className="text-orange-500">.</span></h1>
+          <p className="text-stone-500 text-sm font-medium">Gérez votre audience avec précision.</p>
         </div>
-        <div className="flex gap-4">
-           <Button onClick={fetchParticipants} variant="outline" className="rounded-2xl border-white/10 bg-white/5 hover:bg-white/10 transition-all gap-2 px-6">
+        <div className="flex gap-3">
+           <Button onClick={fetchParticipants} variant="outline" className="rounded-xl border-stone-200 bg-white hover:bg-stone-50 text-stone-600 transition-all gap-2 px-5 shadow-sm">
               <Clock className="w-4 h-4" /> Refresh
            </Button>
            
            <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" className="rounded-2xl border-white/10 bg-white/5 hover:bg-orange-500 hover:text-white transition-all gap-2 px-6">
+                <Button variant="outline" className="rounded-xl border-stone-200 bg-white hover:bg-orange-500 hover:text-white transition-all gap-2 px-5 shadow-sm">
                   <Download className="w-4 h-4" /> Exporter
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-slate-900 border-white/10 text-white rounded-xl">
-                <DropdownMenuItem onClick={() => handleExport('csv')} className="hover:bg-white/5 cursor-pointer">Export CSV</DropdownMenuItem>
-                <DropdownMenuItem onClick={() => handleExport('pdf')} className="hover:bg-white/5 cursor-pointer">Export PDF (Prestige)</DropdownMenuItem>
+              <DropdownMenuContent className="bg-white border-stone-100 shadow-xl rounded-xl">
+                <DropdownMenuItem onClick={() => handleExport('csv')} className="hover:bg-stone-50 cursor-pointer font-bold text-stone-700">Export CSV</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => handleExport('pdf')} className="hover:bg-stone-50 cursor-pointer font-bold text-stone-700">Export PDF</DropdownMenuItem>
               </DropdownMenuContent>
            </DropdownMenu>
         </div>
       </div>
 
       {/* Filters */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
         <div className="md:col-span-3 relative group">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 group-hover:text-orange-500 transition-colors" />
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-400 group-hover:text-orange-500 transition-colors" />
           <Input 
             placeholder="Rechercher par nom, email..." 
-            className="pl-12 py-6 rounded-2xl bg-white/[0.03] border-white/10 focus:border-orange-500/50 transition-all"
+            className="pl-11 py-5 rounded-xl bg-white border-stone-200 focus:border-orange-500 shadow-sm transition-all font-bold text-stone-900"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -239,7 +240,7 @@ export default function ParticipantsPage() {
         <select 
           value={filterStatus}
           onChange={(e) => setFilterStatus(e.target.value)}
-          className="bg-white/[0.03] border border-white/10 rounded-2xl px-4 text-sm font-bold text-slate-400 focus:outline-none focus:border-orange-500/50"
+          className="bg-white border border-stone-200 rounded-xl px-4 text-sm font-bold text-stone-600 shadow-sm focus:outline-none focus:border-orange-500 transition-all"
         >
           <option value="all">Tous les statuts</option>
           <option value="lead">Leads</option>
@@ -250,18 +251,18 @@ export default function ParticipantsPage() {
 
       {/* Table */}
       <motion.div 
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
-        className="rounded-[2.5rem] bg-white/[0.03] border border-white/10 overflow-hidden"
+        className="rounded-3xl bg-white border border-stone-200 shadow-sm overflow-hidden"
       >
         <Table>
-          <TableHeader className="bg-white/[0.02]">
-            <TableRow className="border-white/5 hover:bg-transparent">
-              <TableHead className="py-6 px-8 text-slate-500 font-black uppercase text-[10px] tracking-widest">Inscrit</TableHead>
-              <TableHead className="text-slate-500 font-black uppercase text-[10px] tracking-widest">Finance</TableHead>
-              <TableHead className="text-slate-500 font-black uppercase text-[10px] tracking-widest">Groupe</TableHead>
-              <TableHead className="text-slate-500 font-black uppercase text-[10px] tracking-widest">Status</TableHead>
-              <TableHead className="text-right py-6 px-8 text-slate-500 font-black uppercase text-[10px] tracking-widest">Détails</TableHead>
+          <TableHeader className="bg-stone-50/50">
+            <TableRow className="border-stone-100 hover:bg-transparent">
+              <TableHead className="py-4 px-6 text-stone-400 font-black uppercase text-[9px] tracking-widest">Inscrit</TableHead>
+              <TableHead className="text-stone-400 font-black uppercase text-[9px] tracking-widest">Finance</TableHead>
+              <TableHead className="text-stone-400 font-black uppercase text-[9px] tracking-widest">Groupe</TableHead>
+              <TableHead className="text-stone-400 font-black uppercase text-[9px] tracking-widest">Status</TableHead>
+              <TableHead className="text-right py-4 px-6 text-stone-400 font-black uppercase text-[9px] tracking-widest">Détails</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -269,35 +270,35 @@ export default function ParticipantsPage() {
               const reg = p.registrations?.[0];
               const { country, format } = parseMetadata(p.message);
               return (
-                <TableRow key={p.id} className="border-white/5 hover:bg-white/[0.02] transition-colors group cursor-pointer" onClick={() => setSelectedParticipant(p)}>
-                  <TableCell className="py-6 px-8">
-                    <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-xl bg-orange-500/10 flex items-center justify-center text-orange-500 font-black">
+                <TableRow key={p.id} className="border-stone-100 hover:bg-stone-50 transition-colors group cursor-pointer" onClick={() => setSelectedParticipant(p)}>
+                  <TableCell className="py-4 px-6">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-xl bg-orange-50 flex items-center justify-center text-orange-600 font-black border border-orange-100">
                         {p.first_name[0]}{p.last_name[0]}
                       </div>
                       <div>
-                        <p className="font-bold text-slate-200">{p.first_name} {p.last_name}</p>
-                        <p className="text-[10px] text-slate-500 font-medium">{p.email} • <span className="text-orange-500/70">{country}</span></p>
+                        <p className="font-bold text-stone-900">{p.first_name} {p.last_name}</p>
+                        <p className="text-[10px] text-stone-500 font-medium">{p.email} • <span className="text-orange-500/70">{country}</span></p>
                       </div>
                     </div>
                   </TableCell>
                   <TableCell>
                     <div className="flex gap-2">
-                       <div className={`w-3 h-3 rounded-full ${reg?.registration_fee_paid ? 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]' : 'bg-slate-700'}`} title="Inscription" />
-                       <div className={`w-3 h-3 rounded-full ${reg?.training_fee_paid ? 'bg-orange-500 shadow-[0_0_8px_rgba(249,115,22,0.5)]' : 'bg-slate-700'}`} title="Formation" />
+                       <div className={`w-2.5 h-2.5 rounded-full ${reg?.registration_fee_paid ? 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.3)]' : 'bg-stone-300'}`} title="Inscription" />
+                       <div className={`w-2.5 h-2.5 rounded-full ${reg?.training_fee_paid ? 'bg-orange-500 shadow-[0_0_8px_rgba(249,115,22,0.3)]' : 'bg-stone-300'}`} title="Formation" />
                     </div>
                   </TableCell>
                   <TableCell>
                     <div>
-                       <p className="text-xs font-bold text-slate-400">{reg?.groups?.name || 'N/A'}</p>
-                       <p className="text-[9px] font-black text-slate-600 uppercase tracking-widest">{format}</p>
+                       <p className="text-xs font-bold text-stone-700">{reg?.groups?.name || 'N/A'}</p>
+                       <p className="text-[9px] font-black text-stone-400 uppercase tracking-widest">{format}</p>
                     </div>
                   </TableCell>
                   <TableCell>
                     {getStatusBadge(p.status)}
                   </TableCell>
-                  <TableCell className="py-6 px-8 text-right">
-                    <ChevronRight className="w-4 h-4 text-slate-600 group-hover:text-orange-500 transition-all inline" />
+                  <TableCell className="py-4 px-6 text-right">
+                    <ChevronRight className="w-4 h-4 text-stone-400 group-hover:text-orange-500 transition-all inline" />
                   </TableCell>
                 </TableRow>
               );
@@ -315,38 +316,38 @@ export default function ParticipantsPage() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedParticipant(null)}
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100]"
+              className="fixed inset-0 bg-stone-900/40 backdrop-blur-sm z-[100]"
             />
             <motion.div 
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 h-screen w-full md:w-[500px] bg-slate-900 border-l border-white/10 z-[101] shadow-2xl p-0 overflow-y-auto"
+              className="fixed top-0 right-0 h-screen w-full md:w-[450px] bg-white border-l border-stone-200 z-[101] shadow-2xl p-0 overflow-y-auto"
             >
-               <div className="p-8 space-y-10">
+               <div className="p-8 space-y-8">
                   {/* Panel Header */}
                   <div className="flex items-start justify-between">
-                     <div className="flex items-center gap-5">
-                        <div className="w-16 h-16 rounded-2xl bg-orange-600 flex items-center justify-center text-white text-2xl font-black">
+                     <div className="flex items-center gap-4">
+                        <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-orange-600 to-amber-500 flex items-center justify-center text-white text-xl font-black shadow-lg shadow-orange-500/20">
                            {selectedParticipant.first_name[0]}{selectedParticipant.last_name[0]}
                         </div>
                         <div>
-                           <h2 className="text-2xl font-black tracking-tight">{selectedParticipant.first_name} {selectedParticipant.last_name}</h2>
-                           <p className="text-orange-500 font-bold text-sm tracking-widest uppercase">{selectedParticipant.profile_type}</p>
+                           <h2 className="text-xl font-black tracking-tight text-stone-900">{selectedParticipant.first_name} {selectedParticipant.last_name}</h2>
+                           <p className="text-orange-600 font-bold text-xs tracking-widest uppercase">{selectedParticipant.profile_type}</p>
                         </div>
                      </div>
-                     <Button onClick={() => setSelectedParticipant(null)} variant="ghost" className="w-10 h-10 p-0 rounded-xl hover:bg-white/5"><XCircle className="w-6 h-6 text-slate-500" /></Button>
+                     <Button onClick={() => setSelectedParticipant(null)} variant="ghost" className="w-10 h-10 p-0 rounded-xl hover:bg-stone-100"><XCircle className="w-5 h-5 text-stone-400" /></Button>
                   </div>
 
                   {/* Quick Actions Status */}
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-3">
                      {['lead', 'confirmed', 'completed', 'cancelled'].map((st) => (
                        <Button 
                         key={st}
                         onClick={() => updateStatus(selectedParticipant.id, st)}
                         variant="ghost" 
-                        className={`h-12 rounded-xl text-[10px] font-black uppercase tracking-widest border border-white/5 ${selectedParticipant.status === st ? 'bg-orange-600 text-white shadow-lg shadow-orange-600/20' : 'bg-white/5 hover:bg-white/10 text-slate-400'}`}
+                        className={`h-10 rounded-xl text-[9px] font-black uppercase tracking-widest border border-stone-200 ${selectedParticipant.status === st ? 'bg-orange-500 text-white border-orange-500 shadow-sm' : 'bg-white hover:bg-stone-50 text-stone-500'}`}
                        >
                          {st}
                        </Button>
@@ -354,41 +355,41 @@ export default function ParticipantsPage() {
                   </div>
 
                   {/* Information Sections */}
-                  <div className="space-y-8">
+                  <div className="space-y-6">
                      {/* Contact & Bio */}
-                     <section className="space-y-4">
-                        <h4 className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em] flex items-center gap-2">
+                     <section className="space-y-3">
+                        <h4 className="text-[9px] font-black text-stone-400 uppercase tracking-[0.3em] flex items-center gap-2">
                            <User className="w-3 h-3" /> Profil & Contact
                         </h4>
-                        <div className="grid grid-cols-1 gap-3">
-                           <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/5">
-                              <p className="text-xs text-slate-500 mb-1">Email & Téléphone</p>
-                              <p className="font-bold text-slate-200">{selectedParticipant.email}</p>
-                              <p className="font-bold text-slate-200">{selectedParticipant.phone || 'N/A'}</p>
+                        <div className="grid grid-cols-1 gap-2">
+                           <div className="p-4 rounded-xl bg-stone-50 border border-stone-100">
+                              <p className="text-xs text-stone-500 mb-1">Email & Téléphone</p>
+                              <p className="font-bold text-stone-900">{selectedParticipant.email}</p>
+                              <p className="font-bold text-stone-900">{selectedParticipant.phone || 'N/A'}</p>
                            </div>
-                           <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/5">
-                              <p className="text-xs text-slate-500 mb-1">Entreprise & Poste</p>
-                              <p className="font-bold text-slate-200">{selectedParticipant.company || 'Indépendant'} <span className="text-orange-500/50 mx-2">•</span> {selectedParticipant.position || 'N/A'}</p>
+                           <div className="p-4 rounded-xl bg-stone-50 border border-stone-100">
+                              <p className="text-xs text-stone-500 mb-1">Entreprise & Poste</p>
+                              <p className="font-bold text-stone-900">{selectedParticipant.company || 'Indépendant'} <span className="text-orange-500/50 mx-2">•</span> {selectedParticipant.position || 'N/A'}</p>
                            </div>
-                           <div className="flex gap-3">
-                              <div className="flex-1 p-4 rounded-2xl bg-white/[0.03] border border-white/5">
-                                 <p className="text-xs text-slate-500 mb-1">Pays</p>
-                                 <p className="font-bold text-slate-200 flex items-center gap-2"><MapPin className="w-3 h-3 text-orange-500" /> {parseMetadata(selectedParticipant.message).country}</p>
+                           <div className="flex gap-2">
+                              <div className="flex-1 p-4 rounded-xl bg-stone-50 border border-stone-100">
+                                 <p className="text-xs text-stone-500 mb-1">Pays</p>
+                                 <p className="font-bold text-stone-900 flex items-center gap-2"><MapPin className="w-3 h-3 text-orange-500" /> {parseMetadata(selectedParticipant.message).country}</p>
                               </div>
-                              <div className="flex-1 p-4 rounded-2xl bg-white/[0.03] border border-white/5">
-                                 <p className="text-xs text-slate-500 mb-1">Format</p>
-                                 <p className="font-bold text-slate-200 flex items-center gap-2"><Laptop className="w-3 h-3 text-orange-500" /> {parseMetadata(selectedParticipant.message).format}</p>
+                              <div className="flex-1 p-4 rounded-xl bg-stone-50 border border-stone-100">
+                                 <p className="text-xs text-stone-500 mb-1">Format</p>
+                                 <p className="font-bold text-stone-900 flex items-center gap-2"><Laptop className="w-3 h-3 text-orange-500" /> {parseMetadata(selectedParticipant.message).format}</p>
                               </div>
                            </div>
                         </div>
                      </section>
 
                      {/* Financial Management */}
-                     <section className="space-y-4">
-                        <h4 className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em] flex items-center gap-2">
+                     <section className="space-y-3">
+                        <h4 className="text-[9px] font-black text-stone-400 uppercase tracking-[0.3em] flex items-center gap-2">
                            <DollarSign className="w-3 h-3" /> État Financier
                         </h4>
-                        <div className="space-y-3">
+                        <div className="space-y-2">
                            {[
                              { label: 'Frais d\'inscription (25.000 F)', field: 'registration_fee_paid' as const },
                              { label: 'Frais de formation (125.000 F)', field: 'training_fee_paid' as const }
@@ -396,13 +397,13 @@ export default function ParticipantsPage() {
                              const reg = selectedParticipant.registrations?.[0];
                              const isPaid = reg ? reg[item.field] : false;
                              return (
-                               <div key={item.field} className="flex items-center justify-between p-5 rounded-2xl bg-white/[0.03] border border-white/5">
-                                  <span className="text-sm font-bold text-slate-300">{item.label}</span>
+                               <div key={item.field} className="flex items-center justify-between p-4 rounded-xl bg-stone-50 border border-stone-100">
+                                  <span className="text-xs font-bold text-stone-700">{item.label}</span>
                                   <Button 
                                     onClick={() => reg && togglePayment(reg.id, item.field, isPaid)}
-                                    className={`h-10 rounded-xl font-black text-[10px] uppercase tracking-widest gap-2 ${isPaid ? 'bg-emerald-500/20 text-emerald-500 hover:bg-emerald-500/30' : 'bg-slate-700/50 text-slate-400 hover:bg-slate-700'}`}
+                                    className={`h-9 rounded-lg font-black text-[9px] uppercase tracking-widest gap-2 ${isPaid ? 'bg-emerald-50 text-emerald-600 hover:bg-emerald-100 border border-emerald-200' : 'bg-white border border-stone-200 text-stone-500 hover:bg-stone-100'}`}
                                   >
-                                     {isPaid ? <CheckCircle className="w-4 h-4" /> : <XCircle className="w-4 h-4" />}
+                                     {isPaid ? <CheckCircle className="w-3.5 h-3.5" /> : <XCircle className="w-3.5 h-3.5" />}
                                      {isPaid ? 'Payé' : 'En attente'}
                                   </Button>
                                </div>
@@ -412,19 +413,19 @@ export default function ParticipantsPage() {
                      </section>
 
                      {/* Program details */}
-                     <section className="space-y-4">
-                        <h4 className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em] flex items-center gap-2">
+                     <section className="space-y-3">
+                        <h4 className="text-[9px] font-black text-stone-400 uppercase tracking-[0.3em] flex items-center gap-2">
                            <Briefcase className="w-3 h-3" /> Programme
                         </h4>
-                        <div className="p-6 rounded-[2rem] bg-orange-600/5 border border-orange-500/20">
-                           <div className="flex items-center gap-4 mb-4">
-                              <Calendar className="w-5 h-5 text-orange-500" />
+                        <div className="p-5 rounded-2xl bg-orange-50 border border-orange-100">
+                           <div className="flex items-center gap-3 mb-3">
+                              <Calendar className="w-4 h-4 text-orange-500" />
                               <div>
-                                 <p className="text-lg font-black text-slate-100">{selectedParticipant.registrations?.[0]?.groups?.name || 'Groupe non assigné'}</p>
-                                 <p className="text-xs font-bold text-orange-500">{selectedParticipant.registrations?.[0]?.groups?.time_slot || 'Créneau non défini'}</p>
+                                 <p className="text-base font-black text-stone-900">{selectedParticipant.registrations?.[0]?.groups?.name || 'Groupe non assigné'}</p>
+                                 <p className="text-[10px] font-bold text-orange-600 uppercase tracking-widest">{selectedParticipant.registrations?.[0]?.groups?.time_slot || 'Créneau non défini'}</p>
                               </div>
                            </div>
-                           <div className="text-[10px] font-black text-slate-500 uppercase tracking-widest mt-6 border-t border-white/5 pt-4">
+                           <div className="text-[9px] font-black text-stone-500 uppercase tracking-widest mt-4 border-t border-orange-200/50 pt-3">
                               Origine : {selectedParticipant.source}
                            </div>
                         </div>
@@ -432,11 +433,11 @@ export default function ParticipantsPage() {
 
                      {/* Message */}
                      {parseMetadata(selectedParticipant.message).cleanMessage && (
-                       <section className="space-y-4">
-                          <h4 className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em] flex items-center gap-2">
+                       <section className="space-y-3">
+                          <h4 className="text-[9px] font-black text-stone-400 uppercase tracking-[0.3em] flex items-center gap-2">
                              <MessageSquare className="w-3 h-3" /> Note du Participant
                           </h4>
-                          <div className="p-6 rounded-2xl bg-white/[0.03] border border-white/5 text-sm text-slate-400 italic leading-relaxed">
+                          <div className="p-5 rounded-xl bg-stone-50 border border-stone-100 text-sm text-stone-600 italic leading-relaxed">
                              "{parseMetadata(selectedParticipant.message).cleanMessage}"
                           </div>
                        </section>

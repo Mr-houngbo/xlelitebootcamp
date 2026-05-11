@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import Link from 'next/link';
 import { supabase } from '@/lib/supabase/client';
 import { useRealtimeRefresh } from '@/lib/supabase/useRealtimeRefresh';
 import { 
@@ -18,9 +19,18 @@ import {
   Layers,
   ArrowRight,
   CheckCircle2,
-  AlertCircle
+  AlertCircle,
+  Download
 } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { exportToCSV, exportToPDF } from '@/lib/utils/export';
+import { 
+  DropdownMenu, 
+  DropdownMenuContent, 
+  DropdownMenuItem, 
+  DropdownMenuTrigger 
+} from '@/components/ui/dropdown-menu';
+import { Button } from '@/components/ui/button';
 
 interface KPICard {
   title: string;
@@ -144,6 +154,32 @@ export default function AdminDashboard() {
     }
   }, []);
 
+  const handleExport = (type: 'csv' | 'pdf') => {
+    const headers = ['Métrique', 'Valeur', 'Détails'];
+    const rows = kpis.map(kpi => [
+      kpi.title,
+      kpi.value.toString(),
+      kpi.change || 'N/A'
+    ]);
+    
+    // Ajout des stats de revenus
+    rows.push(['---', '---', '---']);
+    rows.push(['Trésorerie Réelle', `${revenueStats.actual.toLocaleString()} F`, 'Montant encaissé']);
+    rows.push(['Chiffre d\'Affaires Projeté', `${revenueStats.projected.toLocaleString()} F`, 'Potentiel total']);
+    
+    // Ajout des stats de groupes
+    rows.push(['---', '---', '---']);
+    groupStats.forEach(g => {
+      rows.push([`Groupe: ${g.name}`, `${g.current_capacity}/${g.max_capacity}`, `${g.fill_rate.toFixed(1)}% Saturation`]);
+    });
+
+    if (type === 'csv') {
+      exportToCSV('xl_elite_dashboard_report', headers, rows);
+    } else {
+      exportToPDF('xl_elite_dashboard_report', 'Rapport de Performance XL Elite', headers, rows);
+    }
+  };
+
   useRealtimeRefresh(
     ['participants', 'registrations', 'groups'],
     fetchDashboardData,
@@ -155,168 +191,183 @@ export default function AdminDashboard() {
   }, [fetchDashboardData]);
 
   if (loading) return (
-    <div className="flex flex-col items-center justify-center h-[60vh] bg-slate-950">
+    <div className="flex flex-col items-center justify-center h-[60vh]">
       <div className="relative w-24 h-24">
-        <div className="absolute inset-0 border-4 border-orange-500/20 rounded-full" />
+        <div className="absolute inset-0 border-4 border-orange-100 rounded-full" />
         <div className="absolute inset-0 border-4 border-orange-500 border-t-transparent rounded-full animate-spin" />
         <div className="absolute inset-0 flex items-center justify-center">
           <Zap className="w-8 h-8 text-orange-500 animate-pulse" />
         </div>
       </div>
-      <p className="mt-8 text-orange-500/60 font-black tracking-[0.3em] text-[10px] uppercase">Chargement de l'Elite Intelligence...</p>
+      <p className="mt-8 text-orange-400 font-extrabold tracking-[0.3em] text-[10px] uppercase">Chargement de l'Elite Intelligence...</p>
     </div>
   );
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white space-y-10 pb-20">
+    <div className="space-y-8 pb-10 text-stone-900">
       
       {/* HEADER SECTION */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <h1 className="text-4xl font-black tracking-tighter mb-2">Manager Cockpit <span className="text-orange-500">.</span></h1>
-          <p className="text-slate-500 font-medium">Vue stratégique en temps réel du XL Elite Bootcamp.</p>
+          <h1 className="text-3xl font-extrabold tracking-tight mb-1">Manager Cockpit <span className="text-orange-500">.</span></h1>
+          <p className="text-stone-500 text-sm font-medium">Vue stratégique du XL Elite Bootcamp.</p>
         </div>
-        <div className="flex items-center gap-4">
-          <div className={`px-4 py-2 rounded-2xl border flex items-center gap-3 transition-all ${isLive ? 'bg-emerald-500/10 border-emerald-500/20' : 'bg-white/5 border-white/10'}`}>
-             <div className={`w-2 h-2 rounded-full animate-pulse ${isLive ? 'bg-emerald-400' : 'bg-orange-500'}`} />
-             <span className={`text-[10px] font-black uppercase tracking-widest ${isLive ? 'text-emerald-400' : 'text-slate-400'}`}>
-               {isLive ? 'Live Realtime' : 'Connecting...'}
+        <div className="flex items-center gap-3">
+          <div className={`hidden md:flex px-3 py-2 rounded-xl border items-center gap-2 transition-all shadow-sm ${isLive ? 'bg-emerald-50 border-emerald-100' : 'bg-stone-50 border-stone-200'}`}>
+             <div className={`w-1.5 h-1.5 rounded-full animate-pulse ${isLive ? 'bg-emerald-500' : 'bg-orange-500'}`} />
+             <span className={`text-[9px] font-extrabold uppercase tracking-widest ${isLive ? 'text-emerald-600' : 'text-stone-500'}`}>
+               {isLive ? 'Live' : 'Connecting...'}
              </span>
           </div>
-          <div className="px-4 py-2 rounded-2xl bg-white/5 border border-white/10 flex items-center gap-2">
-            <Clock className="w-3 h-3 text-slate-500" />
-            <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">
+          <div className="px-3 py-2 rounded-xl bg-white border border-stone-200 shadow-sm flex items-center gap-2">
+            <Clock className="w-3 h-3 text-stone-400" />
+            <span className="text-[9px] font-extrabold text-stone-500 uppercase tracking-widest">
               {lastUpdated.toLocaleTimeString()}
             </span>
           </div>
-          <button onClick={() => fetchDashboardData()} className="w-10 h-10 rounded-2xl bg-orange-600 flex items-center justify-center hover:bg-orange-500 transition-colors shadow-lg shadow-orange-600/20">
-             <Activity className="w-5 h-5" />
+
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" className="h-10 rounded-xl border-stone-200 bg-white hover:bg-orange-500 hover:text-white transition-all gap-2 px-4 shadow-sm">
+                <Download className="w-4 h-4" /> 
+                <span className="hidden sm:inline text-[10px] font-bold uppercase tracking-widest">Exporter</span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="bg-white border-stone-100 shadow-xl rounded-xl">
+              <DropdownMenuItem onClick={() => handleExport('csv')} className="hover:bg-stone-50 cursor-pointer font-bold text-stone-700 text-xs">Rapport CSV</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => handleExport('pdf')} className="hover:bg-stone-50 cursor-pointer font-bold text-stone-700 text-xs">Rapport PDF (Prestige)</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          <button onClick={() => fetchDashboardData()} className="w-10 h-10 rounded-xl bg-orange-500 text-white flex items-center justify-center hover:bg-orange-600 transition-colors shadow-sm">
+             <Activity className="w-4 h-4" />
           </button>
         </div>
       </div>
 
       {/* KPI GRID */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {kpis.map((kpi, i) => (
           <motion.div 
             key={i}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.1 }}
-            className="p-8 rounded-[2.5rem] bg-white/[0.03] border border-white/10 relative overflow-hidden group hover:bg-white/[0.05] transition-all"
+            className="p-5 rounded-2xl bg-white border border-stone-100 shadow-[0_4px_20px_rgb(0,0,0,0.02)] relative overflow-hidden group hover:shadow-sm transition-all duration-300"
           >
-            <div className="absolute top-0 right-0 w-32 h-32 bg-orange-600/5 blur-3xl -mr-10 -mt-10 group-hover:scale-150 transition-transform duration-700" />
+            <div className="absolute top-0 right-0 w-24 h-24 bg-amber-50 rounded-full blur-3xl -mr-8 -mt-8 group-hover:scale-150 transition-transform duration-700 opacity-50" />
             
             <div className="flex justify-between items-start mb-6 relative z-10">
-              <div className="w-12 h-12 rounded-2xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-xl bg-orange-50 border border-orange-100 flex items-center justify-center text-amber-600 group-hover:bg-orange-500 group-hover:text-white transition-all duration-300">
                 {kpi.icon}
               </div>
-              <ArrowUpRight className={`w-4 h-4 ${kpi.trend === 'up' ? 'text-orange-400' : 'text-slate-600'}`} />
+              <div className={`flex items-center gap-1 px-2 py-1 rounded-md text-[9px] font-extrabold ${kpi.trend === 'up' ? 'bg-emerald-50 text-emerald-600' : 'bg-stone-50 text-stone-500'}`}>
+                {kpi.change} <ArrowUpRight className="w-2.5 h-2.5" />
+              </div>
             </div>
             
             <div className="relative z-10">
-              <p className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] mb-1">{kpi.title}</p>
-              <h3 className="text-4xl font-black tracking-tight mb-2">{kpi.value}</h3>
-              <p className="text-[10px] font-bold text-orange-500/60 uppercase tracking-widest">{kpi.change}</p>
+              <p className="text-[9px] font-extrabold text-stone-400 uppercase tracking-[0.2em] mb-1">{kpi.title}</p>
+              <h3 className="text-3xl font-black tracking-tight text-stone-900">{kpi.value}</h3>
             </div>
           </motion.div>
         ))}
       </div>
 
-      <div className="grid lg:grid-cols-12 gap-8">
+      <div className="grid lg:grid-cols-12 gap-6">
         
         {/* REVENUE PIPELINE */}
-        <div className="lg:col-span-4 space-y-6">
-           <div className="p-8 rounded-[2.5rem] bg-gradient-to-br from-orange-600 to-orange-900 shadow-2xl relative overflow-hidden group h-full">
-              <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10" />
+        <div className="lg:col-span-4 space-y-4">
+           <div className="p-6 rounded-3xl bg-gradient-to-br from-orange-600 to-amber-600 shadow-xl shadow-orange-500/10 relative overflow-hidden group h-full text-white">
+              <div className="absolute inset-0 bg-white/5 backdrop-blur-[1px]" />
               
               <div className="relative z-10 h-full flex flex-col">
-                <div className="flex items-center gap-3 mb-10">
-                   <div className="p-2 rounded-xl bg-white/20 backdrop-blur-md">
-                      <BarChart3 className="w-5 h-5 text-white" />
+                <div className="flex items-center gap-3 mb-8">
+                   <div className="p-2 rounded-lg bg-white/20 backdrop-blur-md shadow-inner">
+                      <BarChart3 className="w-4 h-4 text-white" />
                    </div>
-                   <h3 className="text-sm font-black uppercase tracking-[0.2em]">Santé Financière</h3>
+                   <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-white/90">Santé Financière</h3>
                 </div>
 
                 <div className="space-y-8 flex-1">
                   <div>
-                    <p className="text-orange-100/60 text-[10px] font-black uppercase tracking-widest mb-1">Encaissement Réel</p>
-                    <h4 className="text-4xl font-black">{revenueStats.actual.toLocaleString()} <span className="text-lg opacity-50 font-medium">F</span></h4>
+                    <p className="text-orange-100 text-[9px] font-black uppercase tracking-widest mb-1 opacity-80">Encaissement Réel</p>
+                    <h4 className="text-4xl font-black tracking-tighter">{revenueStats.actual.toLocaleString()} <span className="text-xl font-bold opacity-60">F</span></h4>
                   </div>
 
                   <div className="space-y-2">
-                    <div className="flex justify-between text-[10px] font-black uppercase tracking-widest text-orange-100/80">
+                    <div className="flex justify-between text-[10px] font-extrabold uppercase tracking-widest text-orange-100">
                        <span>Progression Objectif</span>
                        <span>{((revenueStats.actual / revenueStats.projected) * 100).toFixed(1)}%</span>
                     </div>
-                    <div className="h-3 w-full bg-black/20 rounded-full overflow-hidden p-0.5 border border-white/10">
+                    <div className="h-2.5 w-full bg-black/10 rounded-full overflow-hidden p-[2px]">
                        <motion.div 
                         initial={{ width: 0 }}
                         animate={{ width: `${(revenueStats.actual / revenueStats.projected) * 100}%` }}
-                        className="h-full bg-white rounded-full shadow-[0_0_20px_rgba(255,255,255,0.5)]" 
+                        className="h-full bg-white rounded-full shadow-[0_0_15px_rgba(255,255,255,0.8)]" 
                        />
                     </div>
                   </div>
 
-                  <div className="pt-8 border-t border-white/10">
-                    <p className="text-orange-100/60 text-[10px] font-black uppercase tracking-widest mb-1">Chiffre d'Affaires Projeté</p>
-                    <h4 className="text-2xl font-black text-white/90">{revenueStats.projected.toLocaleString()} <span className="text-sm opacity-50 font-medium">F</span></h4>
+                  <div className="pt-6 border-t border-white/20">
+                    <p className="text-orange-100 text-[9px] font-black uppercase tracking-widest mb-1 opacity-80">Chiffre d'Affaires Projeté</p>
+                    <h4 className="text-2xl font-extrabold text-white">{revenueStats.projected.toLocaleString()} <span className="text-sm opacity-60">F</span></h4>
                   </div>
                 </div>
 
-                <button className="mt-10 w-full py-4 bg-black/20 hover:bg-black/30 rounded-2xl text-[10px] font-black uppercase tracking-[0.3em] transition-all flex items-center justify-center gap-2">
-                  Détails Business <ArrowRight className="w-3 h-3" />
-                </button>
+                <Link href="/admin/business" className="mt-8 w-full py-3 bg-white text-orange-600 hover:bg-orange-50 rounded-xl text-[10px] font-black uppercase tracking-[0.2em] transition-all flex items-center justify-center gap-2 shadow-sm">
+                  Détails <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
               </div>
            </div>
         </div>
 
         {/* SATURATION DES GROUPES */}
         <div className="lg:col-span-8">
-          <div className="p-10 rounded-[2.5rem] bg-white/[0.03] border border-white/10 h-full">
-            <div className="flex items-center justify-between mb-12">
-               <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10">
-                     <Layers className="w-5 h-5 text-orange-400" />
+          <div className="p-6 rounded-3xl bg-white border border-stone-100 shadow-sm h-full">
+            <div className="flex items-center justify-between mb-8">
+               <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-orange-50 flex items-center justify-center border border-orange-100">
+                     <Layers className="w-4 h-4 text-orange-500" />
                   </div>
-                  <h3 className="text-sm font-black uppercase tracking-[0.2em]">Saturation des Groupes</h3>
+                  <h3 className="text-sm font-extrabold text-stone-900 uppercase tracking-[0.2em]">Groupes</h3>
                </div>
-               <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest italic">Capacité : 15 / groupe</span>
+               <span className="text-[9px] font-bold text-stone-400 uppercase tracking-widest bg-stone-50 px-2 py-1 rounded-md border border-stone-100">Capacité Modulaire</span>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {groupStats.map((group, i) => (
-                <div key={i} className="p-6 rounded-3xl bg-white/[0.02] border border-white/5 hover:border-orange-500/30 transition-all group">
+                <div key={i} className="p-5 rounded-2xl bg-stone-50/50 border border-stone-100 hover:border-orange-200 hover:bg-white hover:shadow-sm transition-all duration-300 group">
                    <div className="flex justify-between items-start mb-6">
-                      <h4 className="text-xl font-black tracking-tight">{group.name}</h4>
-                      <div className={`text-[9px] font-black px-2 py-1 rounded-lg border ${group.fill_rate > 80 ? 'bg-red-500/10 border-red-500/20 text-red-500' : 'bg-orange-500/10 border-orange-500/20 text-orange-500'}`}>
+                      <h4 className="text-xl font-black tracking-tight text-stone-900">{group.name}</h4>
+                      <div className={`text-[9px] font-extrabold px-2 py-1 rounded-md border ${group.fill_rate > 80 ? 'bg-red-50 border-red-100 text-red-600' : 'bg-orange-50 border-orange-100 text-orange-600'}`}>
                         {group.fill_rate.toFixed(0)}%
                       </div>
                    </div>
 
-                   <div className="space-y-4 mb-8">
-                      <div className="flex items-center gap-2 text-slate-400">
-                         <Clock className="w-3.5 h-3.5" />
-                         <span className="text-[11px] font-bold">{group.time_slot}</span>
+                   <div className="space-y-4 mb-6">
+                      <div className="flex items-center gap-2 text-stone-500">
+                         <Clock className="w-3 h-3 text-stone-400" />
+                         <span className="text-[10px] font-extrabold uppercase tracking-widest">{group.time_slot}</span>
                       </div>
                       
                       <div className="space-y-2">
-                        <div className="flex justify-between text-[10px] font-bold text-slate-500 uppercase">
+                        <div className="flex justify-between text-[9px] font-extrabold text-stone-400 uppercase tracking-widest">
                            <span>Places</span>
-                           <span className="text-white">{group.current_capacity} / {group.max_capacity}</span>
+                           <span className="text-stone-900">{group.current_capacity} / {group.max_capacity}</span>
                         </div>
-                        <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                        <div className="h-1.5 w-full bg-stone-200 rounded-full overflow-hidden">
                            <div 
-                            className={`h-full transition-all duration-1000 ${group.fill_rate > 80 ? 'bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.5)]' : 'bg-orange-500 shadow-[0_0_10px_rgba(249,115,22,0.5)]'}`} 
+                            className={`h-full transition-all duration-1000 rounded-full ${group.fill_rate > 80 ? 'bg-red-500' : 'bg-orange-500'}`} 
                             style={{ width: `${group.fill_rate}%` }} 
                            />
                         </div>
                       </div>
                    </div>
 
-                   <div className="pt-4 border-t border-white/5 flex justify-between items-center">
-                      <div className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Récolté</div>
-                      <div className="text-sm font-black text-orange-400">{(group.revenue / 1000).toLocaleString()}K</div>
+                   <div className="pt-4 border-t border-stone-200 flex justify-between items-center">
+                      <div className="text-[9px] font-extrabold text-stone-400 uppercase tracking-widest">Récolté</div>
+                      <div className="text-sm font-black text-stone-900">{(group.revenue / 1000).toLocaleString()}K</div>
                    </div>
                 </div>
               ))}
@@ -325,7 +376,6 @@ export default function AdminDashboard() {
         </div>
 
       </div>
-
     </div>
   );
 }
