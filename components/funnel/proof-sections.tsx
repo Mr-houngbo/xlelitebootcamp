@@ -74,7 +74,7 @@ const VideoTestimonialCard = ({ testimonial, active = false }: { testimonial: an
 
   return (
     <div className={`group relative w-full aspect-[9/16] rounded-[2.5rem] overflow-hidden border-2 border-emerald-500 bg-slate-950 transition-all duration-500 ${active ? 'shadow-[0_20px_50px_rgba(16,185,129,0.3)] scale-[1.02]' : 'hover:scale-[1.01]'}`}>
-      
+
       <video
         ref={videoRef}
         src={testimonial.video_url}
@@ -83,16 +83,16 @@ const VideoTestimonialCard = ({ testimonial, active = false }: { testimonial: an
         playsInline
         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
       />
-      
+
       {/* HUD Simple */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
 
-      <button 
+      <button
         onClick={togglePlay}
         className="absolute inset-0 flex items-center justify-center z-10"
       >
         <div className={`w-14 h-14 rounded-full bg-emerald-500 flex items-center justify-center shadow-xl transition-all duration-500 ${isPlaying ? 'opacity-0 scale-90' : 'opacity-100 scale-100'}`}>
-           <Play className="w-5 h-5 text-white fill-current ml-1" />
+          <Play className="w-5 h-5 text-white fill-current ml-1" />
         </div>
       </button>
 
@@ -299,38 +299,85 @@ export const InclusionsSection = () => {
 
 export const FinancialOffer = () => {
   return (
-    <section className="py-12 md:py-24 bg-white dark:bg-slate-950 px-4">
-      <div className="container px-0 mx-auto max-w-4xl">
-        <div className="p-5 md:p-12 rounded-2xl md:rounded-[2.5rem] border-2 md:border-4 border-emerald-600 shadow-2xl relative overflow-hidden">
-          <div className="absolute top-0 right-0 bg-emerald-600 text-white px-3 md:px-8 py-1.5 md:py-2 rounded-bl-xl font-black text-[9px] md:text-sm uppercase tracking-widest">
-            Offre Limitée
-          </div>
+    <section className="py-24 md:py-32 bg-white dark:bg-slate-950 relative overflow-hidden">
+      {/* Decorative ambient lights */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-emerald-500/10 blur-[120px] rounded-full pointer-events-none" />
 
-          <div className="text-center">
-            <h2 className="text-xl md:text-3xl font-black mb-6 md:mb-10 mt-2 md:mt-4">Investissement pour votre carrière</h2>
+      <div className="container px-4 mx-auto max-w-5xl relative z-10">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-4">Investissez dans votre futur </h2>
+          <p className="text-slate-500 dark:text-slate-400 font-medium text-lg italic">Un pack complet incluant formation intensive et certification officielle Microsoft.</p>
+        </div>
 
-            <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-12 mb-8 md:mb-10">
-              <div className="text-center">
-                <p className="text-slate-500 uppercase tracking-widest text-[10px] font-bold mb-1">Prix Total</p>
-                <div className="text-3xl md:text-5xl font-black text-slate-900 dark:text-white">150 000 F</div>
-                <p className="text-[10px] text-slate-400 mt-1">(125k formation + 25k inscription)</p>
+        <div className="bg-slate-900 rounded-[3rem] border border-white/10 shadow-3xl overflow-hidden flex flex-col lg:flex-row items-stretch">
+          {/* Left Side: Pricing Details */}
+          <div className="p-8 md:p-16 flex-1 border-b lg:border-b-0 lg:border-r border-white/5">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-8">
+              <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
+              <span className="text-[10px] font-black text-emerald-500 uppercase tracking-widest">Offre Limitée</span>
+            </div>
+
+            <div className="space-y-10">
+              <div className="flex justify-between items-end">
+                <div>
+                  <p className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] mb-2">Frais d'inscription</p>
+                  <p className="text-3xl md:text-4xl font-black text-white">25 000 F</p>
+                </div>
               </div>
-              <div className="h-[1px] w-20 bg-slate-200 md:h-12 md:w-[1px]" />
-              <div className="text-center">
-                <p className="text-orange-600 uppercase tracking-widest text-[10px] font-bold mb-1 font-black">Frais d'inscription</p>
-                <div className="text-3xl md:text-5xl font-black text-orange-600">25 000 F</div>
+
+              <div className="h-[1px] w-full bg-gradient-to-r from-white/10 via-white/5 to-transparent" />
+
+              <div>
+                <p className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] mb-2">Frais de formation</p>
+                <div className="flex items-baseline gap-3">
+                  <p className="text-3xl md:text-4xl font-black text-white/90">125 000 F</p>
+                  <span className="text-slate-500 text-sm font-medium">/ sessions complètes</span>
+                </div>
               </div>
             </div>
 
-            <p className="text-sm md:text-lg text-slate-700 dark:text-slate-300 font-bold mb-8 md:mb-10 px-4">
-              ⚠️ Inscription validée après paiement des frais <span className="text-red-600 animate-pulse font-black">avant le 02 juin</span>.
-            </p>
+            <div className="mt-12 p-6 rounded-2xl bg-white/[0.02] border border-white/5">
+              <div className="flex gap-4">
+                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center flex-shrink-0">
+                  <ShieldCheck className="w-5 h-5 text-emerald-500" />
+                </div>
+                <div>
+                  <p className="text-xs font-bold text-white mb-1">Paiement Sécurisé & Inclus</p>
+                  <p className="text-[10px] text-slate-500 leading-relaxed font-medium">Tout est inclus : Support de cours, Voucher de certification (2 essais) et licence Office 365.</p>
+                </div>
+              </div>
+            </div>
+          </div>
 
-            <Link href="/inscription" className="w-full inline-block">
-              <Button size="lg" className="w-full md:w-auto bg-emerald-600 hover:bg-emerald-700 text-white px-10 md:px-16 py-6 md:py-8 text-lg md:text-2xl font-black rounded-xl md:rounded-2xl shadow-xl transition-all hover:scale-105 group flex items-center justify-center mx-auto">
-                <Lock className="w-5 h-5 md:w-6 md:h-6 mr-3 group-hover:scale-110 transition-transform" /> Réserver ma place sécurisée
-              </Button>
-            </Link>
+          {/* Right Side: Total & CTA */}
+          <div className="bg-emerald-600 p-8 md:p-16 w-full lg:w-[400px] flex flex-col justify-center items-center text-center relative overflow-hidden">
+            {/* Pattern Overlay */}
+            <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '24px 24px' }} />
+
+            <div className="relative z-10">
+              <p className="text-emerald-100/60 font-black uppercase tracking-[0.3em] text-[10px] mb-4">Investissement Total</p>
+              <div className="relative inline-block mb-8">
+                <div className="absolute -inset-4 bg-white/20 blur-2xl rounded-full opacity-50" />
+                <h3 className="text-5xl md:text-7xl font-black text-white relative leading-none">150K</h3>
+                <span className="text-emerald-100 font-bold text-xl ml-1 tracking-tighter uppercase opacity-80">CFA</span>
+              </div>
+
+              <div className="space-y-8">
+                <div className="inline-block px-4 py-2 rounded-xl bg-black/20 backdrop-blur-md border border-white/10">
+                  <div className="flex items-center gap-3 text-white">
+                    <Clock className="w-4 h-4 text-emerald-300" />
+                    <p className="text-xs font-black uppercase tracking-widest">Dernier délai : <span className="text-emerald-300">02 Juin</span></p>
+                  </div>
+                </div>
+
+                <Link href="/inscription" className="block group">
+                  <Button size="lg" className="w-full bg-white hover:bg-slate-50 text-emerald-950 px-12 py-8 text-xl font-black rounded-2xl shadow-2xl transition-all hover:scale-[1.03] group flex items-center justify-center">
+                    <Lock className="w-5 h-5 mr-3 group-hover:rotate-12 transition-transform" /> Réserver ma place
+                  </Button>
+                  <p className="mt-4 text-emerald-100/60 text-[10px] font-bold uppercase tracking-widest group-hover:text-white transition-colors italic">⚠️ Places limitées à 15 par session</p>
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </div>

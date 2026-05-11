@@ -13,5 +13,10 @@ export const supabase = createBrowserClient<Database>(
         });
       },
     },
+    realtime: {
+      params: {
+        eventsPerSecond: 10,
+      },
+    },
   }
 );

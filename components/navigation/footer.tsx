@@ -97,7 +97,7 @@ export function Footer() {
               </p>
             </div>
             
-            <div className="flex gap-10">
+            <div className="flex gap-10 items-center">
               {[
                 { name: 'Légal', href: '/mentions-legales' },
                 { name: 'Privacy', href: '/politique-confidentialite' },
@@ -107,7 +107,9 @@ export function Footer() {
                   {link.name}
                 </Link>
               ))}
-              <Link href="/admin/login" className="text-transparent selection:text-transparent text-[6px] absolute">ad</Link>
+              <Link href="/admin/login" className="text-[9px] font-black text-slate-500/10 ml-4 uppercase tracking-widest cursor-default">
+                ad
+              </Link>
             </div>
           </div>
         </div>
