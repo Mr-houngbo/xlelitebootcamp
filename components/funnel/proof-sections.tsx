@@ -52,311 +52,189 @@ export const HeroProof = () => {
   );
 };
 
-// --- VIDEO TESTIMONIAL CARD ---
-const VideoTestimonialCard = ({ testimonial }: { testimonial: any }) => {
+// --- SMARTPHONE PRESTIGE VIDEO CARD ---
+const VideoTestimonialCard = ({ testimonial, active = false }: { testimonial: any, active?: boolean }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
 
   const togglePlay = () => {
-    if (videoRef.current?.paused) {
-      videoRef.current.play();
+    if (!videoRef.current) return;
+
+    if (videoRef.current.paused) {
+      videoRef.current.muted = false;
+      setIsMuted(false);
+      videoRef.current.play().catch(e => console.error("Playback failed", e));
       setIsPlaying(true);
     } else {
-      videoRef.current?.pause();
+      videoRef.current.pause();
       setIsPlaying(false);
     }
   };
 
   return (
-    <div className="relative min-w-[150px] md:min-w-[180px] h-[260px] md:h-[320px] rounded-2xl md:rounded-[2rem] overflow-hidden bg-slate-900 group shadow-2xl border border-white/10 ring-4 ring-black/5">
+    <div className={`group relative w-full aspect-[9/16] rounded-[2.5rem] overflow-hidden border-2 border-emerald-500 bg-slate-950 transition-all duration-500 ${active ? 'shadow-[0_20px_50px_rgba(16,185,129,0.3)] scale-[1.02]' : 'hover:scale-[1.01]'}`}>
+      
       <video
         ref={videoRef}
         src={testimonial.video_url}
         loop
         muted={isMuted}
         playsInline
-        className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-500 group-hover:scale-105"
+        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
       />
+      
+      {/* HUD Simple */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
 
-      {/* Overlay gradient for text readability */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
-
-      {/* Participant info */}
-      <div className="absolute bottom-4 left-4 right-4 text-white z-10 pointer-events-none">
-        <p className="font-bold text-[11px] md:text-sm leading-tight mb-0.5 shadow-black drop-shadow-md">{testimonial.participant_name}</p>
-        <p className="text-[9px] md:text-[10px] text-white/80 font-medium truncate">{testimonial.position}</p>
-      </div>
-
-      {/* Controls */}
-      <div className="absolute top-3 right-3 z-20">
-        <button
-          onClick={(e) => { e.stopPropagation(); setIsMuted(!isMuted); }}
-          className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-black/40 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-black/60 transition-all"
-        >
-          {isMuted ? <VolumeX className="w-3 h-3 md:w-4 md:h-4" /> : <Volume2 className="w-3 h-3 md:w-4 md:h-4" />}
-        </button>
-      </div>
-
-      <button
+      <button 
         onClick={togglePlay}
-        className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-all duration-300 z-10"
+        className="absolute inset-0 flex items-center justify-center z-10"
       >
-        <div className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-emerald-500/90 backdrop-blur-sm text-white flex items-center justify-center shadow-[0_0_30px_rgba(16,185,129,0.5)] transform group-hover:scale-110 transition-transform">
-          {isPlaying ? <Pause className="w-4 h-4 md:w-6 md:h-6 fill-current" /> : <Play className="w-4 h-4 md:w-6 md:h-6 fill-current ml-1" />}
+        <div className={`w-14 h-14 rounded-full bg-emerald-500 flex items-center justify-center shadow-xl transition-all duration-500 ${isPlaying ? 'opacity-0 scale-90' : 'opacity-100 scale-100'}`}>
+           <Play className="w-5 h-5 text-white fill-current ml-1" />
         </div>
       </button>
+
+      {/* Label Net */}
+      <div className="absolute bottom-6 left-6 right-6 z-20">
+        <h4 className="text-lg font-bold text-white leading-tight">{testimonial.participant_name}</h4>
+        <p className="text-[10px] text-emerald-400 font-bold uppercase tracking-widest">{testimonial.company}</p>
+      </div>
     </div>
   );
 };
 
 export const ConcreteTestimonials = () => {
-  const [testimonials, setTestimonials] = useState<any[]>([]);
-
-  useEffect(() => {
-    setTestimonials([
-      {
-        id: 'v1',
-        participant_name: 'N\'GUESSAN KOFFI',
-        position: 'Contrôleur de Gestion',
-        company: 'Burkina Faso',
-        testimonial: 'Le bootcamp a révolutionné ma manière de traiter les données mensuelles.',
-        type: 'video',
-        video_url: 'https://i.imgur.com/vhgB6bF.mp4',
-      },
-      {
-        id: 'v2',
-        participant_name: 'Professionel',
-        position: 'Professionel',
-        company: 'Orange',
-        testimonial: 'La certification Microsoft Expert est un vrai plus pour mon CV.',
-        type: 'video',
-        video_url: 'https://i.imgur.com/2je7YyL.mp4',
-      },
-      {
-        id: 'v3',
-        participant_name: 'Professionel',
-        position: 'Professionel',
-        company: 'KPMG',
-        testimonial: "L'automatisation Power Query me fait gagner des heures chaque semaine.",
-        type: 'video',
-        video_url: 'https://i.imgur.com/ITbq8NC.mp4',
-      },
-      {
-        id: 'v4',
-        participant_name: 'NIANG Coumba',
-        position: 'Manager',
-        company: 'Telecel',
-        testimonial: "Une formation intense mais tellement riche. Je recommande à 100%.",
-        type: 'video',
-        video_url: 'https://i.imgur.com/Qol4jUS.mp4',
-      },
-      {
-        id: 'v5',
-        participant_name: 'Comlan Herman',
-        position: 'Coach Formateur Ms Word',
-        company: 'Benin',
-        testimonial: "Enfin une formation pratique qui répond aux besoins réels du terrain.",
-        type: 'video',
-        video_url: 'https://i.imgur.com/95TsFVD.mp4',
-      },
-      {
-        id: '1',
-        participant_name: 'Boling Faraba Dembele',
-        position: 'Professionel',
-        company: 'Mali',
-        testimonial: "Vraiment j'ai été transformé par ce Cabinet Smart Otobos Consulting, la pédagogie de M LEONCE (coach) et le niveau de la formation étaient au summum de nos attentes . Alors vivement la prochaine formation .",
-        linkedin_url: '#',
-        participant_photo: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Boling',
-        type: 'text',
-      },
-      {
-        id: '2',
-        participant_name: 'Abou Ouattara',
-        position: 'Gestionnaire RH',
-        company: 'Ouagadougou',
-        testimonial: "Un grand merci au Cabinet Otobos Consulting et particulièrement à notre formateur, Léonce TOUNDE SODJINOU, pour la perfection avec laquelle la formation a été administrée, avec en plus, un coaching participatif et motivateur.",
-        linkedin_url: '#',
-        participant_photo: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Abou',
-        type: 'text',
-      },
-      {
-        id: '3',
-        participant_name: 'Ib Zahara',
-        position: 'Créateur Digital',
-        company: 'Cote d\'ivoire',
-        testimonial: "Bonjour Coach, nous avons été très satisfait de la qualité et temps accorder aux participants. Franchement ça me fait un bout de temps sur les formations en ligne, la votre a été du jamais vu de ma part. Encore merci !",
-        linkedin_url: '#',
-        participant_photo: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Zahara',
-        type: 'text',
-      },
-      {
-        id: '4',
-        participant_name: 'Harris Djounga',
-        position: 'Professionnel',
-        company: 'Accra',
-        testimonial: "Merci pour tout, formateur excellent, technique de formation de bonne qualité, contenu riche et varié. De toute les formations en ligne que j'ai déjà faite, la votre est de loin la meilleur et sans comparaison.",
-        linkedin_url: '#',
-        participant_photo: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Harris',
-        type: 'text',
-      },
-      {
-        id: '5',
-        participant_name: 'Abdoulaye Wolomo',
-        position: 'Professionnel',
-        company: 'Bamako, Mali',
-        testimonial: "Bonjour tout je remercie le formateur et Son équipe pour la qualité de la formation reçu. Toutes mes attentes ont été satisfait à 100%. Je recommande fortement la formation.",
-        linkedin_url: '#',
-        participant_photo: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Abdoulaye',
-        type: 'text',
-      },
-      {
-        id: '6',
-        participant_name: 'Yacouba Bengaly',
-        position: 'Professionnel',
-        company: 'Bamako, Mali',
-        testimonial: "Excellente formation avec un formateur très actif et soucieux du détail. Merci a vous et bonne continuation.",
-        linkedin_url: '#',
-        participant_photo: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Yacouba',
-        type: 'text',
-      }
-    ]);
-  }, []);
-
-  const videoTestimonials = testimonials.filter(t => t.type === 'video');
-  const textTestimonials = testimonials.filter(t => t.type === 'text');
-
-  // Single marquee row
-  const row1 = textTestimonials;
-
-  const visibleVideos = videoTestimonials.filter(t => t.id !== 'v2' && t.id !== 'v3');
+  const textTestimonials = [
+    { id: '1', participant_name: 'Boling Faraba Dembele', company: 'Mali', testimonial: "Vraiment j'ai été transformé par ce Cabinet Smart Otobos Consulting, la pédagogie de M LEONCE (coach) et le niveau de la formation étaient au summum de nos attentes.", participant_photo: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Boling' },
+    { id: '2', participant_name: 'Abou Ouattara', company: 'Ouagadougou', testimonial: "Un grand merci au Cabinet Otobos Consulting et particulièrement à notre formateur, Léonce TOUNDE SODJINOU, pour la perfection avec laquelle la formation a été administrée.", participant_photo: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Abou' },
+    { id: '3', participant_name: 'Ib Zahara', company: 'Cote d\'ivoire', testimonial: "Bonjour Coach, nous avons été très satisfait de la qualité et temps accorder aux participants. Franchement ça me fait un bout de temps sur les formations en ligne, la votre a été du jamais vu.", participant_photo: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Zahara' },
+    { id: '4', participant_name: 'Harris Djounga', company: 'Accra', testimonial: "Merci pour tout, formateur excellent, technique de formation de bonne qualité, contenu riche et varié. De toute les formations en ligne que j'ai déjà faite, la votre est de loin la meilleur.", participant_photo: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Harris' },
+    { id: '5', participant_name: 'Abdoulaye Wolomo', company: 'Bamako, Mali', testimonial: "Bonjour tout je remercie le formateur et Son équipe pour la qualité de la formation reçu. Toutes mes attentes ont été satisfait à 100%. Je recommande fortement la formation.", participant_photo: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Abdoulaye' },
+  ];
 
   return (
-    <section className="py-20 md:py-32 bg-slate-950 text-white overflow-hidden relative border-y border-slate-800">
-      {/* Decorative glows */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[400px] bg-emerald-600/10 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-full max-w-xl h-[300px] bg-orange-500/10 blur-[100px] rounded-full pointer-events-none" />
-
+    <section className="py-20 bg-slate-950 text-white overflow-hidden relative border-y border-white/5">
       <div className="container px-4 mx-auto relative z-10">
-        <div className="text-center mb-16 md:mb-20">
-          <span className="text-emerald-400 font-bold tracking-wider uppercase text-sm mb-3 block">Témoignages</span>
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-black mb-6 tracking-tight">Ils ont transformé <br className="hidden md:block" /> leur quotidien</h2>
-          <p className="text-lg md:text-xl text-slate-400 font-medium max-w-2xl mx-auto">
-            Plus de 500 professionnels à travers l'Afrique ont déjà fait confiance à ce bootcamp. Voici ce qu'ils en disent.
-          </p>
+        <div className="flex items-center justify-center gap-8 mb-12 opacity-30">
+          <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent to-white" />
+          <span className="text-[10px] font-black uppercase tracking-[0.5em] whitespace-nowrap">Ils sont passés par là</span>
+          <div className="h-[1px] flex-1 bg-gradient-to-l from-transparent to-white" />
         </div>
 
-        {/* --- VIDEO CAROUSEL --- */}
-        <div className="relative mb-24 max-w-6xl mx-auto">
-          <div className="flex gap-4 md:gap-6 overflow-x-auto pb-8 scrollbar-hide snap-x px-4 -mx-4 md:mx-0 md:px-0 justify-start md:justify-center items-center">
-            {visibleVideos.map((t) => (
-              <div key={t.id} className="snap-center shrink-0">
-                <VideoTestimonialCard testimonial={t} />
-              </div>
-            ))}
-          </div>
-
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-4">
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button variant="outline" className="border-emerald-600/30 text-emerald-500 hover:bg-emerald-600/10 hover:text-emerald-400 font-bold rounded-full px-8">
-                  Voir plus
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="max-w-5xl bg-slate-950 border-slate-800 text-white p-6 max-h-[85vh] overflow-y-auto w-full rounded-3xl">
-                <DialogHeader className="mb-8">
-                  <DialogTitle className="text-2xl md:text-3xl font-black text-center text-white">
-                    Tous les témoignages vidéo
-                  </DialogTitle>
-                </DialogHeader>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 place-items-center">
-                  {videoTestimonials.map((t) => (
-                    <VideoTestimonialCard key={t.id} testimonial={t} />
-                  ))}
-                </div>
-              </DialogContent>
-            </Dialog>
-            
-            <Link href="/inscription">
-              <Button className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-full px-8 shadow-lg shadow-emerald-600/20">
-                S'inscrire
-              </Button>
-            </Link>
-          </div>
-        </div>
-
-        {/* --- WRITTEN MARQUEE ROW --- */}
-        <div className="relative mb-20 overflow-hidden">
-          <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-slate-950 to-transparent z-10 pointer-events-none" />
-          <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-slate-950 to-transparent z-10 pointer-events-none" />
-
+        <div className="relative mb-12 overflow-hidden py-4">
           <motion.div
-            className="flex gap-6 whitespace-nowrap"
-            animate={{ x: [0, -2000] }}
+            className="flex gap-8 whitespace-nowrap"
+            animate={{ x: [0, -1500] }}
             transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
             whileHover={{ animationPlayState: 'paused' }}
           >
-            {[...row1, ...row1, ...row1].map((t, idx) => (
-              <div key={`r1-${t.id}-${idx}`} className="w-[300px] md:w-[400px] p-6 md:p-8 rounded-[2rem] bg-white/[0.03] border border-white/10 hover:bg-white/[0.05] transition-colors shrink-0 backdrop-blur-sm">
-                <div className="flex gap-1 mb-4 text-orange-400">
-                  {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
+            {[...textTestimonials, ...textTestimonials].map((t, idx) => (
+              <div key={`${t.id}-${idx}`} className="w-[300px] md:w-[450px] p-8 md:p-10 rounded-[2.5rem] bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] transition-all shrink-0 whitespace-normal">
+                <div className="flex gap-1 mb-6 text-orange-400">
+                  {[...Array(5)].map((_, i) => <Star key={i} className="w-3 h-3 fill-current" />)}
                 </div>
-                <p className="text-sm md:text-base leading-relaxed text-slate-300 mb-6 whitespace-normal line-clamp-4">"{t.testimonial}"</p>
+                <p className="text-sm md:text-lg leading-relaxed text-slate-300 font-medium mb-8 italic">"{t.testimonial}"</p>
                 <div className="flex items-center gap-4">
-                  <img src={t.participant_photo} alt={t.participant_name} className="w-12 h-12 rounded-full object-cover bg-slate-800" />
+                  <div className="w-12 h-12 rounded-full border-2 border-emerald-500/20 p-0.5 bg-slate-800">
+                    <img src={t.participant_photo} alt="" className="w-full h-full rounded-full" />
+                  </div>
                   <div>
-                    <h4 className="font-bold text-white text-sm">{t.participant_name}</h4>
-                    <p className="text-slate-500 text-[11px] font-bold uppercase tracking-wider">{t.position}</p>
+                    <h4 className="font-bold text-white text-xs md:text-sm">{t.participant_name}</h4>
+                    <p className="text-[10px] text-slate-500 uppercase font-black tracking-widest">{t.company}</p>
                   </div>
                 </div>
               </div>
             ))}
           </motion.div>
         </div>
-
-        <div className="text-center">
-          <Link href="/inscription">
-            <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white px-10 py-7 text-lg md:text-xl font-black rounded-2xl shadow-[0_0_40px_rgba(16,185,129,0.3)] transition-all hover:scale-105 hover:shadow-[0_0_60px_rgba(16,185,129,0.5)]">
-              Rejoindre l'élite maintenant
-            </Button>
-          </Link>
-          <p className="mt-5 text-xs font-bold text-slate-500 uppercase tracking-widest flex items-center justify-center gap-2">
-            <ShieldCheck className="w-4 h-4 text-emerald-500" /> Satisfaction garantie ou remboursé
-          </p>
-        </div>
       </div>
     </section>
   );
 };
 
-
 export const RealActions = () => {
+  const videoTestimonials = [
+    { id: 'v1', participant_name: 'N\'GUESSAN KOFFI', company: 'Burkina Faso', video_url: 'https://i.imgur.com/vhgB6bF.mp4' },
+    { id: 'v4', participant_name: 'NIANG Coumba', company: 'Senegal', video_url: 'https://i.imgur.com/Qol4jUS.mp4' },
+    { id: 'v5', participant_name: 'Comlan Herman', company: 'Benin', video_url: 'https://i.imgur.com/95TsFVD.mp4' },
+    { id: 'v2', participant_name: 'KOUADIO Dominique KONIN', company: 'Côte d\'Ivoire', video_url: 'https://i.imgur.com/2je7YyL.mp4' },
+  ];
+
   const actions = [
-    { title: "Nettoyer vos données", desc: "Dites adieu au copier-coller. Utilisez Power Query pour traiter des milliers de lignes en un clic." },
-    { title: "Automatiser vos tâches", desc: "Créez des macros intelligentes qui font le travail à votre place." },
-    { title: "Créer des Dashboards", desc: "Concevez des tableaux de bord dynamiques qui impressionnent votre direction." },
-    { title: "Valider votre Certification", desc: "Passez l'examen officiel Microsoft Excel Expert le dernier jour." }
+    { title: "Nettoyer vos données", desc: "Dites adieu au copier-coller. Utilisez Power Query pour traiter des milliers de lignes en un clic.", icon: <Zap className="w-6 h-6" /> },
+    { title: "Automatiser vos tâches", desc: "Créez des macros intelligentes qui font le travail à votre place.", icon: <Laptop className="w-6 h-6" /> },
+    { title: "Créer des Dashboards", desc: "Concevez des tableaux de bord dynamiques qui impressionnent votre direction.", icon: <TrendingUp className="w-6 h-6" /> },
+    { title: "Valider votre Certification", desc: "Passez l'examen officiel Microsoft Excel Expert le dernier jour.", icon: <Award className="w-6 h-6" /> }
   ];
 
   return (
-    <section className="py-12 md:py-24 bg-slate-50 dark:bg-slate-900/50">
-      <div className="container px-4 mx-auto max-w-4xl">
-        <h2 className="text-xl md:text-4xl font-black mb-8 md:mb-16 text-center leading-tight">Ce que vous allez <br className="md:hidden" /><span className="text-emerald-600">réellement faire</span></h2>
-        <div className="space-y-4 md:space-y-6">
-          {actions.map((a, i) => (
-            <div key={i} className="flex gap-4 md:gap-6 p-5 md:p-6 rounded-2xl md:rounded-3xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-sm">
-              <CheckCircle2 className="w-6 h-6 md:w-8 md:h-8 text-emerald-600 shrink-0" />
-              <div>
-                <h3 className="text-lg md:text-xl font-bold mb-1 md:mb-2">{a.title}</h3>
-                <p className="text-sm md:text-base text-slate-600 dark:text-slate-400 leading-relaxed">{a.desc}</p>
+    <section className="py-24 md:py-48 bg-white dark:bg-slate-950 relative overflow-hidden">
+      <div className="container px-4 mx-auto max-w-7xl relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+
+          {/* Left: Actions */}
+          <div className="space-y-16">
+            <div>
+              <div className="w-20 h-1 bg-emerald-600 mb-8" />
+              <h2 className="text-5xl md:text-8xl font-black mb-8 leading-[0.85] tracking-tighter text-slate-900 dark:text-white">
+                Faire. <br />
+                Prouver. <br />
+                <span className="text-emerald-600">Réussir.</span>
+              </h2>
+              <p className="text-xl text-slate-500 dark:text-slate-400 font-medium max-w-lg">
+                Notre méthode repose sur la pratique intensive. Vous ne regardez pas quelqu'un faire, vous agissez.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 gap-12">
+              {actions.map((a, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  className="flex gap-8 group"
+                >
+                  <div className="text-emerald-600 group-hover:scale-125 transition-transform duration-500">
+                    {a.icon}
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-black mb-2 tracking-tight">{a.title}</h3>
+                    <p className="text-slate-500 dark:text-slate-400 font-medium leading-relaxed">{a.desc}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right: Focused Video Showcase (4 Videos) */}
+          <div className="relative">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] aspect-square bg-emerald-600/5 blur-[150px] rounded-full pointer-events-none" />
+
+            <div className="grid grid-cols-2 gap-4 md:gap-6 items-start">
+              <div className="space-y-4 md:space-y-6 pt-12">
+                <VideoTestimonialCard testimonial={videoTestimonials[0]} active={true} />
+                <VideoTestimonialCard testimonial={videoTestimonials[2]} />
+              </div>
+              <div className="space-y-4 md:space-y-6">
+                <VideoTestimonialCard testimonial={videoTestimonials[1]} />
+                <VideoTestimonialCard testimonial={videoTestimonials[3]} />
               </div>
             </div>
-          ))}
+          </div>
+
         </div>
       </div>
     </section>
   );
 };
+
+
+
+
+
 
 export const OrganizationSection = () => {
   return (

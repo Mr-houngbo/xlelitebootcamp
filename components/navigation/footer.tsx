@@ -3,105 +3,111 @@ import { Facebook, Youtube, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
 
 export function Footer() {
   return (
-    <footer className="bg-white text-gray-800 border-t border-gray-200 relative overflow-hidden">
-      {/* Decorative gradient */}
-      <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-brand-green/30 to-transparent"></div>
-      
-      <div className="container mx-auto px-4 py-12 md:py-16 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+    <footer className="bg-slate-950 text-white relative overflow-hidden border-t border-white/5">
+      {/* Decorative ambient lights */}
+      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-emerald-600/10 blur-[150px] rounded-full -translate-y-1/2 pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-orange-500/5 blur-[120px] rounded-full translate-y-1/2 pointer-events-none" />
+
+      <div className="container mx-auto px-4 py-10 md:py-12 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+          
           {/* Logo et description */}
-          <div className="space-y-6 flex flex-col items-center md:items-start text-center md:text-left">
-            <Link href="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-slate-50 border border-gray-200 rounded-lg flex items-center justify-center">
-                <span className="text-gray-900 font-black text-lg">XL</span>
+          <div className="space-y-4 flex flex-col items-center md:items-start text-center md:text-left">
+            <Link href="/" className="group flex items-center gap-3">
+              <div className="w-10 h-10 bg-emerald-600 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-600/20 group-hover:scale-110 transition-transform duration-500">
+                <span className="text-white font-black text-lg">XL</span>
               </div>
-              <span className="font-bold text-xl text-gray-900">
-                Elite<span className="text-brand-green">Bootcamp</span>
+              <span className="font-black text-xl tracking-tighter">
+                Elite<span className="text-emerald-500">Bootcamp</span>
               </span>
             </Link>
-            <p className="text-gray-500 text-sm leading-relaxed max-w-xs">
-              L'excellence Excel en 4 jours. La seule formation certifiante Microsoft Excel Expert qui propulse votre carrière.
+            <p className="text-slate-400 text-xs leading-relaxed max-w-xs font-medium">
+              L'excellence Excel en 4 jours. Propulsez votre carrière vers l'élite.
             </p>
           </div>
 
-          {/* Contacts Globaux */}
-          <div className="space-y-6 flex flex-col items-center md:items-start text-center md:text-left">
-            <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider">Contactez-nous</h3>
-            <div className="space-y-4 flex flex-col items-center md:items-start">
-               <a href="mailto:smart.otobos@gmail.com" className="flex items-center gap-3 text-sm text-gray-600 hover:text-brand-orange transition-colors">
-                  <div className="w-8 h-8 rounded-full bg-orange-50 flex items-center justify-center flex-shrink-0">
-                    <Mail size={16} className="text-brand-orange" />
+          {/* Contact Rapide */}
+          <div className="space-y-4 flex flex-col items-center md:items-start text-center md:text-left">
+            <h3 className="text-[9px] font-black text-emerald-500 uppercase tracking-[0.3em]">Contact</h3>
+            <div className="space-y-3 w-full">
+               <a href="mailto:smart.otobos@gmail.com" className="group flex items-center gap-3 text-xs text-slate-300 hover:text-white transition-all">
+                  <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 group-hover:bg-emerald-500/10 transition-all">
+                    <Mail size={14} className="text-emerald-500" />
                   </div>
-                  <span>smart.otobos@gmail.com</span>
+                  <span className="font-semibold">smart.otobos@gmail.com</span>
                </a>
-               <a href="tel:+2250799133365" className="flex items-center gap-3 text-sm text-gray-600 hover:text-brand-green transition-colors">
-                  <div className="w-8 h-8 rounded-full bg-green-50 flex items-center justify-center flex-shrink-0">
-                    <Phone size={16} className="text-brand-green" />
+               <a href="tel:+2250799133365" className="group flex items-center gap-3 text-xs text-slate-300 hover:text-white transition-all">
+                  <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 group-hover:bg-emerald-500/10 transition-all">
+                    <Phone size={14} className="text-emerald-500" />
                   </div>
-                  <span>+225 07 99 13 33 65</span>
+                  <span className="font-semibold">+225 07 99 13 33 65</span>
                </a>
             </div>
           </div>
 
-          {/* Nos Bureaux */}
-          <div className="space-y-6 flex flex-col items-center md:items-start text-center md:text-left">
-            <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider">Nos Bureaux</h3>
-            <ul className="space-y-4 flex flex-col items-center md:items-start">
-              <li className="flex flex-col space-y-1">
-                <span className="text-xs font-semibold text-gray-400 uppercase tracking-widest">Côte d'ivoire</span>
-                <a href="tel:+2250799133365" className="text-sm text-gray-700 hover:text-brand-green font-medium">+225 07 99 13 33 65</a>
-              </li>
-              <li className="flex flex-col space-y-1">
-                <span className="text-xs font-semibold text-gray-400 uppercase tracking-widest">Bénin</span>
-                <a href="tel:+22961574094" className="text-sm text-gray-700 hover:text-brand-green font-medium">+229 61 57 40 94</a>
-              </li>
-              <li className="flex flex-col space-y-1">
-                <span className="text-xs font-semibold text-gray-400 uppercase tracking-widest">Sénégal</span>
-                <a href="tel:+221774329345" className="text-sm text-gray-700 hover:text-brand-green font-medium">+221 77 432 93 45</a>
-              </li>
-            </ul>
+          {/* Présence Régionale */}
+          <div className="space-y-4 flex flex-col items-center md:items-start text-center md:text-left">
+            <h3 className="text-[9px] font-black text-emerald-500 uppercase tracking-[0.3em]">Bureaux</h3>
+            <div className="flex flex-wrap gap-x-6 gap-y-3 justify-center md:justify-start">
+              {[
+                { country: "RCI", tel: "+225 07 99 13 33 65", href: "tel:+2250799133365" },
+                { country: "Bénin", tel: "+229 61 57 40 94", href: "tel:+22961574094" },
+                { country: "Sénégal", tel: "+221 77 432 93 45", href: "tel:+221774329345" },
+              ].map((office) => (
+                <div key={office.country} className="flex flex-col group cursor-pointer">
+                  <span className="text-[8px] font-black text-slate-500 uppercase tracking-widest group-hover:text-emerald-500 transition-colors">{office.country}</span>
+                  <a href={office.href} className="text-xs text-slate-300 hover:text-white font-bold transition-colors">{office.tel}</a>
+                </div>
+              ))}
+            </div>
           </div>
 
-          {/* Réseaux Sociaux */}
-          <div className="space-y-6 flex flex-col items-center md:items-start text-center md:text-left">
-            <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider">Suivez-nous</h3>
-            <div className="flex space-x-4">
-                <a href="https://www.linkedin.com/company/cabinet-smart-otobos-consulting/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-gray-500 hover:text-blue-600 hover:bg-blue-50 hover:border-blue-100 border border-gray-100 transition-all">
-                  <Linkedin size={18} />
-                </a>
-                <a href="https://www.youtube.com/@smartotobosconsulting" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-gray-500 hover:text-red-600 hover:bg-red-50 hover:border-red-100 border border-gray-100 transition-all">
-                  <Youtube size={18} />
-                </a>
-                <a href="https://www.facebook.com/cabinetsoc" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-gray-500 hover:text-blue-500 hover:bg-blue-50 hover:border-blue-100 border border-gray-100 transition-all">
-                  <Facebook size={18} />
-                </a>
+          {/* Social Connect */}
+          <div className="space-y-4 flex flex-col items-center md:items-start text-center md:text-left">
+            <h3 className="text-[9px] font-black text-emerald-500 uppercase tracking-[0.3em]">Suivez-nous</h3>
+            <div className="flex gap-3">
+                {[
+                  { icon: <Linkedin size={16} />, href: "https://www.linkedin.com/company/cabinet-smart-otobos-consulting/", color: "hover:text-blue-400" },
+                  { icon: <Youtube size={16} />, href: "https://www.youtube.com/@smartotobosconsulting", color: "hover:text-red-500" },
+                  { icon: <Facebook size={16} />, href: "https://www.facebook.com/cabinetsoc", color: "hover:text-blue-500" }
+                ].map((social, i) => (
+                  <a 
+                    key={i}
+                    href={social.href} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className={`w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 ${social.color} hover:bg-white/10 transition-all shadow-lg`}
+                  >
+                    {social.icon}
+                  </a>
+                ))}
             </div>
           </div>
         </div>
 
-        {/* Bottom section */}
-        <div className="border-t border-gray-200 mt-12 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="flex flex-col items-center md:items-start space-y-2">
-              <p className="text-gray-400 text-xs font-bold uppercase tracking-widest">
-                © {new Date().getFullYear()} XL Elite Bootcamp
+        {/* Legal & Credits */}
+        <div className="mt-12 pt-6 border-t border-white/5">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+            <div className="flex flex-col items-center md:items-start gap-2">
+              <p className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em]">
+                © {new Date().getFullYear()} <span className="text-slate-300">XL Elite Bootcamp</span>
               </p>
-              <p className="text-gray-400 text-[10px] font-medium tracking-wide">
-                Made by <span className="text-gray-600 font-bold">enverse</span>
+              <p className="text-[9px] font-bold text-slate-600 tracking-widest">
+                DESIGNED BY <span className="text-emerald-600">ENVERSE</span>
               </p>
             </div>
             
-            <div className="flex flex-wrap justify-center gap-6">
+            <div className="flex gap-10">
               {[
                 { name: 'Légal', href: '/mentions-legales' },
                 { name: 'Privacy', href: '/politique-confidentialite' },
                 { name: 'CGV', href: '/conditions-generales-de-vente' },
               ].map((link) => (
-                <Link key={link.name} href={link.href} className="text-gray-500 hover:text-gray-900 text-xs font-bold uppercase tracking-wider transition-colors">
+                <Link key={link.name} href={link.href} className="text-[10px] font-black text-slate-500 hover:text-emerald-500 uppercase tracking-[0.2em] transition-colors">
                   {link.name}
                 </Link>
               ))}
-              <Link href="/admin/login" className="text-transparent selection:text-transparent text-[6px]">ad</Link>
+              <Link href="/admin/login" className="text-transparent selection:text-transparent text-[6px] absolute">ad</Link>
             </div>
           </div>
         </div>

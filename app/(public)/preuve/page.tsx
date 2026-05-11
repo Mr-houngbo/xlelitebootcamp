@@ -19,8 +19,8 @@ export const metadata: Metadata = {
 export default function ProofPage() {
   return (
     <main className="min-h-screen">
-      <ConcreteTestimonials />
       <RealActions />
+      <ConcreteTestimonials />
       <OrganizationSection />
       <InclusionsSection />
       <FinancialOffer />
