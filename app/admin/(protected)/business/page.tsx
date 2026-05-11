@@ -185,23 +185,23 @@ export default function BusinessPage() {
   );
 
   return (
-    <div className="space-y-6 pb-12 text-stone-900">
+    <div className="space-y-6 pb-12 text-stone-900 dark:text-stone-100">
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
           <h1 className="text-3xl font-extrabold tracking-tight mb-1">Business Operations <span className="text-orange-500">.</span></h1>
-          <p className="text-stone-500 text-sm font-medium">Optimisation des capacités et revenus.</p>
+          <p className="text-stone-500 dark:text-stone-400 text-sm font-medium">Optimisation des capacités et revenus.</p>
         </div>
         
         <DropdownMenu>
            <DropdownMenuTrigger asChild>
-             <Button variant="outline" className="rounded-xl border-stone-200 bg-white hover:bg-orange-500 hover:text-white transition-all gap-2 px-5 shadow-sm">
+             <Button variant="outline" className="rounded-xl border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 hover:bg-orange-500 dark:hover:bg-orange-600 hover:text-white transition-all gap-2 px-5 shadow-sm text-stone-900 dark:text-stone-100">
                <Download className="w-4 h-4" /> Export Global
              </Button>
            </DropdownMenuTrigger>
-           <DropdownMenuContent className="bg-white border-stone-100 shadow-xl rounded-xl">
-             <DropdownMenuItem onClick={() => handleExport('csv')} className="hover:bg-stone-50 cursor-pointer font-bold text-stone-700">Export CSV</DropdownMenuItem>
-             <DropdownMenuItem onClick={() => handleExport('pdf')} className="hover:bg-stone-50 cursor-pointer font-bold text-stone-700">Export PDF (Rapport)</DropdownMenuItem>
+           <DropdownMenuContent className="bg-white dark:bg-stone-900 border-stone-100 dark:border-stone-800 shadow-xl rounded-xl">
+             <DropdownMenuItem onClick={() => handleExport('csv')} className="hover:bg-stone-50 dark:hover:bg-stone-800 cursor-pointer font-bold text-stone-700 dark:text-stone-300">Export CSV</DropdownMenuItem>
+             <DropdownMenuItem onClick={() => handleExport('pdf')} className="hover:bg-stone-50 dark:hover:bg-stone-800 cursor-pointer font-bold text-stone-700 dark:text-stone-300">Export PDF (Rapport)</DropdownMenuItem>
            </DropdownMenuContent>
         </DropdownMenu>
       </div>
@@ -209,19 +209,19 @@ export default function BusinessPage() {
       {/* Global Stats Row */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {[
-          { title: 'Total Places', value: groups.reduce((s, g) => s + g.max_capacity, 0), icon: <Target className="w-4 h-4 text-orange-600" /> },
-          { title: 'Places Remplies', value: groups.reduce((s, g) => s + g.current_capacity, 0), icon: <Users className="w-4 h-4 text-orange-600" /> },
-          { title: 'Taux Moyen', value: `${groups.length > 0 ? (groups.reduce((s, g) => s + (g.current_capacity/g.max_capacity*100), 0) / groups.length).toFixed(1) : 0}%`, icon: <TrendingUp className="w-4 h-4 text-orange-600" /> },
+          { title: 'Total Places', value: groups.reduce((s, g) => s + g.max_capacity, 0), icon: <Target className="w-4 h-4 text-orange-600 dark:text-orange-500" /> },
+          { title: 'Places Remplies', value: groups.reduce((s, g) => s + g.current_capacity, 0), icon: <Users className="w-4 h-4 text-orange-600 dark:text-orange-500" /> },
+          { title: 'Taux Moyen', value: `${groups.length > 0 ? (groups.reduce((s, g) => s + (g.current_capacity/g.max_capacity*100), 0) / groups.length).toFixed(1) : 0}%`, icon: <TrendingUp className="w-4 h-4 text-orange-600 dark:text-orange-500" /> },
         ].map((stat, i) => (
-          <div key={i} className="p-5 rounded-2xl bg-white border border-stone-100 shadow-sm relative overflow-hidden group">
-             <div className="absolute top-0 right-0 w-20 h-20 bg-orange-50 blur-2xl -mr-6 -mt-6" />
+          <div key={i} className="p-5 rounded-2xl bg-white dark:bg-stone-900 border border-stone-100 dark:border-stone-800 shadow-sm relative overflow-hidden group">
+             <div className="absolute top-0 right-0 w-20 h-20 bg-orange-50 dark:bg-orange-500/5 blur-2xl -mr-6 -mt-6" />
              <div className="flex items-center gap-3 mb-3">
-                <div className="w-8 h-8 rounded-lg bg-orange-50 border border-orange-100 flex items-center justify-center">
+                <div className="w-8 h-8 rounded-lg bg-orange-50 dark:bg-orange-500/10 border border-orange-100 dark:border-orange-500/20 flex items-center justify-center">
                   {stat.icon}
                 </div>
-                <span className="text-[9px] font-black uppercase tracking-widest text-stone-500">{stat.title}</span>
+                <span className="text-[9px] font-black uppercase tracking-widest text-stone-500 dark:text-stone-400">{stat.title}</span>
              </div>
-             <p className="text-3xl font-black text-stone-900">{stat.value}</p>
+             <p className="text-3xl font-black text-stone-900 dark:text-stone-100">{stat.value}</p>
           </div>
         ))}
       </div>
@@ -236,14 +236,14 @@ export default function BusinessPage() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
-              className="p-6 rounded-3xl bg-white border border-stone-100 hover:border-orange-200 transition-all relative group shadow-sm"
+              className="p-6 rounded-3xl bg-white dark:bg-stone-900 border border-stone-100 dark:border-stone-800 hover:border-orange-200 dark:hover:border-orange-500/30 transition-all relative group shadow-sm"
             >
               <div className="flex justify-between items-start mb-6">
                 <div>
-                   <h3 className="text-xl font-black tracking-tight text-stone-900 mb-1">{group.name}</h3>
-                   <p className="text-[9px] font-black text-orange-600 uppercase tracking-widest">{group.time_slot}</p>
+                   <h3 className="text-xl font-black tracking-tight text-stone-900 dark:text-stone-100 mb-1">{group.name}</h3>
+                   <p className="text-[9px] font-black text-orange-600 dark:text-orange-500 uppercase tracking-widest">{group.time_slot}</p>
                 </div>
-                <Button onClick={() => generatePresenceSheet(group.id)} variant="ghost" className="rounded-lg bg-stone-50 hover:bg-stone-100 text-stone-600 text-[9px] font-black uppercase tracking-widest gap-2 h-8">
+                <Button onClick={() => generatePresenceSheet(group.id)} variant="ghost" className="rounded-lg bg-stone-50 dark:bg-stone-800 hover:bg-stone-100 dark:hover:bg-stone-700 text-stone-600 dark:text-stone-300 text-[9px] font-black uppercase tracking-widest gap-2 h-8">
                    <FileText className="w-3 h-3 text-orange-500" /> Feuille
                 </Button>
               </div>
@@ -277,10 +277,10 @@ export default function BusinessPage() {
 
               <div className="space-y-2">
                  <div className="flex justify-between items-end">
-                    <span className="text-[9px] font-black text-stone-500 uppercase tracking-widest">Saturation ({group.current_capacity} occupés)</span>
-                    <span className="text-xs font-black text-orange-600">{fillRate.toFixed(1)}%</span>
+                    <span className="text-[9px] font-black text-stone-500 dark:text-stone-400 uppercase tracking-widest">Saturation ({group.current_capacity} occupés)</span>
+                    <span className="text-xs font-black text-orange-600 dark:text-orange-500">{fillRate.toFixed(1)}%</span>
                  </div>
-                 <div className="h-1.5 w-full bg-stone-100 rounded-full overflow-hidden">
+                 <div className="h-1.5 w-full bg-stone-100 dark:bg-stone-800 rounded-full overflow-hidden">
                     <div 
                       className="h-full bg-orange-500 rounded-full transition-all duration-1000" 
                       style={{ width: `${fillRate}%` }} 

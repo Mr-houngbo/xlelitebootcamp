@@ -191,9 +191,9 @@ export default function CallsPage() {
   };
 
   const getPayStatus = (reg?: Registration) => {
-    if (!reg) return { label: 'Non inscrit', color: 'text-slate-400', bg: 'bg-slate-50 border-slate-200', paid: false };
-    if (reg.payment_status === 'paid') return { label: 'Payé ✓', color: 'text-emerald-600', bg: 'bg-emerald-50 border-emerald-200', paid: true };
-    return { label: 'Non payé', color: 'text-orange-600', bg: 'bg-orange-50 border-orange-200', paid: false };
+    if (!reg) return { label: 'Non inscrit', color: 'text-stone-400 dark:text-stone-500', bg: 'bg-stone-50 dark:bg-stone-900 border-stone-200 dark:border-stone-800', paid: false };
+    if (reg.payment_status === 'paid') return { label: 'Payé ✓', color: 'text-emerald-600 dark:text-emerald-500', bg: 'bg-emerald-50 dark:bg-emerald-500/10 border-emerald-200 dark:border-emerald-500/20', paid: true };
+    return { label: 'Non payé', color: 'text-orange-600 dark:text-orange-500', bg: 'bg-orange-50 dark:bg-orange-500/10 border-orange-200 dark:border-orange-500/20', paid: false };
   };
 
   const filtered = participants.filter(p => {
@@ -212,27 +212,27 @@ export default function CallsPage() {
   const pending = total - paid;
 
   return (
-    <div className="space-y-10 pb-20">
+    <div className="space-y-10 pb-20 text-stone-900 dark:text-stone-100">
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div>
           <h1 className="text-4xl font-black tracking-tighter mb-2">
             Call Center <span className="text-orange-500">.</span>
           </h1>
-          <p className="text-slate-500 font-medium italic">
+          <p className="text-stone-500 dark:text-stone-400 font-medium italic">
             Contactez et convertissez chaque prospect en client confirmé.
           </p>
         </div>
         <div className="flex items-center gap-3">
-          <div className="flex items-center gap-3 px-5 py-3 rounded-2xl bg-orange-50 border border-orange-100 shadow-sm">
+          <div className="flex items-center gap-3 px-5 py-3 rounded-2xl bg-orange-50 dark:bg-orange-500/10 border border-orange-100 dark:border-orange-500/20 shadow-sm">
             <PhoneCall className="w-4 h-4 text-orange-500" />
-            <span className="text-sm font-black text-orange-600">{pending} appels restants</span>
+            <span className="text-sm font-black text-orange-600 dark:text-orange-500">{pending} appels restants</span>
           </div>
           <button
             onClick={fetchAll}
-            className="w-11 h-11 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-center justify-center hover:bg-slate-50 transition-all"
+            className="w-11 h-11 rounded-2xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 shadow-sm flex items-center justify-center hover:bg-stone-50 dark:hover:bg-stone-800 transition-all"
           >
-            <RefreshCw className="w-4 h-4 text-slate-500" />
+            <RefreshCw className="w-4 h-4 text-stone-500 dark:text-stone-400" />
           </button>
         </div>
       </div>
@@ -248,14 +248,14 @@ export default function CallsPage() {
       {/* KPI Row */}
       <div className="grid grid-cols-3 gap-4">
         {[
-          { label: 'Total inscrits', value: total, icon: <Phone className="w-4 h-4" />, color: 'text-slate-900', bg: 'bg-white border-slate-100 shadow-sm' },
-          { label: 'Payés', value: paid, icon: <CheckCircle className="w-4 h-4" />, color: 'text-emerald-600', bg: 'bg-emerald-50 border-emerald-100 shadow-sm' },
-          { label: 'Non payés', value: pending, icon: <Clock className="w-4 h-4" />, color: 'text-orange-600', bg: 'bg-orange-50 border-orange-100 shadow-sm' },
+          { label: 'Total inscrits', value: total, icon: <Phone className="w-4 h-4" />, color: 'text-stone-900 dark:text-stone-100', bg: 'bg-white dark:bg-stone-900 border-stone-100 dark:border-stone-800 shadow-sm' },
+          { label: 'Payés', value: paid, icon: <CheckCircle className="w-4 h-4" />, color: 'text-emerald-600 dark:text-emerald-500', bg: 'bg-emerald-50 dark:bg-emerald-500/10 border-emerald-100 dark:border-emerald-500/20 shadow-sm' },
+          { label: 'Non payés', value: pending, icon: <Clock className="w-4 h-4" />, color: 'text-orange-600 dark:text-orange-500', bg: 'bg-orange-50 dark:bg-orange-500/10 border-orange-100 dark:border-orange-500/20 shadow-sm' },
         ].map((stat, i) => (
           <div key={i} className={`p-5 rounded-3xl border flex items-center gap-4 ${stat.bg}`}>
             <div className={stat.color}>{stat.icon}</div>
             <div>
-              <p className="text-[10px] font-black uppercase tracking-widest text-slate-500">{stat.label}</p>
+              <p className="text-[10px] font-black uppercase tracking-widest text-stone-500 dark:text-stone-400">{stat.label}</p>
               <p className={`text-2xl font-black ${stat.color}`}>{stat.value}</p>
             </div>
           </div>
@@ -265,10 +265,10 @@ export default function CallsPage() {
       {/* Filters */}
       <div className="flex flex-col md:flex-row gap-4">
         <div className="flex-1 relative group">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 group-focus-within:text-orange-500 transition-colors" />
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-400 group-focus-within:text-orange-500 transition-colors" />
           <Input
             placeholder="Rechercher par nom, email, téléphone..."
-            className="pl-12 py-6 rounded-2xl bg-white border-slate-200 shadow-sm focus:border-orange-500 font-bold text-slate-900"
+            className="pl-12 py-6 rounded-2xl bg-white dark:bg-stone-900 border-stone-200 dark:border-stone-800 shadow-sm focus:border-orange-500 font-bold text-stone-900 dark:text-stone-100"
             value={search}
             onChange={e => setSearch(e.target.value)}
           />
@@ -285,7 +285,7 @@ export default function CallsPage() {
               className={`px-4 py-2 rounded-xl text-[11px] font-black uppercase tracking-widest transition-all border shadow-sm ${
                 filterPay === f.key
                   ? 'bg-orange-500 text-white border-orange-400 shadow-orange-500/20'
-                  : 'bg-white text-slate-500 border-slate-200 hover:bg-slate-50 hover:text-slate-900'
+                  : 'bg-white dark:bg-stone-900 text-stone-500 dark:text-stone-400 border-stone-200 dark:border-stone-800 hover:bg-stone-50 dark:hover:bg-stone-800 hover:text-stone-900 dark:hover:text-stone-100'
               }`}
             >
               {f.label}
@@ -321,7 +321,7 @@ export default function CallsPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.02 }}
                 className={`rounded-[2rem] border transition-all overflow-hidden ${
-                  isExpanded ? 'border-orange-200 bg-white shadow-[0_8px_30px_rgb(249,115,22,0.06)]' : 'border-slate-100 bg-white hover:bg-slate-50 hover:shadow-sm'
+                  isExpanded ? 'border-orange-200 dark:border-orange-500/30 bg-white dark:bg-stone-900 shadow-[0_8px_30px_rgb(249,115,22,0.06)]' : 'border-stone-100 dark:border-stone-800 bg-white dark:bg-stone-900 hover:bg-stone-50 dark:hover:bg-stone-800 hover:shadow-sm'
                 }`}
               >
                 {/* Card Header */}
@@ -332,13 +332,13 @@ export default function CallsPage() {
                   {/* Avatar + Identity */}
                   <div className="flex items-center gap-4">
                     <div className={`w-12 h-12 rounded-2xl flex items-center justify-center text-white font-black text-sm shrink-0 ${
-                      payStatus.paid ? 'bg-emerald-500' : 'bg-slate-300'
+                      payStatus.paid ? 'bg-emerald-500' : 'bg-stone-300 dark:bg-stone-700'
                     }`}>
                       {p.first_name[0]}{p.last_name[0]}
                     </div>
                     <div>
-                      <p className="font-bold text-slate-900 text-base">{p.first_name} {p.last_name}</p>
-                      <p className="text-[11px] text-slate-500">
+                      <p className="font-bold text-stone-900 dark:text-stone-100 text-base">{p.first_name} {p.last_name}</p>
+                      <p className="text-[11px] text-stone-500 dark:text-stone-400">
                         {p.phone || 'Tél. non renseigné'} · <span className="text-orange-500/70">{country}</span> · {format}
                       </p>
                     </div>
@@ -358,28 +358,28 @@ export default function CallsPage() {
                   <div className="flex items-center gap-2 shrink-0" onClick={e => e.stopPropagation()}>
                     {p.phone && (
                       <a href={`tel:${p.phone}`}
-                        className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center hover:bg-orange-500 hover:border-orange-500 transition-all group shadow-sm"
+                        className="w-10 h-10 rounded-xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 flex items-center justify-center hover:bg-orange-500 hover:border-orange-500 transition-all group shadow-sm"
                         title="Appel Direct">
-                        <Phone className="w-4 h-4 text-slate-400 group-hover:text-white" />
+                        <Phone className="w-4 h-4 text-stone-400 dark:text-stone-500 group-hover:text-white" />
                       </a>
                     )}
                     {p.phone && (
                       <a href={`https://wa.me/${p.phone.replace(/\D/g, '')}`}
                         target="_blank" rel="noopener noreferrer"
-                        className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center hover:bg-green-500 hover:border-green-500 transition-all group shadow-sm"
+                        className="w-10 h-10 rounded-xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 flex items-center justify-center hover:bg-green-500 hover:border-green-500 transition-all group shadow-sm"
                         title="WhatsApp">
-                        <MessageCircle className="w-4 h-4 text-slate-400 group-hover:text-white" />
+                        <MessageCircle className="w-4 h-4 text-stone-400 dark:text-stone-500 group-hover:text-white" />
                       </a>
                     )}
                     <a href={`mailto:${p.email}`}
-                      className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center hover:bg-blue-500 hover:border-blue-500 transition-all group shadow-sm"
+                      className="w-10 h-10 rounded-xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 flex items-center justify-center hover:bg-blue-500 hover:border-blue-500 transition-all group shadow-sm"
                       title="Email">
-                      <Mail className="w-4 h-4 text-slate-400 group-hover:text-white" />
+                      <Mail className="w-4 h-4 text-stone-400 dark:text-stone-500 group-hover:text-white" />
                     </a>
                     <div
-                      className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center cursor-pointer hover:bg-slate-50 transition-all shadow-sm"
+                      className="w-10 h-10 rounded-xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 flex items-center justify-center cursor-pointer hover:bg-stone-50 dark:hover:bg-stone-800 transition-all shadow-sm"
                       onClick={() => setExpandedId(isExpanded ? null : p.id)}>
-                      {isExpanded ? <ChevronUp className="w-4 h-4 text-slate-500" /> : <ChevronDown className="w-4 h-4 text-slate-500" />}
+                      {isExpanded ? <ChevronUp className="w-4 h-4 text-stone-500 dark:text-stone-400" /> : <ChevronDown className="w-4 h-4 text-stone-500 dark:text-stone-400" />}
                     </div>
                   </div>
                 </div>
@@ -394,7 +394,7 @@ export default function CallsPage() {
                       transition={{ duration: 0.2 }}
                       className="overflow-hidden"
                     >
-                      <div className="px-6 pb-8 border-t border-slate-100 pt-6 space-y-6">
+                      <div className="px-6 pb-8 border-t border-stone-100 dark:border-stone-800 pt-6 space-y-6">
                         {/* Contact info */}
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                           {[
@@ -403,32 +403,32 @@ export default function CallsPage() {
                             { label: 'Profil', value: p.profile_type || 'N/A' },
                             { label: 'Source', value: p.source },
                           ].map((item, idx) => (
-                            <div key={idx} className="p-4 rounded-2xl bg-slate-50 border border-slate-100">
-                              <p className="text-[10px] text-slate-400 uppercase tracking-widest font-black mb-1">{item.label}</p>
-                              <p className="font-bold text-slate-900 text-sm truncate">{item.value}</p>
+                            <div key={idx} className="p-4 rounded-2xl bg-stone-50 dark:bg-stone-950 border border-stone-100 dark:border-stone-800/50 transition-colors">
+                              <p className="text-[10px] text-stone-400 dark:text-stone-500 uppercase tracking-widest font-black mb-1">{item.label}</p>
+                              <p className="font-bold text-stone-900 dark:text-stone-100 text-sm truncate">{item.value}</p>
                             </div>
                           ))}
                         </div>
 
                         {/* Current payment state */}
                         {reg ? (
-                          <div className="p-5 rounded-2xl bg-slate-50 border border-slate-100 flex flex-wrap gap-6 items-center">
+                          <div className="p-5 rounded-2xl bg-stone-50 dark:bg-stone-950 border border-stone-100 dark:border-stone-800/50 flex flex-wrap gap-6 items-center transition-colors">
                             <div>
-                              <p className="text-[10px] text-slate-400 uppercase tracking-widest font-black mb-1">Inscription (25 000 F)</p>
-                              <div className={`flex items-center gap-2 text-sm font-bold ${reg.registration_fee_paid ? 'text-emerald-600' : 'text-slate-500'}`}>
+                              <p className="text-[10px] text-stone-400 dark:text-stone-500 uppercase tracking-widest font-black mb-1">Inscription (25 000 F)</p>
+                              <div className={`flex items-center gap-2 text-sm font-bold ${reg.registration_fee_paid ? 'text-emerald-600 dark:text-emerald-500' : 'text-stone-500'}`}>
                                 {reg.registration_fee_paid ? <CheckCircle className="w-4 h-4" /> : <XCircle className="w-4 h-4" />}
                                 {reg.registration_fee_paid ? 'Payé' : 'Non payé'}
                               </div>
                             </div>
                             <div>
-                              <p className="text-[10px] text-slate-400 uppercase tracking-widest font-black mb-1">Formation (125 000 F)</p>
-                              <div className={`flex items-center gap-2 text-sm font-bold ${reg.training_fee_paid ? 'text-emerald-600' : 'text-slate-500'}`}>
+                              <p className="text-[10px] text-stone-400 dark:text-stone-500 uppercase tracking-widest font-black mb-1">Formation (125 000 F)</p>
+                              <div className={`flex items-center gap-2 text-sm font-bold ${reg.training_fee_paid ? 'text-emerald-600 dark:text-emerald-500' : 'text-stone-500'}`}>
                                 {reg.training_fee_paid ? <CheckCircle className="w-4 h-4" /> : <XCircle className="w-4 h-4" />}
                                 {reg.training_fee_paid ? 'Payé' : 'Non payé'}
                               </div>
                             </div>
                             <div>
-                              <p className="text-[10px] text-slate-500 uppercase tracking-widest font-black mb-1">Statut global</p>
+                              <p className="text-[10px] text-stone-500 dark:text-stone-400 uppercase tracking-widest font-black mb-1">Statut global</p>
                               <Badge className={`text-[10px] font-black border ${payStatus.bg} ${payStatus.color}`}>{payStatus.label}</Badge>
                             </div>
                           </div>
@@ -442,18 +442,18 @@ export default function CallsPage() {
                         {reg && (
                           <div className="space-y-4">
                             {reg.payment_status === 'paid' ? (
-                               <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-100 text-emerald-600 text-sm font-bold flex justify-between items-center shadow-sm">
+                               <div className="p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-100 dark:border-emerald-500/20 text-emerald-600 dark:text-emerald-500 text-sm font-bold flex justify-between items-center shadow-sm">
                                   <div className="flex items-center gap-2">
                                      <CheckCircle className="w-5 h-5" />
                                      <span>Paiement validé et enregistré.</span>
                                   </div>
-                                  <button onClick={() => setCancelParticipant(p)} className="px-4 py-2 rounded-xl bg-white border border-red-100 text-red-500 text-xs hover:bg-red-50 hover:border-red-200 transition-colors shadow-sm">
+                                  <button onClick={() => setCancelParticipant(p)} className="px-4 py-2 rounded-xl bg-white dark:bg-stone-900 border border-red-100 dark:border-red-500/20 text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 hover:border-red-200 transition-colors shadow-sm text-xs">
                                      Annuler le paiement
                                   </button>
                                </div>
                             ) : (
                                <>
-                                 <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-500 flex items-center gap-2">
+                                 <p className="text-[10px] font-black uppercase tracking-[0.3em] text-stone-500 dark:text-stone-400 flex items-center gap-2">
                                    <DollarSign className="w-3 h-3 text-orange-500" /> Valider le paiement
                                  </p>
 
@@ -464,7 +464,7 @@ export default function CallsPage() {
                                      className={`py-4 px-4 rounded-2xl border text-[11px] font-black uppercase tracking-widest transition-all ${
                                        action === 'paid_full'
                                          ? 'bg-emerald-600 text-white border-emerald-500 shadow-lg shadow-emerald-600/20 scale-[1.02]'
-                                         : 'bg-white text-slate-500 border-slate-200 hover:border-emerald-200 hover:bg-emerald-50 hover:text-emerald-600 shadow-sm'
+                                         : 'bg-white dark:bg-stone-900 text-stone-500 dark:text-stone-400 border-stone-200 dark:border-stone-800 hover:border-emerald-200 dark:hover:border-emerald-500/30 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 hover:text-emerald-600 dark:hover:text-emerald-500 shadow-sm'
                                      }`}
                                    >
                                      ✅ A payé
@@ -474,7 +474,7 @@ export default function CallsPage() {
                                      className={`py-4 px-4 rounded-2xl border text-[11px] font-black uppercase tracking-widest transition-all ${
                                        action === 'pending'
                                          ? 'bg-red-600 text-white border-red-500 shadow-lg shadow-red-600/20 scale-[1.02]'
-                                         : 'bg-white text-slate-500 border-slate-200 hover:border-red-200 hover:bg-red-50 hover:text-red-600 shadow-sm'
+                                         : 'bg-white dark:bg-stone-900 text-stone-500 dark:text-stone-400 border-stone-200 dark:border-stone-800 hover:border-red-200 dark:hover:border-red-500/30 hover:bg-red-50 dark:hover:bg-red-500/10 hover:text-red-600 dark:hover:text-red-500 shadow-sm'
                                      }`}
                                    >
                                      ❌ N'a pas payé
@@ -487,7 +487,7 @@ export default function CallsPage() {
                                      <motion.div initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }}>
                                        <Input
                                          placeholder="Note optionnelle (ex: Mobile Money ref. #123, reçu le...)"
-                                         className="py-5 rounded-2xl bg-white border-slate-200 focus:border-orange-500/50 shadow-sm"
+                                         className="py-5 rounded-2xl bg-white dark:bg-stone-900 border-stone-200 dark:border-stone-800 focus:border-orange-500/50 shadow-sm text-stone-900 dark:text-stone-100"
                                          value={paymentNote[p.id] || ''}
                                          onChange={e => setPaymentNote(s => ({ ...s, [p.id]: e.target.value }))}
                                        />
@@ -538,7 +538,7 @@ export default function CallsPage() {
           })}
 
           {!loading && filtered.length === 0 && (
-            <div className="py-24 text-center text-slate-600 italic">
+            <div className="py-24 text-center text-stone-500 dark:text-stone-400 italic">
               {participants.length === 0
                 ? 'Aucun participant dans la base de données.'
                 : 'Aucun participant ne correspond à ces critères.'}
@@ -550,19 +550,19 @@ export default function CallsPage() {
       {/* Cancel Payment Modal */}
       <AnimatePresence>
         {cancelParticipant && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 backdrop-blur-sm px-4">
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-stone-900/60 dark:bg-black/80 backdrop-blur-sm px-4">
             <motion.div 
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              className="w-full max-w-md p-8 rounded-3xl bg-white border border-slate-100 shadow-2xl relative"
+              className="w-full max-w-md p-8 rounded-3xl bg-white dark:bg-stone-900 border border-stone-100 dark:border-stone-800 shadow-2xl relative"
             >
-              <div className="w-12 h-12 rounded-2xl bg-red-50 text-red-500 flex items-center justify-center mb-6">
+              <div className="w-12 h-12 rounded-2xl bg-red-50 dark:bg-red-500/10 text-red-500 flex items-center justify-center mb-6">
                 <AlertCircle className="w-6 h-6" />
               </div>
-              <h3 className="text-xl font-black text-slate-900 mb-2">Annuler le paiement ?</h3>
-              <p className="text-sm font-bold text-slate-500 mb-6 leading-relaxed">
-                Vous êtes sur le point de marquer <span className="text-slate-900 font-black">{cancelParticipant.first_name} {cancelParticipant.last_name}</span> comme "Non payé". 
+              <h3 className="text-xl font-black text-stone-900 dark:text-stone-100 mb-2">Annuler le paiement ?</h3>
+              <p className="text-sm font-bold text-stone-500 dark:text-stone-400 mb-6 leading-relaxed">
+                Vous êtes sur le point de marquer <span className="text-stone-900 dark:text-stone-200 font-black">{cancelParticipant.first_name} {cancelParticipant.last_name}</span> comme "Non payé". 
                 Veuillez taper son nom complet ci-dessous pour confirmer cette action irréversible.
               </p>
               
@@ -570,13 +570,13 @@ export default function CallsPage() {
                 placeholder={`Tapez "${cancelParticipant.first_name} ${cancelParticipant.last_name}"`}
                 value={cancelConfirmText}
                 onChange={e => setCancelConfirmText(e.target.value)}
-                className="mb-6 h-12 bg-slate-50 border-slate-200 focus:border-red-500 focus:ring-red-500/20 font-bold text-slate-900"
+                className="mb-6 h-12 bg-stone-50 dark:bg-stone-950 border-stone-200 dark:border-stone-800 focus:border-red-500 focus:ring-red-500/20 font-bold text-stone-900 dark:text-stone-100"
               />
 
               <div className="flex gap-3">
                 <Button 
                   variant="outline" 
-                  className="flex-1 h-12 rounded-xl text-slate-600 font-bold"
+                  className="flex-1 h-12 rounded-xl text-stone-600 dark:text-stone-400 font-bold border-stone-200 dark:border-stone-800"
                   onClick={() => {
                     setCancelParticipant(null);
                     setCancelConfirmText('');

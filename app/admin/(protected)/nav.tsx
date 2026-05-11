@@ -18,8 +18,8 @@ export function AdminNav() {
   return (
     <nav className="flex-1 py-4 space-y-1">
       <div className="px-4 mb-4 flex items-center gap-2">
-        <div className="h-[2px] w-3 bg-amber-600 rounded-full"></div>
-        <span className="text-[9px] font-extrabold text-stone-400 uppercase tracking-[0.3em]">Operations</span>
+        <div className="h-[2px] w-3 bg-amber-600 dark:bg-orange-500 rounded-full"></div>
+        <span className="text-[9px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-[0.3em]">Operations</span>
       </div>
 
       {navItems.map((item) => {
@@ -31,8 +31,8 @@ export function AdminNav() {
             href={item.href}
             className={`group flex items-center gap-3 px-4 py-2.5 mx-2 rounded-xl text-sm font-bold transition-all duration-300 relative ${
               isActive 
-                ? 'text-stone-900 bg-white shadow-sm border border-stone-100' 
-                : 'text-stone-500 hover:text-stone-900 hover:bg-stone-50'
+                ? 'text-stone-900 dark:text-stone-100 bg-white dark:bg-stone-800 shadow-sm border border-stone-100 dark:border-stone-700' 
+                : 'text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-stone-50 dark:hover:bg-stone-800/50'
             }`}
           >
             {/* Active Indicator Bar */}
@@ -41,7 +41,7 @@ export function AdminNav() {
             }`} />
             
             <div className={`transition-colors duration-300 flex items-center justify-center w-8 h-8 rounded-lg ${
-              isActive ? 'bg-orange-50 text-amber-600' : 'text-stone-400 group-hover:text-amber-500'
+              isActive ? 'bg-orange-50 dark:bg-orange-500/10 text-amber-600 dark:text-orange-500' : 'text-stone-400 dark:text-stone-500 group-hover:text-amber-500 dark:group-hover:text-orange-400'
             }`}>
               {item.icon}
             </div>

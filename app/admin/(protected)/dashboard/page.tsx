@@ -204,38 +204,38 @@ export default function AdminDashboard() {
   );
 
   return (
-    <div className="space-y-8 pb-10 text-stone-900">
+    <div className="space-y-8 pb-10 text-stone-900 dark:text-stone-100">
       
       {/* HEADER SECTION */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
           <h1 className="text-3xl font-extrabold tracking-tight mb-1">Manager Cockpit <span className="text-orange-500">.</span></h1>
-          <p className="text-stone-500 text-sm font-medium">Vue stratégique du XL Elite Bootcamp.</p>
+          <p className="text-stone-500 dark:text-stone-400 text-sm font-medium">Vue stratégique du XL Elite Bootcamp.</p>
         </div>
         <div className="flex items-center gap-3">
-          <div className={`hidden md:flex px-3 py-2 rounded-xl border items-center gap-2 transition-all shadow-sm ${isLive ? 'bg-emerald-50 border-emerald-100' : 'bg-stone-50 border-stone-200'}`}>
+          <div className={`hidden md:flex px-3 py-2 rounded-xl border items-center gap-2 transition-all shadow-sm ${isLive ? 'bg-emerald-50 dark:bg-emerald-500/10 border-emerald-100 dark:border-emerald-500/20' : 'bg-stone-50 dark:bg-stone-900 border-stone-200 dark:border-stone-800'}`}>
              <div className={`w-1.5 h-1.5 rounded-full animate-pulse ${isLive ? 'bg-emerald-500' : 'bg-orange-500'}`} />
-             <span className={`text-[9px] font-extrabold uppercase tracking-widest ${isLive ? 'text-emerald-600' : 'text-stone-500'}`}>
+             <span className={`text-[9px] font-extrabold uppercase tracking-widest ${isLive ? 'text-emerald-600 dark:text-emerald-500' : 'text-stone-500 dark:text-stone-400'}`}>
                {isLive ? 'Live' : 'Connecting...'}
              </span>
           </div>
-          <div className="px-3 py-2 rounded-xl bg-white border border-stone-200 shadow-sm flex items-center gap-2">
-            <Clock className="w-3 h-3 text-stone-400" />
-            <span className="text-[9px] font-extrabold text-stone-500 uppercase tracking-widest">
+          <div className="px-3 py-2 rounded-xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 shadow-sm flex items-center gap-2">
+            <Clock className="w-3 h-3 text-stone-400 dark:text-stone-500" />
+            <span className="text-[9px] font-extrabold text-stone-500 dark:text-stone-400 uppercase tracking-widest">
               {lastUpdated.toLocaleTimeString()}
             </span>
           </div>
 
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" className="h-10 rounded-xl border-stone-200 bg-white hover:bg-orange-500 hover:text-white transition-all gap-2 px-4 shadow-sm">
+              <Button variant="outline" className="h-10 rounded-xl border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 hover:bg-orange-500 dark:hover:bg-orange-600 hover:text-white transition-all gap-2 px-4 shadow-sm text-stone-900 dark:text-stone-100">
                 <Download className="w-4 h-4" /> 
                 <span className="hidden sm:inline text-[10px] font-bold uppercase tracking-widest">Exporter</span>
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="bg-white border-stone-100 shadow-xl rounded-xl">
-              <DropdownMenuItem onClick={() => handleExport('csv')} className="hover:bg-stone-50 cursor-pointer font-bold text-stone-700 text-xs">Rapport CSV</DropdownMenuItem>
-              <DropdownMenuItem onClick={() => handleExport('pdf')} className="hover:bg-stone-50 cursor-pointer font-bold text-stone-700 text-xs">Rapport PDF (Prestige)</DropdownMenuItem>
+            <DropdownMenuContent className="bg-white dark:bg-stone-900 border-stone-100 dark:border-stone-800 shadow-xl rounded-xl">
+              <DropdownMenuItem onClick={() => handleExport('csv')} className="hover:bg-stone-50 dark:hover:bg-stone-800 cursor-pointer font-bold text-stone-700 dark:text-stone-300 text-xs">Rapport CSV</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => handleExport('pdf')} className="hover:bg-stone-50 dark:hover:bg-stone-800 cursor-pointer font-bold text-stone-700 dark:text-stone-300 text-xs">Rapport PDF (Prestige)</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
 
@@ -253,22 +253,22 @@ export default function AdminDashboard() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.1 }}
-            className="p-5 rounded-2xl bg-white border border-stone-100 shadow-[0_4px_20px_rgb(0,0,0,0.02)] relative overflow-hidden group hover:shadow-sm transition-all duration-300"
+            className="p-5 rounded-2xl bg-white dark:bg-stone-900 border border-stone-100 dark:border-stone-800 shadow-[0_4px_20px_rgb(0,0,0,0.02)] dark:shadow-[0_4px_20px_rgb(0,0,0,0.1)] relative overflow-hidden group hover:shadow-sm transition-all duration-300"
           >
-            <div className="absolute top-0 right-0 w-24 h-24 bg-amber-50 rounded-full blur-3xl -mr-8 -mt-8 group-hover:scale-150 transition-transform duration-700 opacity-50" />
+            <div className="absolute top-0 right-0 w-24 h-24 bg-amber-50 dark:bg-orange-500/5 rounded-full blur-3xl -mr-8 -mt-8 group-hover:scale-150 transition-transform duration-700 opacity-50" />
             
             <div className="flex justify-between items-start mb-6 relative z-10">
-              <div className="w-10 h-10 rounded-xl bg-orange-50 border border-orange-100 flex items-center justify-center text-amber-600 group-hover:bg-orange-500 group-hover:text-white transition-all duration-300">
+              <div className="w-10 h-10 rounded-xl bg-orange-50 dark:bg-orange-500/10 border border-orange-100 dark:border-orange-500/20 flex items-center justify-center text-amber-600 dark:text-orange-500 group-hover:bg-orange-500 group-hover:text-white transition-all duration-300">
                 {kpi.icon}
               </div>
-              <div className={`flex items-center gap-1 px-2 py-1 rounded-md text-[9px] font-extrabold ${kpi.trend === 'up' ? 'bg-emerald-50 text-emerald-600' : 'bg-stone-50 text-stone-500'}`}>
+              <div className={`flex items-center gap-1 px-2 py-1 rounded-md text-[9px] font-extrabold ${kpi.trend === 'up' ? 'bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-500' : 'bg-stone-50 dark:bg-stone-800 text-stone-500 dark:text-stone-400'}`}>
                 {kpi.change} <ArrowUpRight className="w-2.5 h-2.5" />
               </div>
             </div>
             
             <div className="relative z-10">
-              <p className="text-[9px] font-extrabold text-stone-400 uppercase tracking-[0.2em] mb-1">{kpi.title}</p>
-              <h3 className="text-3xl font-black tracking-tight text-stone-900">{kpi.value}</h3>
+              <p className="text-[9px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-[0.2em] mb-1">{kpi.title}</p>
+              <h3 className="text-3xl font-black tracking-tight text-stone-900 dark:text-stone-100">{kpi.value}</h3>
             </div>
           </motion.div>
         ))}
@@ -324,39 +324,39 @@ export default function AdminDashboard() {
 
         {/* SATURATION DES GROUPES */}
         <div className="lg:col-span-8">
-          <div className="p-6 rounded-3xl bg-white border border-stone-100 shadow-sm h-full">
+          <div className="p-6 rounded-3xl bg-white dark:bg-stone-900 border border-stone-100 dark:border-stone-800 shadow-sm h-full">
             <div className="flex items-center justify-between mb-8">
                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-orange-50 flex items-center justify-center border border-orange-100">
+                  <div className="w-10 h-10 rounded-xl bg-orange-50 dark:bg-orange-500/10 flex items-center justify-center border border-orange-100 dark:border-orange-500/20">
                      <Layers className="w-4 h-4 text-orange-500" />
                   </div>
-                  <h3 className="text-sm font-extrabold text-stone-900 uppercase tracking-[0.2em]">Groupes</h3>
+                  <h3 className="text-sm font-extrabold text-stone-900 dark:text-stone-100 uppercase tracking-[0.2em]">Groupes</h3>
                </div>
-               <span className="text-[9px] font-bold text-stone-400 uppercase tracking-widest bg-stone-50 px-2 py-1 rounded-md border border-stone-100">Capacité Modulaire</span>
+               <span className="text-[9px] font-bold text-stone-400 dark:text-stone-500 uppercase tracking-widest bg-stone-50 dark:bg-stone-950 px-2 py-1 rounded-md border border-stone-100 dark:border-stone-800">Capacité Modulaire</span>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {groupStats.map((group, i) => (
-                <div key={i} className="p-5 rounded-2xl bg-stone-50/50 border border-stone-100 hover:border-orange-200 hover:bg-white hover:shadow-sm transition-all duration-300 group">
+                <div key={i} className="p-5 rounded-2xl bg-stone-50/50 dark:bg-stone-950/50 border border-stone-100 dark:border-stone-800 hover:border-orange-200 dark:hover:border-orange-500/30 hover:bg-white dark:hover:bg-stone-800 hover:shadow-sm transition-all duration-300 group">
                    <div className="flex justify-between items-start mb-6">
-                      <h4 className="text-xl font-black tracking-tight text-stone-900">{group.name}</h4>
-                      <div className={`text-[9px] font-extrabold px-2 py-1 rounded-md border ${group.fill_rate > 80 ? 'bg-red-50 border-red-100 text-red-600' : 'bg-orange-50 border-orange-100 text-orange-600'}`}>
+                      <h4 className="text-xl font-black tracking-tight text-stone-900 dark:text-stone-100">{group.name}</h4>
+                      <div className={`text-[9px] font-extrabold px-2 py-1 rounded-md border ${group.fill_rate > 80 ? 'bg-red-50 dark:bg-red-500/10 border-red-100 dark:border-red-500/20 text-red-600 dark:text-red-400' : 'bg-orange-50 dark:bg-orange-500/10 border-orange-100 dark:border-orange-500/20 text-orange-600 dark:text-orange-400'}`}>
                         {group.fill_rate.toFixed(0)}%
                       </div>
                    </div>
 
                    <div className="space-y-4 mb-6">
-                      <div className="flex items-center gap-2 text-stone-500">
-                         <Clock className="w-3 h-3 text-stone-400" />
+                      <div className="flex items-center gap-2 text-stone-500 dark:text-stone-400">
+                         <Clock className="w-3 h-3 text-stone-400 dark:text-stone-500" />
                          <span className="text-[10px] font-extrabold uppercase tracking-widest">{group.time_slot}</span>
                       </div>
                       
                       <div className="space-y-2">
-                        <div className="flex justify-between text-[9px] font-extrabold text-stone-400 uppercase tracking-widest">
+                        <div className="flex justify-between text-[9px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-widest">
                            <span>Places</span>
-                           <span className="text-stone-900">{group.current_capacity} / {group.max_capacity}</span>
+                           <span className="text-stone-900 dark:text-stone-100">{group.current_capacity} / {group.max_capacity}</span>
                         </div>
-                        <div className="h-1.5 w-full bg-stone-200 rounded-full overflow-hidden">
+                        <div className="h-1.5 w-full bg-stone-200 dark:bg-stone-800 rounded-full overflow-hidden">
                            <div 
                             className={`h-full transition-all duration-1000 rounded-full ${group.fill_rate > 80 ? 'bg-red-500' : 'bg-orange-500'}`} 
                             style={{ width: `${group.fill_rate}%` }} 
@@ -365,9 +365,9 @@ export default function AdminDashboard() {
                       </div>
                    </div>
 
-                   <div className="pt-4 border-t border-stone-200 flex justify-between items-center">
-                      <div className="text-[9px] font-extrabold text-stone-400 uppercase tracking-widest">Récolté</div>
-                      <div className="text-sm font-black text-stone-900">{(group.revenue / 1000).toLocaleString()}K</div>
+                   <div className="pt-4 border-t border-stone-200 dark:border-stone-800 flex justify-between items-center">
+                      <div className="text-[9px] font-extrabold text-stone-400 dark:text-stone-500 uppercase tracking-widest">Récolté</div>
+                      <div className="text-sm font-black text-stone-900 dark:text-stone-100">{(group.revenue / 1000).toLocaleString()}K</div>
                    </div>
                 </div>
               ))}
