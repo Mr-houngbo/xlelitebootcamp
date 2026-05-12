@@ -1,8 +1,29 @@
-import { createServerClient } from '@supabase/ssr';
 import { NextRequest, NextResponse } from 'next/server';
 
 // Routes publiques dans le groupe /admin (pas de protection)
 const PUBLIC_ADMIN_PATHS = ['/admin/login'];
+
+function getSupabaseSessionCookieName(supabaseUrl?: string) {
+  if (!supabaseUrl) return null;
+
+  try {
+    const { hostname } = new URL(supabaseUrl);
+    const projectRef = hostname.split('.')[0];
+
+    if (!projectRef) return null;
+
+    return `sb-${projectRef}-auth-token`;
+  } catch (error) {
+    console.error('[Middleware] Invalid Supabase URL:', supabaseUrl, error);
+    return null;
+  }
+}
+
+function hasSupabaseSession(request: NextRequest, cookieName: string) {
+  const sessionCookie = request.cookies.get(cookieName);
+
+  return Boolean(sessionCookie?.value);
+}
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -23,45 +44,33 @@ export async function middleware(request: NextRequest) {
   }
 
   // Vérification de la session Supabase
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-  let response = NextResponse.next({
-    request: {
-      headers: request.headers,
-    },
-  });
-
-  const supabase = createServerClient(supabaseUrl, supabaseAnonKey, {
-    cookies: {
-      getAll() {
-        return request.cookies.getAll();
-      },
-      setAll(cookiesToSet) {
-        cookiesToSet.forEach(({ name, value }) =>
-          request.cookies.set(name, value)
-        );
-        response = NextResponse.next({ request });
-        cookiesToSet.forEach(({ name, value, options }) =>
-          response.cookies.set(name, value, options)
-        );
-      },
-    },
-  });
-
-  // getUser() valide le JWT côté Edge Runtime (sécurisé)
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    // Non authentifié → rediriger vers /admin/login
+  // Si les variables d'environnement ne sont pas configurées, rediriger vers login
+  if (!supabaseUrl || !supabaseAnonKey || supabaseUrl.includes('placeholder')) {
+    console.error('[Middleware] Supabase environment variables not configured');
     const loginUrl = new URL('/admin/login', request.url);
     loginUrl.searchParams.set('redirect', pathname);
     return NextResponse.redirect(loginUrl);
   }
 
-  return response;
+  const sessionCookieName = getSupabaseSessionCookieName(supabaseUrl);
+
+  if (!sessionCookieName) {
+    console.error('[Middleware] Unable to resolve Supabase session cookie name');
+    const loginUrl = new URL('/admin/login', request.url);
+    loginUrl.searchParams.set('redirect', pathname);
+    return NextResponse.redirect(loginUrl);
+  }
+
+  if (!hasSupabaseSession(request, sessionCookieName)) {
+    const loginUrl = new URL('/admin/login', request.url);
+    loginUrl.searchParams.set('redirect', pathname);
+    return NextResponse.redirect(loginUrl);
+  }
+
+  return NextResponse.next();
 }
 
 export const config = {

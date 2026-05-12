@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useRef, useEffect } from 'react';
+import Image from 'next/image';
 import {
   Star, Award, Users, Calendar, Clock, MapPin, CheckCircle2,
   HelpCircle, ChevronDown, ShieldCheck, Laptop, Zap, TrendingUp,
@@ -163,10 +164,10 @@ export const RealActions = () => {
   ];
 
   const actions = [
-    { title: "Nettoyer vos données", desc: "Dites adieu au copier-coller. Utilisez Power Query pour traiter des milliers de lignes en un clic.", icon: <Zap className="w-6 h-6" /> },
-    { title: "Automatiser vos tâches", desc: "Créez des macros intelligentes qui font le travail à votre place.", icon: <Laptop className="w-6 h-6" /> },
-    { title: "Créer des Dashboards", desc: "Concevez des tableaux de bord dynamiques qui impressionnent votre direction.", icon: <TrendingUp className="w-6 h-6" /> },
-    { title: "Valider votre Certification", desc: "Passez l'examen officiel Microsoft Excel Expert le dernier jour.", icon: <Award className="w-6 h-6" /> }
+    { title: "Consolider vos acquis", desc: "Reprenez les fondamentaux Microsoft et corrigez définitivement les mauvaises habitudes qui coûtent des points à l'examen.", icon: <ShieldCheck className="w-6 h-6" /> },
+    { title: "Automatiser selon les standards", desc: "Power Query, scénarios, fonctions dynamiques : vous apprenez la méthode validée par les examinateurs.", icon: <Laptop className="w-6 h-6" /> },
+    { title: "Pitcher vos analyses", desc: "Vous livrez un dashboard propre, mesuré, prêt à être présenté à un directeur financier.", icon: <TrendingUp className="w-6 h-6" /> },
+    { title: "Réussir la certification", desc: "Le bootcamp se termine par une simulation et votre passage à l'examen Microsoft Excel Expert.", icon: <Award className="w-6 h-6" /> }
   ];
 
   return (
@@ -179,12 +180,12 @@ export const RealActions = () => {
             <div>
               <div className="w-20 h-1 bg-emerald-600 mb-8" />
               <h2 className="text-5xl md:text-8xl font-black mb-8 leading-[0.85] tracking-tighter text-slate-900 dark:text-white">
-                Faire. <br />
-                Prouver. <br />
-                <span className="text-emerald-600">Réussir.</span>
+                Structurer. <br />
+                Simuler. <br />
+                <span className="text-emerald-600">Certifier.</span>
               </h2>
               <p className="text-xl text-slate-500 dark:text-slate-400 font-medium max-w-lg">
-                Notre méthode repose sur la pratique intensive. Vous ne regardez pas quelqu'un faire, vous agissez.
+                Chaque atelier reproduit un sujet de certification ou un cas métier senior. Vous faites, vous présentez, vous êtes coaché.
               </p>
             </div>
 
@@ -245,19 +246,19 @@ export const OrganizationSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           <div className="p-6 md:p-8 rounded-2xl md:rounded-3xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-100 dark:border-emerald-900/20">
             <Calendar className="w-8 h-8 md:w-10 md:h-10 text-emerald-600 mb-4 md:mb-6" />
-            <h3 className="text-lg md:text-xl font-bold mb-2">4 Jours Intensifs</h3>
-            <p className="text-sm md:text-base text-slate-600 dark:text-slate-400">Du 09 au 13 juin 2026. Une immersion totale pour des résultats immédiats.</p>
+            <h3 className="text-lg md:text-xl font-bold mb-2">4 jours pour valider</h3>
+            <p className="text-sm md:text-base text-slate-600 dark:text-slate-400">Du 09 au 13 juin 2026. 32 heures de coaching technique + simulations d'examen.</p>
           </div>
 
           <div className="p-6 md:p-8 rounded-2xl md:rounded-3xl bg-orange-50 dark:bg-orange-950/30 border border-orange-100 dark:border-orange-900/20">
             <Clock className="w-8 h-8 md:w-10 md:h-10 text-orange-600 mb-4 md:mb-6" />
-            <h3 className="text-lg md:text-xl font-bold mb-2">3 Groupes au choix</h3>
+            <h3 className="text-lg md:text-xl font-bold mb-2">Groupes professionnels</h3>
             <ul className="text-[12px] md:text-sm space-y-2 text-slate-700 dark:text-slate-300 font-bold mt-3">
-              <li>• G1 : 09h – 12h</li>
-              <li>• G2 : 14h – 17h</li>
-              <li>• G3 : 18h – 21h</li>
+              <li>• G1 : 09h – 12h (cadres dirigeants)</li>
+              <li>• G2 : 14h – 17h (analystes & financiers)</li>
+              <li>• G3 : 18h – 21h (managers & consultants)</li>
             </ul>
-            <p className="text-[10px] text-slate-500 mt-4 italic">Choisissez le créneau qui vous convient.</p>
+            <p className="text-[10px] text-slate-500 mt-4 italic">Coaching live, interactions ciblées, corrections d'examen.</p>
           </div>
 
           <div className="p-6 md:p-8 rounded-2xl md:rounded-3xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700">
@@ -265,8 +266,8 @@ export const OrganizationSection = () => {
               <MapPin className="w-8 h-8 md:w-10 md:h-10 text-slate-600" />
               <Laptop className="w-8 h-8 md:w-10 md:h-10 text-slate-600" />
             </div>
-            <h3 className="text-lg md:text-xl font-bold mb-2">Format Hybride</h3>
-            <p className="text-sm md:text-base text-slate-600 dark:text-slate-400">En présentiel à Ouaga 2000 ou en ligne (Live) avec interaction directe.</p>
+            <h3 className="text-lg md:text-xl font-bold mb-2">Présentiel + live certif</h3>
+            <p className="text-sm md:text-base text-slate-600 dark:text-slate-400">Présentiel à Ouaga 2000 ou 100% live. Vous passez la certification depuis un centre agréé ou un espace sécurisé.</p>
           </div>
         </div>
       </div>
@@ -278,13 +279,13 @@ export const InclusionsSection = () => {
   return (
     <section className="py-12 md:py-24 bg-emerald-900 text-white overflow-hidden relative">
       <div className="container px-4 mx-auto max-w-4xl text-center relative z-10">
-        <h2 className="text-xl md:text-4xl font-bold mb-8 md:mb-12 leading-tight">Tout est inclus <br className="md:hidden" />pour votre réussite</h2>
+        <h2 className="text-xl md:text-4xl font-bold mb-8 md:mb-12 leading-tight">Tout ce qu'il faut pour décrocher <br className="md:hidden" />Microsoft Excel Expert</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 text-left">
           {[
-            { icon: <Award className="w-6 h-6 text-orange-400 shrink-0" />, text: "2 Vouchers pour la Certification Microsoft Excel Expert." },
-            { icon: <ShieldCheck className="w-6 h-6 text-orange-400 shrink-0" />, text: "Licence Office 365 offerte pour pratiquer." },
-            { icon: <Users className="w-6 h-6 text-orange-400 shrink-0" />, text: "Support post-formation & accès communauté." },
-            { icon: <CheckCircle2 className="w-6 h-6 text-orange-400 shrink-0" />, text: "Matériel complet et fichiers réels." },
+            { icon: <Award className="w-6 h-6 text-orange-400 shrink-0" />, text: "2 vouchers officiels + frais d'examen compris." },
+            { icon: <ShieldCheck className="w-6 h-6 text-orange-400 shrink-0" />, text: "Licence Office 365 + environnement d'entraînement dédié." },
+            { icon: <Users className="w-6 h-6 text-orange-400 shrink-0" />, text: "Mentoring post-examen pendant 30 jours pour valider la certification." },
+            { icon: <CheckCircle2 className="w-6 h-6 text-orange-400 shrink-0" />, text: "Cas d'usage inspirés de missions réelles (finance, audit, supply chain)." },
           ].map((item, i) => (
             <div key={i} className="flex gap-4 p-5 bg-white/10 rounded-xl border border-white/10 items-center">
               {item.icon}
@@ -305,8 +306,8 @@ export const FinancialOffer = () => {
 
       <div className="container px-4 mx-auto max-w-5xl relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-4">Investissez dans votre futur </h2>
-          <p className="text-slate-500 dark:text-slate-400 font-medium text-lg italic">Un pack complet incluant formation intensive et certification officielle Microsoft.</p>
+          <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-4">Un budget unique pour une certification à vie</h2>
+          <p className="text-slate-500 dark:text-slate-400 font-medium text-lg italic">Coaching premium, vouchers Microsoft, simulations d'examen et accompagnement post-certif.</p>
         </div>
 
         <div className="bg-slate-900 rounded-[3rem] border border-white/10 shadow-3xl overflow-hidden flex flex-col lg:flex-row items-stretch">
@@ -314,7 +315,7 @@ export const FinancialOffer = () => {
           <div className="p-8 md:p-16 flex-1 border-b lg:border-b-0 lg:border-r border-white/5">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-8">
               <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
-              <span className="text-[10px] font-black text-emerald-500 uppercase tracking-widest">Offre Limitée</span>
+              <span className="text-[10px] font-black text-emerald-500 uppercase tracking-widest">Coaching élite limité</span>
             </div>
 
             <div className="space-y-10">
@@ -343,7 +344,7 @@ export const FinancialOffer = () => {
                 </div>
                 <div>
                   <p className="text-xs font-bold text-white mb-1">Paiement Sécurisé & Inclus</p>
-                  <p className="text-[10px] text-slate-500 leading-relaxed font-medium">Tout est inclus : Support de cours, Voucher de certification (2 essais) et licence Office 365.</p>
+                  <p className="text-[10px] text-slate-500 leading-relaxed font-medium">Support de cours premium, cas corrigés de l'examen, deux vouchers inclus et licence Office 365.</p>
                 </div>
               </div>
             </div>
@@ -366,13 +367,13 @@ export const FinancialOffer = () => {
                 <div className="inline-block px-4 py-2 rounded-xl bg-black/20 backdrop-blur-md border border-white/10">
                   <div className="flex items-center gap-3 text-white">
                     <Clock className="w-4 h-4 text-emerald-300" />
-                    <p className="text-xs font-black uppercase tracking-widest">Dernier délai : <span className="text-emerald-300">02 Juin</span></p>
+                    <p className="text-xs font-black uppercase tracking-widest">Clôture des inscriptions : <span className="text-emerald-300">02 Juin</span></p>
                   </div>
                 </div>
 
                 <Link href="/inscription" className="block group">
                   <Button size="lg" className="w-full bg-white hover:bg-slate-50 text-emerald-950 px-12 py-8 text-xl font-black rounded-2xl shadow-2xl transition-all hover:scale-[1.03] group flex items-center justify-center">
-                    <Lock className="w-5 h-5 mr-3 group-hover:rotate-12 transition-transform" /> Réserver ma place
+                    <Lock className="w-5 h-5 mr-3 group-hover:rotate-12 transition-transform" /> Je réserve mes vouchers
                   </Button>
                   <p className="mt-4 text-emerald-100/60 text-[10px] font-bold uppercase tracking-widest group-hover:text-white transition-colors italic">⚠️ Places limitées à 15 par session</p>
                 </Link>
@@ -466,7 +467,7 @@ export const FAQProof = () => {
             className="flex gap-4 whitespace-nowrap"
             animate={{ x: [0, -1200] }}
             transition={{
-              duration: 30,
+              duration: 6,
               repeat: Infinity,
               ease: "linear"
             }}
@@ -539,94 +540,236 @@ export const FAQProof = () => {
 };
 
 export const TrainerSection = () => {
-  const trainingPhotos = [
-    "/form_1.jpeg",
-    "/form_2.jpeg",
-    "/form_3.jpeg",
-    "/form_4.jpeg",
-    "/form_5.jpeg",
-    "/form_6.jpeg",
-    "/form_7.jpeg"
+  const achievements = [
+    {
+      title: 'Triple certifié Microsoft Excel',
+      desc: 'Expert 2019 • Expert 365 • Associate 365 for Accounting',
+    },
+    {
+      title: 'Expertise data & finance digitale',
+      desc: 'Automatisation, analyse de données et pilotage financier au service de votre performance.',
+    },
+    {
+      title: 'Formateur de terrain',
+      desc: 'Des bootcamps conduits sur tout le continent avec un accompagnement humain et concret.',
+    },
+  ];
+
+  const stats = [
+    { value: '+500', label: 'Professionnels formés', tone: 'text-emerald-500' },
+    { value: '18', label: 'Bootcamps intensifs', tone: 'text-orange-500' },
+    { value: '12', label: 'Pays accompagnés', tone: 'text-sky-500' },
+  ];
+
+  const certificationArtifacts = [
+    {
+      src: '/certificat/IMG-20230906-WA0055.jpg',
+      label: 'Microsoft Excel Expert',
+      batch: 'Session Bamako',
+    },
+    {
+      src: '/certificat/IMG-20250516-WA0043.jpg',
+      label: 'Excel Expert 365',
+      batch: 'Cohorte Abidjan',
+    },
+    {
+      src: '/certificat/IMG-20260320-WA0009.jpg',
+      label: 'Excel Associate',
+      batch: 'Promotion Ouaga 2000',
+    },
+  ];
+
+  const galleryRows = [
+    [
+      '/illustrations/form_1.jpeg',
+      '/illustrations/form_2.jpeg',
+      '/illustrations/form_3.jpeg',
+      '/illustrations/form_4.jpeg',
+      '/illustrations/IMG-20230808-WA0012.jpg',
+      '/illustrations/IMG-20260403-WA0063.jpg',
+    ],
+    [
+      '/illustrations/IMG-20230808-WA0013.jpg',
+      '/illustrations/IMG-20251210-WA0019.jpg',
+      '/illustrations/IMG-20250703-WA0016.jpg',
+      '/illustrations/FB_IMG_1735152498589.jpg',
+      '/illustrations/IMG-20260403-WA0064.jpg',
+      '/illustrations/IMG-20251210-WA0011.jpg',
+    ],
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-slate-50 dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800">
-      <div className="container px-4 mx-auto max-w-5xl">
-        <div className="bg-white dark:bg-slate-950 rounded-[2.5rem] p-8 md:p-12 shadow-xl border border-slate-100 dark:border-slate-800 overflow-hidden relative">
-          {/* Decorative background element */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-600/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
+    <section className="py-20 md:py-32 bg-slate-50 dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800">
+      <div className="container px-4 mx-auto max-w-6xl">
+        <div className="space-y-24">
+          <div className="relative overflow-hidden rounded-[3rem] bg-white dark:bg-slate-950 border border-slate-100 dark:border-slate-800 shadow-[0_40px_80px_-40px_rgba(15,23,42,0.4)]">
+            <div className="absolute -top-32 -right-20 w-72 h-72 bg-emerald-500/20 blur-[120px] rounded-full" />
+            <div className="absolute -bottom-20 left-0 w-60 h-60 bg-orange-500/10 blur-[120px] rounded-full" />
 
-          <div className="flex flex-col md:flex-row gap-10 md:gap-16 items-center relative z-10 mb-16">
-            {/* Trainer Image */}
-            <div className="w-full md:w-2/5 shrink-0">
-              <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-4 border-white dark:border-slate-800">
-                <img
-                  src="/Leonce_1.jpeg"
-                  alt="Léonce TOUNDE SODJINOU - Formateur Excel"
-                  className="w-full h-full object-cover object-top"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
-                  <div className="text-white">
-                    <p className="font-bold text-xl leading-tight">Léonce TOUNDE SODJINOU</p>
-                    <p className="text-white/80 text-sm font-medium">Expert Excel & Coach-Formateur</p>
+            <div className="relative z-10 grid md:grid-cols-5 gap-10 md:gap-16 p-10 md:p-16">
+              <div className="md:col-span-2">
+                <div className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden border-4 border-white dark:border-slate-900 shadow-2xl">
+                  <Image
+                    src="/formateur/Leonce.jpg"
+                    alt="Léonce TOUNDE SODJINOU - Formateur du bootcamp XL Elite"
+                    fill
+                    className="object-cover object-top"
+                    sizes="(max-width: 768px) 100vw, 40vw"
+                    priority
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                  <div className="absolute top-6 left-6 px-4 py-2 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-white text-xs font-black tracking-[0.3em] uppercase flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    Mentor
+                  </div>
+                  <div className="absolute bottom-6 left-6 right-6 text-white space-y-1">
+                    <p className="text-lg font-black tracking-tight">Léonce TOUNDE SODJINOU</p>
+                    <p className="text-white/70 text-sm font-medium uppercase tracking-[0.2em]">Expert Excel • Coach-Formateur</p>
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* Profile Description */}
-            <div className="w-full md:w-3/5">
-              <div className="mb-6">
-                <span className="text-orange-500 font-black tracking-wider uppercase text-xs mb-2 block">Votre Formateur</span>
-                <h2 className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white leading-tight mb-6">
-                  Expert Data & Finance Digitale
-                </h2>
-                <div className="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed text-base md:text-lg text-justify">
-                  <p>
-                    <strong className="text-slate-900 dark:text-white font-bold">Léonce TOUNDE SODJINOU</strong> est coach-formateur et consultant passionné par la gestion de projets et la transformation digitale. Il est <strong className="text-emerald-600">triple certifié Microsoft Excel</strong> (Expert 2019, Expert 365, Associate 365 for Accounting).
-                  </p>
-                  <p>
-                    Depuis plus de 5 ans, il accompagne les professionnels et les organisations à mieux décider et performer grâce à Excel, Power Query et Power BI. Il a déjà formé et certifié plusieurs centaines de talents et aidé des entreprises à automatiser leurs processus.
-                  </p>
-                  <p>
-                    Alliant finance, data, technologie et pédagogie, sa mission est claire : démystifier Excel, rendre l'analyse de données accessible à tous et transformer vos compétences techniques en véritables opportunités de carrière.
-                  </p>
+              <div className="md:col-span-3 space-y-8">
+                <div>
+                  <span className="inline-flex items-center gap-2 text-orange-500 font-black uppercase tracking-[0.4em] text-xs mb-4">
+                    Votre Formateur
+                  </span>
+                  <h2 className="text-3xl md:text-5xl font-black text-slate-900 dark:text-white leading-tight mb-6">
+                    L’architecte de votre montée en puissance sur Excel
+                  </h2>
+                  <div className="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed text-base md:text-lg">
+                    <p>
+                      <strong className="text-slate-900 dark:text-white">Léonce TOUNDE SODJINOU</strong> accompagne depuis plus de 5 ans les équipes financières, RH et opérationnelles à structurer leurs données pour décider plus vite.
+                    </p>
+                    <p>
+                      Sa pédagogie mêle cas métiers, dashboards temps réel et automatisations Power Query. Chaque bootcamp est calibré pour décrocher la certification Microsoft Excel Expert dès la fin de la semaine.
+                    </p>
+                  </div>
                 </div>
-              </div>
 
-              <div className="grid grid-cols-2 gap-4 mt-8">
-                <div className="bg-slate-50 dark:bg-slate-900 p-4 rounded-2xl border border-slate-100 dark:border-slate-800">
-                  <div className="text-3xl font-black text-emerald-600 mb-1">+500</div>
-                  <div className="text-xs font-bold text-slate-500 uppercase tracking-wider">Professionnels Formés</div>
+                <div className="grid sm:grid-cols-3 gap-4">
+                  {stats.map((stat) => (
+                    <div
+                      key={stat.label}
+                      className="rounded-2xl border border-slate-100 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-950/60 p-5 text-center"
+                    >
+                      <p className={`text-3xl font-black ${stat.tone}`}>{stat.value}</p>
+                      <p className="text-[11px] uppercase tracking-[0.25em] font-bold text-slate-500 dark:text-slate-400 mt-2">
+                        {stat.label}
+                      </p>
+                    </div>
+                  ))}
                 </div>
-                <div className="bg-slate-50 dark:bg-slate-900 p-4 rounded-2xl border border-slate-100 dark:border-slate-800">
-                  <div className="text-3xl font-black text-orange-500 mb-1">100%</div>
-                  <div className="text-xs font-bold text-slate-500 uppercase tracking-wider">Taux de Satisfaction</div>
+
+                <div className="grid sm:grid-cols-2 gap-6">
+                  {achievements.map((item) => (
+                    <div key={item.title} className="flex gap-4">
+                      <div className="mt-1">
+                        <CheckCircle2 className="w-6 h-6 text-emerald-500" />
+                      </div>
+                      <div>
+                        <h3 className="text-base md:text-lg font-bold text-slate-900 dark:text-white mb-1">
+                          {item.title}
+                        </h3>
+                        <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+                          {item.desc}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Training Gallery Carousel */}
-          <div className="relative z-10 border-t border-slate-100 dark:border-slate-800 pt-10">
-            <h3 className="text-center font-bold text-slate-400 uppercase tracking-widest text-xs mb-6">Sur le terrain, aux côtés des professionnels</h3>
+          <div className="relative overflow-hidden rounded-[3rem] bg-gradient-to-br from-emerald-950 via-emerald-900 to-slate-950 border border-emerald-900/60 p-10 md:p-16 text-white">
+            <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.7) 1px, transparent 0)', backgroundSize: '28px 28px' }} />
+            <div className="relative z-10 grid lg:grid-cols-5 gap-12 items-center">
+              <div className="lg:col-span-2 space-y-6">
+                <span className="inline-flex items-center gap-2 text-emerald-300 font-black uppercase tracking-[0.4em] text-xs">
+                  Certification officiellement reconnue
+                </span>
+                <h3 className="text-3xl md:text-4xl font-black leading-tight">
+                  Deux vouchers inclus pour décrocher <span className="text-emerald-300">Microsoft Excel Expert</span>
+                </h3>
+                <p className="text-sm md:text-base text-emerald-100/80 leading-relaxed">
+                  Vous passez l’examen officiel sous supervision. Ces certificats proviennent de promotions réelles : preuve que notre méthode prépare concrètement à la réussite.
+                </p>
+                <ul className="space-y-2 text-sm md:text-base text-emerald-100/80 leading-relaxed">
+                  <li>• Coaching ciblé sur les compétences évaluées à l’examen.</li>
+                  <li>• Suivi individuel jusqu’à la validation de vos deux tentatives.</li>
+                  <li>• Remise de vos certificats numériques sous 48h après réussite.</li>
+                </ul>
+              </div>
 
-            <div className="relative overflow-hidden">
-              <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-white dark:from-slate-950 to-transparent z-10 pointer-events-none" />
-              <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-white dark:from-slate-950 to-transparent z-10 pointer-events-none" />
-
-              <motion.div
-                className="flex gap-4"
-                animate={{ x: [0, -1000] }}
-                transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                whileHover={{ animationPlayState: 'paused' }}
-              >
-                {[...trainingPhotos, ...trainingPhotos].map((photo, idx) => (
-                  <div key={idx} className="w-[200px] md:w-[250px] aspect-video rounded-xl overflow-hidden shadow-md border border-slate-100 dark:border-slate-800 shrink-0 group">
-                    <img src={photo} alt="Formation en cours" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                  </div>
+              <div className="lg:col-span-3 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {certificationArtifacts.map((artifact) => (
+                  <motion.div
+                    key={artifact.src}
+                    whileHover={{ scale: 1.03 }}
+                    className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md shadow-lg"
+                  >
+                    <div className="relative aspect-[3/4]">
+                      <Image
+                        src={artifact.src}
+                        alt={`Certification ${artifact.label}`}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 50vw, 20vw"
+                      />
+                      <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/70 via-black/20 to-transparent">
+                        <p className="text-sm font-bold">{artifact.label}</p>
+                        <p className="text-[11px] uppercase tracking-[0.3em] text-emerald-200/80 font-semibold">{artifact.batch}</p>
+                      </div>
+                    </div>
+                  </motion.div>
                 ))}
-              </motion.div>
+              </div>
+            </div>
+          </div>
+
+          <div className="rounded-[3rem] bg-white dark:bg-slate-950 border border-slate-100 dark:border-slate-800 p-10 md:p-14 shadow-[0_40px_80px_-60px_rgba(15,23,42,0.45)]">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-12">
+              <div>
+                <span className="text-xs uppercase tracking-[0.4em] font-black text-slate-400">Galerie terrain</span>
+                <h3 className="text-2xl md:text-4xl font-black text-slate-900 dark:text-white mt-2">
+                  Des bootcamps en mouvement
+                </h3>
+              </div>
+              <p className="text-sm md:text-base text-slate-500 dark:text-slate-400 max-w-xl">
+                Revivez l’énergie des précédentes promotions avec des images authentiques, capturées sur le terrain.
+              </p>
+            </div>
+
+            <div className="relative overflow-hidden rounded-[2.5rem] border border-slate-100 dark:border-slate-800 bg-slate-50/40 dark:bg-white/5 p-6 md:p-10">
+              <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white dark:from-slate-950 to-transparent pointer-events-none z-20" />
+              <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white dark:from-slate-950 to-transparent pointer-events-none z-20" />
+
+              <div className="space-y-10 md:space-y-16">
+                {galleryRows.map((row, rowIndex) => (
+                  <motion.div
+                    key={rowIndex}
+                    className="flex gap-10 md:gap-14"
+                    animate={{ x: rowIndex % 2 === 0 ? ['0%', '-50%'] : ['-50%', '0%'] }}
+                    transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
+                  >
+                    {[...row, ...row].map((src, idx) => (
+                      <div
+                        key={`${src}-${idx}`}
+                        className="relative w-[320px] md:w-[460px] aspect-[16/9] overflow-hidden rounded-[2.25rem] border border-slate-200/60 dark:border-slate-700/60 shadow-[0_30px_60px_-35px_rgba(15,23,42,0.6)] bg-white dark:bg-slate-900 shrink-0"
+                      >
+                        <Image
+                          src={src}
+                          alt="Moment de bootcamp XL Elite"
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 90vw, 35vw"
+                        />
+                      </div>
+                    ))}
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

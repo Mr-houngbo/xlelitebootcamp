@@ -1,6 +1,25 @@
 import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
+import { Agent } from 'undici';
 import { Database } from '@/types/database';
+
+const insecureAgent =
+  process.env.NODE_ENV !== 'production'
+    ? new Agent({ connect: { rejectUnauthorized: false } })
+    : undefined;
+
+const fetchWithOptionalAgent: typeof fetch = (input, init) => {
+  if (!insecureAgent) {
+    return fetch(input, init);
+  }
+
+  const initWithAgent = {
+    ...init,
+    dispatcher: insecureAgent,
+  } as RequestInit & { dispatcher: Agent };
+
+  return fetch(input, initWithAgent);
+};
 
 export async function createClient() {
   const cookieStore = await cookies();
@@ -11,13 +30,16 @@ export async function createClient() {
     {
       cookies: {
         getAll() {
-          return cookieStore.getAll()
+          return cookieStore.getAll();
         },
         setAll(cookiesToSet) {
           cookiesToSet.forEach(({ name, value, options }) =>
             cookieStore.set(name, value, options)
-          )
+          );
         },
+      },
+      global: {
+        fetch: fetchWithOptionalAgent,
       },
     }
   );

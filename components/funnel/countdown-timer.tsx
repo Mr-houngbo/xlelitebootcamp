@@ -39,29 +39,29 @@ export const CountdownTimer = ({ targetDate }: { targetDate: string }) => {
   if (!timeLeft) return null;
 
   return (
-    <div className="flex gap-2 md:gap-4 items-center justify-center font-mono text-white">
-      <TimeUnit value={timeLeft.days} label="Jours" />
-      <span className="text-lg md:text-2xl font-bold text-orange-500 animate-pulse">:</span>
-      <TimeUnit value={timeLeft.hours} label="Hrs" />
-      <span className="text-lg md:text-2xl font-bold text-orange-500 animate-pulse">:</span>
-      <TimeUnit value={timeLeft.minutes} label="Min" />
-      <span className="text-lg md:text-2xl font-bold text-orange-500 animate-pulse">:</span>
-      <TimeUnit value={timeLeft.seconds} label="Sec" />
+    <div className="fixed right-2 md:right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-2 p-2 md:p-3 bg-white/95 backdrop-blur-xl rounded-[2rem] shadow-2xl border border-emerald-100 shadow-emerald-900/10">
+      <div className="flex flex-col items-center justify-center pt-2 pb-1">
+         <span className="text-[9px] font-black uppercase text-emerald-700 tracking-widest mb-1 text-center">Expire dans</span>
+      </div>
+      <TimeUnit value={timeLeft.days} label="JRS" />
+      <TimeUnit value={timeLeft.hours} label="HRS" />
+      <TimeUnit value={timeLeft.minutes} label="MIN" />
+      <TimeUnit value={timeLeft.seconds} label="SEC" isPulse />
     </div>
   );
 };
 
-const TimeUnit = ({ value, label }: { value: number; label: string }) => (
+const TimeUnit = ({ value, label, isPulse = false }: { value: number; label: string; isPulse?: boolean }) => (
   <motion.div 
     initial={{ scale: 0.9, opacity: 0 }}
     animate={{ scale: 1, opacity: 1 }}
-    className="flex flex-col items-center"
+    className="flex flex-col items-center justify-center"
   >
-    <div className="bg-slate-900/80 backdrop-blur-sm border border-slate-700 rounded-lg p-1.5 md:p-3 min-w-[40px] md:min-w-[60px] text-center shadow-lg">
-      <span className="text-lg md:text-3xl font-bold text-emerald-400 leading-none">
+    <div className={`bg-emerald-50/80 rounded-xl w-10 h-10 md:w-12 md:h-12 flex items-center justify-center shadow-inner border border-emerald-100/50 ${isPulse ? 'animate-pulse' : ''}`}>
+      <span className="text-sm md:text-base font-black text-emerald-800 leading-none">
         {value.toString().padStart(2, '0')}
       </span>
     </div>
-    <span className="text-[8px] md:text-[10px] uppercase tracking-wider mt-1 text-slate-500 font-bold">{label}</span>
+    <span className="text-[8px] md:text-[9px] uppercase tracking-wider mt-1 mb-1 text-emerald-600 font-bold">{label}</span>
   </motion.div>
 );

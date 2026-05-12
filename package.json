@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "set NODE_TLS_REJECT_UNAUTHORIZED=0 && next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -46,6 +46,7 @@
     "resend": "^3.2.0",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
+    "undici": "^7.25.0",
     "zod": "^3.22.4",
     "zustand": "^4.5.0"
   },
