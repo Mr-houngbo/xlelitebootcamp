@@ -127,7 +127,7 @@ export function RegistrationForm() {
     );
   }
 
-  const InputClass = "w-full px-4 py-3 bg-slate-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-brand-green/50 focus:border-brand-green transition-all shadow-sm text-base"; // text-base = 16px (évite le zoom iOS)
+  const InputClass = "w-full px-4 py-4 bg-slate-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-brand-green/50 focus:border-brand-green transition-all shadow-sm text-base min-h-[48px]"; // text-base = 16px (évite le zoom iOS), min-h-[48px] pour zone tactile
   const LabelClass = "block text-xs md:text-sm font-semibold text-gray-700 mb-1.5 md:mb-2 uppercase tracking-wide";
 
   return (
@@ -164,50 +164,62 @@ export function RegistrationForm() {
               <div>
                 <label className={LabelClass}>Prénom *</label>
                 <input {...register('firstName')} type="text" className={InputClass} placeholder="Votre prénom" />
-                {errors.firstName && <p className="text-red-500 text-[10px] mt-1">{errors.firstName.message}</p>}
+                {errors.firstName && <p className="text-red-500 text-xs mt-1">{errors.firstName.message}</p>}
               </div>
               <div>
                 <label className={LabelClass}>Nom *</label>
                 <input {...register('lastName')} type="text" className={InputClass} placeholder="Votre nom" />
-                {errors.lastName && <p className="text-red-500 text-[10px] mt-1">{errors.lastName.message}</p>}
+                {errors.lastName && <p className="text-red-500 text-xs mt-1">{errors.lastName.message}</p>}
               </div>
             </div>
 
             <div>
               <label className={LabelClass}>Email *</label>
               <input {...register('email')} type="email" className={InputClass} placeholder="votre.email@exemple.com" />
-              {errors.email && <p className="text-red-500 text-[10px] mt-1">{errors.email.message}</p>}
+              {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
               <div>
                 <label className={LabelClass}>Téléphone *</label>
                 <input {...register('phone')} type="tel" className={InputClass} placeholder="+226 XX XX XX XX" />
-                {errors.phone && <p className="text-red-500 text-[10px] mt-1">{errors.phone.message}</p>}
+                {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone.message}</p>}
               </div>
               <div>
                 <label className={LabelClass}>Pays *</label>
                 <select {...register('country')} className={InputClass}>
                   <option value="">Sélectionnez votre pays</option>
-                  <option value="Burkina Faso">Burkina Faso</option>
-                  <option value="Mali">Mali</option>
-                  <option value="Côte d’Ivoire">Côte d’Ivoire</option>
-                  <option value="Niger">Niger</option>
-                  <option value="Sénégal">Sénégal</option>
-                  <option value="Togo">Togo</option>
-                  <option value="Bénin">Bénin</option>
-                  <option value="Guinée">Guinée</option>
-                  <option value="Cameroun">Cameroun</option>
-                  <option value="Gabon">Gabon</option>
-                  <option value="Congo">Congo</option>
-                  <option value="France">France</option>
-                  <option value="Belgique">Belgique</option>
-                  <option value="Canada">Canada</option>
-                  <option value="USA">USA</option>
-                  <option value="Algérie">Algérie</option>
-                  <option value="Maroc">Maroc</option>
-                  <option value="Tunisie">Tunisie</option>
-                  <option disabled>────────────────────</option>
+                  <optgroup label="🌍 Afrique de l'Ouest">
+                    <option value="Burkina Faso">🇧🇫 Burkina Faso</option>
+                    <option value="Côte d'Ivoire">🇨🇮 Côte d'Ivoire</option>
+                    <option value="Bénin">🇧🇯 Bénin</option>
+                    <option value="Sénégal">🇸🇳 Sénégal</option>
+                    <option value="Mali">🇲🇱 Mali</option>
+                    <option value="Togo">🇹🇬 Togo</option>
+                    <option value="Niger">🇳🇪 Niger</option>
+                    <option value="Guinée">🇬🇳 Guinée</option>
+                    <option value="Ghana">🇬🇭 Ghana</option>
+                    <option value="Nigéria">🇳🇬 Nigéria</option>
+                  </optgroup>
+                  <optgroup label="🌍 Afrique Centrale">
+                    <option value="Cameroun">🇨🇲 Cameroun</option>
+                    <option value="Gabon">🇬🇦 Gabon</option>
+                    <option value="Congo">🇨🇬 Congo</option>
+                    <option value="République centrafricaine">🇨🇫 RCA</option>
+                    <option value="Tchad">🇹🇩 Tchad</option>
+                  </optgroup>
+                  <optgroup label="🌍 Afrique du Nord">
+                    <option value="Maroc">🇲🇦 Maroc</option>
+                    <option value="Algérie">🇩🇿 Algérie</option>
+                    <option value="Tunisie">🇹🇳 Tunisie</option>
+                  </optgroup>
+                  <optgroup label="🌍 Europe & Amérique">
+                    <option value="France">🇫🇷 France</option>
+                    <option value="Belgique">🇧🇪 Belgique</option>
+                    <option value="Canada">🇨🇦 Canada</option>
+                    <option value="USA">🇺🇸 USA</option>
+                  </optgroup>
+                  <optgroup label="🌍 Autres pays">
                   <option value="Afghanistan">Afghanistan</option>
                   <option value="Albanie">Albanie</option>
                   <option value="Allemagne">Allemagne</option>
@@ -421,24 +433,25 @@ export function RegistrationForm() {
                   <option value="Yémen">Yémen</option>
                   <option value="Zambie">Zambie</option>
                   <option value="Zimbabwe">Zimbabwe</option>
+                  </optgroup>
                 </select>
-                {errors.country && <p className="text-red-500 text-[10px] mt-1">{errors.country.message}</p>}
+                {errors.country && <p className="text-red-500 text-xs mt-1">{errors.country.message}</p>}
               </div>
             </div>
 
             <div>
               <label className={LabelClass}>Format souhaité *</label>
-              <div className="flex gap-3 md:gap-4 h-[44px] md:h-[50px]">
-                <label className={`flex-1 flex items-center justify-center border-2 rounded-xl cursor-pointer transition-all text-sm md:text-base ${watch('format') === 'presentiel' ? 'border-brand-green bg-brand-green/5 font-bold' : 'border-gray-200'}`}>
+              <div className="flex gap-3 md:gap-4 min-h-[48px]">
+                <label className={`flex-1 flex items-center justify-center border-2 rounded-xl cursor-pointer transition-all text-sm md:text-base py-3 ${watch('format') === 'presentiel' ? 'border-brand-green bg-brand-green/5 font-bold' : 'border-gray-200'}`}>
                   <input type="radio" value="presentiel" {...register('format')} className="hidden" />
                   Présentiel
                 </label>
-                <label className={`flex-1 flex items-center justify-center border-2 rounded-xl cursor-pointer transition-all text-sm md:text-base ${watch('format') === 'online' ? 'border-brand-green bg-brand-green/5 font-bold' : 'border-gray-200'}`}>
+                <label className={`flex-1 flex items-center justify-center border-2 rounded-xl cursor-pointer transition-all text-sm md:text-base py-3 ${watch('format') === 'online' ? 'border-brand-green bg-brand-green/5 font-bold' : 'border-gray-200'}`}>
                   <input type="radio" value="online" {...register('format')} className="hidden" />
                   Online
                 </label>
               </div>
-              {errors.format && <p className="text-red-500 text-[10px] mt-1">{errors.format.message}</p>}
+              {errors.format && <p className="text-red-500 text-xs mt-1">{errors.format.message}</p>}
             </div>
           </div>
         </div>
@@ -472,20 +485,20 @@ export function RegistrationForm() {
                     ) : isSelected ? (
                       <Badge className="bg-brand-green text-white">✓</Badge>
                     ) : (
-                      <Badge variant="outline" className="text-[10px]">{group.max_capacity - group.current_capacity} places</Badge>
+                      <Badge variant="outline" className="text-xs">{group.max_capacity - group.current_capacity} places</Badge>
                     )}
                   </div>
                   <div className="bg-white p-2 rounded-lg border border-gray-100 mb-2 text-center text-sm md:text-base font-bold text-gray-900">
                     {group.time_slot}
                   </div>
-                  <div className="text-[10px] font-medium text-gray-500 text-center">
+                  <div className="text-xs font-medium text-gray-500 text-center">
                     {group.current_capacity}/{group.max_capacity} inscrits
                   </div>
                 </div>
               );
             })}
           </div>
-          {errors.groupId && <p className="text-red-500 text-[10px] mt-4 font-medium">{errors.groupId.message}</p>}
+          {errors.groupId && <p className="text-red-500 text-xs mt-4 font-medium">{errors.groupId.message}</p>}
           <input {...register('groupId')} type="hidden" />
         </div>
 
@@ -524,14 +537,14 @@ export function RegistrationForm() {
           <div className="space-y-4">
             <div className="flex items-start space-x-3">
               <input {...register('agreedToTerms')} type="checkbox" className="mt-1 w-5 h-5 text-brand-green border-gray-300 rounded focus:ring-brand-green" />
-              <label className="text-[11px] md:text-sm text-gray-600 font-medium leading-tight pt-0.5">
+              <label className="text-xs md:text-sm text-gray-600 font-medium leading-tight pt-0.5">
                 J'accepte les{" "}
                 <a href="/conditions-generales-de-vente" className="text-brand-green hover:underline font-bold">conditions générales de vente</a>
               </label>
             </div>
             <div className="flex items-start space-x-3">
               <input {...register('agreedToPrivacy')} type="checkbox" className="mt-1 w-5 h-5 text-brand-green border-gray-300 rounded focus:ring-brand-green" />
-              <label className="text-[11px] md:text-sm text-gray-600 font-medium leading-tight pt-0.5">
+              <label className="text-xs md:text-sm text-gray-600 font-medium leading-tight pt-0.5">
                 J'accepte la{" "}
                 <a href="/politique-confidentialite" className="text-brand-green hover:underline font-bold">politique de confidentialité</a>
               </label>
@@ -548,7 +561,7 @@ export function RegistrationForm() {
           >
             {isSubmitting ? 'Traitement...' : 'Valider mon inscription'}
           </Button>
-          <p className="mt-4 text-[10px] text-gray-400 font-bold uppercase tracking-widest">
+          <p className="mt-4 text-xs text-gray-400 font-bold uppercase tracking-widest">
             Paiement 100% Sécurisé
           </p>
         </div>

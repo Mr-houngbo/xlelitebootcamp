@@ -24,7 +24,7 @@ export const HeroProof = () => {
           <div className="flex text-orange-500">
             {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 md:w-5 md:h-5 fill-current" />)}
           </div>
-          <span className="font-bold text-slate-600 dark:text-slate-400 text-xs md:text-sm">4.9/5 satisfaction (500+ pros)</span>
+          <span className="font-bold text-slate-600 dark:text-slate-400 text-sm md:text-sm">4.9/5 satisfaction (500+ pros)</span>
         </motion.div>
 
         <motion.h1
@@ -43,8 +43,8 @@ export const HeroProof = () => {
           transition={{ delay: 0.2 }}
         >
           <Link href="/inscription">
-            <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-8 text-xl font-black rounded-2xl shadow-2xl shadow-emerald-600/30">
-              Réserver ma place maintenant
+            <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-8 text-base md:text-xl font-black rounded-2xl shadow-2xl shadow-emerald-600/30 min-h-[56px]">
+              Je réserve ma place
             </Button>
           </Link>
         </motion.div>
@@ -100,7 +100,7 @@ const VideoTestimonialCard = ({ testimonial, active = false }: { testimonial: an
       {/* Label Net */}
       <div className="absolute bottom-6 left-6 right-6 z-20">
         <h4 className="text-lg font-bold text-white leading-tight">{testimonial.participant_name}</h4>
-        <p className="text-[10px] text-emerald-400 font-bold uppercase tracking-widest">{testimonial.company}</p>
+        <p className="text-xs text-emerald-400 font-bold uppercase tracking-widest">{testimonial.company}</p>
       </div>
     </div>
   );
@@ -116,11 +116,11 @@ export const ConcreteTestimonials = () => {
   ];
 
   return (
-    <section className="py-20 bg-slate-950 text-white overflow-hidden relative border-y border-white/5">
+    <section id="temoignages" className="py-12 md:py-16 bg-slate-950 text-white overflow-hidden relative border-y border-white/5">
       <div className="container px-4 mx-auto relative z-10">
         <div className="flex items-center justify-center gap-8 mb-12 opacity-30">
           <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent to-white" />
-          <span className="text-[10px] font-black uppercase tracking-[0.5em] whitespace-nowrap">Ils sont passés par là</span>
+          <span className="text-xs font-black uppercase tracking-[0.5em] whitespace-nowrap">Ils sont passés par là</span>
           <div className="h-[1px] flex-1 bg-gradient-to-l from-transparent to-white" />
         </div>
 
@@ -132,18 +132,18 @@ export const ConcreteTestimonials = () => {
             whileHover={{ animationPlayState: 'paused' }}
           >
             {[...textTestimonials, ...textTestimonials].map((t, idx) => (
-              <div key={`${t.id}-${idx}`} className="w-[300px] md:w-[450px] p-8 md:p-10 rounded-[2.5rem] bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] transition-all shrink-0 whitespace-normal">
+              <div key={`${t.id}-${idx}`} className="w-[260px] md:w-[450px] p-5 md:p-10 rounded-[1.5rem] md:rounded-[2.5rem] bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] transition-all shrink-0 whitespace-normal">
                 <div className="flex gap-1 mb-6 text-orange-400">
                   {[...Array(5)].map((_, i) => <Star key={i} className="w-3 h-3 fill-current" />)}
                 </div>
-                <p className="text-sm md:text-lg leading-relaxed text-slate-300 font-medium mb-8 italic">"{t.testimonial}"</p>
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full border-2 border-emerald-500/20 p-0.5 bg-slate-800">
+                <p className="text-sm md:text-lg leading-relaxed text-slate-300 font-medium mb-4 md:mb-8 italic">"{t.testimonial}"</p>
+                <div className="flex items-center gap-3 md:gap-4">
+                  <div className="w-10 h-10 md:w-12 h-12 rounded-full border-2 border-emerald-500/20 p-0.5 bg-slate-800 shrink-0">
                     <img src={t.participant_photo} alt="" className="w-full h-full rounded-full" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-white text-xs md:text-sm">{t.participant_name}</h4>
-                    <p className="text-[10px] text-slate-500 uppercase font-black tracking-widest">{t.company}</p>
+                    <h4 className="font-bold text-white text-sm md:text-sm">{t.participant_name}</h4>
+                    <p className="text-xs text-slate-500 uppercase font-black tracking-widest">{t.company}</p>
                   </div>
                 </div>
               </div>
@@ -159,73 +159,70 @@ export const RealActions = () => {
   const videoTestimonials = [
     { id: 'v1', participant_name: 'N\'GUESSAN KOFFI', company: 'Burkina Faso', video_url: 'https://i.imgur.com/vhgB6bF.mp4' },
     { id: 'v4', participant_name: 'NIANG Coumba', company: 'Senegal', video_url: 'https://i.imgur.com/Qol4jUS.mp4' },
-    { id: 'v5', participant_name: 'Comlan Herman', company: 'Benin', video_url: 'https://i.imgur.com/95TsFVD.mp4' },
-    { id: 'v2', participant_name: 'KOUADIO Dominique KONIN', company: 'Côte d\'Ivoire', video_url: 'https://i.imgur.com/2je7YyL.mp4' },
-  ];
-
-  const actions = [
-    { title: "Consolider vos acquis", desc: "Reprenez les fondamentaux Microsoft et corrigez définitivement les mauvaises habitudes qui coûtent des points à l'examen.", icon: <ShieldCheck className="w-6 h-6" /> },
-    { title: "Automatiser selon les standards", desc: "Power Query, scénarios, fonctions dynamiques : vous apprenez la méthode validée par les examinateurs.", icon: <Laptop className="w-6 h-6" /> },
-    { title: "Pitcher vos analyses", desc: "Vous livrez un dashboard propre, mesuré, prêt à être présenté à un directeur financier.", icon: <TrendingUp className="w-6 h-6" /> },
-    { title: "Réussir la certification", desc: "Le bootcamp se termine par une simulation et votre passage à l'examen Microsoft Excel Expert.", icon: <Award className="w-6 h-6" /> }
+    { id: 'v5', participant_name: 'Comlan Herman', company: 'Benin', video_url: 'https://i.imgur.com/95TsFVD.mp4' }
   ];
 
   return (
-    <section className="py-24 md:py-48 bg-white dark:bg-slate-950 relative overflow-hidden">
-      <div className="container px-4 mx-auto max-w-7xl relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+    <section className="py-16 md:py-24 bg-white dark:bg-slate-950 relative overflow-hidden">
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-emerald-500/20 to-transparent" />
+      
+      <div className="container px-4 mx-auto max-w-5xl relative z-10">
+        
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-2xl md:text-5xl font-black tracking-tight leading-tight mb-4">
+            Ce sont eux qui en parlent <br className="hidden md:block" />
+            <span className="text-emerald-600">le mieux.</span>
+          </h2>
+          <p className="text-slate-500 dark:text-slate-400 font-medium">
+            Découvrez comment le Bootcamp a transformé leur quotidien.
+          </p>
+        </div>
 
-          {/* Left: Actions */}
-          <div className="space-y-16">
-            <div>
-              <div className="w-20 h-1 bg-emerald-600 mb-8" />
-              <h2 className="text-5xl md:text-8xl font-black mb-8 leading-[0.85] tracking-tighter text-slate-900 dark:text-white">
-                Structurer. <br />
-                Simuler. <br />
-                <span className="text-emerald-600">Certifier.</span>
-              </h2>
-              <p className="text-xl text-slate-500 dark:text-slate-400 font-medium max-w-lg">
-                Chaque atelier reproduit un sujet de certification ou un cas métier senior. Vous faites, vous présentez, vous êtes coaché.
-              </p>
-            </div>
+        <div className="relative">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-lg aspect-square bg-emerald-600/5 blur-[120px] rounded-full pointer-events-none" />
 
-            <div className="grid grid-cols-1 gap-12">
-              {actions.map((a, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  className="flex gap-8 group"
-                >
-                  <div className="text-emerald-600 group-hover:scale-125 transition-transform duration-500">
-                    {a.icon}
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-black mb-2 tracking-tight">{a.title}</h3>
-                    <p className="text-slate-500 dark:text-slate-400 font-medium leading-relaxed">{a.desc}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+          {/* Indicateurs de scroll pour mobile */}
+          <div className="md:hidden absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-white dark:from-slate-950 to-transparent z-10 pointer-events-none" />
+          <div className="md:hidden absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-white dark:from-slate-950 to-transparent z-10 pointer-events-none" />
+
+        <div className="flex md:grid md:grid-cols-3 gap-4 md:gap-8 max-w-4xl mx-auto overflow-x-auto scrollbar-hide pb-6 snap-x px-4 md:px-0 -mx-4 md:mx-auto">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="w-[240px] md:w-auto shrink-0 snap-center mt-0 md:mt-12"
+            >
+              <VideoTestimonialCard testimonial={videoTestimonials[0]} active={true} />
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="w-[240px] md:w-auto shrink-0 snap-center mt-0"
+            >
+              <VideoTestimonialCard testimonial={videoTestimonials[1]} />
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="w-[240px] md:w-auto shrink-0 snap-center mt-0 md:mt-24"
+            >
+              <VideoTestimonialCard testimonial={videoTestimonials[2]} />
+            </motion.div>
           </div>
-
-          {/* Right: Focused Video Showcase (4 Videos) */}
-          <div className="relative">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] aspect-square bg-emerald-600/5 blur-[150px] rounded-full pointer-events-none" />
-
-            <div className="grid grid-cols-2 gap-4 md:gap-6 items-start">
-              <div className="space-y-4 md:space-y-6 pt-12">
-                <VideoTestimonialCard testimonial={videoTestimonials[0]} active={true} />
-                <VideoTestimonialCard testimonial={videoTestimonials[2]} />
-              </div>
-              <div className="space-y-4 md:space-y-6">
-                <VideoTestimonialCard testimonial={videoTestimonials[1]} />
-                <VideoTestimonialCard testimonial={videoTestimonials[3]} />
-              </div>
-            </div>
+          
+          {/* Indicateur visuel de scroll mobile */}
+          <div className="md:hidden text-center mt-4">
+            <p className="text-xs text-slate-400 font-medium flex items-center justify-center gap-2">
+              <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              Swipez pour voir plus
+            </p>
           </div>
-
         </div>
       </div>
     </section>
@@ -239,35 +236,34 @@ export const RealActions = () => {
 
 export const OrganizationSection = () => {
   return (
-    <section className="py-12 md:py-24 bg-white dark:bg-slate-900">
+    <section id="organisation" className="py-12 md:py-16 bg-white dark:bg-slate-900">
       <div className="container px-4 mx-auto max-w-5xl">
-        <h2 className="text-xl md:text-4xl font-black mb-8 md:mb-16 text-center leading-tight">Une organisation <br className="md:hidden" />flexible pour les pros</h2>
+        <h2 className="text-xl md:text-4xl font-black mb-6 md:mb-10 text-center leading-tight">Une organisation <br className="md:hidden" />flexible pour les pros</h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-          <div className="p-6 md:p-8 rounded-2xl md:rounded-3xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-100 dark:border-emerald-900/20">
-            <Calendar className="w-8 h-8 md:w-10 md:h-10 text-emerald-600 mb-4 md:mb-6" />
-            <h3 className="text-lg md:text-xl font-bold mb-2">4 jours pour valider</h3>
-            <p className="text-sm md:text-base text-slate-600 dark:text-slate-400">Du 09 au 13 juin 2026. 32 heures de coaching technique + simulations d'examen.</p>
+        <div className="grid grid-cols-3 gap-2 md:gap-8">
+          <div className="p-3 md:p-8 rounded-lg md:rounded-3xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-100 dark:border-emerald-900/20">
+            <Calendar className="w-6 h-6 md:w-10 md:h-10 text-emerald-600 mb-2 md:mb-6" />
+            <h3 className="text-xs md:text-xl font-bold mb-1 md:mb-2 leading-tight">5 jours</h3>
+            <p className="text-[10px] md:text-base text-slate-600 dark:text-slate-400 leading-snug">Du 09 au 13 juin 2026</p>
           </div>
 
-          <div className="p-6 md:p-8 rounded-2xl md:rounded-3xl bg-orange-50 dark:bg-orange-950/30 border border-orange-100 dark:border-orange-900/20">
-            <Clock className="w-8 h-8 md:w-10 md:h-10 text-orange-600 mb-4 md:mb-6" />
-            <h3 className="text-lg md:text-xl font-bold mb-2">Groupes professionnels</h3>
-            <ul className="text-[12px] md:text-sm space-y-2 text-slate-700 dark:text-slate-300 font-bold mt-3">
-              <li>• G1 : 09h – 12h (cadres dirigeants)</li>
-              <li>• G2 : 14h – 17h (analystes & financiers)</li>
-              <li>• G3 : 18h – 21h (managers & consultants)</li>
+          <div className="p-3 md:p-8 rounded-lg md:rounded-3xl bg-orange-50 dark:bg-orange-950/30 border border-orange-100 dark:border-orange-900/20">
+            <Clock className="w-6 h-6 md:w-10 md:h-10 text-orange-600 mb-2 md:mb-6" />
+            <h3 className="text-xs md:text-xl font-bold mb-1 md:mb-2 leading-tight">3 Groupes</h3>
+            <ul className="text-[9px] md:text-sm space-y-0.5 md:space-y-2 text-slate-700 dark:text-slate-300 font-bold">
+              <li>G1: 09h-12h</li>
+              <li>G2: 14h-17h</li>
+              <li>G3: 18h-21h</li>
             </ul>
-            <p className="text-[10px] text-slate-500 mt-4 italic">Coaching live, interactions ciblées, corrections d'examen.</p>
           </div>
 
-          <div className="p-6 md:p-8 rounded-2xl md:rounded-3xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700">
-            <div className="flex gap-2 mb-4 md:mb-6">
-              <MapPin className="w-8 h-8 md:w-10 md:h-10 text-slate-600" />
-              <Laptop className="w-8 h-8 md:w-10 md:h-10 text-slate-600" />
+          <div className="p-3 md:p-8 rounded-lg md:rounded-3xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700">
+            <div className="flex gap-1 md:gap-2 mb-2 md:mb-6">
+              <MapPin className="w-5 h-5 md:w-10 md:h-10 text-slate-600" />
+              <Laptop className="w-5 h-5 md:w-10 md:h-10 text-slate-600" />
             </div>
-            <h3 className="text-lg md:text-xl font-bold mb-2">Présentiel + live certif</h3>
-            <p className="text-sm md:text-base text-slate-600 dark:text-slate-400">Présentiel à Ouaga 2000 ou 100% live. Vous passez la certification depuis un centre agréé ou un espace sécurisé.</p>
+            <h3 className="text-xs md:text-xl font-bold mb-1 md:mb-2 leading-tight">Hybride</h3>
+            <p className="text-[10px] md:text-base text-slate-600 dark:text-slate-400 leading-snug">Présentiel ou 100% en ligne</p>
           </div>
         </div>
       </div>
@@ -275,107 +271,80 @@ export const OrganizationSection = () => {
   );
 };
 
-export const InclusionsSection = () => {
-  return (
-    <section className="py-12 md:py-24 bg-emerald-900 text-white overflow-hidden relative">
-      <div className="container px-4 mx-auto max-w-4xl text-center relative z-10">
-        <h2 className="text-xl md:text-4xl font-bold mb-8 md:mb-12 leading-tight">Tout ce qu'il faut pour décrocher <br className="md:hidden" />Microsoft Excel Expert</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 text-left">
-          {[
-            { icon: <Award className="w-6 h-6 text-orange-400 shrink-0" />, text: "2 vouchers officiels + frais d'examen compris." },
-            { icon: <ShieldCheck className="w-6 h-6 text-orange-400 shrink-0" />, text: "Licence Office 365 + environnement d'entraînement dédié." },
-            { icon: <Users className="w-6 h-6 text-orange-400 shrink-0" />, text: "Mentoring post-examen pendant 30 jours pour valider la certification." },
-            { icon: <CheckCircle2 className="w-6 h-6 text-orange-400 shrink-0" />, text: "Cas d'usage inspirés de missions réelles (finance, audit, supply chain)." },
-          ].map((item, i) => (
-            <div key={i} className="flex gap-4 p-5 bg-white/10 rounded-xl border border-white/10 items-center">
-              {item.icon}
-              <p className="font-bold text-sm md:text-base">{item.text}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
+// Section supprimée - inclusions maintenant dans FinancialOffer
 
 export const FinancialOffer = () => {
   return (
-    <section className="py-24 md:py-32 bg-white dark:bg-slate-950 relative overflow-hidden">
+    <section className="py-16 md:py-24 bg-white dark:bg-slate-950 relative overflow-hidden">
       {/* Decorative ambient lights */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-emerald-500/10 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="container px-4 mx-auto max-w-5xl relative z-10">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-4">Un budget unique pour une certification à vie</h2>
-          <p className="text-slate-500 dark:text-slate-400 font-medium text-lg italic">Coaching premium, vouchers Microsoft, simulations d'examen et accompagnement post-certif.</p>
+        <div className="text-center mb-10 md:mb-12">
+          <h2 className="text-2xl md:text-5xl font-black tracking-tight mb-2 md:mb-4">Un budget unique pour une certification à vie</h2>
         </div>
 
-        <div className="bg-slate-900 rounded-[3rem] border border-white/10 shadow-3xl overflow-hidden flex flex-col lg:flex-row items-stretch">
-          {/* Left Side: Pricing Details */}
-          <div className="p-8 md:p-16 flex-1 border-b lg:border-b-0 lg:border-r border-white/5">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-8">
-              <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
-              <span className="text-[10px] font-black text-emerald-500 uppercase tracking-widest">Coaching élite limité</span>
-            </div>
-
-            <div className="space-y-10">
-              <div className="flex justify-between items-end">
-                <div>
-                  <p className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] mb-2">Frais d'inscription</p>
-                  <p className="text-3xl md:text-4xl font-black text-white">25 000 F</p>
-                </div>
+        <div className="bg-slate-900 rounded-3xl md:rounded-[3rem] border border-white/10 shadow-3xl overflow-hidden flex flex-col lg:flex-row items-stretch">
+          {/* Left Side: Pricing + Inclusions */}
+          <div className="p-5 md:p-16 flex-1 border-b lg:border-b-0 lg:border-r border-white/5">
+            <div className="space-y-8 mb-10">
+              <div>
+                <p className="text-sm text-slate-400 uppercase tracking-wider mb-3">Frais d'inscription</p>
+                <p className="text-3xl md:text-5xl font-black text-white">25 000 F</p>
               </div>
 
               <div className="h-[1px] w-full bg-gradient-to-r from-white/10 via-white/5 to-transparent" />
 
               <div>
-                <p className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] mb-2">Frais de formation</p>
-                <div className="flex items-baseline gap-3">
-                  <p className="text-3xl md:text-4xl font-black text-white/90">125 000 F</p>
-                  <span className="text-slate-500 text-sm font-medium">/ sessions complètes</span>
-                </div>
+                <p className="text-sm text-slate-400 uppercase tracking-wider mb-3">Frais de participation</p>
+                <p className="text-3xl md:text-5xl font-black text-white">125 000 F</p>
               </div>
             </div>
 
-            <div className="mt-12 p-6 rounded-2xl bg-white/[0.02] border border-white/5">
-              <div className="flex gap-4">
-                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center flex-shrink-0">
-                  <ShieldCheck className="w-5 h-5 text-emerald-500" />
-                </div>
-                <div>
-                  <p className="text-xs font-bold text-white mb-1">Paiement Sécurisé & Inclus</p>
-                  <p className="text-[10px] text-slate-500 leading-relaxed font-medium">Support de cours premium, cas corrigés de l'examen, deux vouchers inclus et licence Office 365.</p>
-                </div>
-              </div>
+            {/* Ce qui est inclus */}
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-5 md:p-6">
+              <p className="text-emerald-400 font-black text-sm uppercase tracking-wider mb-4">Tout ce à quoi vous aurez droit</p>
+              <ul className="space-y-3 text-white">
+                <li className="flex items-start gap-3">
+                  <span className="text-emerald-400 text-lg shrink-0">✓</span>
+                  <span className="text-sm md:text-base">2 vouchers officiels + frais d'examen compris</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-emerald-400 text-lg shrink-0">✓</span>
+                  <span className="text-sm md:text-base">Licence Office 365 + environnement d'entraînement dédié</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-emerald-400 text-lg shrink-0">✓</span>
+                  <span className="text-sm md:text-base">Mentoring post-examen pour rentabiliser votre investissement</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-emerald-400 text-lg shrink-0">✓</span>
+                  <span className="text-sm md:text-base">+10 Simulateurs d'examens réels</span>
+                </li>
+              </ul>
             </div>
           </div>
 
           {/* Right Side: Total & CTA */}
-          <div className="bg-emerald-600 p-8 md:p-16 w-full lg:w-[400px] flex flex-col justify-center items-center text-center relative overflow-hidden">
+          <div className="bg-emerald-600 p-5 md:p-16 w-full lg:w-[400px] flex flex-col justify-center items-center text-center relative overflow-hidden">
             {/* Pattern Overlay */}
             <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '24px 24px' }} />
 
             <div className="relative z-10">
-              <p className="text-emerald-100/60 font-black uppercase tracking-[0.3em] text-[10px] mb-4">Investissement Total</p>
-              <div className="relative inline-block mb-8">
-                <div className="absolute -inset-4 bg-white/20 blur-2xl rounded-full opacity-50" />
-                <h3 className="text-5xl md:text-7xl font-black text-white relative leading-none">150K</h3>
-                <span className="text-emerald-100 font-bold text-xl ml-1 tracking-tighter uppercase opacity-80">CFA</span>
-              </div>
-
+              
               <div className="space-y-8">
                 <div className="inline-block px-4 py-2 rounded-xl bg-black/20 backdrop-blur-md border border-white/10">
                   <div className="flex items-center gap-3 text-white">
                     <Clock className="w-4 h-4 text-emerald-300" />
-                    <p className="text-xs font-black uppercase tracking-widest">Clôture des inscriptions : <span className="text-emerald-300">02 Juin</span></p>
+                    <p className="text-sm font-black uppercase tracking-widest">Clôture des inscriptions : <span className="text-emerald-300">02 Juin</span></p>
                   </div>
                 </div>
 
                 <Link href="/inscription" className="block group">
-                  <Button size="lg" className="w-full bg-white hover:bg-slate-50 text-emerald-950 px-12 py-8 text-xl font-black rounded-2xl shadow-2xl transition-all hover:scale-[1.03] group flex items-center justify-center">
-                    <Lock className="w-5 h-5 mr-3 group-hover:rotate-12 transition-transform" /> Je réserve mes vouchers
+                  <Button size="lg" className="w-full bg-white hover:bg-slate-50 text-emerald-950 px-4 py-4 md:px-12 md:py-8 text-base md:text-xl font-black rounded-xl md:rounded-2xl shadow-2xl transition-all hover:scale-[1.03] group flex items-center justify-center min-h-[56px]">
+                    <Lock className="w-5 h-5 mr-3 group-hover:rotate-12 transition-transform" /> Je réserve ma place
                   </Button>
-                  <p className="mt-4 text-emerald-100/60 text-[10px] font-bold uppercase tracking-widest group-hover:text-white transition-colors italic">⚠️ Places limitées à 15 par session</p>
+                  <p className="mt-4 text-emerald-100/60 text-xs font-bold uppercase tracking-widest group-hover:text-white transition-colors italic">⚠️ Places limitées</p>
                 </Link>
               </div>
             </div>
@@ -454,31 +423,25 @@ export const FAQProof = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="py-16 md:py-24 bg-white dark:bg-slate-950">
+    <section id="faq" className="py-12 md:py-16 bg-white dark:bg-slate-950">
       <div className="container px-4 mx-auto max-w-4xl">
-        <div className="text-center mb-10 md:mb-16">
+        <div className="text-center mb-8 md:mb-12">
           <h2 className="text-2xl md:text-4xl font-black tracking-tight mb-3">Des questions ?</h2>
           <p className="text-sm md:text-base text-slate-500 font-medium italic px-4">Tout ce que vous devez savoir pour décider.</p>
         </div>
 
-        {/* Category Marquee - Moving horizontally */}
-        <div className="relative mb-12 overflow-hidden py-2 border-y border-slate-100 dark:border-slate-800">
-          <motion.div
-            className="flex gap-4 whitespace-nowrap"
-            animate={{ x: [0, -1200] }}
-            transition={{
-              duration: 6,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-            whileHover={{ animationPlayState: 'paused' }}
-          >
-            {/* Triple the list to ensure no gaps */}
-            {[...categories, ...categories, ...categories].map((cat, idx) => (
+        {/* Category List - Scrollable horizontally */}
+        <div className="relative mb-12 py-2 border-y border-slate-100 dark:border-slate-800">
+          {/* Indicateurs de scroll pour mobile */}
+          <div className="md:hidden absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-white dark:from-slate-950 to-transparent z-10 pointer-events-none" />
+          <div className="md:hidden absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-white dark:from-slate-950 to-transparent z-10 pointer-events-none" />
+          
+          <div className="flex gap-4 overflow-x-auto faq-scrollbar pb-4 pt-2 px-2 w-full snap-x scroll-smooth">
+            {categories.map((cat) => (
               <button
-                key={`${cat.id}-${idx}`}
+                key={cat.id}
                 onClick={() => { setActiveCat(cat.id); setOpenIndex(null); }}
-                className={`flex items-center gap-2 px-6 py-3 rounded-xl text-[11px] md:text-sm font-black transition-all shrink-0 ${activeCat === cat.id
+                className={`flex items-center gap-2 px-6 py-3 rounded-xl text-sm md:text-sm font-black transition-all shrink-0 snap-start ${activeCat === cat.id
                   ? 'bg-emerald-600 text-white shadow-lg scale-105'
                   : 'bg-slate-50 dark:bg-slate-900 text-slate-500 hover:bg-slate-100'
                   }`}
@@ -486,7 +449,12 @@ export const FAQProof = () => {
                 {cat.icon} {cat.label}
               </button>
             ))}
-          </motion.div>
+          </div>
+          
+          {/* Indicateur visuel de scroll mobile */}
+          <div className="md:hidden text-center mt-2">
+            <p className="text-xs text-slate-400 font-medium">← Swipez pour explorer les catégories →</p>
+          </div>
         </div>
 
         {/* FAQ Items with Animation */}
@@ -502,7 +470,7 @@ export const FAQProof = () => {
             <div key={i} className="group">
               <button
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                className={`w-full text-left p-5 rounded-2xl border transition-all duration-300 ${openIndex === i
+                className={`w-full text-left p-4 md:p-5 rounded-xl md:rounded-2xl border transition-all duration-300 ${openIndex === i
                   ? 'bg-emerald-50/30 dark:bg-emerald-900/5 border-emerald-500/50 shadow-sm'
                   : 'bg-white dark:bg-slate-900 border-slate-100 dark:border-slate-800 hover:border-emerald-200'
                   }`}
@@ -585,28 +553,34 @@ export const TrainerSection = () => {
       '/illustrations/form_2.jpeg',
       '/illustrations/form_3.jpeg',
       '/illustrations/form_4.jpeg',
+      '/illustrations/form_5.jpeg',
+      '/illustrations/form_6.jpeg',
+      '/illustrations/form_7.jpeg',
       '/illustrations/IMG-20230808-WA0012.jpg',
       '/illustrations/IMG-20260403-WA0063.jpg',
     ],
     [
       '/illustrations/IMG-20230808-WA0013.jpg',
+      '/illustrations/IMG-20230808-WA0014.jpg',
       '/illustrations/IMG-20251210-WA0019.jpg',
       '/illustrations/IMG-20250703-WA0016.jpg',
       '/illustrations/FB_IMG_1735152498589.jpg',
       '/illustrations/IMG-20260403-WA0064.jpg',
       '/illustrations/IMG-20251210-WA0011.jpg',
+      '/illustrations/IMG-20250403-WA0041.jpg',
+      '/illustrations/IMG-20260404-WA0035.jpg',
     ],
   ];
 
   return (
-    <section className="py-20 md:py-32 bg-slate-50 dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800">
+    <section id="formateur" className="py-16 md:py-20 bg-slate-50 dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800">
       <div className="container px-4 mx-auto max-w-6xl">
-        <div className="space-y-24">
-          <div className="relative overflow-hidden rounded-[3rem] bg-white dark:bg-slate-950 border border-slate-100 dark:border-slate-800 shadow-[0_40px_80px_-40px_rgba(15,23,42,0.4)]">
+        <div className="space-y-12 md:space-y-16">
+          <div className="relative overflow-hidden rounded-3xl md:rounded-[3rem] bg-white dark:bg-slate-950 border border-slate-100 dark:border-slate-800 shadow-[0_40px_80px_-40px_rgba(15,23,42,0.4)]">
             <div className="absolute -top-32 -right-20 w-72 h-72 bg-emerald-500/20 blur-[120px] rounded-full" />
             <div className="absolute -bottom-20 left-0 w-60 h-60 bg-orange-500/10 blur-[120px] rounded-full" />
 
-            <div className="relative z-10 grid md:grid-cols-5 gap-10 md:gap-16 p-10 md:p-16">
+            <div className="relative z-10 grid md:grid-cols-5 gap-6 md:gap-16 p-6 md:p-16">
               <div className="md:col-span-2">
                 <div className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden border-4 border-white dark:border-slate-900 shadow-2xl">
                   <Image
@@ -634,7 +608,7 @@ export const TrainerSection = () => {
                   <span className="inline-flex items-center gap-2 text-orange-500 font-black uppercase tracking-[0.4em] text-xs mb-4">
                     Votre Formateur
                   </span>
-                  <h2 className="text-3xl md:text-5xl font-black text-slate-900 dark:text-white leading-tight mb-6">
+                  <h2 className="text-[1.35rem] md:text-5xl font-black text-slate-900 dark:text-white leading-tight mb-4 md:mb-6">
                     L’architecte de votre montée en puissance sur Excel
                   </h2>
                   <div className="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed text-base md:text-lg">
@@ -682,92 +656,52 @@ export const TrainerSection = () => {
             </div>
           </div>
 
-          <div className="relative overflow-hidden rounded-[3rem] bg-gradient-to-br from-emerald-950 via-emerald-900 to-slate-950 border border-emerald-900/60 p-10 md:p-16 text-white">
-            <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.7) 1px, transparent 0)', backgroundSize: '28px 28px' }} />
-            <div className="relative z-10 grid lg:grid-cols-5 gap-12 items-center">
-              <div className="lg:col-span-2 space-y-6">
-                <span className="inline-flex items-center gap-2 text-emerald-300 font-black uppercase tracking-[0.4em] text-xs">
-                  Certification officiellement reconnue
-                </span>
-                <h3 className="text-3xl md:text-4xl font-black leading-tight">
-                  Deux vouchers inclus pour décrocher <span className="text-emerald-300">Microsoft Excel Expert</span>
-                </h3>
-                <p className="text-sm md:text-base text-emerald-100/80 leading-relaxed">
-                  Vous passez l’examen officiel sous supervision. Ces certificats proviennent de promotions réelles : preuve que notre méthode prépare concrètement à la réussite.
-                </p>
-                <ul className="space-y-2 text-sm md:text-base text-emerald-100/80 leading-relaxed">
-                  <li>• Coaching ciblé sur les compétences évaluées à l’examen.</li>
-                  <li>• Suivi individuel jusqu’à la validation de vos deux tentatives.</li>
-                  <li>• Remise de vos certificats numériques sous 48h après réussite.</li>
-                </ul>
-              </div>
-
-              <div className="lg:col-span-3 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {certificationArtifacts.map((artifact) => (
-                  <motion.div
-                    key={artifact.src}
-                    whileHover={{ scale: 1.03 }}
-                    className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md shadow-lg"
-                  >
-                    <div className="relative aspect-[3/4]">
-                      <Image
-                        src={artifact.src}
-                        alt={`Certification ${artifact.label}`}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 768px) 50vw, 20vw"
-                      />
-                      <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/70 via-black/20 to-transparent">
-                        <p className="text-sm font-bold">{artifact.label}</p>
-                        <p className="text-[11px] uppercase tracking-[0.3em] text-emerald-200/80 font-semibold">{artifact.batch}</p>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="rounded-[3rem] bg-white dark:bg-slate-950 border border-slate-100 dark:border-slate-800 p-10 md:p-14 shadow-[0_40px_80px_-60px_rgba(15,23,42,0.45)]">
+          <div className="rounded-3xl md:rounded-[3rem] bg-white dark:bg-slate-950 border border-slate-100 dark:border-slate-800 p-6 md:p-14 shadow-[0_40px_80px_-60px_rgba(15,23,42,0.45)]">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-12">
               <div>
                 <span className="text-xs uppercase tracking-[0.4em] font-black text-slate-400">Galerie terrain</span>
-                <h3 className="text-2xl md:text-4xl font-black text-slate-900 dark:text-white mt-2">
+                <h2 className="text-xl md:text-4xl font-black text-slate-900 dark:text-white mt-2">
                   Des bootcamps en mouvement
-                </h3>
+                </h2>
               </div>
               <p className="text-sm md:text-base text-slate-500 dark:text-slate-400 max-w-xl">
                 Revivez l’énergie des précédentes promotions avec des images authentiques, capturées sur le terrain.
               </p>
             </div>
 
-            <div className="relative overflow-hidden rounded-[2.5rem] border border-slate-100 dark:border-slate-800 bg-slate-50/40 dark:bg-white/5 p-6 md:p-10">
-              <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white dark:from-slate-950 to-transparent pointer-events-none z-20" />
-              <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white dark:from-slate-950 to-transparent pointer-events-none z-20" />
+            <div className="relative overflow-hidden rounded-[1.5rem] md:rounded-[2.5rem] border border-slate-100 dark:border-slate-800 bg-slate-50/40 dark:bg-white/5 py-6 md:py-10">
+              <div className="absolute inset-y-0 left-0 w-24 md:w-40 bg-gradient-to-r from-white dark:from-slate-950 to-transparent pointer-events-none z-20" />
+              <div className="absolute inset-y-0 right-0 w-24 md:w-40 bg-gradient-to-l from-white dark:from-slate-950 to-transparent pointer-events-none z-20" />
 
-              <div className="space-y-10 md:space-y-16">
+              <div className="space-y-6 md:space-y-10">
                 {galleryRows.map((row, rowIndex) => (
-                  <motion.div
-                    key={rowIndex}
-                    className="flex gap-10 md:gap-14"
-                    animate={{ x: rowIndex % 2 === 0 ? ['0%', '-50%'] : ['-50%', '0%'] }}
-                    transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
-                  >
-                    {[...row, ...row].map((src, idx) => (
-                      <div
-                        key={`${src}-${idx}`}
-                        className="relative w-[320px] md:w-[460px] aspect-[16/9] overflow-hidden rounded-[2.25rem] border border-slate-200/60 dark:border-slate-700/60 shadow-[0_30px_60px_-35px_rgba(15,23,42,0.6)] bg-white dark:bg-slate-900 shrink-0"
-                      >
-                        <Image
-                          src={src}
-                          alt="Moment de bootcamp XL Elite"
-                          fill
-                          className="object-cover"
-                          sizes="(max-width: 768px) 90vw, 35vw"
-                        />
-                      </div>
-                    ))}
-                  </motion.div>
+                  <div key={rowIndex} className="flex overflow-hidden">
+                    <motion.div
+                      className="flex w-max"
+                      animate={{ x: rowIndex % 2 === 0 ? ['0%', '-50%'] : ['-50%', '0%'] }}
+                      transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
+                      whileHover={{ animationPlayState: 'paused' }}
+                    >
+                      {[0, 1].map((set) => (
+                        <div key={set} className="flex gap-4 md:gap-6 px-2 md:px-3">
+                          {row.map((src, idx) => (
+                            <div
+                              key={`${src}-${idx}`}
+                              className="relative w-[240px] md:w-[400px] aspect-[16/9] overflow-hidden rounded-[1.5rem] md:rounded-[2rem] border border-slate-200/60 dark:border-slate-700/60 shadow-lg bg-white dark:bg-slate-900 shrink-0 group"
+                            >
+                              <Image
+                                src={src}
+                                alt="Moment de bootcamp XL Elite"
+                                fill
+                                className="object-cover group-hover:scale-105 transition-transform duration-700"
+                                sizes="(max-width: 768px) 300px, 400px"
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      ))}
+                    </motion.div>
+                  </div>
                 ))}
               </div>
             </div>

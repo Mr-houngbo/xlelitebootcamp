@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { CheckCircle2, XCircle, ArrowRight, TrendingUp, ShieldCheck, Zap, Award, AlertTriangle, TrendingDown, Clock, FileSpreadsheet } from 'lucide-react';
 import Link from 'next/link';
 import { CountdownTimer } from './countdown-timer';
@@ -9,7 +10,7 @@ import { Button } from '@/components/ui/button';
 
 export const HeroFunnel = () => {
   return (
-    <section className="relative pt-24 pb-20 md:pt-32 md:pb-32 overflow-hidden bg-white">
+    <section className="relative pt-24 pb-12 md:pt-28 md:pb-16 overflow-hidden bg-white">
       {/* Background patterns - Green/White only */}
       <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#10b98115_1px,transparent_1px),linear-gradient(to_bottom,#10b98115_1px,transparent_1px)] bg-[size:40px_40px]"></div>
       
@@ -44,17 +45,31 @@ export const HeroFunnel = () => {
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.1 }}
-              className="text-[2.5rem] sm:text-5xl md:text-6xl lg:text-[4rem] font-black tracking-tight text-emerald-950 leading-[1.1]"
+              className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.1] mb-6 md:mb-8 text-slate-900"
             >
-              Devenez <span className="text-emerald-600 bg-emerald-50 px-2 py-1 rounded-xl">Expert Excel</span> <br className="hidden md:block" />
-              Certifié en 4 Jours.
+              Expert Excel Certifié<br className="hidden sm:block" /> en <span className="text-emerald-600">5 Jours</span>
             </motion.h1>
+
+            {/* Badges de certification (Images grand format) */}
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.15 }}
+              className="mb-6 flex flex-wrap items-center justify-center gap-3 md:gap-5"
+            >
+              <div className="bg-white border-2 border-emerald-100 shadow-[0_12px_40px_rgb(5,150,105,0.15)] p-2 md:p-3 rounded-xl md:rounded-2xl transform hover:-translate-y-1 transition-all duration-300">
+                <Image src="/certificat/IMG-20230906-WA0055.jpg" alt="Certificat Microsoft Excel Expert" width={200} height={140} className="rounded-lg md:rounded-xl object-cover w-40 md:w-48 h-28 md:h-32" />
+              </div>
+              <div className="bg-white border-2 border-orange-100 shadow-[0_12px_40px_rgb(249,115,22,0.15)] p-2 md:p-3 rounded-xl md:rounded-2xl transform hover:-translate-y-1 transition-all duration-300">
+                <Image src="/certificat/IMG-20250516-WA0043.jpg" alt="Certificat Microsoft Excel Associate" width={200} height={140} className="rounded-lg md:rounded-xl object-cover w-40 md:w-48 h-28 md:h-32" />
+              </div>
+            </motion.div>
 
             <motion.p 
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.2 }}
-              className="mt-6 text-lg md:text-xl text-emerald-800 font-medium max-w-xl leading-relaxed"
+              className="mt-4 md:mt-6 text-sm md:text-xl text-emerald-800 font-medium max-w-xl leading-relaxed"
             >
               Rejoignez le bootcamp intensif pensé pour les cadres et analystes. 
               Maîtrisez les fonctions avancées, automatisez vos tâches et décrochez 
@@ -67,14 +82,14 @@ export const HeroFunnel = () => {
               transition={{ delay: 0.3 }}
               className="mt-10 w-full max-w-md"
             >
-              <div className="bg-white border-2 border-emerald-100 rounded-3xl p-6 shadow-2xl shadow-emerald-900/5">
+              <div className="bg-white border-2 border-emerald-100 rounded-2xl md:rounded-3xl p-4 md:p-6 shadow-2xl shadow-emerald-900/5">
                 <Link href="/inscription" className="block">
-                  <Button size="lg" className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-8 text-xl font-black rounded-2xl shadow-xl shadow-emerald-600/25 transition-all hover:scale-[1.02] active:scale-95 group">
-                    Rejoindre le Bootcamp
-                    <ArrowRight className="ml-2 w-6 h-6 group-hover:translate-x-1 transition-transform" />
+                  <Button size="lg" className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-6 md:py-8 text-base md:text-xl font-black rounded-xl md:rounded-2xl shadow-xl shadow-emerald-600/25 transition-all hover:scale-[1.02] active:scale-95 group min-h-[56px]">
+                    Je réserve ma place
+                    <ArrowRight className="ml-2 w-4 h-4 md:w-6 md:h-6 group-hover:translate-x-1 transition-transform" />
                   </Button>
                 </Link>
-                <p className="text-center text-emerald-700 text-sm font-bold mt-4 flex items-center justify-center gap-1.5">
+                <p className="text-center text-emerald-700 text-[11px] md:text-sm font-bold mt-3 md:mt-4 flex items-center justify-center gap-1.5">
                   <ShieldCheck className="w-4 h-4" /> Places limitées pour garantir la qualité
                 </p>
               </div>
@@ -82,31 +97,6 @@ export const HeroFunnel = () => {
 
             {/* Fixed Countdown */}
             <CountdownTimer targetDate="2026-06-02T23:59:59" />
-
-            {/* Features/Trust - Green and White */}
-            <motion.div
-               initial={{ opacity: 0 }}
-               animate={{ opacity: 1 }}
-               transition={{ delay: 0.4 }}
-               className="mt-10 grid grid-cols-2 gap-y-4 gap-x-6 w-full max-w-xl"
-            >
-               <div className="flex items-center gap-2.5 text-emerald-900 text-sm md:text-base font-bold">
-                 <div className="bg-emerald-100 p-1 rounded-full"><CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" /></div>
-                 Examen officiel inclus
-               </div>
-               <div className="flex items-center gap-2.5 text-emerald-900 text-sm md:text-base font-bold">
-                 <div className="bg-emerald-100 p-1 rounded-full"><CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" /></div>
-                 100% Finançable
-               </div>
-               <div className="flex items-center gap-2.5 text-emerald-900 text-sm md:text-base font-bold">
-                 <div className="bg-emerald-100 p-1 rounded-full"><CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" /></div>
-                 Format intensif 4 jours
-               </div>
-               <div className="flex items-center gap-2.5 text-emerald-900 text-sm md:text-base font-bold">
-                 <div className="bg-emerald-100 p-1 rounded-full"><CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" /></div>
-                 Coaching personnalisé
-               </div>
-            </motion.div>
 
           </div>
 
@@ -127,7 +117,8 @@ export const HeroFunnel = () => {
                 loop 
                 muted
                 autoPlay
-                playsInline 
+                playsInline
+                preload="metadata"
                 className="w-full h-full object-cover"
               />
               {/* Overlay elements */}
@@ -198,13 +189,13 @@ export const ProblemSection = () => {
   ];
 
   return (
-    <section id="en-savoir-plus" className="py-12 md:py-20 bg-slate-50 dark:bg-slate-900/50">
+    <section id="en-savoir-plus" className="py-10 md:py-16 bg-slate-50 dark:bg-slate-900/50">
       <div className="container px-4 mx-auto max-w-6xl">
         <div className="text-center mb-10 md:mb-16">
           <span className="text-red-500 font-bold tracking-wider uppercase text-xs mb-2 block">Le constat</span>
-          <h2 className="text-2xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight">
-            Vous maîtrisez Excel, mais <br className="hidden md:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-orange-500">il vous manque la validation officielle.</span>
+          <h2 className="text-lg md:text-4xl lg:text-5xl font-black tracking-tight leading-tight">
+            Vous utilisez déjà Excel, mais <br className="hidden md:block" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-orange-500">il vous manque une Certification Internationale.</span>
           </h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
@@ -212,7 +203,7 @@ export const ProblemSection = () => {
             <motion.div 
               key={i}
               whileHover={{ y: -5 }}
-              className="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-lg flex flex-col items-center md:items-start text-center md:text-left transition-all duration-300"
+              className="bg-white dark:bg-slate-800 p-4 md:p-8 rounded-xl md:rounded-2xl border border-slate-100 dark:border-slate-700 shadow-lg flex flex-col items-center md:items-start text-center md:text-left transition-all duration-300"
             >
               <div className="mb-4 w-12 h-12 bg-slate-50 dark:bg-slate-700 rounded-xl flex items-center justify-center border border-slate-100 dark:border-slate-600 shadow-inner shrink-0">
                 {p.icon}
@@ -233,11 +224,11 @@ export const ProblemSection = () => {
 
 export const TransformationSection = () => {
   return (
-    <section className="py-20 md:py-32 overflow-hidden">
+    <section className="py-12 md:py-20 overflow-hidden">
       <div className="container px-4 mx-auto">
         <div className="flex flex-col lg:flex-row gap-12 md:gap-20 items-center">
           <div className="w-full lg:w-1/2 order-2 lg:order-1">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black leading-tight tracking-tight text-center lg:text-left">Après 4 jours, vous serez <br /> <span className="text-emerald-600">reconnu officiellement.</span></h2>
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-black leading-tight tracking-tight text-center lg:text-left">Après 5 jours, vous serez <br /> <span className="text-emerald-600">reconnu officiellement.</span></h2>
             
             <div className="mt-10 md:mt-12 space-y-4 md:space-y-6">
               {[
@@ -245,8 +236,8 @@ export const TransformationSection = () => {
                 { title: "Processus fiabilisés", desc: "Vous structurez vos automatisations avec les standards Microsoft pour sécuriser vos équipes.", icon: <ShieldCheck className="w-6 h-6 text-emerald-600" /> },
                 { title: "Plan de carrière accéléré", desc: "Vous gagnez en légitimité pour négocier une promotion, une mission senior ou un transfert international.", icon: <TrendingUp className="w-6 h-6 text-emerald-600" /> },
               ].map((item, i) => (
-                <div key={i} className="flex items-start gap-4 p-5 md:p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-md">
-                  <div className="w-10 h-10 md:w-12 md:h-12 bg-emerald-100 dark:bg-emerald-900/30 rounded-xl md:rounded-2xl flex items-center justify-center shrink-0">
+                <div key={i} className="flex items-start gap-3 md:gap-4 p-4 md:p-6 rounded-xl md:rounded-2xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-md">
+                  <div className="w-8 h-8 md:w-12 md:h-12 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg md:rounded-2xl flex items-center justify-center shrink-0">
                      {item.icon}
                   </div>
                   <div>
@@ -259,8 +250,8 @@ export const TransformationSection = () => {
 
             <div className="mt-12 text-center lg:text-left">
               <Link href="#programme" className="inline-block w-full sm:w-auto">
-                <Button size="lg" className="w-full bg-orange-500 hover:bg-orange-600 text-white px-8 md:px-10 py-6 md:py-8 text-lg md:text-xl font-black rounded-2xl shadow-xl shadow-orange-500/20">
-                  Découvrir la feuille de route vers l'examen
+                <Button size="lg" className="w-full bg-orange-500 hover:bg-orange-600 text-white px-8 md:px-10 py-6 md:py-8 text-base md:text-xl font-black rounded-2xl shadow-xl shadow-orange-500/20 min-h-[56px]">
+                  Je réserve ma place
                 </Button>
               </Link>
             </div>
@@ -273,6 +264,7 @@ export const TransformationSection = () => {
                   loop 
                   playsInline 
                   controls
+                  preload="metadata"
                   className="w-full aspect-video rounded-2xl md:rounded-[1.8rem] object-cover shadow-2xl"
                 />
              </div>
@@ -320,8 +312,8 @@ export const ProgrammeSection = () => {
           <h3 className="text-2xl md:text-3xl font-black mb-4">Votre badge Microsoft Excel Expert vous attend.</h3>
           <p className="text-slate-600 dark:text-slate-400 mb-8 max-w-xl mx-auto">15 places maximum pour un coaching personnalisé, des simulations d'examen et une validation en conditions réelles.</p>
           <Link href="/inscription">
-            <Button size="lg" className="w-full sm:w-auto bg-brand-green hover:bg-emerald-700 text-white px-10 py-8 text-xl font-black rounded-2xl shadow-xl shadow-brand-green/20 transition-all hover:scale-105">
-              Réserver ma place pour la prochaine session <ArrowRight className="ml-3 w-6 h-6" />
+            <Button size="lg" className="w-full sm:w-auto bg-brand-green hover:bg-emerald-700 text-white px-10 py-8 text-base md:text-xl font-black rounded-2xl shadow-xl shadow-brand-green/20 transition-all hover:scale-105 min-h-[56px]">
+              Je réserve ma place <ArrowRight className="ml-3 w-6 h-6" />
             </Button>
           </Link>
         </div>

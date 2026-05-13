@@ -49,6 +49,36 @@
   }
 }
 
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+  .faq-scrollbar::-webkit-scrollbar {
+    height: 6px;
+  }
+  .faq-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .faq-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #10b981;
+    border-radius: 20px;
+  }
+  .faq-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #10b981 transparent;
+  }
+}
+
 @layer base {
   * {
     @apply border-border;
