@@ -358,7 +358,7 @@ export function calculateTrainingEndDate(): Date {
     const d = new Date(envEnd);
     if (!isNaN(d.getTime())) return d;
   }
-  // Fallback : start + 4 jours
+  // Fallback : start + 5 jours
   const start = calculateTrainingStartDate();
   start.setDate(start.getDate() + 4);
   return start;

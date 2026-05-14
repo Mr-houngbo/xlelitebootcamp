@@ -52,7 +52,7 @@ export const EMAIL_TEMPLATES = {
               <h3>📋 Détails de votre inscription</h3>
               <p><strong>Groupe:</strong> ${data.groupName}</p>
               <p><strong>Horaires:</strong> ${data.timeSlot}</p>
-              <p><strong>Dates:</strong> 09 au 13 juin 2025</p>
+              <p><strong>Dates:</strong> 09 au 13 juin 2026</p>
             </div>
             
             <div class="highlight">
@@ -70,7 +70,7 @@ export const EMAIL_TEMPLATES = {
             
             <h3>🎯 Ce que vous obtiendrez</h3>
             <ul>
-              <li>Formation intensive de 4 jours avec un formateur certifié Microsoft</li>
+              <li>Formation intensive de 5 jours avec un formateur certifié Microsoft</li>
               <li>2 vouchers pour la certification Microsoft Excel Expert</li>
               <li>Licence Office 365 offerte</li>
               <li>Support post-formation de 3 mois</li>
@@ -94,8 +94,8 @@ export const EMAIL_TEMPLATES = {
           </div>
           
           <div class="footer">
-            <p>© 2025 XL Elite Bootcamp - Tous droits réservés</p>
-            <p>L'excellence Excel, en 4 jours.</p>
+            <p>© 2026 XL Elite Bootcamp - Tous droits réservés</p>
+            <p>L'excellence Excel, en 5 jours.</p>
           </div>
         </div>
       </body>
@@ -148,12 +148,12 @@ export const EMAIL_TEMPLATES = {
             <p>Votre inscription est maintenant finalisée. Vous êtes officiellement inscrit à notre formation Microsoft Excel Expert!</p>
             
             <h3>📅 Dates importantes</h3>
-            <p><strong>Début de la formation:</strong> Lundi 9 juin 2025</p>
-            <p><strong>Fin de la formation:</strong> Vendredi 13 juin 2025</p>
+            <p><strong>Début de la formation:</strong> Lundi 9 juin 2026</p>
+            <p><strong>Fin de la formation:</strong> Vendredi 13 juin 2026</p>
             
             <h3>🎯 Ce qui vous attend</h3>
             <ul>
-              <li>4 jours de formation intensive</li>
+              <li>5 jours de formation intensive</li>
               <li>Formateur certifié Microsoft</li>
               <li>Petits groupes (max 20 participants)</li>
               <li>Certification Microsoft Excel Expert</li>
@@ -183,8 +183,8 @@ export const EMAIL_TEMPLATES = {
           </div>
           
           <div class="footer">
-            <p>© 2025 XL Elite Bootcamp - Tous droits réservés</p>
-            <p>L'excellence Excel, en 4 jours.</p>
+            <p>© 2026 XL Elite Bootcamp - Tous droits réservés</p>
+            <p>L'excellence Excel, en 5 jours.</p>
           </div>
         </div>
       </body>
@@ -262,7 +262,7 @@ export const EMAIL_TEMPLATES = {
           </div>
           
           <div class="footer">
-            <p>© 2025 XL Elite Bootcamp - Tous droits réservés</p>
+            <p>© 2026 XL Elite Bootcamp - Tous droits réservés</p>
           </div>
         </div>
       </body>

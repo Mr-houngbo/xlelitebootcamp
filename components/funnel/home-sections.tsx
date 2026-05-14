@@ -191,6 +191,7 @@ export const HeroFunnel = () => {
                 src="/MOS_365_Certificate_SAMPLE.webp"
                 alt="Certification Microsoft Excel Expert"
                 fill
+                sizes="(max-width: 768px) 50vw, (max-width: 1200px) 400px, 400px"
                 className="object-contain p-2 md:p-4"
               />
             </div>

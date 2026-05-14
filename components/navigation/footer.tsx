@@ -33,7 +33,7 @@ export function Footer() {
             </a>
             <a href="tel:+2250799133365" className="flex items-center gap-2 text-slate-400 hover:text-emerald-400 transition-colors">
               <Phone size={12} className="text-emerald-500 shrink-0" />
-              <span className="font-medium">+225 07 99 13 33 65</span>
+              <span className="font-medium">🇨🇮 +225 07 99 13 33 65</span>
             </a>
             <a href="tel:+22961574094" className="flex items-center gap-2 text-slate-400 hover:text-emerald-400 transition-colors">
               <Phone size={12} className="text-emerald-500 shrink-0" />

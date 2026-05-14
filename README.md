@@ -126,7 +126,7 @@ L'application est disponible sur `http://localhost:3000`.
 - Avantages de la formation
 
 ### Programme (`/programme`)
-- Timeline détaillée des 4 jours
+- Timeline détaillée des 5 jours
 - Compétences acquises
 - Résultats concrets
 
@@ -292,4 +292,4 @@ Pour toute question ou support technique:
 
 ---
 
-**XL Elite Bootcamp** - L'excellence Excel, en 4 jours.
+**XL Elite Bootcamp** - L'excellence Excel, en 5 jours.

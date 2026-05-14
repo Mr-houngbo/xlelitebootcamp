@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     default: 'XL Elite Bootcamp - Formation Microsoft Excel Expert',
     template: '%s | XL Elite Bootcamp',
   },
-  description: 'Devenez Expert Excel certifié en 4 jours. Formation intensive Microsoft Excel Expert avec certification officielle. Boostez votre carrière professionnelle.',
+  description: 'Devenez Expert Excel certifié en 5 jours. Formation intensive Microsoft Excel Expert avec certification officielle. Boostez votre carrière professionnelle.',
   keywords: [
     'Excel Expert',
     'Formation Excel',
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     locale: 'fr_FR',
     url: process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000',
     title: 'XL Elite Bootcamp - Formation Microsoft Excel Expert',
-    description: 'Devenez Expert Excel certifié en 4 jours. Formation intensive avec certification Microsoft.',
+    description: 'Devenez Expert Excel certifié en 5 jours. Formation intensive avec certification Microsoft.',
     siteName: 'XL Elite Bootcamp',
     images: [
       {
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'XL Elite Bootcamp - Formation Microsoft Excel Expert',
-    description: 'Devenez Expert Excel certifié en 4 jours. Formation intensive avec certification Microsoft.',
+    description: 'Devenez Expert Excel certifié en 5 jours. Formation intensive avec certification Microsoft.',
     images: ['/og-image.jpg'],
   },
   robots: {
