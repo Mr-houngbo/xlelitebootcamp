@@ -1,4 +1,4 @@
-import { HeroFunnel, ProblemSection, TransformationSection } from '@/components/funnel/home-sections';
+import { HeroFunnel, TransformationSection } from '@/components/funnel/home-sections';
 import { 
   ConcreteTestimonials, 
   RealActions, 
@@ -7,18 +7,17 @@ import {
   FinancialOffer, 
   FAQProof 
 } from '@/components/funnel/proof-sections';
+import HomeTracking from '@/components/home-tracking';
 
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-white">
+      <HomeTracking />
       {/* 1. L'Accroche */}
       <HeroFunnel />
       
       {/* 2. La Preuve Sociale Éclair */}
       <ConcreteTestimonials />
-      
-      {/* (Optionnel) Le Constat et Transformation */}
-      <ProblemSection />
       
       {/* 3. La Preuve par l'Émotion (Vidéos VIP) */}
       <RealActions />

@@ -4,8 +4,6 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { CheckCircle2, XCircle, ArrowRight, TrendingUp, ShieldCheck, Zap, Award, AlertTriangle, TrendingDown, Clock, FileSpreadsheet } from 'lucide-react';
 import Link from 'next/link';
-import { CountdownTimer } from './countdown-timer';
-
 import { Button } from '@/components/ui/button';
 
 export const HeroFunnel = () => {
@@ -50,53 +48,45 @@ export const HeroFunnel = () => {
               Expert Excel Certifié<br className="hidden sm:block" /> en <span className="text-emerald-600">5 Jours</span>
             </motion.h1>
 
-            {/* Badges de certification (Images grand format) */}
-            <motion.div
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.15 }}
-              className="mb-6 flex flex-wrap items-center justify-center gap-3 md:gap-5"
-            >
-              <div className="bg-white border-2 border-emerald-100 shadow-[0_12px_40px_rgb(5,150,105,0.15)] p-2 md:p-3 rounded-xl md:rounded-2xl transform hover:-translate-y-1 transition-all duration-300">
-                <Image src="/certificat/IMG-20230906-WA0055.jpg" alt="Certificat Microsoft Excel Expert" width={200} height={140} className="rounded-lg md:rounded-xl object-cover w-40 md:w-48 h-28 md:h-32" />
-              </div>
-              <div className="bg-white border-2 border-orange-100 shadow-[0_12px_40px_rgb(249,115,22,0.15)] p-2 md:p-3 rounded-xl md:rounded-2xl transform hover:-translate-y-1 transition-all duration-300">
-                <Image src="/certificat/IMG-20250516-WA0043.jpg" alt="Certificat Microsoft Excel Associate" width={200} height={140} className="rounded-lg md:rounded-xl object-cover w-40 md:w-48 h-28 md:h-32" />
-              </div>
-            </motion.div>
-
             <motion.p 
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              className="mt-4 md:mt-6 text-sm md:text-xl text-emerald-800 font-medium max-w-xl leading-relaxed"
+              transition={{ delay: 0.15 }}
+              className="text-base md:text-2xl text-slate-700 font-semibold max-w-xl mb-8"
             >
-              Rejoignez le bootcamp intensif pensé pour les cadres et analystes. 
-              Maîtrisez les fonctions avancées, automatisez vos tâches et décrochez 
-              la validation officielle Microsoft.
+              Bootcamp intensif + Certification Microsoft officielle
             </motion.p>
 
             <motion.div 
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.3 }}
-              className="mt-10 w-full max-w-md"
+              transition={{ delay: 0.2 }}
+              className="w-full max-w-md space-y-4"
             >
-              <div className="bg-white border-2 border-emerald-100 rounded-2xl md:rounded-3xl p-4 md:p-6 shadow-2xl shadow-emerald-900/5">
-                <Link href="/inscription" className="block">
-                  <Button size="lg" className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-6 md:py-8 text-base md:text-xl font-black rounded-xl md:rounded-2xl shadow-xl shadow-emerald-600/25 transition-all hover:scale-[1.02] active:scale-95 group min-h-[56px]">
-                    Je réserve ma place
-                    <ArrowRight className="ml-2 w-4 h-4 md:w-6 md:h-6 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                </Link>
-                <p className="text-center text-emerald-700 text-[11px] md:text-sm font-bold mt-3 md:mt-4 flex items-center justify-center gap-1.5">
-                  <ShieldCheck className="w-4 h-4" /> Places limitées pour garantir la qualité
-                </p>
+              <Link href="/inscription" className="block">
+                <Button size="lg" className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-7 md:py-9 text-lg md:text-2xl font-black rounded-2xl shadow-2xl shadow-emerald-600/30 transition-all hover:scale-[1.02] active:scale-95 group min-h-[64px]">
+                  Je réserve ma place maintenant
+                  <ArrowRight className="ml-2 w-5 h-5 md:w-7 md:h-7 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
+              
+              {/* Urgency Countdown integrated */}
+              <div className="bg-gradient-to-r from-orange-50 to-red-50 border-2 border-orange-200 rounded-xl p-4 flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <Clock className="w-5 h-5 text-orange-600 animate-pulse" />
+                  <span className="text-sm md:text-base font-black text-orange-900">Clôture dans</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <TimeUnit value={8} label="J" />
+                  <TimeUnit value={14} label="H" />
+                  <TimeUnit value={32} label="M" />
+                </div>
               </div>
+              
+              <p className="text-center text-slate-600 text-xs md:text-sm font-semibold flex items-center justify-center gap-1.5">
+                <ShieldCheck className="w-4 h-4 text-emerald-600" /> 12 places restantes
+              </p>
             </motion.div>
-
-            {/* Fixed Countdown */}
-            <CountdownTimer targetDate="2026-06-02T23:59:59" />
 
           </div>
 
@@ -107,11 +97,7 @@ export const HeroFunnel = () => {
             transition={{ delay: 0.2, type: "spring", stiffness: 100 }}
             className="relative w-full h-full min-h-[400px] lg:min-h-[600px] flex items-center justify-center lg:pl-10 mt-10 lg:mt-0"
           >
-            {/* Decorative background elements for the video */}
-            <div className="absolute inset-0 bg-emerald-100 rounded-[2.5rem] transform rotate-3 scale-[1.02] z-0"></div>
-            <div className="absolute inset-0 bg-white rounded-[2.5rem] transform -rotate-2 scale-[1.02] border border-emerald-100 z-0 shadow-xl"></div>
-            
-            <div className="relative z-10 w-full aspect-[4/5] sm:aspect-square lg:aspect-[4/5] bg-white rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white flex flex-col group cursor-pointer">
+            <div className="relative z-10 w-full aspect-[4/5] sm:aspect-square lg:aspect-[4/5] bg-slate-900 rounded-3xl overflow-hidden shadow-2xl">
               <video 
                 src="https://i.imgur.com/IqKaTmA.mp4"
                 loop 
@@ -119,103 +105,22 @@ export const HeroFunnel = () => {
                 autoPlay
                 playsInline
                 preload="metadata"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover opacity-90"
               />
-              {/* Overlay elements */}
-              <div className="absolute bottom-6 left-6 right-6 z-20">
-                <div className="bg-white/95 backdrop-blur-md p-4 rounded-xl shadow-lg border border-emerald-50">
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center shrink-0">
-                      <Award className="w-6 h-6 text-emerald-600" />
-                    </div>
-                    <div>
-                      <p className="text-emerald-950 font-bold text-sm">Découvrez la méthode</p>
-                      <p className="text-emerald-700 text-xs font-medium">Aperçu en vidéo</p>
-                    </div>
-                  </div>
-                </div>
+              {/* Overlay avec bénéfice direct */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+              <div className="absolute bottom-8 left-8 right-8 z-20">
+                <p className="text-white text-2xl md:text-4xl font-black leading-tight mb-2">
+                  Passez de débutant à Expert certifié
+                </p>
+                <p className="text-emerald-400 text-sm md:text-lg font-bold">
+                  En 5 jours seulement • Certification Microsoft incluse
+                </p>
               </div>
             </div>
 
-            {/* Floating badge */}
-            <div className="absolute -right-4 md:-right-8 top-12 z-30 bg-white p-4 rounded-2xl shadow-xl border border-emerald-100 animate-bounce" style={{ animationDuration: '4s' }}>
-               <div className="flex items-center gap-3">
-                 <div className="bg-emerald-50 p-2.5 rounded-xl">
-                   <TrendingUp className="w-6 h-6 text-emerald-600" />
-                 </div>
-                 <div>
-                   <p className="text-emerald-950 font-black text-base">+40%</p>
-                   <p className="text-emerald-600 text-xs font-bold uppercase tracking-wider">Productivité</p>
-                 </div>
-               </div>
-            </div>
-            
-            <div className="absolute -left-4 md:-left-8 bottom-32 z-30 bg-white p-4 rounded-2xl shadow-xl border border-emerald-100 animate-bounce" style={{ animationDuration: '3.5s', animationDelay: '1s' }}>
-               <div className="flex items-center gap-3">
-                 <div className="bg-emerald-50 p-2.5 rounded-xl">
-                   <FileSpreadsheet className="w-6 h-6 text-emerald-600" />
-                 </div>
-                 <div>
-                   <p className="text-emerald-950 font-black text-base">Expert</p>
-                   <p className="text-emerald-600 text-xs font-bold uppercase tracking-wider">Niveau Visé</p>
-                 </div>
-               </div>
-            </div>
           </motion.div>
 
-        </div>
-      </div>
-    </section>
-  );
-};
-
-export const ProblemSection = () => {
-  const problems = [
-    {
-      title: "Compétences avancées non reconnues",
-      desc: "Vous livrez déjà des analyses solides, mais sans badge Microsoft vos projets restent invisibles pour la hiérarchie.",
-      icon: <Award className="w-5 h-5 text-orange-500" />
-    },
-    {
-      title: "Automatisations artisanales",
-      desc: "Macros qui cassent, fichiers lourds, process dépendants d'une seule personne : sans méthode certif, le risque est permanent.",
-      icon: <AlertTriangle className="w-5 h-5 text-red-500" />
-    },
-    {
-      title: "Opportunités manquées",
-      desc: "Postes seniors, missions internationales, consulting… La certification Microsoft est devenue un prérequis pour être shortlisté.",
-      icon: <TrendingDown className="w-5 h-5 text-slate-500" />
-    },
-  ];
-
-  return (
-    <section id="en-savoir-plus" className="py-10 md:py-16 bg-slate-50 dark:bg-slate-900/50">
-      <div className="container px-4 mx-auto max-w-6xl">
-        <div className="text-center mb-10 md:mb-16">
-          <span className="text-red-500 font-bold tracking-wider uppercase text-xs mb-2 block">Le constat</span>
-          <h2 className="text-lg md:text-4xl lg:text-5xl font-black tracking-tight leading-tight">
-            Vous utilisez déjà Excel, mais <br className="hidden md:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-orange-500">il vous manque une Certification Internationale.</span>
-          </h2>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
-          {problems.map((p, i) => (
-            <motion.div 
-              key={i}
-              whileHover={{ y: -5 }}
-              className="bg-white dark:bg-slate-800 p-4 md:p-8 rounded-xl md:rounded-2xl border border-slate-100 dark:border-slate-700 shadow-lg flex flex-col items-center md:items-start text-center md:text-left transition-all duration-300"
-            >
-              <div className="mb-4 w-12 h-12 bg-slate-50 dark:bg-slate-700 rounded-xl flex items-center justify-center border border-slate-100 dark:border-slate-600 shadow-inner shrink-0">
-                {p.icon}
-              </div>
-              <h3 className="text-lg md:text-xl font-bold leading-tight text-slate-900 dark:text-white mb-2">
-                {p.title}
-              </h3>
-              <p className="text-sm md:text-base text-slate-600 dark:text-slate-400 leading-snug">
-                {p.desc}
-              </p>
-            </motion.div>
-          ))}
         </div>
       </div>
     </section>
@@ -321,3 +226,12 @@ export const ProgrammeSection = () => {
     </section>
   );
 };
+
+const TimeUnit = ({ value, label }: { value: number; label: string }) => (
+  <div className="flex flex-col items-center bg-white/10 backdrop-blur-sm rounded-lg px-2 py-1">
+    <span className="text-base md:text-xl font-black text-orange-900 font-mono tabular-nums leading-none">
+      {value.toString().padStart(2, '0')}
+    </span>
+    <span className="text-[9px] md:text-[10px] font-bold text-orange-700 uppercase">{label}</span>
+  </div>
+);

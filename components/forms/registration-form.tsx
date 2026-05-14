@@ -10,11 +10,22 @@ import { registrationSchema } from '@/lib/validations';
 import type { RegistrationFormData } from '@/types/database';
 import { createRegistration, getGroups, checkGroupAvailability } from '@/lib/actions/registration';
 import { motion } from 'framer-motion';
+import { event as fbEvent, capiEvent } from '@/components/meta-pixel';
 
 export function RegistrationForm() {
   const [selectedGroup, setSelectedGroup] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+
+  // Événement InitiateCheckout au montage du formulaire
+  useEffect(() => {
+    fbEvent('InitiateCheckout', {
+      content_name: 'XL Elite Bootcamp',
+      content_category: 'Formation Excel',
+      value: 25000,
+      currency: 'XOF'
+    });
+  }, []);
 
   // Groups avec fallback par défaut pour éviter le chargement bloquant
   const [groups, setGroups] = useState<any[]>([
@@ -76,6 +87,28 @@ export function RegistrationForm() {
 
       if (result.success) {
         setSubmitSuccess(true);
+        
+        // Générer un event_id unique pour la déduplication Pixel + CAPI
+        const eventId = `lead_${Date.now()}_${Math.random().toString(36).substring(2, 15)}`;
+        
+        // Envoi de l'événement Meta Pixel (Lead) côté client avec event_id
+        fbEvent('Lead', {
+          content_name: 'Inscription XL Elite Bootcamp',
+          value: 25000,
+          currency: 'XOF',
+        }, eventId);
+        
+        // Envoi via l'API Conversions (Server-side) avec le même event_id
+        capiEvent('Lead', {
+          value: 25000,
+          currency: 'XOF',
+          content_name: 'Inscription XL Elite Bootcamp',
+        }, {
+          email: data.email,
+          phone: data.phone,
+          firstName: data.firstName,
+          lastName: data.lastName,
+        }, eventId);
       } else {
         // Afficher le vrai message d'erreur Supabase
         alert(result.error || 'Une erreur est survenue lors de l\'inscription.');

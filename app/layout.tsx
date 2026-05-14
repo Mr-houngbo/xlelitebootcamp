@@ -1,12 +1,7 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Suspense } from 'react';
+import MetaPixel from '@/components/meta-pixel';
 import './globals.css';
-
-const inter = Inter({ 
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-inter',
-});
 
 export const metadata: Metadata = {
   title: {
@@ -84,7 +79,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr" className="scroll-smooth" data-scroll-behavior="smooth" suppressHydrationWarning>
-      <body className={`${inter.variable} font-sans antialiased`}>
+      <body className="font-sans antialiased">
+        <Suspense fallback={null}>
+          <MetaPixel />
+        </Suspense>
         {children}
       </body>
     </html>

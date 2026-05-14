@@ -181,9 +181,6 @@ export const RealActions = () => {
         <div className="relative">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-lg aspect-square bg-emerald-600/5 blur-[120px] rounded-full pointer-events-none" />
 
-          {/* Indicateurs de scroll pour mobile */}
-          <div className="md:hidden absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-white dark:from-slate-950 to-transparent z-10 pointer-events-none" />
-          <div className="md:hidden absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-white dark:from-slate-950 to-transparent z-10 pointer-events-none" />
 
         <div className="flex md:grid md:grid-cols-3 gap-4 md:gap-8 max-w-4xl mx-auto overflow-x-auto scrollbar-hide pb-6 snap-x px-4 md:px-0 -mx-4 md:mx-auto">
             <motion.div 
@@ -236,35 +233,98 @@ export const RealActions = () => {
 
 export const OrganizationSection = () => {
   return (
-    <section id="organisation" className="py-12 md:py-16 bg-white dark:bg-slate-900">
-      <div className="container px-4 mx-auto max-w-5xl">
-        <h2 className="text-xl md:text-4xl font-black mb-6 md:mb-10 text-center leading-tight">Une organisation <br className="md:hidden" />flexible pour les pros</h2>
+    <section id="organisation" className="py-16 md:py-24 bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-950">
+      <div className="container px-4 mx-auto max-w-6xl">
+        {/* Header */}
+        <div className="text-center mb-12 md:mb-16">
+          <span className="inline-block px-4 py-2 rounded-full bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 text-xs md:text-sm font-black uppercase tracking-wider mb-4">
+            Organisation
+          </span>
+          <h2 className="text-2xl md:text-5xl font-black mb-4 md:mb-6 leading-tight">
+            Une organisation flexible<br className="hidden md:block" /> pensée pour les professionnels
+          </h2>
+          <p className="text-base md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+            Choisissez votre créneau et participez de n'importe où
+          </p>
+        </div>
 
-        <div className="grid grid-cols-3 gap-2 md:gap-8">
-          <div className="p-3 md:p-8 rounded-lg md:rounded-3xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-100 dark:border-emerald-900/20">
-            <Calendar className="w-6 h-6 md:w-10 md:h-10 text-emerald-600 mb-2 md:mb-6" />
-            <h3 className="text-xs md:text-xl font-bold mb-1 md:mb-2 leading-tight">5 jours</h3>
-            <p className="text-[10px] md:text-base text-slate-600 dark:text-slate-400 leading-snug">Du 09 au 13 juin 2026</p>
-          </div>
-
-          <div className="p-3 md:p-8 rounded-lg md:rounded-3xl bg-orange-50 dark:bg-orange-950/30 border border-orange-100 dark:border-orange-900/20">
-            <Clock className="w-6 h-6 md:w-10 md:h-10 text-orange-600 mb-2 md:mb-6" />
-            <h3 className="text-xs md:text-xl font-bold mb-1 md:mb-2 leading-tight">3 Groupes</h3>
-            <ul className="text-[9px] md:text-sm space-y-0.5 md:space-y-2 text-slate-700 dark:text-slate-300 font-bold">
-              <li>G1: 09h-12h</li>
-              <li>G2: 14h-17h</li>
-              <li>G3: 18h-21h</li>
-            </ul>
-          </div>
-
-          <div className="p-3 md:p-8 rounded-lg md:rounded-3xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700">
-            <div className="flex gap-1 md:gap-2 mb-2 md:mb-6">
-              <MapPin className="w-5 h-5 md:w-10 md:h-10 text-slate-600" />
-              <Laptop className="w-5 h-5 md:w-10 md:h-10 text-slate-600" />
+        {/* Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          {/* Durée */}
+          <div className="group relative bg-white dark:bg-slate-800 p-6 md:p-10 rounded-2xl md:rounded-3xl border-2 border-emerald-100 dark:border-emerald-900/30 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-t-2xl md:rounded-t-3xl"></div>
+            <div className="flex items-center justify-center w-16 h-16 md:w-20 md:h-20 bg-emerald-100 dark:bg-emerald-900/30 rounded-2xl mb-6">
+              <Calendar className="w-8 h-8 md:w-10 md:h-10 text-emerald-600" />
             </div>
-            <h3 className="text-xs md:text-xl font-bold mb-1 md:mb-2 leading-tight">Hybride</h3>
-            <p className="text-[10px] md:text-base text-slate-600 dark:text-slate-400 leading-snug">Présentiel ou 100% en ligne</p>
+            <h3 className="text-xl md:text-2xl font-black mb-3 text-slate-900 dark:text-white">5 jours intensifs</h3>
+            <p className="text-base md:text-lg text-slate-600 dark:text-slate-400 font-semibold">
+              Du 09 au 13 juin 2026
+            </p>
           </div>
+
+          {/* Horaires */}
+          <div className="group relative bg-white dark:bg-slate-800 p-6 md:p-10 rounded-2xl md:rounded-3xl border-2 border-orange-100 dark:border-orange-900/30 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-500 to-orange-600 rounded-t-2xl md:rounded-t-3xl"></div>
+            <div className="flex items-center justify-center w-16 h-16 md:w-20 md:h-20 bg-orange-100 dark:bg-orange-900/30 rounded-2xl mb-6">
+              <Clock className="w-8 h-8 md:w-10 md:h-10 text-orange-600" />
+            </div>
+            <h3 className="text-xl md:text-2xl font-black mb-4 text-slate-900 dark:text-white">3 créneaux au choix</h3>
+            <div className="space-y-3">
+              <div className="flex items-center gap-3 p-3 rounded-xl bg-orange-50 dark:bg-orange-950/20 border border-orange-100 dark:border-orange-900/20">
+                <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-orange-200 dark:bg-orange-900/40 text-orange-900 dark:text-orange-300 font-black text-sm">G1</span>
+                <span className="text-sm md:text-base font-bold text-slate-700 dark:text-slate-300">09h - 12h</span>
+              </div>
+              <div className="flex items-center gap-3 p-3 rounded-xl bg-orange-50 dark:bg-orange-950/20 border border-orange-100 dark:border-orange-900/20">
+                <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-orange-200 dark:bg-orange-900/40 text-orange-900 dark:text-orange-300 font-black text-sm">G2</span>
+                <span className="text-sm md:text-base font-bold text-slate-700 dark:text-slate-300">14h - 17h</span>
+              </div>
+              <div className="flex items-center gap-3 p-3 rounded-xl bg-orange-50 dark:bg-orange-950/20 border border-orange-100 dark:border-orange-900/20">
+                <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-orange-200 dark:bg-orange-900/40 text-orange-900 dark:text-orange-300 font-black text-sm">G3</span>
+                <span className="text-sm md:text-base font-bold text-slate-700 dark:text-slate-300">18h - 21h</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Format */}
+          <div className="group relative bg-white dark:bg-slate-800 p-6 md:p-10 rounded-2xl md:rounded-3xl border-2 border-slate-200 dark:border-slate-700 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-slate-500 to-slate-600 rounded-t-2xl md:rounded-t-3xl"></div>
+            <div className="flex items-center justify-center gap-2 mb-6">
+              <div className="flex items-center justify-center w-16 h-16 md:w-20 md:h-20 bg-slate-100 dark:bg-slate-700 rounded-2xl">
+                <MapPin className="w-8 h-8 md:w-10 md:h-10 text-slate-600 dark:text-slate-400" />
+              </div>
+              <div className="flex items-center justify-center w-16 h-16 md:w-20 md:h-20 bg-slate-100 dark:bg-slate-700 rounded-2xl">
+                <Laptop className="w-8 h-8 md:w-10 md:h-10 text-slate-600 dark:text-slate-400" />
+              </div>
+            </div>
+            <h3 className="text-xl md:text-2xl font-black mb-3 text-slate-900 dark:text-white">Format hybride</h3>
+            <p className="text-base md:text-lg text-slate-600 dark:text-slate-400 font-semibold mb-4">
+              Présentiel ou 100% en ligne
+            </p>
+            <p className="text-sm text-slate-500 dark:text-slate-500 leading-relaxed mb-6">
+              Participez depuis votre bureau ou de chez vous, vous avez le choix
+            </p>
+            
+            {/* Lieu présentiel intégré */}
+            <div className="mt-6 pt-6 border-t border-slate-200 dark:border-slate-700">
+              <p className="text-xs uppercase tracking-wider font-black text-slate-400 mb-2">
+                Lieu de formation (présentiel)
+              </p>
+              <p className="text-base md:text-lg text-slate-900 dark:text-white font-bold mb-1">
+                Hôtel AMISO, Ouagadougou
+              </p>
+              <p className="text-sm text-slate-500 dark:text-slate-400">
+                Non loin de la Mairie Centrale
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Call to action subtle */}
+        <div className="mt-12 md:mt-16 text-center">
+          <p className="text-sm md:text-base text-slate-600 dark:text-slate-400 font-medium">
+            <ShieldCheck className="inline w-5 h-5 text-emerald-600 mr-2" />
+            Vous sélectionnez votre groupe lors de l'inscription
+          </p>
         </div>
       </div>
     </section>
@@ -396,7 +456,7 @@ export const FAQProof = () => {
     { cat: 'prix', q: "Pourquoi les places sont-elles limitées ?", a: "Pour assurer un suivi personnalisé et une meilleure qualité d’apprentissage." },
 
     // LOGISTIQUE
-    { cat: 'logistique', q: "Où se déroule la formation en présentiel ?", a: "À Ouaga 2000, Burkina Faso." },
+    { cat: 'logistique', q: "Où se déroule la formation en présentiel ?", a: "À l'Hôtel AMISO, Ouagadougou (non loin de la Mairie Centrale)." },
     { cat: 'logistique', q: "Dois-je venir avec mon ordinateur ?", a: "Oui, un ordinateur portable est nécessaire pour pratiquer." },
     { cat: 'logistique', q: "Quels logiciels sont nécessaires ?", a: "Excel (Office 365 recommandé). Une licence est offerte dans le cadre du bootcamp." },
 
@@ -432,9 +492,6 @@ export const FAQProof = () => {
 
         {/* Category List - Scrollable horizontally */}
         <div className="relative mb-12 py-2 border-y border-slate-100 dark:border-slate-800">
-          {/* Indicateurs de scroll pour mobile */}
-          <div className="md:hidden absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-white dark:from-slate-950 to-transparent z-10 pointer-events-none" />
-          <div className="md:hidden absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-white dark:from-slate-950 to-transparent z-10 pointer-events-none" />
           
           <div className="flex gap-4 overflow-x-auto faq-scrollbar pb-4 pt-2 px-2 w-full snap-x scroll-smooth">
             {categories.map((cat) => (
@@ -551,24 +608,52 @@ export const TrainerSection = () => {
     [
       '/illustrations/form_1.jpeg',
       '/illustrations/form_2.jpeg',
-      '/illustrations/form_3.jpeg',
       '/illustrations/form_4.jpeg',
       '/illustrations/form_5.jpeg',
       '/illustrations/form_6.jpeg',
       '/illustrations/form_7.jpeg',
-      '/illustrations/IMG-20230808-WA0012.jpg',
+      '/illustrations/IMG-20260513-WA0137.jpg',
+      '/illustrations/IMG-20260513-WA0138.jpg',
+      '/illustrations/IMG-20260513-WA0139.jpg',
+      '/illustrations/IMG-20260513-WA0143.jpg',
+      '/illustrations/IMG-20260513-WA0148.jpg',
+      '/illustrations/IMG-20260513-WA0151.jpg',
+      '/illustrations/IMG-20260513-WA0152.jpg',
+      '/illustrations/IMG-20260513-WA0154.jpg',
+      '/illustrations/IMG-20260513-WA0155.jpg',
+      '/illustrations/IMG-20260513-WA0156.jpg',
+      '/illustrations/IMG-20260513-WA0157.jpg',
+      '/illustrations/IMG-20260513-WA0158.jpg',
+      '/illustrations/IMG-20260513-WA0159.jpg',
+      '/illustrations/IMG-20260403-WA0053.jpg',
       '/illustrations/IMG-20260403-WA0063.jpg',
+      '/illustrations/IMG-20260403-WA0064.jpg',
+      '/illustrations/IMG-20260403-WA0066.jpg',
     ],
     [
+      '/illustrations/IMG-20260404-WA0035.jpg',
+      '/illustrations/IMG-20260421-WA0021.jpg',
+      '/illustrations/IMG-20260421-WA0024.jpg',
+      '/illustrations/IMG-20260421-WA0025.jpg',
+      '/illustrations/IMG-20260422-WA0006.jpg',
+      '/illustrations/IMG-20251210-WA0011.jpg',
+      '/illustrations/IMG-20251210-WA0012.jpg',
+      '/illustrations/IMG-20251210-WA0015.jpg',
+      '/illustrations/IMG-20251210-WA0019.jpg',
+      '/illustrations/IMG-20251210-WA0020.jpg',
+      '/illustrations/IMG-20251124-WA0000.jpg',
+      '/illustrations/IMG-20251124-WA0010.jpg',
+      '/illustrations/IMG-20251124-WA0017.jpg',
+      '/illustrations/IMG-20250703-WA0006.jpg',
+      '/illustrations/IMG-20250703-WA0016.jpg',
+      '/illustrations/IMG-20250703-WA0017.jpg',
       '/illustrations/IMG-20230808-WA0013.jpg',
       '/illustrations/IMG-20230808-WA0014.jpg',
-      '/illustrations/IMG-20251210-WA0019.jpg',
-      '/illustrations/IMG-20250703-WA0016.jpg',
+      '/illustrations/FB_IMG_1711119905719.jpg',
+      '/illustrations/FB_IMG_1711119912599.jpg',
+      '/illustrations/FB_IMG_1735152453571.jpg',
+      '/illustrations/FB_IMG_1735152491624.jpg',
       '/illustrations/FB_IMG_1735152498589.jpg',
-      '/illustrations/IMG-20260403-WA0064.jpg',
-      '/illustrations/IMG-20251210-WA0011.jpg',
-      '/illustrations/IMG-20250403-WA0041.jpg',
-      '/illustrations/IMG-20260404-WA0035.jpg',
     ],
   ];
 
@@ -670,8 +755,6 @@ export const TrainerSection = () => {
             </div>
 
             <div className="relative overflow-hidden rounded-[1.5rem] md:rounded-[2.5rem] border border-slate-100 dark:border-slate-800 bg-slate-50/40 dark:bg-white/5 py-6 md:py-10">
-              <div className="absolute inset-y-0 left-0 w-24 md:w-40 bg-gradient-to-r from-white dark:from-slate-950 to-transparent pointer-events-none z-20" />
-              <div className="absolute inset-y-0 right-0 w-24 md:w-40 bg-gradient-to-l from-white dark:from-slate-950 to-transparent pointer-events-none z-20" />
 
               <div className="space-y-6 md:space-y-10">
                 {galleryRows.map((row, rowIndex) => (
@@ -679,7 +762,7 @@ export const TrainerSection = () => {
                     <motion.div
                       className="flex w-max"
                       animate={{ x: rowIndex % 2 === 0 ? ['0%', '-50%'] : ['-50%', '0%'] }}
-                      transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
+                      transition={{ duration: 120, repeat: Infinity, ease: 'linear' }}
                       whileHover={{ animationPlayState: 'paused' }}
                     >
                       {[0, 1].map((set) => (
@@ -687,7 +770,7 @@ export const TrainerSection = () => {
                           {row.map((src, idx) => (
                             <div
                               key={`${src}-${idx}`}
-                              className="relative w-[240px] md:w-[400px] aspect-[16/9] overflow-hidden rounded-[1.5rem] md:rounded-[2rem] border border-slate-200/60 dark:border-slate-700/60 shadow-lg bg-white dark:bg-slate-900 shrink-0 group"
+                              className="relative w-[240px] md:w-[400px] aspect-[16/9] overflow-hidden rounded-lg md:rounded-xl border border-slate-200/60 dark:border-slate-700/60 shadow-lg bg-white dark:bg-slate-900 shrink-0 group"
                             >
                               <Image
                                 src={src}
