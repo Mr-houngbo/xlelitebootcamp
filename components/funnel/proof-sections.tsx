@@ -6,7 +6,7 @@ import Image from 'next/image';
 import {
   Star, Award, Users, Calendar, Clock, MapPin, CheckCircle2,
   HelpCircle, ChevronDown, ShieldCheck, Laptop, Zap, TrendingUp,
-  Linkedin, Play, Pause, Volume2, VolumeX, Lock
+  Linkedin, Play, Pause, Volume2, VolumeX, Lock, ArrowRight
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
@@ -150,6 +150,16 @@ export const ConcreteTestimonials = () => {
             ))}
           </motion.div>
         </div>
+
+        {/* CTA personnalisé - Témoignages */}
+        <div className="text-center mt-8">
+          <Link href="/inscription" className="inline-block">
+            <Button size="lg" className="bg-orange-500 hover:bg-orange-600 text-white py-4 px-8 text-base font-semibold rounded-xl transition-all hover:scale-[1.02] shadow-lg">
+              Rejoindre ces professionnels
+              <ArrowRight className="ml-2 w-4 h-4" />
+            </Button>
+          </Link>
+        </div>
       </div>
     </section>
   );
@@ -174,7 +184,7 @@ export const RealActions = () => {
             <span className="text-emerald-600">le mieux.</span>
           </h2>
           <p className="text-slate-500 dark:text-slate-400 font-medium">
-            Découvrez comment le Bootcamp a transformé leur quotidien.
+            Découvrez comment la formation a transformé leur quotidien.
           </p>
         </div>
 
@@ -219,6 +229,16 @@ export const RealActions = () => {
               <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
               Swipez pour voir plus
             </p>
+          </div>
+
+          {/* CTA personnalisé - Vidéos témoignages */}
+          <div className="text-center mt-12">
+            <Link href="/inscription" className="inline-block">
+              <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white py-4 px-8 text-base font-semibold rounded-xl transition-all hover:scale-[1.02] shadow-lg">
+                Soyez le prochain témoignage
+                <ArrowRight className="ml-2 w-4 h-4" />
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
@@ -319,10 +339,16 @@ export const OrganizationSection = () => {
           </div>
         </div>
 
-        {/* Call to action subtle */}
+        {/* CTA personnalisé - Organisation */}
         <div className="mt-12 md:mt-16 text-center">
-          <p className="text-sm md:text-base text-slate-600 dark:text-slate-400 font-medium">
-            <ShieldCheck className="inline w-5 h-5 text-emerald-600 mr-2" />
+          <Link href="/inscription" className="inline-block">
+            <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white py-4 px-8 text-base font-semibold rounded-xl transition-all hover:scale-[1.02] shadow-lg">
+              Choisir mon créneau
+              <ArrowRight className="ml-2 w-4 h-4" />
+            </Button>
+          </Link>
+          <p className="text-sm text-slate-500 dark:text-slate-400 mt-4">
+            <ShieldCheck className="inline w-4 h-4 text-emerald-600 mr-2" />
             Vous sélectionnez votre groupe lors de l'inscription
           </p>
         </div>
@@ -560,6 +586,16 @@ export const FAQProof = () => {
           ))}
         </motion.div>
       </div>
+
+      {/* CTA personnalisé - FAQ */}
+      <div className="text-center mt-12">
+        <Link href="/inscription" className="inline-block">
+          <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white py-4 px-8 text-base font-semibold rounded-xl transition-all hover:scale-[1.02] shadow-lg">
+            Contactez-nous directement pour plus d'informations
+            <ArrowRight className="ml-2 w-4 h-4" />
+          </Button>
+        </Link>
+      </div>
     </section>
   );
 };
@@ -574,16 +610,12 @@ export const TrainerSection = () => {
       title: 'Expertise data & finance digitale',
       desc: 'Automatisation, analyse de données et pilotage financier au service de votre performance.',
     },
-    {
-      title: 'Formateur de terrain',
-      desc: 'Des bootcamps conduits sur tout le continent avec un accompagnement humain et concret.',
-    },
   ];
 
   const stats = [
-    { value: '+500', label: 'Professionnels formés', tone: 'text-emerald-500' },
-    { value: '18', label: 'Bootcamps intensifs', tone: 'text-orange-500' },
-    { value: '12', label: 'Pays accompagnés', tone: 'text-sky-500' },
+    { value: '+5000', label: 'Professionnels formés', tone: 'text-emerald-500' },
+    { value: '+80', label: 'Bootcamps intensifs', tone: 'text-orange-500' },
+    { value: '+10', label: 'Pays accompagnés', tone: 'text-sky-500' },
   ];
 
   const certificationArtifacts = [
@@ -661,86 +693,7 @@ export const TrainerSection = () => {
     <section id="formateur" className="py-16 md:py-20 bg-slate-50 dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800">
       <div className="container px-4 mx-auto max-w-6xl">
         <div className="space-y-12 md:space-y-16">
-          <div className="relative overflow-hidden rounded-3xl md:rounded-[3rem] bg-white dark:bg-slate-950 border border-slate-100 dark:border-slate-800 shadow-[0_40px_80px_-40px_rgba(15,23,42,0.4)]">
-            <div className="absolute -top-32 -right-20 w-72 h-72 bg-emerald-500/20 blur-[120px] rounded-full" />
-            <div className="absolute -bottom-20 left-0 w-60 h-60 bg-orange-500/10 blur-[120px] rounded-full" />
-
-            <div className="relative z-10 grid md:grid-cols-5 gap-6 md:gap-16 p-6 md:p-16">
-              <div className="md:col-span-2">
-                <div className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden border-4 border-white dark:border-slate-900 shadow-2xl">
-                  <Image
-                    src="/formateur/Leonce.jpg"
-                    alt="Léonce TOUNDE SODJINOU - Formateur du bootcamp XL Elite"
-                    fill
-                    className="object-cover object-top"
-                    sizes="(max-width: 768px) 100vw, 40vw"
-                    priority
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-                  <div className="absolute top-6 left-6 px-4 py-2 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-white text-xs font-black tracking-[0.3em] uppercase flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                    Mentor
-                  </div>
-                  <div className="absolute bottom-6 left-6 right-6 text-white space-y-1">
-                    <p className="text-lg font-black tracking-tight">Léonce TOUNDE SODJINOU</p>
-                    <p className="text-white/70 text-sm font-medium uppercase tracking-[0.2em]">Expert Excel • Coach-Formateur</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="md:col-span-3 space-y-8">
-                <div>
-                  <span className="inline-flex items-center gap-2 text-orange-500 font-black uppercase tracking-[0.4em] text-xs mb-4">
-                    Votre Formateur
-                  </span>
-                  <h2 className="text-[1.35rem] md:text-5xl font-black text-slate-900 dark:text-white leading-tight mb-4 md:mb-6">
-                    L’architecte de votre montée en puissance sur Excel
-                  </h2>
-                  <div className="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed text-base md:text-lg">
-                    <p>
-                      <strong className="text-slate-900 dark:text-white">Léonce TOUNDE SODJINOU</strong> accompagne depuis plus de 5 ans les équipes financières, RH et opérationnelles à structurer leurs données pour décider plus vite.
-                    </p>
-                    <p>
-                      Sa pédagogie mêle cas métiers, dashboards temps réel et automatisations Power Query. Chaque bootcamp est calibré pour décrocher la certification Microsoft Excel Expert dès la fin de la semaine.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="grid sm:grid-cols-3 gap-4">
-                  {stats.map((stat) => (
-                    <div
-                      key={stat.label}
-                      className="rounded-2xl border border-slate-100 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-950/60 p-5 text-center"
-                    >
-                      <p className={`text-3xl font-black ${stat.tone}`}>{stat.value}</p>
-                      <p className="text-[11px] uppercase tracking-[0.25em] font-bold text-slate-500 dark:text-slate-400 mt-2">
-                        {stat.label}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="grid sm:grid-cols-2 gap-6">
-                  {achievements.map((item) => (
-                    <div key={item.title} className="flex gap-4">
-                      <div className="mt-1">
-                        <CheckCircle2 className="w-6 h-6 text-emerald-500" />
-                      </div>
-                      <div>
-                        <h3 className="text-base md:text-lg font-bold text-slate-900 dark:text-white mb-1">
-                          {item.title}
-                        </h3>
-                        <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-                          {item.desc}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-
+          {/* Galerie terrain - déplacée en premier */}
           <div className="rounded-3xl md:rounded-[3rem] bg-white dark:bg-slate-950 border border-slate-100 dark:border-slate-800 p-6 md:p-14 shadow-[0_40px_80px_-60px_rgba(15,23,42,0.45)]">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-12">
               <div>
@@ -750,7 +703,7 @@ export const TrainerSection = () => {
                 </h2>
               </div>
               <p className="text-sm md:text-base text-slate-500 dark:text-slate-400 max-w-xl">
-                Revivez l’énergie des précédentes promotions avec des images authentiques, capturées sur le terrain.
+                Revivez l'énergie des précédentes promotions avec des images authentiques, capturées sur le terrain.
               </p>
             </div>
 
@@ -789,7 +742,117 @@ export const TrainerSection = () => {
               </div>
             </div>
           </div>
+
+          {/* Votre Formateur - déplacé en second */}
+          <div className="relative overflow-hidden rounded-3xl md:rounded-[3rem] bg-white dark:bg-slate-950 border border-slate-100 dark:border-slate-800 shadow-[0_40px_80px_-40px_rgba(15,23,42,0.4)]">
+            <div className="absolute -top-32 -right-20 w-72 h-72 bg-emerald-500/20 blur-[120px] rounded-full" />
+            <div className="absolute -bottom-20 left-0 w-60 h-60 bg-orange-500/10 blur-[120px] rounded-full" />
+
+            <div className="relative z-10 grid md:grid-cols-5 gap-6 md:gap-16 p-6 md:p-16">
+              <div className="md:col-span-2 space-y-6">
+                <div className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden border-4 border-white dark:border-slate-900 shadow-2xl">
+                  <Image
+                    src="/formateur/Leonce.jpg"
+                    alt="Léonce TOUNDE SODJINOU - Formateur du bootcamp XL Elite"
+                    fill
+                    className="object-cover object-top"
+                    sizes="(max-width: 768px) 100vw, 40vw"
+                    priority
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                  <div className="absolute top-6 left-6 px-4 py-2 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-white text-xs font-black tracking-[0.3em] uppercase flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    Mentor
+                  </div>
+                  <div className="absolute bottom-6 left-6 right-6 text-white space-y-1">
+                    <p className="text-lg font-black tracking-tight">Léonce TOUNDE SODJINOU</p>
+                    <p className="text-white/70 text-sm font-medium uppercase tracking-[0.2em]">Expert Excel • Coach-Formateur</p>
+                  </div>
+                </div>
+
+                {/* Achievements déplacés sous la photo */}
+                <div className="space-y-4">
+                  {achievements.map((item) => (
+                    <div key={item.title} className="flex gap-3">
+                      <div className="mt-0.5">
+                        <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" />
+                      </div>
+                      <div>
+                        <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-0.5">
+                          {item.title}
+                        </h3>
+                        <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                          {item.desc}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="md:col-span-3 space-y-8">
+                <div>
+                  <span className="inline-flex items-center gap-2 text-orange-500 font-black uppercase tracking-[0.4em] text-xs mb-4">
+                    Votre Formateur
+                  </span>
+                  <div className="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed text-base md:text-lg">
+                    <p>
+                      <strong className="text-slate-900 dark:text-white">Léonce TOUNDE SODJINOU</strong> accompagne depuis plusieurs annees les équipes financières, RH et opérationnelles à structurer leurs données pour décider plus vite.
+                    </p>
+                    <p>
+                      Sa pédagogie mêle cas métiers, dashboards temps réel et automatisations VBA + Power Query. Chaque bootcamp est calibré pour décrocher la certification Microsoft Excel Expert dès la fin de la semaine.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="grid sm:grid-cols-3 gap-4">
+                  {stats.map((stat) => (
+                    <div
+                      key={stat.label}
+                      className="rounded-2xl border border-slate-100 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-950/60 p-5 text-center"
+                    >
+                      <p className={`text-3xl font-black ${stat.tone}`}>{stat.value}</p>
+                      <p className="text-[11px] uppercase tracking-[0.25em] font-bold text-slate-500 dark:text-slate-400 mt-2">
+                        {stat.label}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-8">
+                  <p className="text-xs uppercase tracking-[0.25em] font-bold text-slate-400 mb-4">
+                    Il a formé les agents de :
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {['MOVIS', 'BOA', 'ONICEF', 'OMS', 'EPC MINEEX', 'LAGARDÈRE', 'MINISTÈRES', 'ALTEN', 'HUMANIS'].map((company) => (
+                      <span
+                        key={company}
+                        className="px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold"
+                      >
+                        {company}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                  {/* CTA personnalisé - Formateur */}
+        <div className="text-center mt-12">
+          <Link href="/inscription" className="inline-block">
+            <Button size="lg" className="bg-orange-500 hover:bg-orange-600 text-white py-4 px-8 text-base font-semibold rounded-xl transition-all hover:scale-[1.02] shadow-lg">
+              Apprendre avec Léonce
+              <ArrowRight className="ml-2 w-4 h-4" />
+            </Button>
+          </Link>
         </div>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
       </div>
     </section>
   );

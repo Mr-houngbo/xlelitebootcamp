@@ -1,126 +1,222 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { CheckCircle2, ArrowRight, ShieldCheck, Award, Clock, TrendingUp, Star, Users } from 'lucide-react';
 import Image from 'next/image';
-import { CheckCircle2, XCircle, ArrowRight, TrendingUp, ShieldCheck, Zap, Award, AlertTriangle, TrendingDown, Clock, FileSpreadsheet } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 
 export const HeroFunnel = () => {
   return (
-    <section className="relative pt-24 pb-12 md:pt-28 md:pb-16 overflow-hidden bg-white">
-      {/* Background patterns - Green/White only */}
-      <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#10b98115_1px,transparent_1px),linear-gradient(to_bottom,#10b98115_1px,transparent_1px)] bg-[size:40px_40px]"></div>
-      
-      {/* Ambient glowing spots - Green */}
-      <div className="absolute top-0 left-0 w-full h-full z-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-[20%] -left-[10%] w-[60%] h-[60%] bg-emerald-100/40 rounded-full blur-[100px]" />
-        <div className="absolute top-[20%] -right-[10%] w-[50%] h-[70%] bg-emerald-50/60 rounded-full blur-[100px]" />
+    <section className="relative bg-slate-900 overflow-hidden">
+      {/* Background Video/Image with Overlay */}
+      <div className="absolute inset-0 z-0">
+        {/* Option 1: Video Background (décommente pour utiliser) */}
+        {/* 
+        <video 
+          autoPlay 
+          loop 
+          muted 
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="https://i.imgur.com/IqKaTmA.mp4" type="video/mp4" />
+        </video>
+        */}
+        
+        {/* Option 2: Image Background (actif) */}
+        {/* Mobile Image */}
+        <img 
+          src="/image-principale-mobile.jpg"
+          alt="XL Elite Bootcamp - Formation Excel Expert"
+          className="absolute inset-0 w-full h-full object-cover object-center md:hidden"
+        />
+        {/* Desktop Image */}
+        <img 
+          src="/image-principale-1.jpg"
+          alt="XL Elite Bootcamp - Formation Excel Expert"
+          className="absolute inset-0 w-full h-full object-cover object-center hidden md:block"
+        />
+        
+        {/* Dark overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/40 via-slate-900/30 to-slate-900/40" />
+        
+        {/* Animated gradient overlay */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-emerald-500/20 via-transparent to-transparent animate-pulse" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-orange-500/10 via-transparent to-transparent animate-pulse" style={{ animationDelay: '1s' }} />
+        
+        {/* Grid pattern */}
+        <div className="absolute inset-0 opacity-10" style={{
+          backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
+          backgroundSize: '50px 50px'
+        }} />
+        
+        {/* Floating orbs */}
+        <motion.div 
+          animate={{ 
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.5, 0.3]
+          }}
+          transition={{ 
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          className="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-500/30 rounded-full blur-[120px]" 
+        />
+        <motion.div 
+          animate={{ 
+            scale: [1, 1.3, 1],
+            opacity: [0.2, 0.4, 0.2]
+          }}
+          transition={{ 
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2
+          }}
+          className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-orange-500/20 rounded-full blur-[100px]" 
+        />
       </div>
 
-      <div className="container px-4 mx-auto relative z-10 max-w-7xl">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+      {/* Main Content */}
+      <div className="relative z-10 min-h-[90vh] flex flex-col justify-end">
+        {/* Dark gradient overlay from bottom for text readability - full width */}
+        <div className="absolute left-0 right-0 bottom-0 h-3/4 bg-gradient-to-t from-black via-black/50 to-transparent pointer-events-none" />
+        
+        <div className="container px-4 mx-auto max-w-7xl relative z-10 pb-8 md:pb-12">
+          <div className="max-w-4xl mx-auto text-center space-y-5 md:space-y-6 mb-4">
           
-          {/* Left Column: Copy & CTA */}
-          <div className="flex flex-col items-start text-left">
-            {/* Social Proof Badge */}
-            <motion.div
-               initial={{ opacity: 0, y: 20 }}
-               animate={{ opacity: 1, y: 0 }}
-               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-emerald-200 text-emerald-800 text-sm font-bold mb-8 shadow-sm"
-            >
-               <div className="flex items-center gap-0.5">
-                  {[1,2,3,4,5].map(star => (
-                    <svg key={star} className="w-4 h-4 text-emerald-500 fill-emerald-500" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                  ))}
-               </div>
-               <span>4.9/5 par +500 professionnels</span>
-            </motion.div>
-
-            <motion.h1 
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.1 }}
-              className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.1] mb-6 md:mb-8 text-slate-900"
-            >
-              Expert Excel Certifié<br className="hidden sm:block" /> en <span className="text-emerald-600">5 Jours</span>
-            </motion.h1>
-
-            <motion.p 
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.15 }}
-              className="text-base md:text-2xl text-slate-700 font-semibold max-w-xl mb-8"
-            >
-              Bootcamp intensif + Certification Microsoft officielle
-            </motion.p>
-
-            <motion.div 
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              className="w-full max-w-md space-y-4"
-            >
-              <Link href="/inscription" className="block">
-                <Button size="lg" className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-7 md:py-9 text-lg md:text-2xl font-black rounded-2xl shadow-2xl shadow-emerald-600/30 transition-all hover:scale-[1.02] active:scale-95 group min-h-[64px]">
-                  Je réserve ma place maintenant
-                  <ArrowRight className="ml-2 w-5 h-5 md:w-7 md:h-7 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </Link>
-              
-              {/* Urgency Countdown integrated */}
-              <div className="bg-gradient-to-r from-orange-50 to-red-50 border-2 border-orange-200 rounded-xl p-4 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Clock className="w-5 h-5 text-orange-600 animate-pulse" />
-                  <span className="text-sm md:text-base font-black text-orange-900">Clôture dans</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <TimeUnit value={8} label="J" />
-                  <TimeUnit value={14} label="H" />
-                  <TimeUnit value={32} label="M" />
-                </div>
-              </div>
-              
-              <p className="text-center text-slate-600 text-xs md:text-sm font-semibold flex items-center justify-center gap-1.5">
-                <ShieldCheck className="w-4 h-4 text-emerald-600" /> 12 places restantes
-              </p>
-            </motion.div>
-
-          </div>
-
-          {/* Right Column: Video / Visual Proof */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, type: "spring", stiffness: 100 }}
-            className="relative w-full h-full min-h-[400px] lg:min-h-[600px] flex items-center justify-center lg:pl-10 mt-10 lg:mt-0"
+          {/* Main Title - Staggered Animation */}
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] text-white"
           >
-            <div className="relative z-10 w-full aspect-[4/5] sm:aspect-square lg:aspect-[4/5] bg-slate-900 rounded-3xl overflow-hidden shadow-2xl">
-              <video 
-                src="https://i.imgur.com/IqKaTmA.mp4"
-                loop 
-                muted
-                autoPlay
-                playsInline
-                preload="metadata"
-                className="w-full h-full object-cover opacity-90"
-              />
-              {/* Overlay avec bénéfice direct */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-              <div className="absolute bottom-8 left-8 right-8 z-20">
-                <p className="text-white text-2xl md:text-4xl font-black leading-tight mb-2">
-                  Passez de débutant à Expert certifié
-                </p>
-                <p className="text-emerald-400 text-sm md:text-lg font-bold">
-                  En 5 jours seulement • Certification Microsoft incluse
-                </p>
-              </div>
-            </div>
+            Décrochez la certification{' '}
+            <span className="block">
+              <motion.span
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="text-emerald-400"
+              >
+                Microsoft Excel Expert
+              </motion.span>
+            </span>
+            {' '}en 5 jours intensifs
+          </motion.h1>
 
+          {/* Subtitle */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="text-base md:text-lg text-white/90 font-medium max-w-2xl mx-auto leading-relaxed"
+          >
+            La certification qui vous rend incontournable sur le marché
+          </motion.p>
+
+          {/* CTA Buttons */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-md mx-auto"
+          >
+            <Link href="/inscription" className="w-full sm:w-auto">
+              <Button 
+                size="lg" 
+                className="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white py-5 md:py-6 text-base font-bold rounded-xl transition-all hover:scale-[1.02] active:scale-[0.98] group shadow-[0_20px_40px_-10px_rgba(16,185,129,0.5)] hover:shadow-[0_25px_50px_-10px_rgba(16,185,129,0.6)] min-h-[56px]"
+              >
+                Je réserve ma place maintenant
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </Link>
           </motion.div>
 
+          {/* Social Proof Stats */}
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.8 }}
+            className="pt-6 flex flex-wrap justify-center gap-6 md:gap-8"
+          >
+            {[
+              { icon: Users, value: '+5000', label: 'Professionels formés', color: 'text-white' },
+              { icon: Star, value: '4.9/5', label: 'Note moyenne', color: 'text-white' },
+              { icon: ShieldCheck, value: '100%', label: 'Certifiés Microsoft Excel', color: 'text-white' },
+            ].map((stat, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.9 + i * 0.1 }}
+                className="flex items-center gap-2 text-white/90"
+              >
+                <stat.icon className={`w-5 h-5 ${stat.color}`} />
+                <span className="font-semibold">{stat.value}</span>
+                <span className="text-white/70 text-sm">{stat.label}</span>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+        </div>
+      </div>
+
+      {/* Floating Cards Section */}
+      <div className="relative z-10 bg-white py-10 md:py-16">
+        <div className="container px-4 mx-auto max-w-7xl">
+          <div className="text-center mb-8 md:mb-10">
+            <p className="text-base md:text-lg text-slate-600 font-medium">
+              Ce que vous obtiendrez après réussite de l'examen
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 max-w-4xl mx-auto">
+          
+          {/* Card 1 - Certification */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border border-gray-100"
+          >
+            <div className="relative h-[220px] bg-gradient-to-br from-emerald-50 to-emerald-100/50 rounded-xl mb-6 overflow-hidden">
+              <Image 
+                src="/MOS_365_Certificate_SAMPLE.webp"
+                alt="Certification Microsoft Excel Expert"
+                fill
+                className="object-contain p-6"
+              />
+            </div>
+            <h3 className="font-bold text-xl text-slate-900 mb-2">Certification</h3>
+            <p className="text-base text-slate-500 font-medium leading-relaxed">Microsoft Excel Expert</p>
+          </motion.div>
+
+          {/* Card 2 - Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border border-gray-100"
+          >
+            <div className="relative h-[220px] bg-gradient-to-br from-orange-50 to-orange-100/50 rounded-xl mb-6 overflow-hidden">
+              <Image 
+                src="/badge.png"
+                alt="Badge Microsoft Excel Expert"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className="object-contain p-6"
+              />
+            </div>
+            <h3 className="font-bold text-xl text-slate-900 mb-2">Badge</h3>
+            <p className="text-base text-slate-500 font-medium leading-relaxed">Badge Microsoft Excel Expert</p>
+          </motion.div>
+
+          </div>
         </div>
       </div>
     </section>

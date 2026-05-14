@@ -8,6 +8,7 @@ const nextConfig = {
       { protocol: 'https', hostname: 'avatars.githubusercontent.com', pathname: '/**' },
       { protocol: 'https', hostname: 'api.dicebear.com', pathname: '/**' },
       { protocol: 'https', hostname: 'cdn.pixabay.com', pathname: '/**' },
+      { protocol: 'https', hostname: 'i.imgur.com', pathname: '/**' },
     ],
   },
 
