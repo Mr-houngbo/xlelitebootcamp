@@ -20,7 +20,7 @@ export default function PolitiqueConfidentialite() {
               Responsable du traitement
             </h2>
             <p>
-              Les données personnelles collectées via le site <strong>XL Elite Bootcamp</strong> sont traitées par Monsieur <strong>Léonce Tounde SODJINOU</strong>, agissant pour le compte de Smart Otobos Consulting.
+              Les données personnelles collectées via le site <strong>XL Elite Bootcamp</strong> sont traitées par Monsieur <strong>Léonce Toundé SODJINOU</strong>, agissant pour le compte de Smart Otobos Consulting.
             </p>
           </section>
 

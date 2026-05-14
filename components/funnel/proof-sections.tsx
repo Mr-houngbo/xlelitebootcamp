@@ -109,7 +109,7 @@ const VideoTestimonialCard = ({ testimonial, active = false }: { testimonial: an
 export const ConcreteTestimonials = () => {
   const textTestimonials = [
     { id: '1', participant_name: 'Boling Faraba Dembele', company: 'Mali', testimonial: "Vraiment j'ai été transformé par ce Cabinet Smart Otobos Consulting, la pédagogie de M LEONCE (coach) et le niveau de la formation étaient au summum de nos attentes.", participant_photo: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Boling' },
-    { id: '2', participant_name: 'Abou Ouattara', company: 'Ouagadougou', testimonial: "Un grand merci au Cabinet Otobos Consulting et particulièrement à notre formateur, Léonce TOUNDE SODJINOU, pour la perfection avec laquelle la formation a été administrée.", participant_photo: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Abou' },
+    { id: '2', participant_name: 'Abou Ouattara', company: 'Ouagadougou', testimonial: "Un grand merci au Cabinet Otobos Consulting et particulièrement à notre formateur, Léonce Toundé SODJINOU, pour la perfection avec laquelle la formation a été administrée.", participant_photo: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Abou' },
     { id: '3', participant_name: 'Ib Zahara', company: 'Cote d\'ivoire', testimonial: "Bonjour Coach, nous avons été très satisfait de la qualité et temps accorder aux participants. Franchement ça me fait un bout de temps sur les formations en ligne, la votre a été du jamais vu.", participant_photo: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Zahara' },
     { id: '4', participant_name: 'Harris Djounga', company: 'Accra', testimonial: "Merci pour tout, formateur excellent, technique de formation de bonne qualité, contenu riche et varié. De toute les formations en ligne que j'ai déjà faite, la votre est de loin la meilleur.", participant_photo: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Harris' },
     { id: '5', participant_name: 'Abdoulaye Wolomo', company: 'Bamako, Mali', testimonial: "Bonjour tout je remercie le formateur et Son équipe pour la qualité de la formation reçu. Toutes mes attentes ont été satisfait à 100%. Je recommande fortement la formation.", participant_photo: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Abdoulaye' },
@@ -741,7 +741,7 @@ export const TrainerSection = () => {
                   <div className="relative w-40 h-40 md:w-full md:h-auto md:aspect-[4/5] rounded-2xl md:rounded-[2.5rem] overflow-hidden border-2 md:border-4 border-white dark:border-slate-900 shadow-xl md:shadow-2xl shrink-0">
                     <Image
                       src="/formateur/Leonce.jpg"
-                      alt="Léonce TOUNDE SODJINOU"
+                      alt="Léonce Toundé SODJINOU"
                       fill
                       className="object-cover object-top"
                       sizes="(max-width: 768px) 128px, 40vw"
@@ -755,7 +755,7 @@ export const TrainerSection = () => {
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                       Mentor
                     </span>
-                    <h3 className="text-lg font-black text-slate-900 dark:text-white leading-tight">Léonce TOUNDE SODJINOU</h3>
+                    <h3 className="text-lg font-black text-slate-900 dark:text-white leading-tight">Léonce Toundé SODJINOU</h3>
                     <p className="text-[10px] text-slate-500 font-bold uppercase tracking-wider mt-1">Expert Excel • Coach-Formateur</p>
                   </div>
 
@@ -766,7 +766,7 @@ export const TrainerSection = () => {
                         Mentor
                       </div>
                       <div className="absolute bottom-6 left-6 right-6 text-white space-y-1">
-                        <p className="text-lg font-black tracking-tight">Léonce TOUNDE SODJINOU</p>
+                        <p className="text-lg font-black tracking-tight">Léonce Toundé SODJINOU</p>
                         <p className="text-white/70 text-sm font-medium uppercase tracking-[0.2em]">Expert Excel • Coach-Formateur</p>
                       </div>
                   </div>
@@ -779,7 +779,7 @@ export const TrainerSection = () => {
                     </span>
                     <div className="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed text-sm md:text-lg">
                       <p>
-                        <strong className="text-slate-900 dark:text-white">Léonce TOUNDE SODJINOU</strong> accompagne depuis plusieurs annees les équipes financières, RH et opérationnelles à structurer leurs données pour décider plus vite.
+                        <strong className="text-slate-900 dark:text-white">Léonce Toundé SODJINOU</strong> accompagne depuis plusieurs annees les équipes financières, RH et opérationnelles à structurer leurs données pour décider plus vite.
                       </p>
                       <p>
                         Sa pédagogie mêle cas métiers, dashboards temps réel et automatisations VBA + Power Query. Chaque bootcamp est calibré pour décrocher la certification Microsoft Excel Expert dès la fin de la semaine.

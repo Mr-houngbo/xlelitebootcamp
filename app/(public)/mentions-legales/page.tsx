@@ -35,7 +35,7 @@ export default function MentionsLegales() {
             </div>
             <div className="pl-14">
               <p>Le responsable éditorial et directeur de la publication est :</p>
-              <p className="font-bold text-slate-800 dark:text-slate-200">Monsieur Léonce Tounde SODJINOU</p>
+              <p className="font-bold text-slate-800 dark:text-slate-200">Monsieur Léonce Toundé SODJINOU</p>
               <p className="italic">Expert Microsoft Excel & Consultant Finance Digitale.</p>
             </div>
           </section>
@@ -59,7 +59,7 @@ export default function MentionsLegales() {
             </div>
             <div className="pl-14 space-y-4">
               <p>
-                L'intégralité du contenu présent sur ce site (textes, logos, images, vidéos, structure pédagogique, cas métiers Excel) est la propriété exclusive de <strong>Smart Otobos Consulting</strong> et de <strong>Léonce Tounde SODJINOU</strong>.
+                L'intégralité du contenu présent sur ce site (textes, logos, images, vidéos, structure pédagogique, cas métiers Excel) est la propriété exclusive de <strong>Smart Otobos Consulting</strong> et de <strong>Léonce Toundé SODJINOU</strong>.
               </p>
               <p>
                 Toute reproduction, distribution, modification ou utilisation, même partielle, sans accord écrit préalable est strictement interdite et constitue une contrefaçon sanctionnée par le Code de la propriété intellectuelle.

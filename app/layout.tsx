@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     'Formation Excel Ouagadougou',
     'XL Elite Bootcamp',
   ],
-  authors: [{ name: 'Leonce Tounde SODJINOU' }],
+  authors: [{ name: 'Léonce Toundé SODJINOU' }],
   creator: 'XL Elite Bootcamp',
   publisher: 'XL Elite Bootcamp',
   formatDetection: {

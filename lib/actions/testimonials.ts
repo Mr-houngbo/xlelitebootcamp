@@ -35,7 +35,7 @@ export async function getTestimonials() {
           participant_name: 'Abou Ouattara',
           position: 'Gestionnaire RH',
           company: 'Ouagadougou',
-          testimonial: "Un grand merci au Cabinet Otobos Consulting et particulièrement à notre formateur, Léonce TOUNDE SODJINOU, pour la perfection avec laquelle la formation a été administrée, avec en plus, un coaching participatif et motivateur.",
+          testimonial: "Un grand merci au Cabinet Otobos Consulting et particulièrement à notre formateur, Léonce Toundé SODJINOU, pour la perfection avec laquelle la formation a été administrée, avec en plus, un coaching participatif et motivateur.",
           linkedin_url: '#',
           participant_photo: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Abou',
           type: 'text',

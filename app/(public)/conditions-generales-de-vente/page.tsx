@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Conditions Générales de Vente - XL Elite Bootcamp',
-  description: 'Contrat de formation professionnelle concernant le programme XL Elite Bootcamp dirigé par Léonce Tounde SODJINOU.',
+  description: 'Contrat de formation professionnelle concernant le programme XL Elite Bootcamp dirigé par Léonce Toundé SODJINOU.',
 };
 
 export default function ConditionsGeneralesDeVente() {
@@ -17,7 +17,7 @@ export default function ConditionsGeneralesDeVente() {
           <section>
             <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-6">1. Objet du programme</h2>
             <p>
-              Le programme <strong>XL Elite Bootcamp</strong> est une formation intensive de <strong>5 jours</strong> visant à préparer les participants à l'examen de certification officielle <strong>Microsoft Office Specialist (MOS) Excel Expert</strong>. La formation est dispensée par Monsieur Léonce Tounde SODJINOU.
+              Le programme <strong>XL Elite Bootcamp</strong> est une formation intensive de <strong>5 jours</strong> visant à préparer les participants à l'examen de certification officielle <strong>Microsoft Office Specialist (MOS) Excel Expert</strong>. La formation est dispensée par Monsieur Léonce Toundé SODJINOU.
             </p>
           </section>
 
