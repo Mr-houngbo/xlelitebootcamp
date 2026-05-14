@@ -517,15 +517,10 @@ export function RegistrationForm() {
                       <Badge variant="destructive">Complet</Badge>
                     ) : isSelected ? (
                       <Badge className="bg-brand-green text-white">✓</Badge>
-                    ) : (
-                      <Badge variant="outline" className="text-xs">{group.max_capacity - group.current_capacity} places</Badge>
-                    )}
+                    ) : null}
                   </div>
-                  <div className="bg-white p-2 rounded-lg border border-gray-100 mb-2 text-center text-sm md:text-base font-bold text-gray-900">
+                  <div className="bg-white p-2 rounded-lg border border-gray-100 text-center text-sm md:text-base font-bold text-gray-900">
                     {group.time_slot}
-                  </div>
-                  <div className="text-xs font-medium text-gray-500 text-center">
-                    {group.current_capacity}/{group.max_capacity} inscrits
                   </div>
                 </div>
               );
