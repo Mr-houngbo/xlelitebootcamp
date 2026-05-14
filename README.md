@@ -170,9 +170,9 @@ await sendRegistrationConfirmation({
   email: "jean@example.com",
   groupName: "G1",
   timeSlot: "09h-12h",
-  registrationFee: 25000,
+  registrationFee: 30000,
   trainingFee: 125000,
-  totalAmount: 150000,
+  totalAmount: 155000,
   deadline: "02 juin 2025"
 });
 ```

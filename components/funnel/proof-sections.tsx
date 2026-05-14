@@ -116,7 +116,7 @@ export const ConcreteTestimonials = () => {
   ];
 
   return (
-    <section id="temoignages" className="py-12 md:py-16 bg-slate-950 text-white overflow-hidden relative border-y border-white/5">
+    <section id="temoignages" className="py-10 md:py-16 bg-slate-950 text-white overflow-hidden relative border-y border-white/5">
       <div className="container px-4 mx-auto relative z-10">
         <div className="flex items-center justify-center gap-8 mb-12 opacity-30">
           <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent to-white" />
@@ -154,7 +154,7 @@ export const ConcreteTestimonials = () => {
         {/* CTA personnalisé - Témoignages */}
         <div className="text-center mt-8">
           <Link href="/inscription" className="inline-block">
-            <Button size="lg" className="bg-orange-500 hover:bg-orange-600 text-white py-4 px-8 text-base font-semibold rounded-xl transition-all hover:scale-[1.02] shadow-lg">
+            <Button size="lg" className="bg-orange-500 hover:bg-orange-600 text-white py-4 px-8 text-base font-semibold rounded-xl transition-all hover:scale-[1.02] active:scale-95 shadow-lg">
               Rejoindre ces professionnels
               <ArrowRight className="ml-2 w-4 h-4" />
             </Button>
@@ -173,7 +173,7 @@ export const RealActions = () => {
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-white dark:bg-slate-950 relative overflow-hidden">
+    <section className="py-10 md:py-24 bg-white dark:bg-slate-950 relative overflow-hidden">
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-emerald-500/20 to-transparent" />
       
       <div className="container px-4 mx-auto max-w-5xl relative z-10">
@@ -253,7 +253,7 @@ export const RealActions = () => {
 
 export const OrganizationSection = () => {
   return (
-    <section id="organisation" className="py-16 md:py-24 bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-950">
+    <section id="organisation" className="py-10 md:py-24 bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-950">
       <div className="container px-4 mx-auto max-w-6xl">
         {/* Header */}
         <div className="text-center mb-12 md:mb-16">
@@ -269,70 +269,66 @@ export const OrganizationSection = () => {
         </div>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-8">
           {/* Durée */}
-          <div className="group relative bg-white dark:bg-slate-800 p-6 md:p-10 rounded-2xl md:rounded-3xl border-2 border-emerald-100 dark:border-emerald-900/30 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-t-2xl md:rounded-t-3xl"></div>
-            <div className="flex items-center justify-center w-16 h-16 md:w-20 md:h-20 bg-emerald-100 dark:bg-emerald-900/30 rounded-2xl mb-6">
-              <Calendar className="w-8 h-8 md:w-10 md:h-10 text-emerald-600" />
+          <div className="group relative bg-white dark:bg-slate-800 p-4 md:p-10 rounded-xl md:rounded-3xl border-2 border-emerald-100 dark:border-emerald-900/30 shadow-md hover:shadow-2xl transition-all duration-300">
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-t-xl md:rounded-t-3xl"></div>
+            <div className="flex items-center justify-center w-10 h-10 md:w-20 md:h-20 bg-emerald-100 dark:bg-emerald-900/30 rounded-xl mb-4">
+              <Calendar className="w-5 h-5 md:w-10 md:h-10 text-emerald-600" />
             </div>
-            <h3 className="text-xl md:text-2xl font-black mb-3 text-slate-900 dark:text-white">5 jours intensifs</h3>
-            <p className="text-base md:text-lg text-slate-600 dark:text-slate-400 font-semibold">
+            <h3 className="text-xs md:text-2xl font-black mb-1 text-slate-900 dark:text-white">5 jours intensifs</h3>
+            <p className="text-[10px] md:text-lg text-slate-600 dark:text-slate-400 font-bold">
               Du 09 au 13 juin 2026
             </p>
           </div>
 
           {/* Horaires */}
-          <div className="group relative bg-white dark:bg-slate-800 p-6 md:p-10 rounded-2xl md:rounded-3xl border-2 border-orange-100 dark:border-orange-900/30 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-500 to-orange-600 rounded-t-2xl md:rounded-t-3xl"></div>
-            <div className="flex items-center justify-center w-16 h-16 md:w-20 md:h-20 bg-orange-100 dark:bg-orange-900/30 rounded-2xl mb-6">
-              <Clock className="w-8 h-8 md:w-10 md:h-10 text-orange-600" />
+          <div className="group relative bg-white dark:bg-slate-800 p-4 md:p-10 rounded-xl md:rounded-3xl border-2 border-orange-100 dark:border-orange-900/30 shadow-md hover:shadow-2xl transition-all duration-300">
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-500 to-orange-600 rounded-t-xl md:rounded-t-3xl"></div>
+            <div className="flex items-center justify-center w-10 h-10 md:w-20 md:h-20 bg-orange-100 dark:bg-orange-900/30 rounded-xl mb-4">
+              <Clock className="w-5 h-5 md:w-10 md:h-10 text-orange-600" />
             </div>
-            <h3 className="text-xl md:text-2xl font-black mb-4 text-slate-900 dark:text-white">3 créneaux au choix</h3>
-            <div className="space-y-3">
-              <div className="flex items-center gap-3 p-3 rounded-xl bg-orange-50 dark:bg-orange-950/20 border border-orange-100 dark:border-orange-900/20">
-                <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-orange-200 dark:bg-orange-900/40 text-orange-900 dark:text-orange-300 font-black text-sm">G1</span>
-                <span className="text-sm md:text-base font-bold text-slate-700 dark:text-slate-300">09h - 12h</span>
+            <h3 className="text-xs md:text-2xl font-black mb-1 text-slate-900 dark:text-white">3 créneaux au choix</h3>
+            <div className="space-y-1 md:space-y-3 mt-2">
+              <div className="flex items-center justify-between md:justify-start gap-2 md:gap-3 p-1.5 md:p-3 rounded-lg md:rounded-xl bg-orange-50 dark:bg-orange-950/20 border border-orange-100 dark:border-orange-900/20">
+                <span className="text-[9px] md:text-sm font-black text-orange-600">G1</span>
+                <span className="text-[9px] md:text-base font-bold text-slate-700 dark:text-slate-300">09h - 12h</span>
               </div>
-              <div className="flex items-center gap-3 p-3 rounded-xl bg-orange-50 dark:bg-orange-950/20 border border-orange-100 dark:border-orange-900/20">
-                <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-orange-200 dark:bg-orange-900/40 text-orange-900 dark:text-orange-300 font-black text-sm">G2</span>
-                <span className="text-sm md:text-base font-bold text-slate-700 dark:text-slate-300">14h - 17h</span>
+              <div className="flex items-center justify-between md:justify-start gap-2 md:gap-3 p-1.5 md:p-3 rounded-lg md:rounded-xl bg-orange-50 dark:bg-orange-950/20 border border-orange-100 dark:border-orange-900/20">
+                <span className="text-[9px] md:text-sm font-black text-orange-600">G2</span>
+                <span className="text-[9px] md:text-base font-bold text-slate-700 dark:text-slate-300">14h - 17h</span>
               </div>
-              <div className="flex items-center gap-3 p-3 rounded-xl bg-orange-50 dark:bg-orange-950/20 border border-orange-100 dark:border-orange-900/20">
-                <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-orange-200 dark:bg-orange-900/40 text-orange-900 dark:text-orange-300 font-black text-sm">G3</span>
-                <span className="text-sm md:text-base font-bold text-slate-700 dark:text-slate-300">18h - 21h</span>
+              <div className="flex items-center justify-between md:justify-start gap-2 md:gap-3 p-1.5 md:p-3 rounded-lg md:rounded-xl bg-orange-50 dark:bg-orange-950/20 border border-orange-100 dark:border-orange-900/20">
+                <span className="text-[9px] md:text-sm font-black text-orange-600">G3</span>
+                <span className="text-[9px] md:text-base font-bold text-slate-700 dark:text-slate-300">18h - 21h</span>
               </div>
             </div>
           </div>
 
           {/* Format */}
-          <div className="group relative bg-white dark:bg-slate-800 p-6 md:p-10 rounded-2xl md:rounded-3xl border-2 border-slate-200 dark:border-slate-700 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-slate-500 to-slate-600 rounded-t-2xl md:rounded-t-3xl"></div>
-            <div className="flex items-center justify-center gap-2 mb-6">
-              <div className="flex items-center justify-center w-16 h-16 md:w-20 md:h-20 bg-slate-100 dark:bg-slate-700 rounded-2xl">
-                <MapPin className="w-8 h-8 md:w-10 md:h-10 text-slate-600 dark:text-slate-400" />
+          <div className="col-span-2 md:col-span-1 group relative bg-white dark:bg-slate-800 p-4 md:p-10 rounded-xl md:rounded-3xl border-2 border-slate-200 dark:border-slate-700 shadow-md hover:shadow-2xl transition-all duration-300">
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-slate-500 to-slate-600 rounded-t-xl md:rounded-t-3xl"></div>
+            <div className="flex items-center gap-2 mb-4">
+              <div className="flex items-center justify-center w-10 h-10 md:w-20 md:h-20 bg-slate-100 dark:bg-slate-700 rounded-xl">
+                <MapPin className="w-5 h-5 md:w-10 md:h-10 text-slate-600 dark:text-slate-400" />
               </div>
-              <div className="flex items-center justify-center w-16 h-16 md:w-20 md:h-20 bg-slate-100 dark:bg-slate-700 rounded-2xl">
-                <Laptop className="w-8 h-8 md:w-10 md:h-10 text-slate-600 dark:text-slate-400" />
-              </div>
+              <p className="text-xs md:text-2xl font-black text-slate-900 dark:text-white">Format hybride</p>
             </div>
-            <h3 className="text-xl md:text-2xl font-black mb-3 text-slate-900 dark:text-white">Format hybride</h3>
-            <p className="text-base md:text-lg text-slate-600 dark:text-slate-400 font-semibold mb-4">
+            <p className="text-[10px] md:text-lg text-slate-600 dark:text-slate-400 font-semibold mb-2">
               Présentiel ou 100% en ligne
             </p>
-            <p className="text-sm text-slate-500 dark:text-slate-500 leading-relaxed mb-6">
+            <p className="text-[10px] md:text-sm text-slate-500 dark:text-slate-500 leading-relaxed mb-4">
               Participez depuis votre bureau ou de chez vous, vous avez le choix
             </p>
             
-            {/* Lieu présentiel intégré */}
-            <div className="mt-6 pt-6 border-t border-slate-200 dark:border-slate-700">
-              <p className="text-xs uppercase tracking-wider font-black text-slate-400 mb-2">
+            <div className="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700">
+              <p className="text-[10px] uppercase tracking-wider font-black text-slate-400 mb-1">
                 Lieu de formation (présentiel)
               </p>
-              <p className="text-base md:text-lg text-slate-900 dark:text-white font-bold mb-1">
+              <p className="text-[11px] md:text-lg text-slate-900 dark:text-white font-bold">
                 Hôtel AMISO, Ouagadougou
               </p>
-              <p className="text-sm text-slate-500 dark:text-slate-400">
+              <p className="text-[9px] md:text-sm text-slate-500 dark:text-slate-400 mt-1">
                 Non loin de la Mairie Centrale
               </p>
             </div>
@@ -342,7 +338,7 @@ export const OrganizationSection = () => {
         {/* CTA personnalisé - Organisation */}
         <div className="mt-12 md:mt-16 text-center">
           <Link href="/inscription" className="inline-block">
-            <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white py-4 px-8 text-base font-semibold rounded-xl transition-all hover:scale-[1.02] shadow-lg">
+            <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white py-4 px-8 text-base font-semibold rounded-xl transition-all hover:scale-[1.02] active:scale-95 shadow-lg">
               Choisir mon créneau
               <ArrowRight className="ml-2 w-4 h-4" />
             </Button>
@@ -361,76 +357,73 @@ export const OrganizationSection = () => {
 
 export const FinancialOffer = () => {
   return (
-    <section className="py-16 md:py-24 bg-white dark:bg-slate-950 relative overflow-hidden">
+    <section className="py-10 md:py-24 bg-white dark:bg-slate-950 relative overflow-hidden">
       {/* Decorative ambient lights */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-emerald-500/10 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="container px-4 mx-auto max-w-5xl relative z-10">
         <div className="text-center mb-10 md:mb-12">
-          <h2 className="text-2xl md:text-5xl font-black tracking-tight mb-2 md:mb-4">Un budget unique pour une certification à vie</h2>
+          <h2 className="text-2xl md:text-5xl font-black tracking-tight mb-2 md:mb-4">Investissement</h2>
         </div>
 
-        <div className="bg-slate-900 rounded-3xl md:rounded-[3rem] border border-white/10 shadow-3xl overflow-hidden flex flex-col lg:flex-row items-stretch">
+        <div className="bg-slate-900 rounded-3xl md:rounded-[3rem] border border-white/10 shadow-3xl overflow-hidden flex flex-col lg:flex-row items-stretch max-w-4xl mx-auto">
           {/* Left Side: Pricing + Inclusions */}
-          <div className="p-5 md:p-16 flex-1 border-b lg:border-b-0 lg:border-r border-white/5">
-            <div className="space-y-8 mb-10">
-              <div>
-                <p className="text-sm text-slate-400 uppercase tracking-wider mb-3">Frais d'inscription</p>
-                <p className="text-3xl md:text-5xl font-black text-white">25 000 F</p>
+          <div className="p-6 md:p-16 flex-1 border-b lg:border-b-0 lg:border-r border-white/5">
+            <div className="flex flex-row md:flex-col justify-between md:justify-start gap-4 md:space-y-8 mb-6 md:mb-10">
+              <div className="flex-1">
+                <p className="text-[10px] md:text-sm text-slate-400 uppercase tracking-wider mb-1 md:mb-3">Inscription</p>
+                <p className="text-xl md:text-5xl font-black text-white">30 000 F</p>
               </div>
 
-              <div className="h-[1px] w-full bg-gradient-to-r from-white/10 via-white/5 to-transparent" />
+              <div className="hidden md:block h-[1px] w-full bg-gradient-to-r from-white/10 via-white/5 to-transparent" />
 
-              <div>
-                <p className="text-sm text-slate-400 uppercase tracking-wider mb-3">Frais de participation</p>
-                <p className="text-3xl md:text-5xl font-black text-white">125 000 F</p>
+              <div className="flex-1 text-right md:text-left">
+                <p className="text-[10px] md:text-sm text-slate-400 uppercase tracking-wider mb-1 md:mb-3">Formation</p>
+                <p className="text-xl md:text-5xl font-black text-white">125 000 F</p>
               </div>
             </div>
 
-            {/* Ce qui est inclus */}
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-5 md:p-6">
-              <p className="text-emerald-400 font-black text-sm uppercase tracking-wider mb-4">Tout ce à quoi vous aurez droit</p>
-              <ul className="space-y-3 text-white">
+            {/* Ce qui est inclus avec Toggle Mobile */}
+            <details className="group md:open bg-white/5 border border-white/10 rounded-2xl p-4 md:p-6 transition-all">
+              <summary className="flex items-center justify-between cursor-pointer list-none md:pointer-events-none">
+                <p className="text-emerald-400 font-black text-[10px] md:text-sm uppercase tracking-wider">Ce qui est inclus</p>
+                <ChevronDown className="w-4 h-4 text-emerald-400 md:hidden group-open:rotate-180 transition-transform" />
+              </summary>
+              <ul className="mt-4 space-y-3 text-white">
                 <li className="flex items-start gap-3">
-                  <span className="text-emerald-400 text-lg shrink-0">✓</span>
-                  <span className="text-sm md:text-base">2 vouchers officiels + frais d'examen compris</span>
+                  <span className="text-emerald-400 text-sm md:text-lg shrink-0">✓</span>
+                  <span className="text-xs md:text-base">Vouchers + frais d'examen Microsoft</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-emerald-400 text-lg shrink-0">✓</span>
-                  <span className="text-sm md:text-base">Licence Office 365 + environnement d'entraînement dédié</span>
+                  <span className="text-emerald-400 text-sm md:text-lg shrink-0">✓</span>
+                  <span className="text-xs md:text-base">Licence Office 365 + environnement dédié</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-emerald-400 text-lg shrink-0">✓</span>
-                  <span className="text-sm md:text-base">Mentoring post-examen pour rentabiliser votre investissement</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-emerald-400 text-lg shrink-0">✓</span>
-                  <span className="text-sm md:text-base">+10 Simulateurs d'examens réels</span>
+                  <span className="text-emerald-400 text-sm md:text-lg shrink-0">✓</span>
+                  <span className="text-xs md:text-base">Mentoring post-examen + Simulateurs</span>
                 </li>
               </ul>
-            </div>
+            </details>
           </div>
 
           {/* Right Side: Total & CTA */}
-          <div className="bg-emerald-600 p-5 md:p-16 w-full lg:w-[400px] flex flex-col justify-center items-center text-center relative overflow-hidden">
+          <div className="bg-emerald-600 p-6 md:p-16 w-full lg:w-[400px] flex flex-col justify-center items-center text-center relative overflow-hidden">
             {/* Pattern Overlay */}
             <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '24px 24px' }} />
 
-            <div className="relative z-10">
-              
-              <div className="space-y-8">
-                <div className="inline-block px-4 py-2 rounded-xl bg-black/20 backdrop-blur-md border border-white/10">
-                  <div className="flex items-center gap-3 text-white">
-                    <Clock className="w-4 h-4 text-emerald-300" />
-                    <p className="text-sm font-black uppercase tracking-widest">Clôture des inscriptions : <span className="text-emerald-300">02 Juin</span></p>
+            <div className="relative z-10 w-full">
+              <div className="space-y-6 md:space-y-8">
+                <div className="inline-block px-3 py-1.5 md:px-4 md:py-2 rounded-xl bg-black/20 backdrop-blur-md border border-white/10">
+                  <div className="flex items-center gap-2 text-white">
+                    <Clock className="w-3 h-3 text-emerald-300" />
+                    <p className="text-[10px] md:text-sm font-black uppercase tracking-widest">Clôture : <span className="text-emerald-300">02 Juin</span></p>
                   </div>
                 </div>
 
-                <Link href="/inscription" className="block group">
-                  <Button size="lg" className="w-full bg-white hover:bg-slate-50 text-emerald-950 px-4 py-4 md:px-12 md:py-8 text-base md:text-xl font-black rounded-xl md:rounded-2xl shadow-2xl transition-all hover:scale-[1.03] group flex items-center justify-center min-h-[56px]">
-                    <Lock className="w-5 h-5 mr-3 group-hover:rotate-12 transition-transform" /> Je réserve ma place
+                <Link href="/inscription" className="block group w-full">
+                  <Button size="lg" className="w-full bg-white hover:bg-slate-50 text-emerald-950 py-4 md:py-8 text-sm md:text-xl font-black rounded-xl md:rounded-2xl shadow-2xl transition-all hover:scale-[1.03] group flex items-center justify-center min-h-[48px] md:min-h-[56px]">
+                    <Lock className="w-4 h-4 mr-2 md:mr-3" /> Je m'inscris
                   </Button>
-                  <p className="mt-4 text-emerald-100/60 text-xs font-bold uppercase tracking-widest group-hover:text-white transition-colors italic">⚠️ Places limitées</p>
                 </Link>
               </div>
             </div>
@@ -475,8 +468,8 @@ export const FAQProof = () => {
     { cat: 'orga', q: "Combien de participants par groupe ?", a: "Les groupes sont limités pour garantir un accompagnement de qualité." },
 
     // PRIX & INSCRIPTION
-    { cat: 'prix', q: "Combien coûte la formation ?", a: "125 000 F CFA (+ 25 000 F d'inscription)." },
-    { cat: 'prix', q: "À quoi correspondent les 25 000 F d’inscription ?", a: "Ils permettent de réserver votre place et de sécuriser votre participation." },
+    { cat: 'prix', q: "Combien coûte la formation ?", a: "125 000 F CFA (+ 30 000 F d'inscription)." },
+    { cat: 'prix', q: "À quoi correspondent les 30 000 F d’inscription ?", a: "Ils permettent de réserver votre place et de sécuriser votre participation." },
     { cat: 'prix', q: "Puis-je payer en plusieurs fois ?", a: "Oui, des facilités peuvent être proposées selon votre situation." },
     { cat: 'prix', q: "Y a-t-il un remboursement ?", a: "Les conditions sont précisées dans les CGV. L’objectif est de garantir votre engagement." },
     { cat: 'prix', q: "Pourquoi les places sont-elles limitées ?", a: "Pour assurer un suivi personnalisé et une meilleure qualité d’apprentissage." },
@@ -500,7 +493,7 @@ export const FAQProof = () => {
     // DÉCISION
     { cat: 'decision', q: "Pourquoi devrais-je m’inscrire maintenant ?", a: "Parce que les places sont limitées et que les inscriptions ferment le 02 juin." },
     { cat: 'decision', q: "Que se passe-t-il si j’attends ?", a: "Vous risquez de ne plus avoir de place dans votre créneau préféré." },
-    { cat: 'decision', q: "Comment m’inscrire ?", a: "Remplissez le formulaire et payez les frais d’inscription (25 000 F CFA)." },
+    { cat: 'decision', q: "Comment m’inscrire ?", a: "Remplissez le formulaire et payez les frais d’inscription (30 000 F CFA)." },
     { cat: 'decision', q: "Et si j’ai encore une question ?", a: "Vous pouvez nous contacter directement par email ou WhatsApp." },
     { cat: 'decision', q: "Est-ce que ça vaut vraiment le coup ?", a: "Si vous utilisez Excel régulièrement et que vous voulez passer un cap rapidement : oui, clairement." },
   ];
@@ -509,7 +502,7 @@ export const FAQProof = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="py-12 md:py-16 bg-white dark:bg-slate-950">
+    <section id="faq" className="py-10 md:py-16 bg-white dark:bg-slate-950">
       <div className="container px-4 mx-auto max-w-4xl">
         <div className="text-center mb-8 md:mb-12">
           <h2 className="text-2xl md:text-4xl font-black tracking-tight mb-3">Des questions ?</h2>
@@ -519,12 +512,12 @@ export const FAQProof = () => {
         {/* Category List - Scrollable horizontally */}
         <div className="relative mb-12 py-2 border-y border-slate-100 dark:border-slate-800">
           
-          <div className="flex gap-4 overflow-x-auto faq-scrollbar pb-4 pt-2 px-2 w-full snap-x scroll-smooth">
+          <div className="flex gap-4 overflow-x-auto faq-scrollbar pb-4 pt-2 px-2 w-full snap-x scroll-smooth [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
             {categories.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => { setActiveCat(cat.id); setOpenIndex(null); }}
-                className={`flex items-center gap-2 px-6 py-3 rounded-xl text-sm md:text-sm font-black transition-all shrink-0 snap-start ${activeCat === cat.id
+                className={`flex items-center gap-2 px-6 py-3 rounded-xl text-sm md:text-sm font-black transition-all shrink-0 snap-start active:scale-95 ${activeCat === cat.id
                   ? 'bg-emerald-600 text-white shadow-lg scale-105'
                   : 'bg-slate-50 dark:bg-slate-900 text-slate-500 hover:bg-slate-100'
                   }`}
@@ -536,7 +529,7 @@ export const FAQProof = () => {
           
           {/* Indicateur visuel de scroll mobile */}
           <div className="md:hidden text-center mt-2">
-            <p className="text-xs text-slate-400 font-medium">← Swipez pour explorer les catégories →</p>
+            <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">← Swipez pour explorer →</p>
           </div>
         </div>
 
@@ -587,15 +580,7 @@ export const FAQProof = () => {
         </motion.div>
       </div>
 
-      {/* CTA personnalisé - FAQ */}
-      <div className="text-center mt-12">
-        <Link href="/inscription" className="inline-block">
-          <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white py-4 px-8 text-base font-semibold rounded-xl transition-all hover:scale-[1.02] shadow-lg">
-            Contactez-nous directement pour plus d'informations
-            <ArrowRight className="ml-2 w-4 h-4" />
-          </Button>
-        </Link>
-      </div>
+      {/* CTA supprimé sur mobile selon feedback */}
     </section>
   );
 };
@@ -690,7 +675,7 @@ export const TrainerSection = () => {
   ];
 
   return (
-    <section id="formateur" className="py-16 md:py-20 bg-slate-50 dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800">
+    <section id="formateur" className="py-10 md:py-20 bg-slate-50 dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800">
       <div className="container px-4 mx-auto max-w-6xl">
         <div className="space-y-12 md:space-y-16">
           {/* Galerie terrain - déplacée en premier */}
@@ -748,111 +733,176 @@ export const TrainerSection = () => {
             <div className="absolute -top-32 -right-20 w-72 h-72 bg-emerald-500/20 blur-[120px] rounded-full" />
             <div className="absolute -bottom-20 left-0 w-60 h-60 bg-orange-500/10 blur-[120px] rounded-full" />
 
-            <div className="relative z-10 grid md:grid-cols-5 gap-6 md:gap-16 p-6 md:p-16">
-              <div className="md:col-span-2 space-y-6">
-                <div className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden border-4 border-white dark:border-slate-900 shadow-2xl">
-                  <Image
-                    src="/formateur/Leonce.jpg"
-                    alt="Léonce TOUNDE SODJINOU - Formateur du bootcamp XL Elite"
-                    fill
-                    className="object-cover object-top"
-                    sizes="(max-width: 768px) 100vw, 40vw"
-                    priority
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-                  <div className="absolute top-6 left-6 px-4 py-2 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-white text-xs font-black tracking-[0.3em] uppercase flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                    Mentor
+            <div className="relative z-10 p-5 md:p-16">
+              <div className="flex flex-col md:grid md:grid-cols-5 gap-8 md:gap-16">
+                
+                {/* Header Mobile/Desktop */}
+                <div className="md:col-span-2 flex flex-row md:flex-col gap-4 md:gap-6 items-center md:items-start md:space-y-6">
+                  <div className="relative w-40 h-40 md:w-full md:h-auto md:aspect-[4/5] rounded-2xl md:rounded-[2.5rem] overflow-hidden border-2 md:border-4 border-white dark:border-slate-900 shadow-xl md:shadow-2xl shrink-0">
+                    <Image
+                      src="/formateur/Leonce.jpg"
+                      alt="Léonce TOUNDE SODJINOU"
+                      fill
+                      className="object-cover object-top"
+                      sizes="(max-width: 768px) 128px, 40vw"
+                      priority
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent md:hidden" />
                   </div>
-                  <div className="absolute bottom-6 left-6 right-6 text-white space-y-1">
-                    <p className="text-lg font-black tracking-tight">Léonce TOUNDE SODJINOU</p>
-                    <p className="text-white/70 text-sm font-medium uppercase tracking-[0.2em]">Expert Excel • Coach-Formateur</p>
-                  </div>
-                </div>
 
-                {/* Achievements déplacés sous la photo */}
-                <div className="space-y-4">
-                  {achievements.map((item) => (
-                    <div key={item.title} className="flex gap-3">
-                      <div className="mt-0.5">
-                        <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" />
+                  <div className="flex-1 md:hidden">
+                    <span className="inline-flex items-center gap-1 text-emerald-500 font-black uppercase tracking-[0.2em] text-[10px] mb-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      Mentor
+                    </span>
+                    <h3 className="text-lg font-black text-slate-900 dark:text-white leading-tight">Léonce TOUNDE SODJINOU</h3>
+                    <p className="text-[10px] text-slate-500 font-bold uppercase tracking-wider mt-1">Expert Excel • Coach-Formateur</p>
+                  </div>
+
+                  {/* Desktop Only Labels inside photo (hidden on mobile) */}
+                  <div className="hidden md:block">
+                     <div className="absolute top-6 left-6 px-4 py-2 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-white text-xs font-black tracking-[0.3em] uppercase flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                        Mentor
                       </div>
-                      <div>
-                        <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-0.5">
-                          {item.title}
-                        </h3>
-                        <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-                          {item.desc}
-                        </p>
+                      <div className="absolute bottom-6 left-6 right-6 text-white space-y-1">
+                        <p className="text-lg font-black tracking-tight">Léonce TOUNDE SODJINOU</p>
+                        <p className="text-white/70 text-sm font-medium uppercase tracking-[0.2em]">Expert Excel • Coach-Formateur</p>
                       </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="md:col-span-3 space-y-8">
-                <div>
-                  <span className="inline-flex items-center gap-2 text-orange-500 font-black uppercase tracking-[0.4em] text-xs mb-4">
-                    Votre Formateur
-                  </span>
-                  <div className="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed text-base md:text-lg">
-                    <p>
-                      <strong className="text-slate-900 dark:text-white">Léonce TOUNDE SODJINOU</strong> accompagne depuis plusieurs annees les équipes financières, RH et opérationnelles à structurer leurs données pour décider plus vite.
-                    </p>
-                    <p>
-                      Sa pédagogie mêle cas métiers, dashboards temps réel et automatisations VBA + Power Query. Chaque bootcamp est calibré pour décrocher la certification Microsoft Excel Expert dès la fin de la semaine.
-                    </p>
                   </div>
                 </div>
 
-                <div className="grid sm:grid-cols-3 gap-4">
-                  {stats.map((stat) => (
-                    <div
-                      key={stat.label}
-                      className="rounded-2xl border border-slate-100 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-950/60 p-5 text-center"
-                    >
-                      <p className={`text-3xl font-black ${stat.tone}`}>{stat.value}</p>
-                      <p className="text-[11px] uppercase tracking-[0.25em] font-bold text-slate-500 dark:text-slate-400 mt-2">
-                        {stat.label}
+                <div className="md:col-span-3 space-y-6 md:space-y-8">
+                  <div>
+                    <span className="inline-flex items-center gap-2 text-orange-500 font-black uppercase tracking-[0.4em] text-xs mb-4">
+                      Votre Formateur
+                    </span>
+                    <div className="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed text-sm md:text-lg">
+                      <p>
+                        <strong className="text-slate-900 dark:text-white">Léonce TOUNDE SODJINOU</strong> accompagne depuis plusieurs annees les équipes financières, RH et opérationnelles à structurer leurs données pour décider plus vite.
+                      </p>
+                      <p>
+                        Sa pédagogie mêle cas métiers, dashboards temps réel et automatisations VBA + Power Query. Chaque bootcamp est calibré pour décrocher la certification Microsoft Excel Expert dès la fin de la semaine.
                       </p>
                     </div>
-                  ))}
-                </div>
+                  </div>
 
-                <div className="mt-8">
-                  <p className="text-xs uppercase tracking-[0.25em] font-bold text-slate-400 mb-4">
-                    Il a formé les agents de :
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {['MOVIS', 'BOA', 'ONICEF', 'OMS', 'EPC MINEEX', 'LAGARDÈRE', 'MINISTÈRES', 'ALTEN', 'HUMANIS'].map((company) => (
-                      <span
-                        key={company}
-                        className="px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold"
-                      >
-                        {company}
-                      </span>
+                  {/* Achievements - Integrated in the right column */}
+                  <div className="grid grid-cols-1 gap-3 pt-2">
+                    {achievements.map((item) => (
+                      <div key={item.title} className="flex gap-3 items-start p-3 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                        <div>
+                          <h3 className="text-xs font-bold text-slate-900 dark:text-white mb-0.5">
+                            {item.title}
+                          </h3>
+                          <p className="text-[10px] text-slate-500 dark:text-slate-400 leading-tight">
+                            {item.desc}
+                          </p>
+                        </div>
+                      </div>
                     ))}
                   </div>
-                </div>
+
+                  {/* Stats Scroll Container - Auto Scroll on Mobile */}
+                  <div className="max-md:-mx-5 max-md:overflow-hidden pb-4 md:pb-0">
+                    <div className="md:grid md:grid-cols-3 gap-3 md:gap-4 md:w-full">
+                      {/* Mobile Marquee */}
+                      <div className="flex md:hidden overflow-hidden">
+                        <motion.div 
+                          className="flex gap-3 px-5"
+                          animate={{ x: [0, -420] }}
+                          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                        >
+                          {[...stats, ...stats].map((stat, idx) => (
+                            <div
+                              key={`${stat.label}-${idx}`}
+                              className="w-[180px] shrink-0 rounded-2xl border border-slate-100 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-950/60 p-4 text-center"
+                            >
+                              <p className={`text-2xl font-black ${stat.tone}`}>{stat.value}</p>
+                              <p className="text-[9px] uppercase tracking-[0.2em] font-black text-slate-500 dark:text-slate-400 mt-2 leading-tight">
+                                {stat.label}
+                              </p>
+                            </div>
+                          ))}
+                        </motion.div>
+                      </div>
+
+                      {/* Desktop Grid (Static) */}
+                      {stats.map((stat) => (
+                        <div
+                          key={stat.label}
+                          className="hidden md:block shrink rounded-2xl border border-slate-100 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-950/60 p-6 text-center shadow-sm md:shadow-none"
+                        >
+                          <p className={`text-2xl md:text-4xl font-black ${stat.tone}`}>{stat.value}</p>
+                          <p className="text-[9px] md:text-xs uppercase tracking-[0.2em] font-black text-slate-500 dark:text-slate-400 mt-2 md:mt-3 leading-tight">
+                            {stat.label}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="pt-2">
+                    <p className="text-[10px] md:text-xs uppercase tracking-[0.2em] font-black text-slate-400 mb-3">
+                      Il a formé les agents de :
+                    </p>
+                    <div className="max-md:-mx-5 overflow-hidden">
+                      {/* Mobile Auto-Scroll Marquee */}
+                      <div className="md:hidden flex">
+                        <motion.div 
+                          className="flex gap-2 px-5"
+                          animate={{ x: [0, -1000] }}
+                          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+                        >
+                          {[...['MOVIS', 'BOA', 'ONICEF', 'OMS', 'EPC MINEEX', 'LAGARDÈRE', 'MINISTÈRES', 'ALTEN', 'HUMANIS'], ...['MOVIS', 'BOA', 'ONICEF', 'OMS', 'EPC MINEEX', 'LAGARDÈRE', 'MINISTÈRES', 'ALTEN', 'HUMANIS']].map((company, idx) => (
+                            <span
+                              key={`${company}-${idx}`}
+                              className="px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-[10px] font-black whitespace-nowrap shrink-0 border border-slate-200 dark:border-slate-700 shadow-sm"
+                            >
+                              {company}
+                            </span>
+                          ))}
+                        </motion.div>
+                      </div>
+
+                      {/* Desktop Wrap List */}
+                      <div className="hidden md:flex flex-wrap gap-3">
+                        {['MOVIS', 'BOA', 'ONICEF', 'OMS', 'EPC MINEEX', 'LAGARDÈRE', 'MINISTÈRES', 'ALTEN', 'HUMANIS'].map((company) => (
+                          <span
+                            key={company}
+                            className="px-4 py-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-black whitespace-nowrap shrink-0 border border-slate-200 dark:border-slate-700 shadow-sm"
+                          >
+                            {company}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
 
                   {/* CTA personnalisé - Formateur */}
-        <div className="text-center mt-12">
-          <Link href="/inscription" className="inline-block">
-            <Button size="lg" className="bg-orange-500 hover:bg-orange-600 text-white py-4 px-8 text-base font-semibold rounded-xl transition-all hover:scale-[1.02] shadow-lg">
-              Apprendre avec Léonce
-              <ArrowRight className="ml-2 w-4 h-4" />
-            </Button>
-          </Link>
-        </div>
-
-
-
+                  <div className="text-center mt-6">
+                    <Link href="/inscription" className="inline-block">
+                      <Button size="lg" className="bg-orange-500 hover:bg-orange-600 text-white py-4 px-8 text-base font-semibold rounded-xl transition-all hover:scale-[1.02] active:scale-95 shadow-lg">
+                        Apprendre avec Léonce
+                        <ArrowRight className="ml-2 w-4 h-4" />
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-        
+      {/* Sticky Mobile CTA */}
+      <div className="fixed bottom-6 left-6 right-6 z-[100] md:hidden">
+        <Link href="/inscription">
+          <Button size="lg" className="w-full bg-emerald-600 text-white font-black rounded-2xl shadow-[0_20px_40px_rgba(16,185,129,0.4)] py-6 text-base border-2 border-emerald-400 active:scale-95 transition-all">
+            🚀 Je m'inscris maintenant
+          </Button>
+        </Link>
       </div>
     </section>
   );

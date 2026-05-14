@@ -45,13 +45,13 @@ META_TEST_EVENT_CODE=votre_code_test_ici
 ### 2. InitiateCheckout
 - **Quand :** Formulaire d'inscription ouvert
 - **Type :** Pixel uniquement
-- **Payload :** value: 25000, currency: XOF
+- **Payload :** value: 30000, currency: XOF
 
 ### 3. Lead
 - **Quand :** Inscription réussie
 - **Type :** Pixel + CAPI (avec déduplication via event_id)
 - **Payload :** 
-  - value: 25000, currency: XOF
+  - value: 30000, currency: XOF
   - Données utilisateur hachées (email, téléphone, nom)
 
 ## 🔒 Paramètres critiques pour le score EMQ

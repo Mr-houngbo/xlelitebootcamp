@@ -37,6 +37,10 @@ interface Group {
   registrations?: Array<{
     payment_status: string;
     total_amount: number;
+    registration_fee_paid: boolean;
+    training_fee_paid: boolean;
+    registration_fee_amount: number;
+    training_fee_amount: number;
   }>;
 }
 
@@ -275,7 +279,7 @@ export default function BusinessPage() {
                  </div>
               </div>
 
-              <div className="space-y-2">
+              <div className="space-y-2 mb-6">
                  <div className="flex justify-between items-end">
                     <span className="text-[9px] font-black text-stone-500 dark:text-stone-400 uppercase tracking-widest">Saturation ({group.current_capacity} occupés)</span>
                     <span className="text-xs font-black text-orange-600 dark:text-orange-500">{fillRate.toFixed(1)}%</span>
@@ -286,6 +290,21 @@ export default function BusinessPage() {
                       style={{ width: `${fillRate}%` }} 
                     />
                  </div>
+              </div>
+
+              <div className="pt-4 border-t border-stone-200 dark:border-stone-800 flex justify-between items-center">
+                <div>
+                  <p className="text-[9px] font-black text-stone-400 dark:text-stone-500 uppercase tracking-widest">Récolté</p>
+                  <p className="text-sm font-black text-stone-900 dark:text-stone-100">
+                    {(group.registrations?.filter(r => r.payment_status === 'paid').reduce((sum, r) => sum + r.total_amount, 0) || 0).toLocaleString()} F
+                  </p>
+                </div>
+                <div className="text-right">
+                  <p className="text-[9px] font-black text-stone-400 dark:text-stone-500 uppercase tracking-widest">En attente</p>
+                  <p className="text-sm font-black text-orange-500">
+                    {((group.registrations?.length || 0) * 155000 - (group.registrations?.filter(r => r.payment_status === 'paid').reduce((sum, r) => sum + r.total_amount, 0) || 0)).toLocaleString()} F
+                  </p>
+                </div>
               </div>
             </motion.div>
           );

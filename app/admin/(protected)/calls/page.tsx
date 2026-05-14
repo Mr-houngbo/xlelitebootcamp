@@ -414,7 +414,7 @@ export default function CallsPage() {
                         {reg ? (
                           <div className="p-5 rounded-2xl bg-stone-50 dark:bg-stone-950 border border-stone-100 dark:border-stone-800/50 flex flex-wrap gap-6 items-center transition-colors">
                             <div>
-                              <p className="text-[10px] text-stone-400 dark:text-stone-500 uppercase tracking-widest font-black mb-1">Inscription (25 000 F)</p>
+                              <p className="text-[10px] text-stone-400 dark:text-stone-500 uppercase tracking-widest font-black mb-1">Inscription (30 000 F)</p>
                               <div className={`flex items-center gap-2 text-sm font-bold ${reg.registration_fee_paid ? 'text-emerald-600 dark:text-emerald-500' : 'text-stone-500'}`}>
                                 {reg.registration_fee_paid ? <CheckCircle className="w-4 h-4" /> : <XCircle className="w-4 h-4" />}
                                 {reg.registration_fee_paid ? 'Payé' : 'Non payé'}

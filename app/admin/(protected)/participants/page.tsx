@@ -60,6 +60,8 @@ interface Participant {
     total_amount: number;
     registration_fee_paid: boolean;
     training_fee_paid: boolean;
+    registration_fee_amount: number;
+    training_fee_amount: number;
     groups?: {
       name: string;
       time_slot: string;
@@ -283,9 +285,14 @@ export default function ParticipantsPage() {
                     </div>
                   </TableCell>
                   <TableCell>
-                    <div className="flex gap-2">
-                       <div className={`w-2.5 h-2.5 rounded-full ${reg?.registration_fee_paid ? 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.3)]' : 'bg-stone-300 dark:bg-stone-700'}`} title="Inscription" />
-                       <div className={`w-2.5 h-2.5 rounded-full ${reg?.training_fee_paid ? 'bg-orange-500 shadow-[0_0_8px_rgba(249,115,22,0.3)]' : 'bg-stone-300 dark:bg-stone-700'}`} title="Formation" />
+                    <div className="flex items-center gap-3">
+                      <div className="flex gap-1.5">
+                         <div className={`w-2 h-2 rounded-full ${reg?.registration_fee_paid ? 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.2)]' : 'bg-stone-300 dark:bg-stone-700'}`} title="Inscription" />
+                         <div className={`w-2 h-2 rounded-full ${reg?.training_fee_paid ? 'bg-orange-500 shadow-[0_0_8px_rgba(249,115,22,0.2)]' : 'bg-stone-300 dark:bg-stone-700'}`} title="Formation" />
+                      </div>
+                      <span className="text-[10px] font-bold text-stone-600 dark:text-stone-400">
+                        {((reg?.registration_fee_paid ? Number(reg.registration_fee_amount) : 0) + (reg?.training_fee_paid ? Number(reg.training_fee_amount) : 0)).toLocaleString()} F
+                      </span>
                     </div>
                   </TableCell>
                   <TableCell>
@@ -395,7 +402,7 @@ export default function ParticipantsPage() {
                         </h4>
                         <div className="space-y-2">
                            {[
-                             { label: 'Frais d\'inscription (25.000 F)', field: 'registration_fee_paid' as const },
+                             { label: 'Frais d\'inscription (30.000 F)', field: 'registration_fee_paid' as const },
                              { label: 'Frais de formation (125.000 F)', field: 'training_fee_paid' as const }
                            ].map((item) => {
                              const reg = selectedParticipant.registrations?.[0];

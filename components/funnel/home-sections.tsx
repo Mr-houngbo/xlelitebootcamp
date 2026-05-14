@@ -80,19 +80,21 @@ export const HeroFunnel = () => {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 min-h-[90vh] flex flex-col justify-end">
-        {/* Dark gradient overlay from bottom for text readability - full width */}
-        <div className="absolute left-0 right-0 bottom-0 h-3/4 bg-gradient-to-t from-black via-black/50 to-transparent pointer-events-none" />
+      <div className="relative z-10 min-h-[80vh] flex flex-col justify-center">
+        {/* Dark gradient overlay - more balanced for centered text */}
+        <div className="absolute inset-0 bg-black/40 pointer-events-none" />
+        <div className="absolute left-0 right-0 bottom-0 h-1/2 bg-gradient-to-t from-black via-black/40 to-transparent pointer-events-none" />
         
-        <div className="container px-4 mx-auto max-w-7xl relative z-10 pb-8 md:pb-12">
-          <div className="max-w-4xl mx-auto text-center space-y-5 md:space-y-6 mb-4">
+        <div className="container px-6 mx-auto max-w-7xl relative z-10 py-12 md:py-24">
+          <div className="max-w-3xl mx-auto text-center space-y-6 md:space-y-8 mb-4">
           
           {/* Main Title - Staggered Animation */}
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] text-white"
+            className="text-3xl sm:text-3xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15] text-white"
+            style={{ textShadow: '0 4px 20px rgba(0,0,0,0.6)' }}
           >
             Décrochez la certification{' '}
             <span className="block">
@@ -113,7 +115,8 @@ export const HeroFunnel = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="text-base md:text-lg text-white/90 font-medium max-w-2xl mx-auto leading-relaxed"
+            className="text-sm md:text-lg text-white/90 font-medium max-w-2xl mx-auto leading-relaxed"
+            style={{ textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}
           >
             La certification qui vous rend incontournable sur le marché
           </motion.p>
@@ -128,10 +131,10 @@ export const HeroFunnel = () => {
             <Link href="/inscription" className="w-full sm:w-auto">
               <Button 
                 size="lg" 
-                className="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white py-5 md:py-6 text-base font-bold rounded-xl transition-all hover:scale-[1.02] active:scale-[0.98] group shadow-[0_20px_40px_-10px_rgba(16,185,129,0.5)] hover:shadow-[0_25px_50px_-10px_rgba(16,185,129,0.6)] min-h-[56px]"
+                className="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white py-4 md:py-6 text-sm md:text-base font-bold rounded-lg transition-all hover:scale-[1.02] active:scale-[0.95] group shadow-[0_20px_40px_-10px_rgba(16,185,129,0.5)] hover:shadow-[0_25px_50px_-10px_rgba(16,185,129,0.6)] min-h-[50px]"
               >
                 Je réserve ma place maintenant
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
           </motion.div>
@@ -141,7 +144,7 @@ export const HeroFunnel = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.8 }}
-            className="pt-6 flex flex-wrap justify-center gap-6 md:gap-8"
+            className="pt-4 flex flex-wrap justify-center gap-4 md:gap-8"
           >
             {[
               { icon: Users, value: '+5000', label: 'Professionels formés', color: 'text-white' },
@@ -153,11 +156,11 @@ export const HeroFunnel = () => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.9 + i * 0.1 }}
-                className="flex items-center gap-2 text-white/90"
+                className="flex items-center gap-1.5 text-white/90"
               >
-                <stat.icon className={`w-5 h-5 ${stat.color}`} />
-                <span className="font-semibold">{stat.value}</span>
-                <span className="text-white/70 text-sm">{stat.label}</span>
+                <stat.icon className={`w-4 h-4 ${stat.color}`} />
+                <span className="font-semibold text-sm">{stat.value}</span>
+                <span className="text-white/70 text-[10px] md:text-sm uppercase tracking-wider">{stat.label}</span>
               </motion.div>
             ))}
           </motion.div>
@@ -166,14 +169,14 @@ export const HeroFunnel = () => {
       </div>
 
       {/* Floating Cards Section */}
-      <div className="relative z-10 bg-white py-10 md:py-16">
+      <div className="relative z-10 bg-white py-8 md:py-16">
         <div className="container px-4 mx-auto max-w-7xl">
-          <div className="text-center mb-8 md:mb-10">
-            <p className="text-base md:text-lg text-slate-600 font-medium">
-              Ce que vous obtiendrez après réussite de l'examen
+          <div className="text-center mb-6 md:mb-10">
+            <p className="text-sm md:text-xl font-bold text-slate-800">
+              Obtenez la reconnaissance internationale qui vous fait gagner des projets internationaux
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 max-w-4xl mx-auto">
+          <div className="grid grid-cols-2 gap-3 md:gap-10 max-w-4xl mx-auto px-2">
           
           {/* Card 1 - Certification */}
           <motion.div
@@ -181,39 +184,39 @@ export const HeroFunnel = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border border-gray-100"
+            className="group bg-white rounded-xl p-3 md:p-8 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100 flex flex-col items-center"
           >
-            <div className="relative h-[220px] bg-gradient-to-br from-emerald-50 to-emerald-100/50 rounded-xl mb-6 overflow-hidden">
+            <div className="relative w-full aspect-[4/3] md:h-[220px] bg-gradient-to-br from-emerald-50 to-emerald-100/50 rounded-lg mb-2 overflow-hidden">
               <Image 
                 src="/MOS_365_Certificate_SAMPLE.webp"
                 alt="Certification Microsoft Excel Expert"
                 fill
-                className="object-contain p-6"
+                className="object-contain p-2 md:p-4"
               />
             </div>
-            <h3 className="font-bold text-xl text-slate-900 mb-2">Certification</h3>
-            <p className="text-base text-slate-500 font-medium leading-relaxed">Microsoft Excel Expert</p>
+            <h3 className="font-bold text-[10px] md:text-lg text-slate-900 mb-0.5">Certification</h3>
+            <p className="text-[8px] md:text-xs text-slate-500 font-medium leading-tight text-center">Microsoft Excel Expert</p>
           </motion.div>
-
+          
           {/* Card 2 - Badge */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border border-gray-100"
+            className="group bg-white rounded-xl p-3 md:p-8 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100 flex flex-col items-center"
           >
-            <div className="relative h-[220px] bg-gradient-to-br from-orange-50 to-orange-100/50 rounded-xl mb-6 overflow-hidden">
+            <div className="relative w-full aspect-[4/3] md:h-[220px] bg-gradient-to-br from-orange-50 to-orange-100/50 rounded-lg mb-2 overflow-hidden">
               <Image 
                 src="/badge.png"
                 alt="Badge Microsoft Excel Expert"
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className="object-contain p-6"
+                className="object-contain p-2 md:p-4"
               />
             </div>
-            <h3 className="font-bold text-xl text-slate-900 mb-2">Badge</h3>
-            <p className="text-base text-slate-500 font-medium leading-relaxed">Badge Microsoft Excel Expert</p>
+            <h3 className="font-bold text-[10px] md:text-lg text-slate-900 mb-0.5">Badge</h3>
+            <p className="text-[8px] md:text-xs text-slate-500 font-medium leading-tight text-center">Microsoft Excel Expert</p>
           </motion.div>
 
           </div>
@@ -225,7 +228,7 @@ export const HeroFunnel = () => {
 
 export const TransformationSection = () => {
   return (
-    <section className="py-12 md:py-20 overflow-hidden">
+    <section className="py-10 md:py-20 overflow-hidden">
       <div className="container px-4 mx-auto">
         <div className="flex flex-col lg:flex-row gap-12 md:gap-20 items-center">
           <div className="w-full lg:w-1/2 order-2 lg:order-1">
@@ -233,25 +236,25 @@ export const TransformationSection = () => {
             
             <div className="mt-10 md:mt-12 space-y-4 md:space-y-6">
               {[
-                { title: "Crédibilité instantanée", desc: "Badge Microsoft Excel Expert et profil LinkedIn mis à jour dès la réussite de l'examen.", icon: <Award className="w-6 h-6 text-emerald-600" /> },
-                { title: "Processus fiabilisés", desc: "Vous structurez vos automatisations avec les standards Microsoft pour sécuriser vos équipes.", icon: <ShieldCheck className="w-6 h-6 text-emerald-600" /> },
-                { title: "Plan de carrière accéléré", desc: "Vous gagnez en légitimité pour négocier une promotion, une mission senior ou un transfert international.", icon: <TrendingUp className="w-6 h-6 text-emerald-600" /> },
+                { title: "Crédibilité instantanée", desc: "Badge et profil LinkedIn mis à jour immédiatement.", icon: <Award className="w-5 h-5 text-emerald-600" /> },
+                { title: "Processus fiabilisés", desc: "Structurez vos automatisations avec les standards Microsoft.", icon: <ShieldCheck className="w-5 h-5 text-emerald-600" /> },
+                { title: "Carrière accélérée", desc: "Gagnez en légitimité pour négocier une promotion.", icon: <TrendingUp className="w-5 h-5 text-emerald-600" /> },
               ].map((item, i) => (
-                <div key={i} className="flex items-start gap-3 md:gap-4 p-4 md:p-6 rounded-xl md:rounded-2xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-md">
+                <div key={i} className="flex items-start gap-3 p-3 md:p-6 rounded-lg md:rounded-2xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-sm">
                   <div className="w-8 h-8 md:w-12 md:h-12 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg md:rounded-2xl flex items-center justify-center shrink-0">
                      {item.icon}
                   </div>
                   <div>
-                    <p className="text-lg md:text-xl font-bold">{item.title}</p>
-                    <p className="text-sm md:text-base text-slate-600 dark:text-slate-400">{item.desc}</p>
+                    <p className="text-base md:text-xl font-bold">{item.title}</p>
+                    <p className="text-[13px] md:text-base text-slate-600 dark:text-slate-400 leading-tight">{item.desc}</p>
                   </div>
                 </div>
               ))}
             </div>
 
-            <div className="mt-12 text-center lg:text-left">
+            <div className="mt-8 text-center lg:text-left">
               <Link href="#programme" className="inline-block w-full sm:w-auto">
-                <Button size="lg" className="w-full bg-orange-500 hover:bg-orange-600 text-white px-8 md:px-10 py-6 md:py-8 text-base md:text-xl font-black rounded-2xl shadow-xl shadow-orange-500/20 min-h-[56px]">
+                <Button size="lg" className="w-full bg-orange-500 hover:bg-orange-600 text-white px-8 md:px-10 py-5 md:py-8 text-base md:text-xl font-black rounded-xl shadow-lg shadow-orange-500/20 min-h-[50px]">
                   Je réserve ma place
                 </Button>
               </Link>
@@ -286,15 +289,15 @@ export const ProgrammeSection = () => {
   ];
 
   return (
-    <section id="programme" className="py-20 md:py-32 bg-slate-50 dark:bg-slate-900 border-t border-gray-100 dark:border-gray-800">
+    <section id="programme" className="py-10 md:py-32 bg-slate-50 dark:bg-slate-900 border-t border-gray-100 dark:border-gray-800">
       <div className="container px-4 mx-auto max-w-5xl">
-        <div className="text-center mb-16">
-          <span className="text-brand-green font-bold tracking-wider uppercase text-sm mb-2 block">Ce qui vous attend</span>
-          <h2 className="text-3xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white">
-            La feuille de route pour décrocher <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-green to-brand-orange">Microsoft Excel Expert</span>
+        <div className="text-center mb-10">
+          <span className="text-brand-green font-bold tracking-wider uppercase text-[10px] mb-1 block">Programme détaillé</span>
+          <h2 className="text-2xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white">
+            Votre feuille de route <span className="text-emerald-600">Expert</span>
           </h2>
-          <p className="mt-4 text-slate-600 dark:text-slate-400 text-lg md:text-xl font-medium max-w-2xl mx-auto">
-            Chaque journée mêle théorie ciblée, cas pratiques issus de missions réelles et préparation directe à l'examen officiel.
+          <p className="mt-3 text-slate-600 dark:text-slate-400 text-sm md:text-xl font-medium max-w-2xl mx-auto">
+            Théorie ciblée, cas pratiques et préparation directe à l'examen officiel.
           </p>
         </div>
 
@@ -308,13 +311,13 @@ export const ProgrammeSection = () => {
           ))}
         </div>
 
-        <div className="text-center bg-white dark:bg-slate-800 p-8 md:p-12 rounded-[2.5rem] shadow-xl border border-gray-100 dark:border-gray-700 relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-brand-green to-brand-orange"></div>
-          <h3 className="text-2xl md:text-3xl font-black mb-4">Votre badge Microsoft Excel Expert vous attend.</h3>
-          <p className="text-slate-600 dark:text-slate-400 mb-8 max-w-xl mx-auto">15 places maximum pour un coaching personnalisé, des simulations d'examen et une validation en conditions réelles.</p>
+        <div className="text-center bg-white dark:bg-slate-800 p-6 md:p-12 rounded-[1.5rem] md:rounded-[2.5rem] shadow-lg border border-gray-100 dark:border-gray-700 relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-brand-green to-brand-orange"></div>
+          <h3 className="text-xl md:text-3xl font-black mb-3">Votre badge Microsoft vous attend.</h3>
+          <p className="text-sm text-slate-600 dark:text-slate-400 mb-6 max-w-xl mx-auto">15 places max pour un coaching personnalisé et une validation en conditions réelles.</p>
           <Link href="/inscription">
-            <Button size="lg" className="w-full sm:w-auto bg-brand-green hover:bg-emerald-700 text-white px-10 py-8 text-base md:text-xl font-black rounded-2xl shadow-xl shadow-brand-green/20 transition-all hover:scale-105 min-h-[56px]">
-              Je réserve ma place <ArrowRight className="ml-3 w-6 h-6" />
+            <Button size="lg" className="w-full sm:w-auto bg-brand-green hover:bg-emerald-700 text-white px-8 py-5 md:py-8 text-base md:text-xl font-black rounded-xl shadow-lg shadow-brand-green/20 transition-all hover:scale-105 min-h-[50px]">
+              Je réserve ma place <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
           </Link>
         </div>

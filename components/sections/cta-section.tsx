@@ -80,7 +80,7 @@ export function CTASection() {
                     </div>
                     <p className="text-brand-orange text-sm font-black tracking-wider uppercase mb-2">Formation Complète</p>
                     <div className="flex items-baseline gap-2 mb-6">
-                      <span className="text-5xl font-black text-gray-900">150.000</span>
+                      <span className="text-5xl font-black text-gray-900">155.000</span>
                       <span className="text-xl text-gray-500 font-bold">FCFA</span>
                     </div>
                     

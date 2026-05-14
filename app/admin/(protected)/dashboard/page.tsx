@@ -81,11 +81,11 @@ export default function AdminDashboard() {
 
       registrations.forEach(reg => {
         // Sum actually paid amounts
-        if (reg.registration_fee_paid) totalPaidCash += Number(reg.registration_fee_amount || 25000);
+        if (reg.registration_fee_paid) totalPaidCash += Number(reg.registration_fee_amount || 30000);
         if (reg.training_fee_paid) totalPaidCash += Number(reg.training_fee_amount || 125000);
         
         // Sum total potential (signed up)
-        totalPotentialRevenue += Number(reg.total_amount || 150000);
+        totalPotentialRevenue += Number(reg.total_amount || 155000);
       });
 
       setRevenueStats({ actual: totalPaidCash, projected: totalPotentialRevenue });
@@ -129,7 +129,7 @@ export default function AdminDashboard() {
         
         const groupRevenue = groupRegs.reduce((sum, r) => {
           let paid = 0;
-          if (r.registration_fee_paid) paid += Number(r.registration_fee_amount || 25000);
+          if (r.registration_fee_paid) paid += Number(r.registration_fee_amount || 30000);
           if (r.training_fee_paid) paid += Number(r.training_fee_amount || 125000);
           return sum + paid;
         }, 0);
@@ -141,7 +141,7 @@ export default function AdminDashboard() {
           current_capacity: currentCap,
           max_capacity: g.max_capacity,
           revenue: groupRevenue,
-          pending_revenue: groupRegs.length * 150000 - groupRevenue
+          pending_revenue: groupRegs.length * 155000 - groupRevenue
         };
       });
       setGroupStats(stats);

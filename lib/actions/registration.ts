@@ -72,7 +72,7 @@ export async function createRegistration(data: RegistrationFormData) {
       .insert({
         participant_id: participant.id,
         group_id: data.groupId,
-        registration_fee_amount: 25000,
+        registration_fee_amount: 30000,
         training_fee_amount: 125000,
         payment_status: 'pending',
         registration_fee_paid: false,

@@ -131,14 +131,14 @@ export function BenefitsSection() {
                   <div className="bg-slate-50 border border-gray-100 rounded-2xl p-6 relative overflow-hidden group hover:border-brand-green/30 transition-colors">
                     <div className="relative z-10">
                       <p className="text-sm text-brand-green uppercase tracking-wider font-bold mb-2">Frais d'Inscription</p>
-                      <div className="text-4xl font-black text-gray-900 mb-1">25.000<span className="text-2xl text-gray-400"> FCFA</span></div>
+                      <div className="text-4xl font-black text-gray-900 mb-1">30.000<span className="text-2xl text-gray-400"> FCFA</span></div>
                     </div>
                   </div>
                   <div className="bg-slate-50 border border-gray-100 rounded-2xl p-6 relative overflow-hidden group hover:border-brand-orange/30 transition-colors">
                     <div className="absolute -top-3 -right-3 bg-brand-orange text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-md transform rotate-12">POPULAIRE</div>
                     <div className="relative z-10">
                       <p className="text-sm text-brand-orange uppercase tracking-wider font-bold mb-2">Tarif de Formation</p>
-                      <div className="text-4xl font-black text-gray-900 mb-1">150.000<span className="text-2xl text-gray-400"> FCFA</span></div>
+                      <div className="text-4xl font-black text-gray-900 mb-1">125.000<span className="text-2xl text-gray-400"> FCFA</span></div>
                     </div>
                   </div>
                 </div>

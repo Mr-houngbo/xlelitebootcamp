@@ -63,10 +63,10 @@ INSERT INTO participants (id, first_name, last_name, email, phone, company, posi
 
 -- Insert sample registrations
 INSERT INTO registrations (id, participant_id, group_id, registration_fee_amount, training_fee_amount, total_amount, payment_status, registration_fee_paid, training_fee_paid, payment_method, payment_reference, notes, created_at, updated_at) VALUES 
-('70000000-0000-0000-0000-000000000001', '60000000-0000-0000-0000-000000000001', '10000000-0000-0000-0000-000000000001', 25000, 125000, 150000, 'paid', true, true, 'mobile_money', 'MOOV123456', 'Paiement complet reçu', NOW() - INTERVAL '6 days', NOW() - INTERVAL '6 days'),
-('70000000-0000-0000-0000-000000000002', '60000000-0000-0000-0000-000000000002', '10000000-0000-0000-0000-000000000002', 25000, 125000, 150000, 'partial', true, false, 'bank_transfer', 'BANK789012', 'Frais inscription payés', NOW() - INTERVAL '4 days', NOW() - INTERVAL '4 days'),
-('70000000-0000-0000-0000-000000000003', '60000000-0000-0000-0000-000000000003', '10000000-0000-0000-0000-000000000003', 25000, 125000, 150000, 'pending', false, false, NULL, NULL, 'En attente de paiement', NOW() - INTERVAL '2 days', NOW() - INTERVAL '2 days'),
-('70000000-0000-0000-0000-000000000004', '60000000-0000-0000-0000-000000000004', '10000000-0000-0000-0000-000000000001', 25000, 125000, 150000, 'paid', true, true, 'mobile_money', 'ORANGE345678', 'Paiement complet reçu', NOW() - INTERVAL '1 day', NOW() - INTERVAL '1 day');
+('70000000-0000-0000-0000-000000000001', '60000000-0000-0000-0000-000000000001', '10000000-0000-0000-0000-000000000001', 30000, 125000, 155000, 'paid', true, true, 'mobile_money', 'MOOV123456', 'Paiement complet reçu', NOW() - INTERVAL '6 days', NOW() - INTERVAL '6 days'),
+('70000000-0000-0000-0000-000000000002', '60000000-0000-0000-0000-000000000002', '10000000-0000-0000-0000-000000000002', 30000, 125000, 155000, 'partial', true, false, 'bank_transfer', 'BANK789012', 'Frais inscription payés', NOW() - INTERVAL '4 days', NOW() - INTERVAL '4 days'),
+('70000000-0000-0000-0000-000000000003', '60000000-0000-0000-0000-000000000003', '10000000-0000-0000-0000-000000000003', 30000, 125000, 155000, 'pending', false, false, NULL, NULL, 'En attente de paiement', NOW() - INTERVAL '2 days', NOW() - INTERVAL '2 days'),
+('70000000-0000-0000-0000-000000000004', '60000000-0000-0000-0000-000000000004', '10000000-0000-0000-0000-000000000001', 30000, 125000, 155000, 'paid', true, true, 'mobile_money', 'ORANGE345678', 'Paiement complet reçu', NOW() - INTERVAL '1 day', NOW() - INTERVAL '1 day');
 
 -- Update group capacities based on registrations
 UPDATE groups SET current_capacity = 2 WHERE id = '10000000-0000-0000-0000-000000000001';

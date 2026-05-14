@@ -22,7 +22,7 @@ export function RegistrationForm() {
     fbEvent('InitiateCheckout', {
       content_name: 'XL Elite Bootcamp',
       content_category: 'Formation Excel',
-      value: 25000,
+      value: 30000,
       currency: 'XOF'
     });
   }, []);
@@ -94,13 +94,13 @@ export function RegistrationForm() {
         // Envoi de l'événement Meta Pixel (Lead) côté client avec event_id
         fbEvent('Lead', {
           content_name: 'Inscription XL Elite Bootcamp',
-          value: 25000,
+          value: 30000,
           currency: 'XOF',
         }, eventId);
         
         // Envoi via l'API Conversions (Server-side) avec le même event_id
         capiEvent('Lead', {
-          value: 25000,
+          value: 30000,
           currency: 'XOF',
           content_name: 'Inscription XL Elite Bootcamp',
         }, {
@@ -149,7 +149,7 @@ export function RegistrationForm() {
           <ul className="text-sm space-y-3 font-medium text-gray-600">
             <li className="flex items-center gap-3"><span className="text-brand-green text-xl">✅</span> Confirmation email envoyée</li>
             <li className="flex items-center gap-3"><span className="text-brand-green text-xl">✅</span> Appel téléphonique sous 24h</li>
-            <li className="flex items-center gap-3"><span className="text-brand-green text-xl">✅</span> Paiement frais d'inscription (25.000 FCFA)</li>
+            <li className="flex items-center gap-3"><span className="text-brand-green text-xl">✅</span> Paiement frais d'inscription (30.000 FCFA)</li>
             <li className="flex items-center gap-3"><span className="text-brand-green text-xl">✅</span> Accès matériel préparatoire</li>
           </ul>
         </div>
