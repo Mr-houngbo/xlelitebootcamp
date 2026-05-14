@@ -7,7 +7,7 @@ export default function FixedCountdown() {
   const [showMessage, setShowMessage] = useState(false);
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-6 right-6 z-50 hidden md:block">
       <div 
         className="relative group cursor-pointer"
         onClick={() => setShowMessage(!showMessage)}

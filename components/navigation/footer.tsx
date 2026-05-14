@@ -43,13 +43,17 @@ export function Footer() {
               <Phone size={12} className="text-emerald-500 shrink-0" />
               <span className="font-medium">🇸🇳 +221 77 432 93 45</span>
             </a>
+            <a href="tel:+22607236929" className="flex items-center gap-2 text-slate-400 hover:text-emerald-400 transition-colors">
+              <Phone size={12} className="text-emerald-500 shrink-0" />
+              <span className="font-medium">🇧🇫 +226 07 23 69 29</span>
+            </a>
           </div>
 
           {/* Socials - Horizontal inline */}
           <div className="flex items-center justify-between pt-3 border-t border-white/5">
             <div className="flex gap-2">
               {[
-                { icon: <Linkedin size={14} />, href: "https://www.linkedin.com/company/cabinet-smart-otobos-consulting/" },
+                { icon: <Linkedin size={14} />, href: "https://www.linkedin.com/feed/in/leonce-tounde-sodjinou" },
                 { icon: <Youtube size={14} />, href: "https://www.youtube.com/@smartotobosconsulting" },
                 { icon: <Facebook size={14} />, href: "https://www.facebook.com/cabinetsoc" }
               ].map((social, i) => (

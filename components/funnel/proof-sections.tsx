@@ -512,7 +512,7 @@ export const FAQProof = () => {
         {/* Category List - Scrollable horizontally */}
         <div className="relative mb-12 py-2 border-y border-slate-100 dark:border-slate-800">
           
-          <div className="flex gap-4 overflow-x-auto faq-scrollbar pb-4 pt-2 px-2 w-full snap-x scroll-smooth [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+          <div className="flex gap-4 overflow-x-auto faq-scrollbar pb-4 pt-2 px-2 w-full snap-x scroll-smooth">
             {categories.map((cat) => (
               <button
                 key={cat.id}
@@ -855,7 +855,7 @@ export const TrainerSection = () => {
                           animate={{ x: [0, -1000] }}
                           transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
                         >
-                          {[...['MOVIS', 'BOA', 'ONICEF', 'OMS', 'EPC MINEEX', 'LAGARDÈRE', 'MINISTÈRES', 'ALTEN', 'HUMANIS'], ...['MOVIS', 'BOA', 'ONICEF', 'OMS', 'EPC MINEEX', 'LAGARDÈRE', 'MINISTÈRES', 'ALTEN', 'HUMANIS']].map((company, idx) => (
+                          {[...['MOVIS', 'BOA', 'UNICEF', 'OMS', 'EPC MINEEX', 'LAGARDÈRE', 'MINISTÈRES', 'ALTEN', 'HUMANIS'], ...['MOVIS', 'BOA', 'UNICEF', 'OMS', 'EPC MINEEX', 'LAGARDÈRE', 'MINISTÈRES', 'ALTEN', 'HUMANIS']].map((company, idx) => (
                             <span
                               key={`${company}-${idx}`}
                               className="px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-[10px] font-black whitespace-nowrap shrink-0 border border-slate-200 dark:border-slate-700 shadow-sm"
@@ -868,7 +868,7 @@ export const TrainerSection = () => {
 
                       {/* Desktop Wrap List */}
                       <div className="hidden md:flex flex-wrap gap-3">
-                        {['MOVIS', 'BOA', 'ONICEF', 'OMS', 'EPC MINEEX', 'LAGARDÈRE', 'MINISTÈRES', 'ALTEN', 'HUMANIS'].map((company) => (
+                        {['MOVIS', 'BOA', 'UNICEF', 'OMS', 'EPC MINEEX', 'LAGARDÈRE', 'MINISTÈRES', 'ALTEN', 'HUMANIS'].map((company) => (
                           <span
                             key={company}
                             className="px-4 py-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-black whitespace-nowrap shrink-0 border border-slate-200 dark:border-slate-700 shadow-sm"
@@ -900,7 +900,7 @@ export const TrainerSection = () => {
       <div className="fixed bottom-6 left-6 right-6 z-[100] md:hidden">
         <Link href="/inscription">
           <Button size="lg" className="w-full bg-emerald-600 text-white font-black rounded-2xl shadow-[0_20px_40px_rgba(16,185,129,0.4)] py-6 text-base border-2 border-emerald-400 active:scale-95 transition-all">
-            🚀 Je m'inscris maintenant
+            Je m'inscris maintenant
           </Button>
         </Link>
       </div>
