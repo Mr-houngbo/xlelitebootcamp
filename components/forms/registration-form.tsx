@@ -91,12 +91,17 @@ export function RegistrationForm() {
         // Générer un event_id unique pour la déduplication Pixel + CAPI
         const eventId = `lead_${Date.now()}_${Math.random().toString(36).substring(2, 15)}`;
         
-        // Envoi de l'événement Meta Pixel (Lead) côté client avec event_id
+        // Envoi de l'événement Meta Pixel (Lead) côté client avec event_id ET données de matching
         fbEvent('Lead', {
           content_name: 'Inscription XL Elite Bootcamp',
           value: 30000,
           currency: 'XOF',
-        }, eventId);
+        }, eventId, {
+          email: data.email,
+          phone: data.phone,
+          firstName: data.firstName,
+          lastName: data.lastName,
+        });
         
         // Envoi via l'API Conversions (Server-side) avec le même event_id
         capiEvent('Lead', {
@@ -110,11 +115,24 @@ export function RegistrationForm() {
           lastName: data.lastName,
         }, eventId);
       } else {
+        // Tracking de l'erreur côté Meta
+        fbEvent('RegistrationError', {
+          error_message: result.error || 'Erreur Supabase inconnue',
+          profile_type: data.profileType
+        });
+
         // Afficher le vrai message d'erreur Supabase
         alert(result.error || 'Une erreur est survenue lors de l\'inscription.');
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Registration error:', error);
+      
+      // Tracking de l'erreur technique
+      fbEvent('RegistrationError', {
+        error_message: error.message || 'Erreur technique inattendue',
+        profile_type: data.profileType
+      });
+
       alert('Une erreur est survenue lors de l\'inscription. Veuillez réessayer.');
     } finally {
       setIsSubmitting(false);

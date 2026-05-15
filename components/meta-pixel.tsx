@@ -31,8 +31,20 @@ type FbEventOptions = {
   [key: string]: any;
 };
 
-export const event = (name: string, options?: FbEventOptions, eventId?: string) => {
+export const event = (name: string, options?: FbEventOptions, eventId?: string, userData?: Record<string, any>) => {
   if (typeof window !== 'undefined' && window.fbq) {
+    // Si des données utilisateur sont fournies, on ré-initialise le pixel avec l'Advanced Matching
+    // pour que les événements suivants bénéficient d'un meilleur score EMQ
+    if (userData && FB_PIXEL_ID) {
+      const matchData: Record<string, any> = {};
+      if (userData.email) matchData.em = userData.email.trim().toLowerCase();
+      if (userData.phone) matchData.ph = userData.phone.replace(/\D/g, '');
+      if (userData.firstName) matchData.fn = userData.firstName.trim().toLowerCase();
+      if (userData.lastName) matchData.ln = userData.lastName.trim().toLowerCase();
+      
+      window.fbq('init', FB_PIXEL_ID, matchData);
+    }
+
     if (eventId) {
       window.fbq('track', name, options, { eventID: eventId });
     } else {

@@ -28,6 +28,18 @@ export async function POST(request: Request) {
     // Construction de la payload pour l'API Conversions
     const currentTimestamp = Math.floor(Date.now() / 1000);
     
+    // Nettoyage et hachage des données utilisateur
+    const user_data: any = {
+      client_ip_address: clientIp,
+      client_user_agent: userAgent,
+    };
+
+    if (userData.email) user_data.em = [hashData(userData.email)];
+    if (userData.phone) user_data.ph = [hashData(userData.phone, 'phone')];
+    if (userData.firstName) user_data.fn = [hashData(userData.firstName)];
+    if (userData.lastName) user_data.ln = [hashData(userData.lastName)];
+    if (userData.externalId) user_data.external_id = [hashData(userData.externalId)];
+
     const payload = {
       data: [
         {
@@ -35,17 +47,8 @@ export async function POST(request: Request) {
           event_time: currentTimestamp,
           action_source: 'website',
           event_source_url: eventUrl,
-          ...(eventId && { event_id: eventId }), // event_id pour déduplication
-          user_data: {
-            client_ip_address: clientIp,
-            client_user_agent: userAgent,
-            // Hachage des données utilisateur (Doit être en SHA256 côté client idéalement, 
-            // ou ici si les données brutes sont passées)
-            ...(userData.email && { em: [hashData(userData.email)] }),
-            ...(userData.phone && { ph: [hashData(userData.phone)] }),
-            ...(userData.firstName && { fn: [hashData(userData.firstName)] }),
-            ...(userData.lastName && { ln: [hashData(userData.lastName)] }),
-          },
+          ...(eventId && { event_id: eventId }),
+          user_data,
           custom_data: {
             ...eventData,
           },
@@ -88,12 +91,17 @@ export async function POST(request: Request) {
 }
 
 // Fonction utilitaire pour hacher les données (requis par Meta CAPI)
-// Note: Dans un environnement de production réel, utilisez crypto de Node.js
 import crypto from 'crypto';
 
-function hashData(data: string): string {
+function hashData(data: string, type: 'email' | 'phone' | 'other' = 'other'): string {
   if (!data) return '';
-  // Meta requiert des données en minuscules, sans espaces avant hachage
-  const normalizedData = data.trim().toLowerCase();
+  
+  let normalizedData = data.trim().toLowerCase();
+  
+  // Pour les téléphones, Meta veut uniquement les chiffres (incluant l'indicatif pays)
+  if (type === 'phone') {
+    normalizedData = data.replace(/\D/g, ''); // Supprime tout ce qui n'est pas un chiffre
+  }
+  
   return crypto.createHash('sha256').update(normalizedData).digest('hex');
 }
