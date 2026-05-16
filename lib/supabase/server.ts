@@ -33,9 +33,17 @@ export async function createClient() {
           return cookieStore.getAll();
         },
         setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value, options }) =>
-            cookieStore.set(name, value, options)
-          );
+          try {
+            cookiesToSet.forEach(({ name, value, options }) =>
+              cookieStore.set(name, value, options)
+            );
+          } catch {
+            // En dehors d'une Server Action ou d'un Route Handler,
+            // Next.js 15 interdit l'écriture de cookies.
+            // Cette erreur est ignorée ici car la vérification de session
+            // reste faite en lecture seule (getAll).
+            // Le middleware se chargera du rafraîchissement si nécessaire.
+          }
         },
       },
       global: {
