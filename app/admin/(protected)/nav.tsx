@@ -2,14 +2,14 @@
 
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { LayoutDashboard, Users, Briefcase, MessageSquare, PhoneCall } from 'lucide-react';
+import { LayoutDashboard, Users, Briefcase, MessageSquare, PhoneCall, BarChart3 } from 'lucide-react';
 
 const navItems = [
   { name: 'Dashboard', icon: <LayoutDashboard className="w-4 h-4" />, href: '/admin/dashboard' },
+  { name: 'Statistiques', icon: <BarChart3 className="w-4 h-4" />, href: '/admin/statistics' },
   { name: 'Participants', icon: <Users className="w-4 h-4" />, href: '/admin/participants' },
   { name: 'Business', icon: <Briefcase className="w-4 h-4" />, href: '/admin/business' },
   { name: 'Appeler', icon: <PhoneCall className="w-4 h-4" />, href: '/admin/calls' },
-  { name: 'Témoignages', icon: <MessageSquare className="w-4 h-4" />, href: '/admin/testimonials' },
 ];
 
 export function AdminNav() {
